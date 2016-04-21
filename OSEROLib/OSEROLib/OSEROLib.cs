@@ -11,5 +11,15 @@ namespace OSEROLib
         
     }
 
-    
+    public class OSEROBoard
+    {
+
+    }
+
+    public struct StoneInfo
+    {
+        public int StoneColor { get; set; }
+        public int StonePointX { get; set; }
+        public int StonePointY { get; set; }
+    }
 }

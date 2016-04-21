@@ -108,22 +108,40 @@ namespace ReversLib
         /// 上の石の情報を取得する
         /// </summary>
         /// <param name="nowStone">起点となる石の情報</param>
-        /// <returns></returns>
+        /// <returns>上にある石の情報</returns>
         public StoneInfo GetTopStoneInfo(StoneInfo nowStone)
         {
             if (nowStone.StonePositonY == 0) throw NoneStoneException;
             return BoardInfos[nowStone.StonePositionX, nowStone.StonePositonY - 1];
         }
+        
+        /// <summary>
+        /// 下にある石の情報を取得する
+        /// </summary>
+        /// <param name="nowStone">起点となる石の情報</param>
+        /// <returns>下にある石の情報</returns>
         public StoneInfo GetUnderStoneInfo(StoneInfo nowStone)
         {
             if (nowStone.StonePositonY == BoardInfos.GetLength(1)) throw NoneStoneException;
             return BoardInfos[nowStone.StonePositionX, nowStone.StonePositonY + 1];
         }
+
+        /// <summary>
+        /// 右にある石の情報を取得する
+        /// </summary>
+        /// <param name="nowStone">起点となる石の情報</param>
+        /// <returns>右にある石の情報</returns>
         public StoneInfo GetRightStoneInfo(StoneInfo nowStone)
         {
             if (nowStone.StonePositionX == BoardInfos.GetLength(1)) throw NoneStoneException;
             return BoardInfos[nowStone.StonePositionX + 1, nowStone.StonePositonY];
         }
+
+        /// <summary>
+        /// 左にある石の情報
+        /// </summary>
+        /// <param name="nowStone">起点となる石の情報</param>
+        /// <returns>左にある石の情報</returns>
         public StoneInfo GetLeftStoneInfo(StoneInfo nowStone)
         {
             if (nowStone.StonePositionX == 0) throw NoneStoneException;

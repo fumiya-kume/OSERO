@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace OSEROLib
 {
-    public class USEROLib
+    public class OSEROLib
     {
         
     }
+
+    
 }

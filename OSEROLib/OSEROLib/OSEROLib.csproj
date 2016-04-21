@@ -107,7 +107,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="USEROLib.cs" />
+    <Compile Include="OSEROLib.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\OSEROLib.rd.xml" />
   </ItemGroup>

@@ -104,6 +104,23 @@ namespace ReversLib
             };
         }
 
+
+        
+        public bool IsChangeStoneColor(StoneInfo nowstone)
+        {
+          var EnemyStoneState = nowstone.StoneColoe == 1? 0:1;
+          
+          if(EnemyStoneState == GetRightStoneInfo.StoneColor &&
+             EnemyStoneState == GetLeftStoneInfo.StoneColor) => return true;
+             
+          if(EnemyStoneState == GetTopStoneInfo.StoneColor &&
+             EnemyStoneState == GetUnderStoneInfo.StoneColor) => return true;
+             
+          return false;
+             
+             
+        }
+        
         /// <summary>
         /// 上の石の情報を取得する
         /// </summary>
@@ -151,6 +168,7 @@ namespace ReversLib
 
     public struct StoneInfo
     {
+        //0 は石が存在しない 1 は白 2は黒
         public int StoneColor { get; set; }
         public int StonePositionX { get; set; }
         public int StonePositonY { get; set; }

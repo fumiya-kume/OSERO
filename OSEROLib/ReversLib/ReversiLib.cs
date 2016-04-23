@@ -107,7 +107,17 @@ namespace ReversLib
 
         }
 
-        public StoneInfo.StoneColorList GetEnemyColor(StoneInfo nowstoneInfo) => nowstoneInfo.StoneColor == StoneInfo.StoneColorList.Black
+        public bool IsChangeStoneColor(StoneInfo nowstoneInfo)
+        {
+
+        }
+
+        /// <summary>
+        /// 敵の石の色を取得する
+        /// </summary>
+        /// <param name="nowColorList">現在の石の色</param>
+        /// <returns>敵の色の情報</returns>
+        public StoneInfo.StoneColorList GetEnemyColor(StoneInfo.StoneColorList nowColorList) => nowColorList == StoneInfo.StoneColorList.Black
             ? StoneInfo.StoneColorList.White
             : StoneInfo.StoneColorList.Black;
 

@@ -112,7 +112,7 @@ namespace ReversLib
         /// </summary>
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>上にある石の情報</returns>
-        public StoneInfo GetTopStoneInfo(StoneInfo nowStone) => nowStone.StonePositonY == 0 ?
+        protected StoneInfo GetTopStoneInfo(StoneInfo nowStone) => nowStone.StonePositonY == 0 ?
             new StoneInfo { StoneColor = StoneInfo.StoneColorList.None } : BoardInfos[nowStone.StonePositionX, nowStone.StonePositonY - 1];
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace ReversLib
         /// </summary>
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>下にある石の情報</returns>
-        public StoneInfo GetUnderStoneInfo(StoneInfo nowStone) => nowStone.StonePositonY == BoardInfos.GetLength(0) ?
+        protected StoneInfo GetUnderStoneInfo(StoneInfo nowStone) => nowStone.StonePositonY == BoardInfos.GetLength(0) ?
             new StoneInfo { StoneColor = StoneInfo.StoneColorList.None } : BoardInfos[nowStone.StonePositionX, nowStone.StonePositonY + 1];
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace ReversLib
         /// </summary>
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>右にある石の情報</returns>
-        public StoneInfo GetRightStoneInfo(StoneInfo nowStone) => nowStone.StonePositionX == BoardInfos.GetLength(1) ?
+        protected StoneInfo GetRightStoneInfo(StoneInfo nowStone) => nowStone.StonePositionX == BoardInfos.GetLength(1) ?
             new StoneInfo { StoneColor = StoneInfo.StoneColorList.None } : BoardInfos[nowStone.StonePositionX + 1, nowStone.StonePositonY];
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace ReversLib
         /// </summary>
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>左にある石の情報</returns>
-        public StoneInfo GetLeftStoneInfo(StoneInfo nowStone) => nowStone.StonePositionX == 0 ?
+        protected StoneInfo GetLeftStoneInfo(StoneInfo nowStone) => nowStone.StonePositionX == 0 ?
             new StoneInfo { StoneColor = StoneInfo.StoneColorList.None } : BoardInfos[nowStone.StonePositionX - 1, nowStone.StonePositonY];
     }
 

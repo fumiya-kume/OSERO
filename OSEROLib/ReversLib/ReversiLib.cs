@@ -107,9 +107,21 @@ namespace ReversLib
 
         }
 
+        /// <summary>
+        /// 石の色が変化するか判定する
+        /// </summary>
+        /// <param name="nowstoneInfo">判定元となる石の情報</param>
+        /// <returns>石の色を変更するかどうか</returns>
         public bool IsChangeStoneColor(StoneInfo nowstoneInfo)
         {
+            var EnemyColor = GetEnemyColor(nowstoneInfo.StoneColor);
+            if (EnemyColor == GetTopStoneInfo(nowstoneInfo).StoneColor &&
+                EnemyColor == GetUnderStoneInfo(nowstoneInfo).StoneColor) return true;
 
+            if (EnemyColor == GetRightStoneInfo(nowstoneInfo).StoneColor &&
+                EnemyColor == GetLeftStoneInfo(nowstoneInfo).StoneColor) return true;
+
+            return false;
         }
 
         /// <summary>

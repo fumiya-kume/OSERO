@@ -18,6 +18,7 @@ namespace ReversLib
 
         public ReversiBoard()
         {
+            #region StoneBoard
             BoardInfos = new[,]
             {
                 { new StoneInfo {StonePositionX = 0,StonePositonY = 0},
@@ -102,6 +103,8 @@ namespace ReversLib
                   new StoneInfo {StonePositionX = 7,StonePositonY = 8},
                   new StoneInfo {StonePositionX = 8,StonePositonY = 8}}
             };
+            #endregion
+
         }
 
         /// <summary>
@@ -109,49 +112,43 @@ namespace ReversLib
         /// </summary>
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>上にある石の情報</returns>
-        public StoneInfo GetTopStoneInfo(StoneInfo nowStone)
-        {
-            if (nowStone.StonePositonY == 0) throw NoneStoneException;
-            return BoardInfos[nowStone.StonePositionX, nowStone.StonePositonY - 1];
-        }
-        
+        public StoneInfo GetTopStoneInfo(StoneInfo nowStone) => nowStone.StonePositonY == 0 ?
+            new StoneInfo { StoneColor = StoneInfo.StoneColorList.None } : BoardInfos[nowStone.StonePositionX, nowStone.StonePositonY - 1];
+
         /// <summary>
         /// 下にある石の情報を取得する
         /// </summary>
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>下にある石の情報</returns>
-        public StoneInfo GetUnderStoneInfo(StoneInfo nowStone)
-        {
-            if (nowStone.StonePositonY == BoardInfos.GetLength(1)) throw NoneStoneException;
-            return BoardInfos[nowStone.StonePositionX, nowStone.StonePositonY + 1];
-        }
+        public StoneInfo GetUnderStoneInfo(StoneInfo nowStone) => nowStone.StonePositonY == BoardInfos.GetLength(0) ?
+            new StoneInfo { StoneColor = StoneInfo.StoneColorList.None } : BoardInfos[nowStone.StonePositionX, nowStone.StonePositonY + 1];
 
         /// <summary>
         /// 右にある石の情報を取得する
         /// </summary>
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>右にある石の情報</returns>
-        public StoneInfo GetRightStoneInfo(StoneInfo nowStone)
-        {
-            if (nowStone.StonePositionX == BoardInfos.GetLength(1)) throw NoneStoneException;
-            return BoardInfos[nowStone.StonePositionX + 1, nowStone.StonePositonY];
-        }
+        public StoneInfo GetRightStoneInfo(StoneInfo nowStone) => nowStone.StonePositionX == BoardInfos.GetLength(1) ?
+            new StoneInfo { StoneColor = StoneInfo.StoneColorList.None } : BoardInfos[nowStone.StonePositionX + 1, nowStone.StonePositonY];
 
         /// <summary>
         /// 左にある石の情報
         /// </summary>
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>左にある石の情報</returns>
-        public StoneInfo GetLeftStoneInfo(StoneInfo nowStone)
-        {
-            if (nowStone.StonePositionX == 0) throw NoneStoneException;
-            return BoardInfos[nowStone.StonePositionX - 1, nowStone.StonePositonY];
-        }
+        public StoneInfo GetLeftStoneInfo(StoneInfo nowStone) => nowStone.StonePositionX == 0 ?
+            new StoneInfo { StoneColor = StoneInfo.StoneColorList.None } : BoardInfos[nowStone.StonePositionX - 1, nowStone.StonePositonY];
     }
 
     public struct StoneInfo
     {
-        public int StoneColor { get; set; }
+        public enum StoneColorList
+        {
+            None,
+            White,
+            Black
+        }
+        public StoneColorList StoneColor { get; set; }
         public int StonePositionX { get; set; }
         public int StonePositonY { get; set; }
     }

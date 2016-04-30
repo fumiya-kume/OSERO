@@ -7,17 +7,16 @@
 
         public ReversiLib()
         {
-            Board = new Stone[][]
-        {
-            new Stone[] { new Stone {X = 0,Y = 0},new Stone {X = 1,Y = 0},new Stone {X = 2,Y = 0},new Stone {X = 3,Y = 0},new Stone {X = 4,Y = 0},new Stone {X = 5,Y = 0},new Stone {X = 6,Y = 0},new Stone {X = 7,Y = 0},new Stone {X = 8,Y = 0}},
-            new Stone[] { new Stone {X = 0,Y = 1},new Stone {X = 1,Y = 1},new Stone {X = 2,Y = 1},new Stone {X = 3,Y = 1},new Stone {X = 4,Y = 1},new Stone {X = 5,Y = 1},new Stone {X = 6,Y = 1},new Stone {X = 7,Y = 1},new Stone {X = 8,Y = 1}},
-            new Stone[] { new Stone {X = 0,Y = 2},new Stone {X = 1,Y = 2},new Stone {X = 2,Y = 2},new Stone {X = 3,Y = 2},new Stone {X = 4,Y = 2},new Stone {X = 5,Y = 2},new Stone {X = 6,Y = 2},new Stone {X = 7,Y = 2},new Stone {X = 8,Y = 2}},
-            new Stone[] { new Stone {X = 0,Y = 3},new Stone {X = 1,Y = 3},new Stone {X = 2,Y = 3},new Stone {X = 3,Y = 3},new Stone {X = 4,Y = 3},new Stone {X = 5,Y = 3},new Stone {X = 6,Y = 3},new Stone {X = 7,Y = 3},new Stone {X = 8,Y = 3}},
-            new Stone[] { new Stone {X = 0,Y = 4},new Stone {X = 1,Y = 4},new Stone {X = 2,Y = 4},new Stone {X = 3,Y = 4},new Stone {X = 4,Y = 4},new Stone {X = 5,Y = 4},new Stone {X = 6,Y = 4},new Stone {X = 7,Y = 4},new Stone {X = 8,Y = 4}},
-            new Stone[] { new Stone {X = 0,Y = 5},new Stone {X = 1,Y = 5},new Stone {X = 2,Y = 5},new Stone {X = 3,Y = 5},new Stone {X = 4,Y = 5},new Stone {X = 5,Y = 5},new Stone {X = 6,Y = 5},new Stone {X = 7,Y = 5},new Stone {X = 8,Y = 5}},
-            new Stone[] { new Stone {X = 0,Y = 6},new Stone {X = 1,Y = 6},new Stone {X = 2,Y = 6},new Stone {X = 3,Y = 6},new Stone {X = 4,Y = 6},new Stone {X = 5,Y = 6},new Stone {X = 6,Y = 6},new Stone {X = 7,Y = 6},new Stone {X = 8,Y = 6}},
-            new Stone[] { new Stone {X = 0,Y = 7},new Stone {X = 1,Y = 7},new Stone {X = 2,Y = 7},new Stone {X = 3,Y = 7},new Stone {X = 4,Y = 7},new Stone {X = 5,Y = 7},new Stone {X = 6,Y = 7},new Stone {X = 7,Y = 7},new Stone {X = 8,Y = 7}},
-            new Stone[] { new Stone {X = 0,Y = 8},new Stone {X = 1,Y = 8},new Stone {X = 2,Y = 8},new Stone {X = 3,Y = 8},new Stone {X = 4,Y = 8},new Stone {X = 5,Y = 8},new Stone {X = 6,Y = 8},new Stone {X = 7,Y = 8},new Stone {X = 8,Y = 8}}
+            Board = new[]
+            {
+            new[] { new Stone {X = 0,Y = 0},new Stone {X = 1,Y = 0},new Stone {X = 2,Y = 0},new Stone {X = 3,Y = 0},new Stone {X = 4,Y = 0},new Stone {X = 5,Y = 0},new Stone {X = 6,Y = 0},new Stone {X = 7,Y = 0}},
+            new[] { new Stone {X = 0,Y = 1},new Stone {X = 1,Y = 1},new Stone {X = 2,Y = 1},new Stone {X = 3,Y = 1},new Stone {X = 4,Y = 1},new Stone {X = 5,Y = 1},new Stone {X = 6,Y = 1},new Stone {X = 7,Y = 1}},
+            new[] { new Stone {X = 0,Y = 2},new Stone {X = 1,Y = 2},new Stone {X = 2,Y = 2},new Stone {X = 3,Y = 2},new Stone {X = 4,Y = 2},new Stone {X = 5,Y = 2},new Stone {X = 6,Y = 2},new Stone {X = 7,Y = 2}},
+            new[] { new Stone {X = 0,Y = 3},new Stone {X = 1,Y = 3},new Stone {X = 2,Y = 3},new Stone {X = 3,Y = 3},new Stone {X = 4,Y = 3},new Stone {X = 5,Y = 3},new Stone {X = 6,Y = 3},new Stone {X = 7,Y = 3}},
+            new[] { new Stone {X = 0,Y = 4},new Stone {X = 1,Y = 4},new Stone {X = 2,Y = 4},new Stone {X = 3,Y = 4},new Stone {X = 4,Y = 4},new Stone {X = 5,Y = 4},new Stone {X = 6,Y = 4},new Stone {X = 7,Y = 4}},
+            new[] { new Stone {X = 0,Y = 5},new Stone {X = 1,Y = 5},new Stone {X = 2,Y = 5},new Stone {X = 3,Y = 5},new Stone {X = 4,Y = 5},new Stone {X = 5,Y = 5},new Stone {X = 6,Y = 5},new Stone {X = 7,Y = 5}},
+            new[] { new Stone {X = 0,Y = 6},new Stone {X = 1,Y = 6},new Stone {X = 2,Y = 6},new Stone {X = 3,Y = 6},new Stone {X = 4,Y = 6},new Stone {X = 5,Y = 6},new Stone {X = 6,Y = 6},new Stone {X = 7,Y = 6}},
+            new[] { new Stone {X = 0,Y = 7},new Stone {X = 1,Y = 7},new Stone {X = 2,Y = 7},new Stone {X = 3,Y = 7},new Stone {X = 4,Y = 7},new Stone {X = 5,Y = 7},new Stone {X = 6,Y = 7},new Stone {X = 7,Y = 7}},
         };
         }
 
@@ -31,7 +30,7 @@
             if (stone == null) return false;
             if (Board[stone.X][stone.Y].StoneColor != Stone.StoneColorList.None) return false;
             if (IsChangeStoneColor(stone)) return false;
-            Board[stone.X][stone.Y] = stone;
+            Board[stone.X][stone.Y].StoneColor = stone.StoneColor;
 
             return true;
         }
@@ -59,10 +58,9 @@
         /// </summary>
         /// <param name="nowColorList">現在の石の色</param>
         /// <returns>敵の色の情報</returns>
-        public Stone.StoneColorList GetEnemyStone(Stone nowColorList)
-            => nowColorList.StoneColor == Stone.StoneColorList.Black
-            ? Stone.StoneColorList.White
-            : Stone.StoneColorList.Black;
+        public Stone.StoneColorList GetEnemyStone(Stone nowColorList)=> 
+            nowColorList.StoneColor == Stone.StoneColorList.Black ? 
+            Stone.StoneColorList.White : Stone.StoneColorList.Black;
 
         /// <summary>
         /// 上の石の情報を取得する
@@ -80,7 +78,7 @@
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>下にある石の情報</returns>
         protected Stone GetUnderStone(Stone nowStone)
-            => nowStone.Y == Board.GetLength(0)
+            => nowStone.Y == Board.Length
             ? new Stone()
             : Board[nowStone.X][nowStone.Y + 1];
 
@@ -90,7 +88,7 @@
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>右にある石の情報</returns>
         protected Stone GetRightStone(Stone nowStone)
-            => nowStone.X == Board.GetLength(1)
+            => nowStone.X == 0
             ? new Stone()
             : Board[nowStone.X + 1][nowStone.Y];
 
@@ -100,7 +98,7 @@
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>左にある石の情報</returns>
         protected Stone GetLeftStone(Stone nowStone)
-            => nowStone.X == 0
+            => nowStone.X == Board[0].Length
             ? new Stone()
             : Board[nowStone.X - 1][nowStone.Y];
     }

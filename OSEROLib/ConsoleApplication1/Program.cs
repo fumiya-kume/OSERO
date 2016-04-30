@@ -14,19 +14,30 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             Console.WriteLine("Game Start");
-            dumpBoard();
+            BoardInit();
+            DumpBoard();
+
         }
 
-        public static void dumpBoard()
+        public static void BoardInit()
         {
-            Console.WriteLine( 123456789);
-            for (var i = 0; i < 8 ; i++)
+            reversilib.PutStone(new Stone() { X = 3, Y = 3, StoneColor = Stone.StoneColorList.Black });
+            reversilib.PutStone(new Stone() { X = 4, Y = 4, StoneColor = Stone.StoneColorList.Black });
+            reversilib.PutStone(new Stone() { X = 3, Y = 2, StoneColor = Stone.StoneColorList.White });
+            reversilib.PutStone(new Stone() { X = 5, Y = 4, StoneColor = Stone.StoneColorList.White });
+        }
+
+        public static void DumpBoard()
+        {
+            Console.WriteLine(" " + 12345678);
+            for (var i = 0; i < 8; i++)
             {
-                reversilib.Board[i + 1].Select((stone, i1) =>
+                Console.Write(i + 1);
+
+                foreach (var nowStone in reversilib.Board[i])
                 {
-                    Console.Write(Stone2String(stone));
-                    return stone;
-                });
+                    Console.Write(Stone2String(nowStone));
+                }
                 Console.WriteLine(" ");
             }
 

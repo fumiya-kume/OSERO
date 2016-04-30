@@ -34,7 +34,10 @@ namespace Reversi
         {
             if (stone == null) return false;
             if(Board[stone.X,stone.Y].StoneColor != Stone.StoneColorList.None) return false;
+            Board[stone.X, stone.Y] = stone;
             if (IsChangeStoneColor(stone)) return false;
+
+
             return true;
         }
         

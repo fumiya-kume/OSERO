@@ -2,18 +2,25 @@
 {
     public class ReversiLib
     {
-        public Stone[,] Board { get; set; } = {
-                { new Stone {X = 0,Y = 0},new Stone {X = 1,Y = 0},new Stone {X = 2,Y = 0},new Stone {X = 3,Y = 0},new Stone {X = 4,Y = 0},new Stone {X = 5,Y = 0},new Stone {X = 6,Y = 0},new Stone {X = 7,Y = 0},new Stone {X = 8,Y = 0}},
-                { new Stone {X = 0,Y = 1},new Stone {X = 1,Y = 1},new Stone {X = 2,Y = 1},new Stone {X = 3,Y = 1},new Stone {X = 4,Y = 1},new Stone {X = 5,Y = 1},new Stone {X = 6,Y = 1},new Stone {X = 7,Y = 1},new Stone {X = 8,Y = 1}},
-                { new Stone {X = 0,Y = 2},new Stone {X = 1,Y = 2},new Stone {X = 2,Y = 2},new Stone {X = 3,Y = 2},new Stone {X = 4,Y = 2},new Stone {X = 5,Y = 2},new Stone {X = 6,Y = 2},new Stone {X = 7,Y = 2},new Stone {X = 8,Y = 2}},
-                { new Stone {X = 0,Y = 3},new Stone {X = 1,Y = 3},new Stone {X = 2,Y = 3},new Stone {X = 3,Y = 3},new Stone {X = 4,Y = 3},new Stone {X = 5,Y = 3},new Stone {X = 6,Y = 3},new Stone {X = 7,Y = 3},new Stone {X = 8,Y = 3}},
-                { new Stone {X = 0,Y = 4},new Stone {X = 1,Y = 4},new Stone {X = 2,Y = 4},new Stone {X = 3,Y = 4},new Stone {X = 4,Y = 4},new Stone {X = 5,Y = 4},new Stone {X = 6,Y = 4},new Stone {X = 7,Y = 4},new Stone {X = 8,Y = 4}},
-                { new Stone {X = 0,Y = 5},new Stone {X = 1,Y = 5},new Stone {X = 2,Y = 5},new Stone {X = 3,Y = 5},new Stone {X = 4,Y = 5},new Stone {X = 5,Y = 5},new Stone {X = 6,Y = 5},new Stone {X = 7,Y = 5},new Stone {X = 8,Y = 5}},
-                { new Stone {X = 0,Y = 6},new Stone {X = 1,Y = 6},new Stone {X = 2,Y = 6},new Stone {X = 3,Y = 6},new Stone {X = 4,Y = 6},new Stone {X = 5,Y = 6},new Stone {X = 6,Y = 6},new Stone {X = 7,Y = 6},new Stone {X = 8,Y = 6}},
-                { new Stone {X = 0,Y = 7},new Stone {X = 1,Y = 7},new Stone {X = 2,Y = 7},new Stone {X = 3,Y = 7},new Stone {X = 4,Y = 7},new Stone {X = 5,Y = 7},new Stone {X = 6,Y = 7},new Stone {X = 7,Y = 7},new Stone {X = 8,Y = 7}},
-                { new Stone {X = 0,Y = 8},new Stone {X = 1,Y = 8},new Stone {X = 2,Y = 8},new Stone {X = 3,Y = 8},new Stone {X = 4,Y = 8},new Stone {X = 5,Y = 8},new Stone {X = 6,Y = 8},new Stone {X = 7,Y = 8},new Stone {X = 8,Y = 8}}
-            };
-        
+        public Stone[][] Board { get; set; }
+
+
+        public ReversiLib()
+        {
+            Board = new Stone[][]
+        {
+            new Stone[] { new Stone {X = 0,Y = 0},new Stone {X = 1,Y = 0},new Stone {X = 2,Y = 0},new Stone {X = 3,Y = 0},new Stone {X = 4,Y = 0},new Stone {X = 5,Y = 0},new Stone {X = 6,Y = 0},new Stone {X = 7,Y = 0},new Stone {X = 8,Y = 0}},
+            new Stone[] { new Stone {X = 0,Y = 1},new Stone {X = 1,Y = 1},new Stone {X = 2,Y = 1},new Stone {X = 3,Y = 1},new Stone {X = 4,Y = 1},new Stone {X = 5,Y = 1},new Stone {X = 6,Y = 1},new Stone {X = 7,Y = 1},new Stone {X = 8,Y = 1}},
+            new Stone[] { new Stone {X = 0,Y = 2},new Stone {X = 1,Y = 2},new Stone {X = 2,Y = 2},new Stone {X = 3,Y = 2},new Stone {X = 4,Y = 2},new Stone {X = 5,Y = 2},new Stone {X = 6,Y = 2},new Stone {X = 7,Y = 2},new Stone {X = 8,Y = 2}},
+            new Stone[] { new Stone {X = 0,Y = 3},new Stone {X = 1,Y = 3},new Stone {X = 2,Y = 3},new Stone {X = 3,Y = 3},new Stone {X = 4,Y = 3},new Stone {X = 5,Y = 3},new Stone {X = 6,Y = 3},new Stone {X = 7,Y = 3},new Stone {X = 8,Y = 3}},
+            new Stone[] { new Stone {X = 0,Y = 4},new Stone {X = 1,Y = 4},new Stone {X = 2,Y = 4},new Stone {X = 3,Y = 4},new Stone {X = 4,Y = 4},new Stone {X = 5,Y = 4},new Stone {X = 6,Y = 4},new Stone {X = 7,Y = 4},new Stone {X = 8,Y = 4}},
+            new Stone[] { new Stone {X = 0,Y = 5},new Stone {X = 1,Y = 5},new Stone {X = 2,Y = 5},new Stone {X = 3,Y = 5},new Stone {X = 4,Y = 5},new Stone {X = 5,Y = 5},new Stone {X = 6,Y = 5},new Stone {X = 7,Y = 5},new Stone {X = 8,Y = 5}},
+            new Stone[] { new Stone {X = 0,Y = 6},new Stone {X = 1,Y = 6},new Stone {X = 2,Y = 6},new Stone {X = 3,Y = 6},new Stone {X = 4,Y = 6},new Stone {X = 5,Y = 6},new Stone {X = 6,Y = 6},new Stone {X = 7,Y = 6},new Stone {X = 8,Y = 6}},
+            new Stone[] { new Stone {X = 0,Y = 7},new Stone {X = 1,Y = 7},new Stone {X = 2,Y = 7},new Stone {X = 3,Y = 7},new Stone {X = 4,Y = 7},new Stone {X = 5,Y = 7},new Stone {X = 6,Y = 7},new Stone {X = 7,Y = 7},new Stone {X = 8,Y = 7}},
+            new Stone[] { new Stone {X = 0,Y = 8},new Stone {X = 1,Y = 8},new Stone {X = 2,Y = 8},new Stone {X = 3,Y = 8},new Stone {X = 4,Y = 8},new Stone {X = 5,Y = 8},new Stone {X = 6,Y = 8},new Stone {X = 7,Y = 8},new Stone {X = 8,Y = 8}}
+        };
+        }
+
         /// <summary>
         /// 石が置けた場合はTrue を返す
         /// </summary>
@@ -22,9 +29,9 @@
         public bool PutStone(Stone stone)
         {
             if (stone == null) return false;
-            if (Board[stone.X, stone.Y].StoneColor != Stone.StoneColorList.None) return false;
+            if (Board[stone.X][stone.Y].StoneColor != Stone.StoneColorList.None) return false;
             if (IsChangeStoneColor(stone)) return false;
-            Board[stone.X, stone.Y] = stone;
+            Board[stone.X][stone.Y] = stone;
 
             return true;
         }
@@ -65,7 +72,7 @@
         protected Stone GetTopStone(Stone nowStone)
             => nowStone.Y == 0
             ? new Stone()
-            : Board[nowStone.X, nowStone.Y - 1];
+            : Board[nowStone.X][nowStone.Y - 1];
 
         /// <summary>
         /// 下にある石の情報を取得する
@@ -75,7 +82,7 @@
         protected Stone GetUnderStone(Stone nowStone)
             => nowStone.Y == Board.GetLength(0)
             ? new Stone()
-            : Board[nowStone.X, nowStone.Y + 1];
+            : Board[nowStone.X][nowStone.Y + 1];
 
         /// <summary>
         /// 右にある石の情報を取得する
@@ -85,7 +92,7 @@
         protected Stone GetRightStone(Stone nowStone)
             => nowStone.X == Board.GetLength(1)
             ? new Stone()
-            : Board[nowStone.X + 1, nowStone.Y];
+            : Board[nowStone.X + 1][nowStone.Y];
 
         /// <summary>
         /// 左にある石の情報
@@ -95,7 +102,7 @@
         protected Stone GetLeftStone(Stone nowStone)
             => nowStone.X == 0
             ? new Stone()
-            : Board[nowStone.X - 1, nowStone.Y];
+            : Board[nowStone.X - 1][nowStone.Y];
     }
 
     public class Stone

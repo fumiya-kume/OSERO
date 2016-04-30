@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ReversLib
+namespace ConsoleReversi
 {
     public class ReversiLib
     {
@@ -13,22 +9,95 @@ namespace ReversLib
 
     public class ReversiBoard
     {
-        public Stone[,] BoardInfos { get; set; }
+        public StoneInfo[,] BoardInfos { get; set; }
+        public Exception NoneStoneException;
 
         public ReversiBoard()
         {
             #region StoneBoard
             BoardInfos = new[,]
             {
-                { new Stone {X = 0,Y = 0},new Stone {X = 1,Y = 0},new Stone {X = 2,Y = 0},new Stone {X = 3,Y = 0},new Stone {X = 4,Y = 0},new Stone {X = 5,Y = 0},new Stone {X = 6,Y = 0},new Stone {X = 7,Y = 0},new Stone {X = 8,Y = 0}},
-                { new Stone {X = 0,Y = 1},new Stone {X = 1,Y = 1},new Stone {X = 2,Y = 1},new Stone {X = 3,Y = 1},new Stone {X = 4,Y = 1},new Stone {X = 5,Y = 1},new Stone {X = 6,Y = 1},new Stone {X = 7,Y = 1},new Stone {X = 8,Y = 1}},
-                { new Stone {X = 0,Y = 2},new Stone {X = 1,Y = 2},new Stone {X = 2,Y = 2},new Stone {X = 3,Y = 2},new Stone {X = 4,Y = 2},new Stone {X = 5,Y = 2},new Stone {X = 6,Y = 2},new Stone {X = 7,Y = 2},new Stone {X = 8,Y = 2}},
-                { new Stone {X = 0,Y = 3},new Stone {X = 1,Y = 3},new Stone {X = 2,Y = 3},new Stone {X = 3,Y = 3},new Stone {X = 4,Y = 3},new Stone {X = 5,Y = 3},new Stone {X = 6,Y = 3},new Stone {X = 7,Y = 3},new Stone {X = 8,Y = 3}},
-                { new Stone {X = 0,Y = 4},new Stone {X = 1,Y = 4},new Stone {X = 2,Y = 4},new Stone {X = 3,Y = 4},new Stone {X = 4,Y = 4},new Stone {X = 5,Y = 4},new Stone {X = 6,Y = 4},new Stone {X = 7,Y = 4},new Stone {X = 8,Y = 4}},
-                { new Stone {X = 0,Y = 5},new Stone {X = 1,Y = 5},new Stone {X = 2,Y = 5},new Stone {X = 3,Y = 5},new Stone {X = 4,Y = 5},new Stone {X = 5,Y = 5},new Stone {X = 6,Y = 5},new Stone {X = 7,Y = 5},new Stone {X = 8,Y = 5}},
-                { new Stone {X = 0,Y = 6},new Stone {X = 1,Y = 6},new Stone {X = 2,Y = 6},new Stone {X = 3,Y = 6},new Stone {X = 4,Y = 6},new Stone {X = 5,Y = 6},new Stone {X = 6,Y = 6},new Stone {X = 7,Y = 6},new Stone {X = 8,Y = 6}},
-                { new Stone {X = 0,Y = 7},new Stone {X = 1,Y = 7},new Stone {X = 2,Y = 7},new Stone {X = 3,Y = 7},new Stone {X = 4,Y = 7},new Stone {X = 5,Y = 7},new Stone {X = 6,Y = 7},new Stone {X = 7,Y = 7},new Stone {X = 8,Y = 7}},
-                { new Stone {X = 0,Y = 8},new Stone {X = 1,Y = 8},new Stone {X = 2,Y = 8},new Stone {X = 3,Y = 8},new Stone {X = 4,Y = 8},new Stone {X = 5,Y = 8},new Stone {X = 6,Y = 8},new Stone {X = 7,Y = 8},new Stone {X = 8,Y = 8}}
+                { new StoneInfo {StonePositionX = 0,StonePositonY = 0},
+                  new StoneInfo {StonePositionX = 1,StonePositonY = 0},
+                  new StoneInfo {StonePositionX = 2,StonePositonY = 0},
+                  new StoneInfo {StonePositionX = 3,StonePositonY = 0},
+                  new StoneInfo {StonePositionX = 4,StonePositonY = 0},
+                  new StoneInfo {StonePositionX = 5,StonePositonY = 0},
+                  new StoneInfo {StonePositionX = 6,StonePositonY = 0},
+                  new StoneInfo {StonePositionX = 7,StonePositonY = 0},
+                  new StoneInfo {StonePositionX = 8,StonePositonY = 0}},
+                { new StoneInfo {StonePositionX = 0,StonePositonY = 1},
+                  new StoneInfo {StonePositionX = 1,StonePositonY = 1},
+                  new StoneInfo {StonePositionX = 2,StonePositonY = 1},
+                  new StoneInfo {StonePositionX = 3,StonePositonY = 1},
+                  new StoneInfo {StonePositionX = 4,StonePositonY = 1},
+                  new StoneInfo {StonePositionX = 5,StonePositonY = 1},
+                  new StoneInfo {StonePositionX = 6,StonePositonY = 1},
+                  new StoneInfo {StonePositionX = 7,StonePositonY = 1},
+                  new StoneInfo {StonePositionX = 8,StonePositonY = 1}},
+                { new StoneInfo {StonePositionX = 0,StonePositonY = 2},
+                  new StoneInfo {StonePositionX = 1,StonePositonY = 2},
+                  new StoneInfo {StonePositionX = 2,StonePositonY = 2},
+                  new StoneInfo {StonePositionX = 3,StonePositonY = 2},
+                  new StoneInfo {StonePositionX = 4,StonePositonY = 2},
+                  new StoneInfo {StonePositionX = 5,StonePositonY = 2},
+                  new StoneInfo {StonePositionX = 6,StonePositonY = 2},
+                  new StoneInfo {StonePositionX = 7,StonePositonY = 2},
+                  new StoneInfo {StonePositionX = 8,StonePositonY = 2}},
+                { new StoneInfo {StonePositionX = 0,StonePositonY = 3},
+                  new StoneInfo {StonePositionX = 1,StonePositonY = 3},
+                  new StoneInfo {StonePositionX = 2,StonePositonY = 3},
+                  new StoneInfo {StonePositionX = 3,StonePositonY = 3},
+                  new StoneInfo {StonePositionX = 4,StonePositonY = 3},
+                  new StoneInfo {StonePositionX = 5,StonePositonY = 3},
+                  new StoneInfo {StonePositionX = 6,StonePositonY = 3},
+                  new StoneInfo {StonePositionX = 7,StonePositonY = 3},
+                  new StoneInfo {StonePositionX = 8,StonePositonY = 3}},
+                { new StoneInfo {StonePositionX = 0,StonePositonY = 4},
+                  new StoneInfo {StonePositionX = 1,StonePositonY = 4},
+                  new StoneInfo {StonePositionX = 2,StonePositonY = 4},
+                  new StoneInfo {StonePositionX = 3,StonePositonY = 4},
+                  new StoneInfo {StonePositionX = 4,StonePositonY = 4},
+                  new StoneInfo {StonePositionX = 5,StonePositonY = 4},
+                  new StoneInfo {StonePositionX = 6,StonePositonY = 4},
+                  new StoneInfo {StonePositionX = 7,StonePositonY = 4},
+                  new StoneInfo {StonePositionX = 8,StonePositonY = 4}},
+                { new StoneInfo {StonePositionX = 0,StonePositonY = 5},
+                  new StoneInfo {StonePositionX = 1,StonePositonY = 5},
+                  new StoneInfo {StonePositionX = 2,StonePositonY = 5},
+                  new StoneInfo {StonePositionX = 3,StonePositonY = 5},
+                  new StoneInfo {StonePositionX = 4,StonePositonY = 5},
+                  new StoneInfo {StonePositionX = 5,StonePositonY = 5},
+                  new StoneInfo {StonePositionX = 6,StonePositonY = 5},
+                  new StoneInfo {StonePositionX = 7,StonePositonY = 5},
+                  new StoneInfo {StonePositionX = 8,StonePositonY = 5}},
+                { new StoneInfo {StonePositionX = 0,StonePositonY = 6},
+                  new StoneInfo {StonePositionX = 1,StonePositonY = 6},
+                  new StoneInfo {StonePositionX = 2,StonePositonY = 6},
+                  new StoneInfo {StonePositionX = 3,StonePositonY = 6},
+                  new StoneInfo {StonePositionX = 4,StonePositonY = 6},
+                  new StoneInfo {StonePositionX = 5,StonePositonY = 6},
+                  new StoneInfo {StonePositionX = 6,StonePositonY = 6},
+                  new StoneInfo {StonePositionX = 7,StonePositonY = 6},
+                  new StoneInfo {StonePositionX = 8,StonePositonY = 6}},
+                { new StoneInfo {StonePositionX = 0,StonePositonY = 7},
+                  new StoneInfo {StonePositionX = 1,StonePositonY = 7},
+                  new StoneInfo {StonePositionX = 2,StonePositonY = 7},
+                  new StoneInfo {StonePositionX = 3,StonePositonY = 7},
+                  new StoneInfo {StonePositionX = 4,StonePositonY = 7},
+                  new StoneInfo {StonePositionX = 5,StonePositonY = 7},
+                  new StoneInfo {StonePositionX = 6,StonePositonY = 7},
+                  new StoneInfo {StonePositionX = 7,StonePositonY = 7},
+                  new StoneInfo {StonePositionX = 8,StonePositonY = 7}},
+                { new StoneInfo {StonePositionX = 0,StonePositonY = 8},
+                  new StoneInfo {StonePositionX = 1,StonePositonY = 8},
+                  new StoneInfo {StonePositionX = 2,StonePositonY = 8},
+                  new StoneInfo {StonePositionX = 3,StonePositonY = 8},
+                  new StoneInfo {StonePositionX = 4,StonePositonY = 8},
+                  new StoneInfo {StonePositionX = 5,StonePositonY = 8},
+                  new StoneInfo {StonePositionX = 6,StonePositonY = 8},
+                  new StoneInfo {StonePositionX = 7,StonePositonY = 8},
+                  new StoneInfo {StonePositionX = 8,StonePositonY = 8}}
             };
             #endregion
 
@@ -37,17 +106,16 @@ namespace ReversLib
         /// <summary>
         /// 石の色が変化するか判定する
         /// </summary>
-        /// <param name="no Stone">判定元となる石の情報</param>
+        /// <param name="nowstoneInfo">判定元となる石の情報</param>
         /// <returns>石の色を変更するかどうか</returns>
-        public bool IsChangeStoneColor Stone no Stone)
+        public bool IsChangeStoneColor(StoneInfo nowstoneInfo)
         {
-            var EnemyColor = GetEnemyColor(no Stone.StoneColor);
-            
-            if (EnemyColor == GetTo Stone(no Stone).StoneColor &&
-                EnemyColor == GetUnde Stone(no Stone).StoneColor) return true;
+            var EnemyColor = GetEnemyColor(nowstoneInfo.StoneColor);
+            if (EnemyColor == GetTopStoneInfo(nowstoneInfo).StoneColor &&
+                EnemyColor == GetUnderStoneInfo(nowstoneInfo).StoneColor) return true;
 
-            if (EnemyColor == GetRigh Stone(no Stone).StoneColor &&
-                EnemyColor == GetLef Stone(no Stone).StoneColor) return true;
+            if (EnemyColor == GetRightStoneInfo(nowstoneInfo).StoneColor &&
+                EnemyColor == GetLeftStoneInfo(nowstoneInfo).StoneColor) return true;
 
             return false;
         }
@@ -57,52 +125,48 @@ namespace ReversLib
         /// </summary>
         /// <param name="nowColorList">現在の石の色</param>
         /// <returns>敵の色の情報</returns>
-        public Stone.StoneColorList GetEnemyColor Stone.StoneColorList nowColorList) 
-        => nowColorList == Stone.StoneColorList.Black
-        ? Stone.StoneColorList.White
-        : Stone.StoneColorList.Black;
+        public StoneInfo.StoneColorList GetEnemyColor(StoneInfo.StoneColorList nowColorList) => nowColorList == StoneInfo.StoneColorList.Black
+            ? StoneInfo.StoneColorList.White
+            : StoneInfo.StoneColorList.Black;
 
         /// <summary>
         /// 上の石の情報を取得する
         /// </summary>
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>上にある石の情報</returns>
-        protected Stone GetTo Stone nowStone) 
-        { 
-        if(nowStone.Y == 0) return new Stone();
-       return BoardInfos[nowStone.X, nowStone.Y - 1];
-        }
-       
+        protected StoneInfo GetTopStoneInfo(StoneInfo nowStone) => nowStone.StonePositonY == 0
+            ? new StoneInfo { StoneColor = StoneInfo.StoneColorList.None }
+            : BoardInfos[nowStone.StonePositionX, nowStone.StonePositonY - 1];
+
         /// <summary>
         /// 下にある石の情報を取得する
         /// </summary>
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>下にある石の情報</returns>
-        protected Stone GetUnde Stone nowStone) 
-        => nowStone.Y == BoardInfos.GetLength(0)
-            ? new Stone()
-            : BoardInfos[nowStone.X, nowStone.Y + 1];
+        protected StoneInfo GetUnderStoneInfo(StoneInfo nowStone) => nowStone.StonePositonY == BoardInfos.GetLength(0)
+            ? new StoneInfo { StoneColor = StoneInfo.StoneColorList.None }
+            : BoardInfos[nowStone.StonePositionX, nowStone.StonePositonY + 1];
 
         /// <summary>
         /// 右にある石の情報を取得する
         /// </summary>
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>右にある石の情報</returns>
-        protected Stone GetRigh Stone nowStone) => nowStone.X == BoardInfos.GetLength(1)
-            ? new Stone()
-            : BoardInfos[nowStone.X + 1, nowStone.Y];
+        protected StoneInfo GetRightStoneInfo(StoneInfo nowStone) => nowStone.StonePositionX == BoardInfos.GetLength(1)
+            ? new StoneInfo { StoneColor = StoneInfo.StoneColorList.None }
+            : BoardInfos[nowStone.StonePositionX + 1, nowStone.StonePositonY];
 
         /// <summary>
         /// 左にある石の情報
         /// </summary>
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>左にある石の情報</returns>
-        protected Stone GetLef Stone nowStone) => nowStone.X == 0
-            ? new Stone()
-            : BoardInfos[nowStone.X - 1, nowStone.Y];
+        protected StoneInfo GetLeftStoneInfo(StoneInfo nowStone) => nowStone.StonePositionX == 0
+            ? new StoneInfo { StoneColor = StoneInfo.StoneColorList.None }
+            : BoardInfos[nowStone.StonePositionX - 1, nowStone.StonePositonY];
     }
 
-    public struct Stone
+    public struct StoneInfo
     {
         public enum StoneColorList
         {
@@ -111,12 +175,7 @@ namespace ReversLib
             Black
         }
         public StoneColorList StoneColor { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
-        
-        public Stone()
-        {
-          StoneColor = StoneColorList.None;  
-        }
+        public int StonePositionX { get; set; }
+        public int StonePositonY { get; set; }
     }
 }

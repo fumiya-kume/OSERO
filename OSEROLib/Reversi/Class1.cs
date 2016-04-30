@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Reversi
+﻿namespace Reversi
 {
     public class ReversiLib
     {
@@ -22,21 +20,19 @@ namespace Reversi
                 { new Stone {X = 0,Y = 8},new Stone {X = 1,Y = 8},new Stone {X = 2,Y = 8},new Stone {X = 3,Y = 8},new Stone {X = 4,Y = 8},new Stone {X = 5,Y = 8},new Stone {X = 6,Y = 8},new Stone {X = 7,Y = 8},new Stone {X = 8,Y = 8}}
             };
             #endregion
-
         }
 
         /// <summary>
         /// 石が置けた場合はTrue を返す
         /// </summary>
-        /// <param name="point"></param>
+        /// <param name="stone"></param>
         /// <returns></returns>
         public bool PutStone(Stone stone)
         {
             if (stone == null) return false;
             if(Board[stone.X,stone.Y].StoneColor != Stone.StoneColorList.None) return false;
-            Board[stone.X, stone.Y] = stone;
             if (IsChangeStoneColor(stone)) return false;
-
+            Board[stone.X, stone.Y] = stone;
 
             return true;
         }

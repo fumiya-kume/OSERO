@@ -2,14 +2,9 @@
 {
     public class ReversiLib
     {
-
-    }
-
-    public class ReversiBoard
-    {
         public Stone[,] Board { get; set; }
 
-        public ReversiBoard()
+        public ReversiLib()
         {
             #region StoneBoard
             Board = new[,]
@@ -107,7 +102,5 @@
         public StoneColorList StoneColor { get; set; } = StoneColorList.None;
         public int X { get; set; }
         public int Y { get; set; }
-
-
     }
 }

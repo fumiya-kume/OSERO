@@ -1,4 +1,6 @@
-﻿namespace Reversi
+﻿using System.Linq;
+
+namespace Reversi
 {
     public class ReversiLib
     {
@@ -30,8 +32,7 @@
             if (stone == null) return false;
             if (Board[stone.X][stone.Y].StoneColor != Stone.StoneColorList.None) return false;
             if (IsChangeStoneColor(stone)) return false;
-            Board[stone.X][stone.Y].StoneColor = stone.StoneColor;
-
+            Board[stone.X][stone.Y] = stone;
             return true;
         }
 

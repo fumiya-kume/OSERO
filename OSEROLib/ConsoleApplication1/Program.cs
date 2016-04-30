@@ -48,11 +48,11 @@ namespace ConsoleApplication1
             switch (stone.StoneColor)
             {
                 case Stone.StoneColorList.None:
-                    return "-";
+                    return "ー";
                 case Stone.StoneColorList.White:
                     return "○";
                 case Stone.StoneColorList.Black:
-                    return "*";
+                    return "＊";
                 default:
                     throw new ArgumentOutOfRangeException();
             }

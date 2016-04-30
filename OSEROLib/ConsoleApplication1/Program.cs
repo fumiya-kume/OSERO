@@ -16,20 +16,42 @@ namespace ConsoleApplication1
             Console.WriteLine("Game Start");
             BoardInit();
             DumpBoard();
+            while (true)
+            {
+                if (IsContinue()) break;
+            }
+            Console.WriteLine("Game Finish");
 
         }
 
+        private static bool IsContinue()
+        {
+            var whiteStone = 0;
+            var blacStone = 0;
+            for (var i = 0; i < 8; i++)
+            {
+                whiteStone = reversilib.Board[i]
+                    .Count(stone => stone.StoneColor == Stone.StoneColorList.White);
+                blacStone = reversilib.Board[i]
+                    .Count(stone => stone.StoneColor == Stone.StoneColorList.Black);
+            }
+            if (whiteStone == 0 || blacStone == 0) return false;
+            return true;
+
+        }
+
+
         public static void BoardInit()
         {
-            reversilib.PutStone(new Stone() { X = 3, Y = 3, StoneColor = Stone.StoneColorList.Black });
-            reversilib.PutStone(new Stone() { X = 4, Y = 4, StoneColor = Stone.StoneColorList.Black });
-            reversilib.PutStone(new Stone() { X = 3, Y = 2, StoneColor = Stone.StoneColorList.White });
-            reversilib.PutStone(new Stone() { X = 5, Y = 4, StoneColor = Stone.StoneColorList.White });
+            reversilib.PutStone(new Stone() { X = 3, Y = 4, StoneColor = Stone.StoneColorList.Black });
+            reversilib.PutStone(new Stone() { X = 4, Y = 3, StoneColor = Stone.StoneColorList.Black });
+            reversilib.PutStone(new Stone() { X = 4, Y = 4, StoneColor = Stone.StoneColorList.White });
+            reversilib.PutStone(new Stone() { X = 3, Y = 3, StoneColor = Stone.StoneColorList.White });
         }
 
         public static void DumpBoard()
         {
-            Console.WriteLine(" " + 12345678);
+            Console.WriteLine(" １２３４５６７８");
             for (var i = 0; i < 8; i++)
             {
                 Console.Write(i + 1);

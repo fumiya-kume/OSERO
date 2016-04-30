@@ -1,4 +1,6 @@
-﻿namespace Reversi
+﻿using System;
+
+namespace Reversi
 {
     public class ReversiLib
     {
@@ -22,6 +24,20 @@
             #endregion
 
         }
+
+        /// <summary>
+        /// 石が置けた場合はTrue を返す
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public bool PutStone(Stone stone)
+        {
+            if (stone == null) return false;
+            if(Board[stone.X,stone.Y].StoneColor != Stone.StoneColorList.None) return false;
+            if (IsChangeStoneColor(stone)) return false;
+            return true;
+        }
+        
 
         /// <summary>
         /// 石の色が変化するか判定する

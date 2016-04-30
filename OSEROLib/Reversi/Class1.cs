@@ -2,13 +2,7 @@
 {
     public class ReversiLib
     {
-        public Stone[,] Board { get; set; }
-
-        public ReversiLib()
-        {
-            #region StoneBoard
-            Board = new[,]
-            {
+        public Stone[,] Board { get; set; } = {
                 { new Stone {X = 0,Y = 0},new Stone {X = 1,Y = 0},new Stone {X = 2,Y = 0},new Stone {X = 3,Y = 0},new Stone {X = 4,Y = 0},new Stone {X = 5,Y = 0},new Stone {X = 6,Y = 0},new Stone {X = 7,Y = 0},new Stone {X = 8,Y = 0}},
                 { new Stone {X = 0,Y = 1},new Stone {X = 1,Y = 1},new Stone {X = 2,Y = 1},new Stone {X = 3,Y = 1},new Stone {X = 4,Y = 1},new Stone {X = 5,Y = 1},new Stone {X = 6,Y = 1},new Stone {X = 7,Y = 1},new Stone {X = 8,Y = 1}},
                 { new Stone {X = 0,Y = 2},new Stone {X = 1,Y = 2},new Stone {X = 2,Y = 2},new Stone {X = 3,Y = 2},new Stone {X = 4,Y = 2},new Stone {X = 5,Y = 2},new Stone {X = 6,Y = 2},new Stone {X = 7,Y = 2},new Stone {X = 8,Y = 2}},
@@ -19,9 +13,7 @@
                 { new Stone {X = 0,Y = 7},new Stone {X = 1,Y = 7},new Stone {X = 2,Y = 7},new Stone {X = 3,Y = 7},new Stone {X = 4,Y = 7},new Stone {X = 5,Y = 7},new Stone {X = 6,Y = 7},new Stone {X = 7,Y = 7},new Stone {X = 8,Y = 7}},
                 { new Stone {X = 0,Y = 8},new Stone {X = 1,Y = 8},new Stone {X = 2,Y = 8},new Stone {X = 3,Y = 8},new Stone {X = 4,Y = 8},new Stone {X = 5,Y = 8},new Stone {X = 6,Y = 8},new Stone {X = 7,Y = 8},new Stone {X = 8,Y = 8}}
             };
-            #endregion
-        }
-
+        
         /// <summary>
         /// 石が置けた場合はTrue を返す
         /// </summary>
@@ -30,13 +22,13 @@
         public bool PutStone(Stone stone)
         {
             if (stone == null) return false;
-            if(Board[stone.X,stone.Y].StoneColor != Stone.StoneColorList.None) return false;
+            if (Board[stone.X, stone.Y].StoneColor != Stone.StoneColorList.None) return false;
             if (IsChangeStoneColor(stone)) return false;
             Board[stone.X, stone.Y] = stone;
 
             return true;
         }
-        
+
 
         /// <summary>
         /// 石の色が変化するか判定する
@@ -70,7 +62,7 @@
         /// </summary>
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>上にある石の情報</returns>
-        protected Stone GetTopStone(Stone nowStone) 
+        protected Stone GetTopStone(Stone nowStone)
             => nowStone.Y == 0
             ? new Stone()
             : Board[nowStone.X, nowStone.Y - 1];
@@ -80,7 +72,7 @@
         /// </summary>
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>下にある石の情報</returns>
-        protected Stone GetUnderStone(Stone nowStone) 
+        protected Stone GetUnderStone(Stone nowStone)
             => nowStone.Y == Board.GetLength(0)
             ? new Stone()
             : Board[nowStone.X, nowStone.Y + 1];
@@ -90,7 +82,7 @@
         /// </summary>
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>右にある石の情報</returns>
-        protected Stone GetRightStone(Stone nowStone) 
+        protected Stone GetRightStone(Stone nowStone)
             => nowStone.X == Board.GetLength(1)
             ? new Stone()
             : Board[nowStone.X + 1, nowStone.Y];
@@ -100,7 +92,7 @@
         /// </summary>
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>左にある石の情報</returns>
-        protected Stone GetLeftStone(Stone nowStone) 
+        protected Stone GetLeftStone(Stone nowStone)
             => nowStone.X == 0
             ? new Stone()
             : Board[nowStone.X - 1, nowStone.Y];

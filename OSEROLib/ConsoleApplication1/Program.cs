@@ -42,7 +42,7 @@ namespace ConsoleApplication1
 
             Console.WriteLine($"X:{pointX}Y:{pointY}");
 
-            if (!reversilib.PutStone(new Stone { X = pointX--, Y = pointY--, StoneColor = color })) return false;
+            if (!reversilib.PutStone(new Stone { X = pointX-1, Y = pointY-1, StoneColor = color })) return false;
 
             return true;
         }

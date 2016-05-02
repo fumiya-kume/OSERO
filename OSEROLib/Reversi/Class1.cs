@@ -61,8 +61,7 @@ namespace Reversi
         /// <returns>上にある石の情報</returns>
         protected Stone GetTopStone(Stone nowStone)
             => nowStone.Y == 0
-            ? new Stone()
-            : Board[nowStone.X][nowStone.Y - 1];
+            ? new Stone() : Board[nowStone.X][nowStone.Y - 1];
 
         /// <summary>
         /// 下にある石の情報を取得する
@@ -71,8 +70,7 @@ namespace Reversi
         /// <returns>下にある石の情報</returns>
         protected Stone GetUnderStone(Stone nowStone)
             => nowStone.Y == Board.Length
-            ? new Stone()
-            : Board[nowStone.X][nowStone.Y + 1];
+            ? new Stone() : Board[nowStone.X][nowStone.Y + 1];
 
         /// <summary>
         /// 右にある石の情報を取得する
@@ -81,8 +79,7 @@ namespace Reversi
         /// <returns>右にある石の情報</returns>
         protected Stone GetRightStone(Stone nowStone)
             => nowStone.X == 0
-            ? new Stone()
-            : Board[nowStone.X + 1][nowStone.Y];
+            ? new Stone() : Board[nowStone.X + 1][nowStone.Y];
 
         /// <summary>
         /// 左にある石の情報
@@ -91,26 +88,14 @@ namespace Reversi
         /// <returns>左にある石の情報</returns>
         protected Stone GetLeftStone(Stone nowStone)
             => nowStone.X == Board[0].Length
-            ? new Stone()
-            : Board[nowStone.X - 1][nowStone.Y];
+            ? new Stone() : Board[nowStone.X - 1][nowStone.Y];
     }
 
     public class Stone
     {
-        public enum StoneColorList
-        {
-            None,
-            White,
-            Black
-        }
+        public enum StoneColorList { None, White, Black }
         public StoneColorList StoneColor { get; set; } = StoneColorList.None;
         public int X { get; set; }
         public int Y { get; set; }
-
-        public Stone()
-        {
-            StoneColor = StoneColorList.None;
-
-        }
     }
 }

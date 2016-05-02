@@ -9,16 +9,10 @@ namespace Reversi
 
         public ReversiLib()
         {
-            Board = new Stone[][]
+            Board = new[]
             {
-                new Stone[8],
-                new Stone[8],
-                new Stone[8],
-                new Stone[8],
-                new Stone[8],
-                new Stone[8],
-                new Stone[8],
-                new Stone[8]
+                new Stone[8],new Stone[8],new Stone[8],new Stone[8],
+                new Stone[8],new Stone[8],new Stone[8],new Stone[8]
             };
         }
 

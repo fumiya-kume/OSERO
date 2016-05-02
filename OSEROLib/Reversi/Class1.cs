@@ -4,16 +4,14 @@ namespace Reversi
 {
     public class ReversiLib
     {
-        public Stone[][] Board { get; set; }
+        public Stone[][] Board { get; set; } = {
+                new Stone[8],new Stone[8],new Stone[8],new Stone[8],
+                new Stone[8],new Stone[8],new Stone[8],new Stone[8]
+            };
 
 
         public ReversiLib()
         {
-            Board = new[]
-            {
-                new Stone[8],new Stone[8],new Stone[8],new Stone[8],
-                new Stone[8],new Stone[8],new Stone[8],new Stone[8]
-            };
         }
 
         /// <summary>
@@ -113,5 +111,11 @@ namespace Reversi
         public StoneColorList StoneColor { get; set; } = StoneColorList.None;
         public int X { get; set; }
         public int Y { get; set; }
+
+        public Stone()
+        {
+            StoneColor = StoneColorList.None;
+
+        }
     }
 }

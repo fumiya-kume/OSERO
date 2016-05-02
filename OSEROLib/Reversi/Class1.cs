@@ -4,7 +4,7 @@ namespace Reversi
 {
     public class ReversiLib
     {
-        public Stone[][] Board { get; set; } = {
+        public Stone[][] Board { get; } = {
                 new Stone[8],new Stone[8],new Stone[8],new Stone[8],
                 new Stone[8],new Stone[8],new Stone[8],new Stone[8]
             };
@@ -36,6 +36,7 @@ namespace Reversi
         public bool IsChangeStoneColor(Stone nowstone)
         {
             var enemyColor = GetEnemyStone(nowstone);
+
             if (enemyColor == GetTopStone(nowstone).StoneColor &&
                 enemyColor == GetUnderStone(nowstone).StoneColor) return true;
 

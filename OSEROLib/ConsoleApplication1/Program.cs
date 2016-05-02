@@ -49,22 +49,15 @@ namespace ConsoleApplication1
 
         private static bool IsContinue()
         {
-            var whiteStone = 0;
-            var blacStone = 0;
             for (var i = 0; i < 8; i++)
             {
-                whiteStone = reversilib.Board[i]
-                    .Count(stone => stone.StoneColor == Stone.StoneColorList.White);
-                blacStone = reversilib.Board[i]
-                    .Count(stone => stone.StoneColor == Stone.StoneColorList.Black);
+                if (reversilib.Board[i].Count(stone => stone.StoneColor == Stone.StoneColorList.White) == 0) return false;
+                if (reversilib.Board[i].Count(stone => stone.StoneColor == Stone.StoneColorList.Black) == 0) return false;
             }
-            if (whiteStone == 0 || blacStone == 0) return false;
             return true;
-
         }
-
-
-        public static void BoardInit()
+        
+        private static void BoardInit()
         {
             reversilib.PutStone(new Stone { X = 3, Y = 4, StoneColor = Stone.StoneColorList.Black });
             reversilib.PutStone(new Stone { X = 4, Y = 3, StoneColor = Stone.StoneColorList.Black });

@@ -9,17 +9,17 @@ namespace Reversi
 
         public ReversiLib()
         {
-            Board = new[]
+            Board = new Stone[][]
             {
-            new[] { new Stone {X = 0,Y = 0},new Stone {X = 1,Y = 0},new Stone {X = 2,Y = 0},new Stone {X = 3,Y = 0},new Stone {X = 4,Y = 0},new Stone {X = 5,Y = 0},new Stone {X = 6,Y = 0},new Stone {X = 7,Y = 0}},
-            new[] { new Stone {X = 0,Y = 1},new Stone {X = 1,Y = 1},new Stone {X = 2,Y = 1},new Stone {X = 3,Y = 1},new Stone {X = 4,Y = 1},new Stone {X = 5,Y = 1},new Stone {X = 6,Y = 1},new Stone {X = 7,Y = 1}},
-            new[] { new Stone {X = 0,Y = 2},new Stone {X = 1,Y = 2},new Stone {X = 2,Y = 2},new Stone {X = 3,Y = 2},new Stone {X = 4,Y = 2},new Stone {X = 5,Y = 2},new Stone {X = 6,Y = 2},new Stone {X = 7,Y = 2}},
-            new[] { new Stone {X = 0,Y = 3},new Stone {X = 1,Y = 3},new Stone {X = 2,Y = 3},new Stone {X = 3,Y = 3},new Stone {X = 4,Y = 3},new Stone {X = 5,Y = 3},new Stone {X = 6,Y = 3},new Stone {X = 7,Y = 3}},
-            new[] { new Stone {X = 0,Y = 4},new Stone {X = 1,Y = 4},new Stone {X = 2,Y = 4},new Stone {X = 3,Y = 4},new Stone {X = 4,Y = 4},new Stone {X = 5,Y = 4},new Stone {X = 6,Y = 4},new Stone {X = 7,Y = 4}},
-            new[] { new Stone {X = 0,Y = 5},new Stone {X = 1,Y = 5},new Stone {X = 2,Y = 5},new Stone {X = 3,Y = 5},new Stone {X = 4,Y = 5},new Stone {X = 5,Y = 5},new Stone {X = 6,Y = 5},new Stone {X = 7,Y = 5}},
-            new[] { new Stone {X = 0,Y = 6},new Stone {X = 1,Y = 6},new Stone {X = 2,Y = 6},new Stone {X = 3,Y = 6},new Stone {X = 4,Y = 6},new Stone {X = 5,Y = 6},new Stone {X = 6,Y = 6},new Stone {X = 7,Y = 6}},
-            new[] { new Stone {X = 0,Y = 7},new Stone {X = 1,Y = 7},new Stone {X = 2,Y = 7},new Stone {X = 3,Y = 7},new Stone {X = 4,Y = 7},new Stone {X = 5,Y = 7},new Stone {X = 6,Y = 7},new Stone {X = 7,Y = 7}},
-        };
+                new Stone[8],
+                new Stone[8],
+                new Stone[8],
+                new Stone[8],
+                new Stone[8],
+                new Stone[8],
+                new Stone[8],
+                new Stone[8]
+            };
         }
 
         /// <summary>
@@ -32,6 +32,10 @@ namespace Reversi
             if (stone == null) return false;
             if (Board[stone.X][stone.Y].StoneColor != Stone.StoneColorList.None) return false;
             if (IsChangeStoneColor(stone)) return false;
+            //数字がおかしかったらダメよ！
+            if (stone.X < 0 || stone.X > 8) return false;
+            if (stone.Y < 0 || stone.Y > 8) return false;
+
             Board[stone.X][stone.Y] = stone;
             return true;
         }
@@ -59,8 +63,8 @@ namespace Reversi
         /// </summary>
         /// <param name="nowColorList">現在の石の色</param>
         /// <returns>敵の色の情報</returns>
-        public Stone.StoneColorList GetEnemyStone(Stone nowColorList)=> 
-            nowColorList.StoneColor == Stone.StoneColorList.Black ? 
+        public Stone.StoneColorList GetEnemyStone(Stone nowColorList) =>
+            nowColorList.StoneColor == Stone.StoneColorList.Black ?
             Stone.StoneColorList.White : Stone.StoneColorList.Black;
 
         /// <summary>

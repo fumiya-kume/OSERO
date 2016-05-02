@@ -16,31 +16,35 @@ namespace ConsoleApplication1
             while (true)
             {
                 if (IsContinue()) break;
-                PutStone(Stone.StoneColorList.Black);
+                if (PutStone(Stone.StoneColorList.Black)) Console.WriteLine("石を置けませんでした");
+
                 DumpBoard();
             }
             Console.WriteLine("Game Finish");
 
         }
 
-        private static void PutStone(Stone.StoneColorList color)
+
+        private static bool PutStone(Stone.StoneColorList color)
         {
             Console.WriteLine("石の場所を指定してください:x y range = 0-8");
             var readLine = Console.ReadLine();
             //石の場所を指定していない場合の対処
-            if (string.IsNullOrEmpty(readLine) || string.IsNullOrWhiteSpace(readLine)) return;
+            if (string.IsNullOrEmpty(readLine) || string.IsNullOrWhiteSpace(readLine)) return false;
 
             //最初から１番目の文字を取得
             int pointX;
-            if (!int.TryParse(readLine.Substring(0, 1), out pointX)) return;
+            if (!int.TryParse(readLine.Substring(0, 1), out pointX)) return false;
 
             //最後から２番めの文字を取得
             int pointY;
-            if (!int.TryParse(readLine.Substring(readLine.Length - 1, 1), out pointY)) return;
+            if (!int.TryParse(readLine.Substring(readLine.Length - 1, 1), out pointY)) return false;
 
             Console.WriteLine($"X:{pointX}Y:{pointY}");
 
-            reversilib.PutStone(new Stone { X = pointX, Y = pointY, StoneColor = color });
+            if (!reversilib.PutStone(new Stone { X = pointX--, Y = pointY--, StoneColor = color })) return false;
+
+            return true;
         }
 
         private static bool IsContinue()

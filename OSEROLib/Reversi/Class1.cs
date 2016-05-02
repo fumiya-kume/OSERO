@@ -2,7 +2,16 @@
 
 namespace Reversi
 {
-    public class ReversiLib
+
+    public class Stone
+    {
+        public enum StoneColorList { None, White, Black }
+        public StoneColorList StoneColor { get; set; } = StoneColorList.None;
+        public int X { get; set; }
+        public int Y { get; set; }
+    }
+
+    public class ReversiBoard
     {
         public Stone[][] Board { get; } = {
                 new[] {new Stone(), new Stone(), new Stone(), new Stone(), new Stone(), new Stone(), new Stone(), new Stone()},
@@ -14,6 +23,11 @@ namespace Reversi
                 new[] {new Stone(), new Stone(), new Stone(), new Stone(), new Stone(), new Stone(), new Stone(), new Stone()},
                 new[] {new Stone(), new Stone(), new Stone(), new Stone(), new Stone(), new Stone(), new Stone(), new Stone()}
             };
+    }
+
+    public class ReversiLib
+    {
+        public ReversiBoard ReversiBoard { get; } = new ReversiBoard();
 
         /// <summary>
         /// 石が置けた場合はTrue を返す
@@ -23,14 +37,23 @@ namespace Reversi
         public bool PutStone(Stone stone)
         {
             if (stone == null) return false;
-            if (Board[stone.X][stone.Y].StoneColor != Stone.StoneColorList.None) return false;
+            if (ReversiBoard.Board[stone.X][stone.Y].StoneColor != Stone.StoneColorList.None) return false;
             if (IsChangeStoneColor(stone)) return false;
             //数字がおかしかったらダメよ！
             if (stone.X < 0 || stone.X > 8) return false;
             if (stone.Y < 0 || stone.Y > 8) return false;
 
-            Board[stone.X][stone.Y] = stone;
+            ReversiBoard.Board[stone.X][stone.Y] = stone;
+
+            if (IsChangeStoneColor(stone))
+            {
+            }
             return true;
+        }
+
+        public void ChangeStoneColor(Stone stone)
+        {
+            ReversiBoard.Board[stone.X][stone.Y].StoneColor = GetEnemyColor(stone);
         }
 
 
@@ -41,7 +64,7 @@ namespace Reversi
         /// <returns>石の色を変更するかどうか</returns>
         public bool IsChangeStoneColor(Stone nowstone)
         {
-            var enemyColor = GetEnemyStone(nowstone);
+            var enemyColor = GetEnemyColor(nowstone);
 
             if (enemyColor == GetTopStone(nowstone).StoneColor &&
                 enemyColor == GetUnderStone(nowstone).StoneColor) return true;
@@ -57,7 +80,7 @@ namespace Reversi
         /// </summary>
         /// <param name="nowColorList">現在の石の色</param>
         /// <returns>敵の色の情報</returns>
-        public Stone.StoneColorList GetEnemyStone(Stone nowColorList) =>
+        public Stone.StoneColorList GetEnemyColor(Stone nowColorList) =>
             nowColorList.StoneColor == Stone.StoneColorList.Black ?
             Stone.StoneColorList.White : Stone.StoneColorList.Black;
 
@@ -68,7 +91,7 @@ namespace Reversi
         /// <returns>上にある石の情報</returns>
         protected Stone GetTopStone(Stone nowStone)
             => nowStone.Y == 0
-            ? new Stone() : Board[nowStone.X][nowStone.Y - 1];
+            ? new Stone() : ReversiBoard.Board[nowStone.X][nowStone.Y - 1];
 
         /// <summary>
         /// 下にある石の情報を取得する
@@ -76,8 +99,8 @@ namespace Reversi
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>下にある石の情報</returns>
         protected Stone GetUnderStone(Stone nowStone)
-            => nowStone.Y == Board.Length
-            ? new Stone() : Board[nowStone.X][nowStone.Y + 1];
+            => nowStone.Y == ReversiBoard.Board.Length
+            ? new Stone() : ReversiBoard.Board[nowStone.X][nowStone.Y + 1];
 
         /// <summary>
         /// 右にある石の情報を取得する
@@ -86,7 +109,7 @@ namespace Reversi
         /// <returns>右にある石の情報</returns>
         protected Stone GetRightStone(Stone nowStone)
             => nowStone.X == 0
-            ? new Stone() : Board[nowStone.X + 1][nowStone.Y];
+            ? new Stone() : ReversiBoard.Board[nowStone.X + 1][nowStone.Y];
 
         /// <summary>
         /// 左にある石の情報
@@ -94,15 +117,9 @@ namespace Reversi
         /// <param name="nowStone">起点となる石の情報</param>
         /// <returns>左にある石の情報</returns>
         protected Stone GetLeftStone(Stone nowStone)
-            => nowStone.X == Board[0].Length
-            ? new Stone() : Board[nowStone.X - 1][nowStone.Y];
+            => nowStone.X == ReversiBoard.Board[0].Length
+            ? new Stone() : ReversiBoard.Board[nowStone.X - 1][nowStone.Y];
     }
 
-    public class Stone
-    {
-        public enum StoneColorList { None, White, Black }
-        public StoneColorList StoneColor { get; set; } = StoneColorList.None;
-        public int X { get; set; }
-        public int Y { get; set; }
-    }
+
 }

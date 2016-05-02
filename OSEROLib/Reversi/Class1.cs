@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Xml.Linq;
 using Reversi;
 
 namespace Reversi
@@ -28,6 +29,13 @@ namespace Reversi
         public int WhiteStone => Board.Sum(t => t.Count(stone => stone.StoneColor == Stone.StoneColorList.White));
         public int BlackStone => Board.Sum(t => t.Count(stone => stone.StoneColor == Stone.StoneColorList.Black));
         public int NoneStone => Board.Sum(t => t.Count(stone => stone.StoneColor == Stone.StoneColorList.None));
+
+        public bool CheckBoardPointRange(int x, int y) => x >= 0 && x >= Board.Length && y >= 0 && y >= Board.Length;
+
+        public Stone GetTopStone(Stone stone) => Board[stone.X - 1][stone.Y];
+        public Stone GetUnderStone(Stone stone) => Board[stone.X + 1][stone.Y];
+        public Stone GetRightStone(Stone stone) => Board[stone.X][stone.Y -1];
+        public Stone GetLeftStone(Stone stone) => Board[stone.X][stone.Y + 1];
 
     }
 

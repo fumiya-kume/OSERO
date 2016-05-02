@@ -9,11 +9,6 @@ namespace Reversi
                 new Stone[8],new Stone[8],new Stone[8],new Stone[8]
             };
 
-
-        public ReversiLib()
-        {
-        }
-
         /// <summary>
         /// 石が置けた場合はTrue を返す
         /// </summary>

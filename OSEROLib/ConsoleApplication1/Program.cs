@@ -15,7 +15,7 @@ namespace ConsoleApplication1
             DumpBoard();
             while (true)
             {
-                if (IsContinue()) break;
+                if (reversilib.IsContinue()) break;
                 if (PutStone(Stone.StoneColorList.Black)) Console.WriteLine("石を置けませんでした");
 
                 DumpBoard();
@@ -46,16 +46,7 @@ namespace ConsoleApplication1
 
             return true;
         }
-
-        private static bool IsContinue()
-        {
-            for (var i = 0; i < 8; i++)
-            {
-                if (reversilib.Board[i].Count(stone => stone.StoneColor == Stone.StoneColorList.White) == 0) return false;
-                if (reversilib.Board[i].Count(stone => stone.StoneColor == Stone.StoneColorList.Black) == 0) return false;
-            }
-            return true;
-        }
+        
         
         private static void BoardInit()
         {

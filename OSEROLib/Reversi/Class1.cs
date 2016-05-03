@@ -36,7 +36,7 @@ namespace Reversi
         public Stone GetRightStone(Stone stone) => Board[stone.X][stone.Y - 1];
         public Stone GetLeftStone(Stone stone) => Board[stone.X][stone.Y + 1];
 
-        public void PutStone(Stone stone) => Board[stone.X][stone.Y] = stone;
+        public void SetStone(Stone stone) => Board[stone.X][stone.Y] = stone;
         public Stone GetStone(int x, int y) => Board[x][y];
     }
 
@@ -55,7 +55,7 @@ namespace Reversi
             if (IsChangeStoneColor(stone)) return false;
             if (!ReversiBoard.IsBoardRange(stone.X, stone.Y)) return false;
 
-            ReversiBoard.PutStone(stone);
+            ReversiBoard.SetStone(stone);
             return true;
         }
 

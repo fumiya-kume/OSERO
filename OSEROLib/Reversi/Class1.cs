@@ -33,7 +33,7 @@ namespace Reversi
         public int NoneStone => Board.Sum(t => t.Count(stone => stone.StoneColor == Stone.StoneColorList.None));
 
         //おかしい値の時にTrue を返す
-        public bool CheckBoardPointRange(int x, int y) => x <= 0 && x >= Board.Length && y <= 0 && y >= Board.Length;
+        public bool IsBoardRange(int x, int y) => x <= 0 && x >= Board.Length && y <= 0 && y >= Board.Length;
 
         public Stone GetTopStone(Stone stone) => Board[stone.X - 1][stone.Y];
         public Stone GetUnderStone(Stone stone) => Board[stone.X + 1][stone.Y];
@@ -57,7 +57,7 @@ namespace Reversi
             if (stone == null) return false;
             if (ReversiBoard.GetStone(stone.X,stone.Y).StoneColor != Stone.StoneColorList.None) return false;
             if (IsChangeStoneColor(stone)) return false;
-            if(!ReversiBoard.CheckBoardPointRange(stone.X,stone.Y)) return false;
+            if(!ReversiBoard.IsBoardRange(stone.X,stone.Y)) return false;
 
             ReversiBoard.PutStone(stone);
             
@@ -66,7 +66,7 @@ namespace Reversi
 
         public bool IsChangeStoneColor(Stone nowstone)
         {
-            if (ReversiBoard.CheckBoardPointRange(nowstone.X, nowstone.Y)) return false;
+            if (ReversiBoard.IsBoardRange(nowstone.X, nowstone.Y)) return false;
 
             if (GetEnemyColor(nowstone) == GetTopStone(nowstone).StoneColor &&
                 GetEnemyColor(nowstone) == GetUnderStone(nowstone).StoneColor) return true;

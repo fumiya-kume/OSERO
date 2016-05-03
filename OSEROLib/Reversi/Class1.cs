@@ -62,15 +62,7 @@ namespace Reversi
             
             return true;
         }
-
-        public void ChangeStoneColor(Stone stone)
-        {
-            stone.StoneColor = stone;
-            ReversiBoard.PutStone(stone);
-        }
-
         
-
         /// <summary>
         /// 石の色が変化するか判定する
         /// </summary>

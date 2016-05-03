@@ -56,7 +56,6 @@ namespace Reversi
             if (!ReversiBoard.IsBoardRange(stone.X, stone.Y)) return false;
 
             ReversiBoard.PutStone(stone);
-
             return true;
         }
 
@@ -84,6 +83,8 @@ namespace Reversi
 
         protected Stone GetLeftStone(Stone nowStone) =>
             ReversiBoard.IsBoardRange(nowStone.X, nowStone.Y--) ? null : ReversiBoard.GetStone(nowStone.X, nowStone.Y--);
+
+        public bool IsContinue() => ReversiBoard.BlackStone != 0 && ReversiBoard.WhiteStone != 0;
     }
 
 

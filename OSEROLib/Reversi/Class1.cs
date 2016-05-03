@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Runtime.Serialization;
 using System.Xml.Linq;
 using Reversi;
 
@@ -44,28 +46,30 @@ namespace Reversi
     public class ReversiLib
     {
         public ReversiBoard ReversiBoard { get; } = new ReversiBoard();
+
+        public Stone.StoneColorList GetEnemyStoneColor(Stone stone) => stone.StoneColor == Stone.StoneColorList.Black
+            ? Stone.StoneColorList.White
+            : Stone.StoneColorList.Black;
+
         public bool PutStone(Stone stone)
         {
             if (stone == null) return false;
-            if (ReversiBoard.Board[stone.X][stone.Y].StoneColor != Stone.StoneColorList.None) return false;
+            if (ReversiBoard.GetStone(stone.X,stone.Y).StoneColor != Stone.StoneColorList.None) return false;
             if (IsChangeStoneColor(stone)) return false;
-            //数字がおかしかったらダメよ！
-            if (stone.X < 0 || stone.X > 8) return false;
-            if (stone.Y < 0 || stone.Y > 8) return false;
+            if(!ReversiBoard.CheckBoardPointRange(stone.X,stone.Y)) return false;
 
-            ReversiBoard.Board[stone.X][stone.Y] = stone;
-
-            if (IsChangeStoneColor(stone))
-            {
-            }
+            ReversiBoard.PutStone(stone);
+            
             return true;
         }
 
         public void ChangeStoneColor(Stone stone)
         {
-            ReversiBoard.Board[stone.X][stone.Y].StoneColor = GetEnemyColor(stone);
+            stone.StoneColor = stone;
+            ReversiBoard.PutStone(stone);
         }
 
+        
 
         /// <summary>
         /// 石の色が変化するか判定する

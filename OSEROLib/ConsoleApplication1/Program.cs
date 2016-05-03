@@ -46,9 +46,9 @@ namespace ConsoleApplication1
 
             return true;
         }
-        
-        
-        private static void BoardInit()
+
+
+        static void BoardInit()
         {
             reversilib.PutStone(new Stone { X = 3, Y = 4, StoneColor = Stone.StoneColorList.Black });
             reversilib.PutStone(new Stone { X = 4, Y = 3, StoneColor = Stone.StoneColorList.Black });

@@ -86,6 +86,5 @@ namespace Reversi
 
         public bool IsContinue() => ReversiBoard.BlackStone != 0 && ReversiBoard.WhiteStone != 0;
     }
-
-
+    
 }

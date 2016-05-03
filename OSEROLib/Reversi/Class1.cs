@@ -63,21 +63,16 @@ namespace Reversi
             
             return true;
         }
-        
-        /// <summary>
-        /// 石の色が変化するか判定する
-        /// </summary>
-        /// <param name="nowstone">判定元となる石の情報</param>
-        /// <returns>石の色を変更するかどうか</returns>
+
         public bool IsChangeStoneColor(Stone nowstone)
         {
             if (ReversiBoard.CheckBoardPointRange(nowstone.X, nowstone.Y)) return false;
 
-            if (enemyColor == GetTopStone(nowstone).StoneColor &&
-                enemyColor == GetUnderStone(nowstone).StoneColor) return true;
+            if (GetEnemyColor(nowstone) == GetTopStone(nowstone).StoneColor &&
+                GetEnemyColor(nowstone) == GetUnderStone(nowstone).StoneColor) return true;
 
-            if (enemyColor == GetRightStone(nowstone).StoneColor &&
-                enemyColor == GetLeftStone(nowstone).StoneColor) return true;
+            if (GetEnemyColor(nowstone) == GetRightStone(nowstone).StoneColor &&
+                GetEnemyColor(nowstone) == GetLeftStone(nowstone).StoneColor) return true;
 
             return false;
         }

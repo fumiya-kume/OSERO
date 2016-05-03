@@ -48,7 +48,7 @@ namespace Reversi
     {
         public ReversiBoard ReversiBoard { get; } = new ReversiBoard();
 
-        public Stone.StoneColorList GetEnemyStoneColor(Stone stone) => stone.StoneColor == Stone.StoneColorList.Black
+        public Stone.StoneColorList GetEnemyColor(Stone stone) => stone.StoneColor == Stone.StoneColorList.Black
             ? Stone.StoneColorList.White
             : Stone.StoneColorList.Black;
 
@@ -76,15 +76,7 @@ namespace Reversi
 
             return false;
         }
-
-        /// <summary>
-        /// 敵の石の色を取得する
-        /// </summary>
-        /// <param name="nowColorList">現在の石の色</param>
-        /// <returns>敵の色の情報</returns>
-        public Stone.StoneColorList GetEnemyColor(Stone nowColorList) =>
-            nowColorList.StoneColor == Stone.StoneColorList.Black ?
-            Stone.StoneColorList.White : Stone.StoneColorList.Black;
+        
 
         /// <summary>
         /// 上の石の情報を取得する

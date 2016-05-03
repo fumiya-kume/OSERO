@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Xml.Linq;
-using Reversi;
+﻿using System.Linq;
 
 namespace Reversi
 {
@@ -43,7 +39,7 @@ namespace Reversi
         public void PutStone(Stone stone) => Board[stone.X][stone.Y] = stone;
         public Stone GetStone(int x, int y) => Board[x][y];
     }
-    
+
     public class ReversiLib
     {
         public ReversiBoard ReversiBoard { get; } = new ReversiBoard();
@@ -55,12 +51,12 @@ namespace Reversi
         public bool PutStone(Stone stone)
         {
             if (stone == null) return false;
-            if (ReversiBoard.GetStone(stone.X,stone.Y).StoneColor != Stone.StoneColorList.None) return false;
+            if (ReversiBoard.GetStone(stone.X, stone.Y).StoneColor != Stone.StoneColorList.None) return false;
             if (IsChangeStoneColor(stone)) return false;
-            if(!ReversiBoard.IsBoardRange(stone.X,stone.Y)) return false;
+            if (!ReversiBoard.IsBoardRange(stone.X, stone.Y)) return false;
 
             ReversiBoard.PutStone(stone);
-            
+
             return true;
         }
 
@@ -76,43 +72,18 @@ namespace Reversi
 
             return false;
         }
+
+        protected Stone GetTopStone(Stone nowStone) =>
+            ReversiBoard.IsBoardRange(nowStone.X++, nowStone.Y) ? null : ReversiBoard.GetStone(nowStone.X++, nowStone.Y);
+
+        protected Stone GetUnderStone(Stone nowStone) =>
+            ReversiBoard.IsBoardRange(nowStone.X--, nowStone.Y) ? null : ReversiBoard.GetStone(nowStone.X--, nowStone.Y);
         
+        protected Stone GetRightStone(Stone nowStone) =>
+            ReversiBoard.IsBoardRange(nowStone.X, nowStone.Y++) ? null : ReversiBoard.GetStone(nowStone.X, nowStone.Y++);
 
-        /// <summary>
-        /// 上の石の情報を取得する
-        /// </summary>
-        /// <param name="nowStone">起点となる石の情報</param>
-        /// <returns>上にある石の情報</returns>
-        protected Stone GetTopStone(Stone nowStone)
-            => nowStone.Y == 0
-            ? new Stone() : ReversiBoard.Board[nowStone.X][nowStone.Y - 1];
-
-        /// <summary>
-        /// 下にある石の情報を取得する
-        /// </summary>
-        /// <param name="nowStone">起点となる石の情報</param>
-        /// <returns>下にある石の情報</returns>
-        protected Stone GetUnderStone(Stone nowStone)
-            => nowStone.Y == ReversiBoard.Board.Length
-            ? new Stone() : ReversiBoard.Board[nowStone.X][nowStone.Y + 1];
-
-        /// <summary>
-        /// 右にある石の情報を取得する
-        /// </summary>
-        /// <param name="nowStone">起点となる石の情報</param>
-        /// <returns>右にある石の情報</returns>
-        protected Stone GetRightStone(Stone nowStone)
-            => nowStone.X == 0
-            ? new Stone() : ReversiBoard.Board[nowStone.X + 1][nowStone.Y];
-
-        /// <summary>
-        /// 左にある石の情報
-        /// </summary>
-        /// <param name="nowStone">起点となる石の情報</param>
-        /// <returns>左にある石の情報</returns>
-        protected Stone GetLeftStone(Stone nowStone)
-            => nowStone.X == ReversiBoard.Board[0].Length
-            ? new Stone() : ReversiBoard.Board[nowStone.X - 1][nowStone.Y];
+        protected Stone GetLeftStone(Stone nowStone) =>
+            ReversiBoard.IsBoardRange(nowStone.X, nowStone.Y--) ? null : ReversiBoard.GetStone(nowStone.X, nowStone.Y--);
     }
 
 

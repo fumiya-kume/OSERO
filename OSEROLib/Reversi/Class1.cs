@@ -24,9 +24,9 @@ namespace Reversi
                 new[] {new Stone(), new Stone(), new Stone(), new Stone(), new Stone(), new Stone(), new Stone(), new Stone()}
             };
 
-        public int WhiteStone => Board.Sum(t => t.Count(stone => stone.StoneColor == Stone.StoneColorList.White));
-        public int BlackStone => Board.Sum(t => t.Count(stone => stone.StoneColor == Stone.StoneColorList.Black));
-        public int NoneStone => Board.Sum(t => t.Count(stone => stone.StoneColor == Stone.StoneColorList.None));
+        public int WhiteStone => Board.SelectMany(stone => stone).Count(stone => stone.StoneColor == Stone.StoneColorList.White);
+        public int BlackStone => Board.SelectMany(stone => stone).Count(stone => stone.StoneColor == Stone.StoneColorList.Black);
+        public int NoneStone => Board.SelectMany(stone => stone).Count(stone => stone.StoneColor == Stone.StoneColorList.None);
 
         //おかしい値の時にTrue を返す
         public bool IsBoardRange(int x, int y) => x <= 0 && x >= Board.Length && y <= 0 && y >= Board.Length;
@@ -42,13 +42,14 @@ namespace Reversi
 
     public class ReversiLib
     {
+
         public ReversiBoard ReversiBoard { get; } = new ReversiBoard();
 
         public Stone.StoneColorList GetEnemyColor(Stone stone) => stone.StoneColor == Stone.StoneColorList.Black
             ? Stone.StoneColorList.White
             : Stone.StoneColorList.Black;
 
-        public bool PutStone(Stone stone)
+        public bool SetStone(Stone stone)
         {
             if (stone == null) return false;
             if (ReversiBoard.GetStone(stone.X, stone.Y).StoneColor != Stone.StoneColorList.None) return false;
@@ -77,7 +78,7 @@ namespace Reversi
 
         protected Stone GetUnderStone(Stone nowStone) =>
             ReversiBoard.IsBoardRange(nowStone.X--, nowStone.Y) ? null : ReversiBoard.GetStone(nowStone.X--, nowStone.Y);
-        
+
         protected Stone GetRightStone(Stone nowStone) =>
             ReversiBoard.IsBoardRange(nowStone.X, nowStone.Y++) ? null : ReversiBoard.GetStone(nowStone.X, nowStone.Y++);
 
@@ -86,5 +87,5 @@ namespace Reversi
 
         public bool IsContinue() => ReversiBoard.BlackStone != 0 && ReversiBoard.WhiteStone != 0;
     }
-    
+
 }

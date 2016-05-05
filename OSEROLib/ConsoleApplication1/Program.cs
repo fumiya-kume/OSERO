@@ -19,7 +19,6 @@ namespace ConsoleApplication1
             {
                 if (PutStone(Stone.StoneColorList.Black)) Console.WriteLine("石を置けませんでした");
                 DumpBoard();
-
             }
 
             Console.WriteLine("Game Finish");
@@ -32,8 +31,8 @@ namespace ConsoleApplication1
             Console.WriteLine("石の場所を指定してください:x y range = 0-8");
             var readLine = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(readLine)) return false;
-            int pointX = readLine.First();
-            int pointY = readLine.Last();
+            int pointX = int.Parse(readLine.First().ToString());
+            int pointY = Int32.Parse(readLine.Last().ToString());
             Console.WriteLine($"X:{pointX}Y:{pointY}");
 
             return Reversilib.SetStone(new Stone { X = pointX - 1, Y = pointY - 1, StoneColor = color });

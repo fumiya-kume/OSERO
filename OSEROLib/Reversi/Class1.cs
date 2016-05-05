@@ -46,6 +46,7 @@ namespace Reversi
         }
 
         public Stone GetStone(int x, int y) => ReversiBoard.Board[x][y];
+
         public bool SetStone(Stone stone)
         {
             if (!CanSetStone(stone)) return false;

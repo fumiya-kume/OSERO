@@ -7,23 +7,23 @@ namespace ConsoleApplication1
 {
     class Program
     {
-        public static ReversiLib reversilib { get; set; } = new ReversiLib();
+        public static ReversiLib Reversilib { get; set; } = new ReversiLib();
 
         private static void Main(string[] args)
         {
             Console.WriteLine("Game Start");
             BoardInit();
             DumpBoard();
-            while (true)
-            {
-                if (!reversilib.IsContinue()) break;
-                if (PutStone(Stone.StoneColorList.Black)) Console.WriteLine("石を置けませんでした");
 
+            while (Reversilib.IsContinue())
+            {
+                if (PutStone(Stone.StoneColorList.Black)) Console.WriteLine("石を置けませんでした");
                 DumpBoard();
-                
+
             }
+
             Console.WriteLine("Game Finish");
-            Thread.Sleep(3000); 
+            Thread.Sleep(3000);
         }
 
 
@@ -44,7 +44,7 @@ namespace ConsoleApplication1
 
             Console.WriteLine($"X:{pointX}Y:{pointY}");
 
-            if (!reversilib.SetStone(new Stone { X = pointX-1, Y = pointY-1, StoneColor = color })) return false;
+            if (!Reversilib.SetStone(new Stone { X = pointX - 1, Y = pointY - 1, StoneColor = color })) return false;
 
             return true;
         }
@@ -52,10 +52,10 @@ namespace ConsoleApplication1
 
         static void BoardInit()
         {
-            reversilib.SetStone(new Stone { X = 3, Y = 4, StoneColor = Stone.StoneColorList.Black });
-            reversilib.SetStone(new Stone { X = 4, Y = 3, StoneColor = Stone.StoneColorList.Black });
-            reversilib.SetStone(new Stone { X = 4, Y = 4, StoneColor = Stone.StoneColorList.White });
-            reversilib.SetStone(new Stone { X = 3, Y = 3, StoneColor = Stone.StoneColorList.White });
+            Reversilib.SetStone(new Stone { X = 3, Y = 4, StoneColor = Stone.StoneColorList.Black });
+            Reversilib.SetStone(new Stone { X = 4, Y = 3, StoneColor = Stone.StoneColorList.Black });
+            Reversilib.SetStone(new Stone { X = 4, Y = 4, StoneColor = Stone.StoneColorList.White });
+            Reversilib.SetStone(new Stone { X = 3, Y = 3, StoneColor = Stone.StoneColorList.White });
         }
 
         public static void DumpBoard()
@@ -63,17 +63,17 @@ namespace ConsoleApplication1
             Console.WriteLine(" １２３４５６７８");
             for (int i = 0; i < 8; i++)
             {
-                Console.Write( i + 1);
-                for (int j = 0; j < 8; j++)
-                {
-                    Console.Write(Stone2String(reversilib.ReversiBoard.GetStone(i, j)));
-                }
+                Console.Write(i + 1);
+                
+                Console.Write(Reversilib.ReversiBoard.Board[i]
+                    .Select(S2S).Aggregate((stone, stone1) => stone + stone1));
+
                 Console.WriteLine(" ");
             }
 
         }
-
-        public static string Stone2String(Stone stone)
+        
+        public static string S2S(Stone stone)
         {
             switch (stone.StoneColor)
             {

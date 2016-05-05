@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using Reversi;
 
 namespace ConsoleApplication1
@@ -15,22 +16,23 @@ namespace ConsoleApplication1
             DumpBoard();
             while (true)
             {
-                if (reversilib.IsContinue()) break;
+                if (!reversilib.IsContinue()) break;
                 if (PutStone(Stone.StoneColorList.Black)) Console.WriteLine("石を置けませんでした");
 
                 DumpBoard();
+                
             }
             Console.WriteLine("Game Finish");
-
+            Thread.Sleep(3000); 
         }
 
 
-        private static bool PutStone(Stone.StoneColorList color)
+        static bool PutStone(Stone.StoneColorList color)
         {
             Console.WriteLine("石の場所を指定してください:x y range = 0-8");
             var readLine = Console.ReadLine();
             //石の場所を指定していない場合の対処
-            if (string.IsNullOrEmpty(readLine) || string.IsNullOrWhiteSpace(readLine)) return false;
+            if (string.IsNullOrWhiteSpace(readLine)) return false;
 
             //最初から１番目の文字を取得
             int pointX;
@@ -42,7 +44,7 @@ namespace ConsoleApplication1
 
             Console.WriteLine($"X:{pointX}Y:{pointY}");
 
-            if (!reversilib.PutStone(new Stone { X = pointX-1, Y = pointY-1, StoneColor = color })) return false;
+            if (!reversilib.SetStone(new Stone { X = pointX-1, Y = pointY-1, StoneColor = color })) return false;
 
             return true;
         }
@@ -50,22 +52,21 @@ namespace ConsoleApplication1
 
         static void BoardInit()
         {
-            reversilib.PutStone(new Stone { X = 3, Y = 4, StoneColor = Stone.StoneColorList.Black });
-            reversilib.PutStone(new Stone { X = 4, Y = 3, StoneColor = Stone.StoneColorList.Black });
-            reversilib.PutStone(new Stone { X = 4, Y = 4, StoneColor = Stone.StoneColorList.White });
-            reversilib.PutStone(new Stone { X = 3, Y = 3, StoneColor = Stone.StoneColorList.White });
+            reversilib.SetStone(new Stone { X = 3, Y = 4, StoneColor = Stone.StoneColorList.Black });
+            reversilib.SetStone(new Stone { X = 4, Y = 3, StoneColor = Stone.StoneColorList.Black });
+            reversilib.SetStone(new Stone { X = 4, Y = 4, StoneColor = Stone.StoneColorList.White });
+            reversilib.SetStone(new Stone { X = 3, Y = 3, StoneColor = Stone.StoneColorList.White });
         }
 
         public static void DumpBoard()
         {
             Console.WriteLine(" １２３４５６７８");
-            for (var i = 0; i < 8; i++)
+            for (int i = 0; i < 8; i++)
             {
-                Console.Write(i + 1);
-
-                foreach (var nowStone in reversilib.Board[i])
+                Console.Write( i + 1);
+                for (int j = 0; j < 8; j++)
                 {
-                    Console.Write(Stone2String(nowStone));
+                    Console.Write(Stone2String(reversilib.ReversiBoard.GetStone(i, j)));
                 }
                 Console.WriteLine(" ");
             }

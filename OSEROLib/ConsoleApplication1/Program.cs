@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Linq;
 using Reversi;
+using static Reversi.StoneColorList;
 
 namespace ConsoleApplication1
 {
     class Program
     {
         public static ReversiLib Reversilib { get; set; } = new ReversiLib();
-        private static Stone.StoneColorList Turn { get; set; } = Stone.StoneColorList.White;
+        private static StoneColorList Turn { get; set; } = White;
+        private static void SwitchTurn() => Turn = Turn == White ? Black : White;
 
         private static void Main()
         {
@@ -26,7 +28,7 @@ namespace ConsoleApplication1
         }
 
 
-        static bool SetStone(Stone.StoneColorList color)
+        static bool SetStone(StoneColorList color)
         {
             Console.WriteLine("石の場所を指定してください:{たて} {よこ} range = 0-8");
             var readLine = Console.ReadLine();
@@ -40,10 +42,10 @@ namespace ConsoleApplication1
 
         static void BoardInit()
         {
-            Reversilib.SetStone(new Stone { X = 3, Y = 4, StoneColor = Stone.StoneColorList.Black });
-            Reversilib.SetStone(new Stone { X = 4, Y = 3, StoneColor = Stone.StoneColorList.Black });
-            Reversilib.SetStone(new Stone { X = 4, Y = 4, StoneColor = Stone.StoneColorList.White });
-            Reversilib.SetStone(new Stone { X = 3, Y = 3, StoneColor = Stone.StoneColorList.White });
+            Reversilib.SetStone(new Stone { X = 3, Y = 4, StoneColor = Black });
+            Reversilib.SetStone(new Stone { X = 4, Y = 3, StoneColor = Black });
+            Reversilib.SetStone(new Stone { X = 4, Y = 4, StoneColor = White });
+            Reversilib.SetStone(new Stone { X = 3, Y = 3, StoneColor = White });
         }
 
         public static void DumpBoard()
@@ -57,21 +59,19 @@ namespace ConsoleApplication1
             }
         }
 
-        public static string S2S(Stone stone)
+        public static string S2S(StoneColorList Color)
         {
-            switch (stone.StoneColor)
+            switch (Color)
             {
-                case Stone.StoneColorList.None:
+                case None:
                     return "ー";
-                case Stone.StoneColorList.White:
+                case White:
                     return "○";
-                case Stone.StoneColorList.Black:
+                case Black:
                     return "＊";
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
-
-        private static void SwitchTurn() => Turn = Turn == Stone.StoneColorList.White ? Stone.StoneColorList.Black : Stone.StoneColorList.White;
     }
 }

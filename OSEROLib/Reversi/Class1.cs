@@ -29,7 +29,7 @@ namespace Reversi
         private int BlackStone => ReversiBoard.Board.SelectMany(stone => stone).Count(stone => stone == Black);
         private int NoneStone => ReversiBoard.Board.SelectMany(stone => stone).Count(stone => stone == None);
 
-        private StoneColorList GetEnemyColor(Stone stone) 
+        private StoneColorList GetEnemyColor(Stone stone)
             => stone.StoneColor == Black ? White : Black;
 
         public bool IsContinue() => BlackStone != 0 && WhiteStone != 0;
@@ -48,8 +48,32 @@ namespace Reversi
             if (IsChangeStoneColor(stone)) return false;
 
             ReversiBoard.Board[stone.X][stone.Y] = stone.StoneColor;
-            if (IsChangeStoneColor(new Stone { X = stone.X, Y = stone.Y - 1, StoneColor = stone.StoneColor }))
-                ReversiBoard.Board[stone.X][stone.Y - 1] = GetEnemyColor(stone);
+
+            var nextstone = new Stone { X = stone.X, Y = stone.Y - 1, StoneColor = stone.StoneColor };
+            if (IsChangeStoneColor(nextstone))
+                if (!DirectSet(nextstone)) return false;
+
+            nextstone = new Stone { X = stone.X, Y = stone.Y + 1, StoneColor = stone.StoneColor };
+            if (IsChangeStoneColor(nextstone))
+                if (!DirectSet(nextstone)) return false;
+
+            nextstone = new Stone { X = stone.X - 1, Y = stone.Y, StoneColor = stone.StoneColor };
+            if (IsChangeStoneColor(nextstone))
+                if (!DirectSet(nextstone)) return false;
+
+            nextstone = new Stone { X = stone.X + 1, Y = stone.Y, StoneColor = stone.StoneColor };
+            if (IsChangeStoneColor(nextstone))
+                if (!DirectSet(nextstone)) return false;
+            return true;
+        }
+
+        public bool DirectSet(Stone stone)
+        {
+            if (MatchBoard(stone.X, stone.Y)) return false;
+            if (ReversiBoard.Board[stone.X][stone.Y] != None) return false;
+            if (IsChangeStoneColor(stone)) return false;
+
+            ReversiBoard.Board[stone.X][stone.Y] = stone.StoneColor;
             return true;
         }
 

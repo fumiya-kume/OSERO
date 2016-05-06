@@ -59,9 +59,9 @@ namespace ConsoleApplication1
             }
         }
 
-        public static string S2S(StoneColorList Color)
+        public static string S2S(StoneColorList color)
         {
-            switch (Color)
+            switch (color)
             {
                 case None:
                     return "ー";

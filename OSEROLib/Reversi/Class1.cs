@@ -29,7 +29,7 @@ namespace Reversi
         private int BlackStone => ReversiBoard.Board.SelectMany(stone => stone).Count(stone => stone == Black);
         private int NoneStone => ReversiBoard.Board.SelectMany(stone => stone).Count(stone => stone == None);
 
-        private StoneColorList GetEnemyColor(Stone stone)
+        private StoneColorList GetEnemyColor(Stone stone) 
             => stone.StoneColor == Black ? White : Black;
 
         public bool IsContinue() => BlackStone != 0 && WhiteStone != 0;

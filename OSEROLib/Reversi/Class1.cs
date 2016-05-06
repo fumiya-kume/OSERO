@@ -46,24 +46,28 @@ namespace Reversi
             if (MatchBoard(stone.X, stone.Y)) return false;
             if (ReversiBoard.Board[stone.X][stone.Y] != None) return false;
             if (IsChangeStoneColor(stone)) return false;
-
             ReversiBoard.Board[stone.X][stone.Y] = stone.StoneColor;
 
+            //左の石をチェック
             var nextstone = new Stone { X = stone.X, Y = stone.Y - 1, StoneColor = stone.StoneColor };
             if (IsChangeStoneColor(nextstone))
-                if (!DirectSet(nextstone)) return false;
+                DirectSet(nextstone);
 
+            //右の石をチェック
             nextstone = new Stone { X = stone.X, Y = stone.Y + 1, StoneColor = stone.StoneColor };
             if (IsChangeStoneColor(nextstone))
-                if (!DirectSet(nextstone)) return false;
+                DirectSet(nextstone);
 
+            //上の石をチェック
             nextstone = new Stone { X = stone.X - 1, Y = stone.Y, StoneColor = stone.StoneColor };
             if (IsChangeStoneColor(nextstone))
-                if (!DirectSet(nextstone)) return false;
+                DirectSet(nextstone);
 
+            //下の石をチェック
             nextstone = new Stone { X = stone.X + 1, Y = stone.Y, StoneColor = stone.StoneColor };
             if (IsChangeStoneColor(nextstone))
-                if (!DirectSet(nextstone)) return false;
+                DirectSet(nextstone);
+
             return true;
         }
 

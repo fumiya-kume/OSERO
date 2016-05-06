@@ -32,7 +32,7 @@ namespace Reversi
         private StoneColorList GetEnemyColor(Stone stone)
             => stone.StoneColor == Black ? White : Black;
 
-        public bool IsContinue() => true;//BlackStone != 0 && WhiteStone != 0 && NoneStone != 0;
+        public bool IsContinue() => BlackStone != 0 && WhiteStone != 0;
         private bool MatchBoard(int x, int y)
         {
             if (x > 0 || y > 0) return false;

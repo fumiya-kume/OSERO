@@ -51,7 +51,7 @@ namespace ConsoleApplication1
         public static void DumpBoard()
         {
             Console.WriteLine(" １２３４５６７８");
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
             {
                 Console.Write(i + 1);
                 Console.Write(Reversilib.ReversiBoard.Board[i].Select(S2S).Aggregate((stone, stone1) => stone + stone1));

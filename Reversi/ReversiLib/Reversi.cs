@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Xml.Linq;
 using static ReversiLib.ColorList;
 
 namespace ReversiLib
@@ -35,8 +36,29 @@ namespace ReversiLib
         {
             if (x < 0 || x > Board.Length - 1) return false;
             if (y < 0 || y > Board[0].Length - 1) return false;
-            
+
             return true;
+        }
+
+        public void SetColor(int x, int y, ColorList color)
+        {
+            if (!IsRangeOfBoard(x, y)) throw new IndexOutOfRangeException($"x:{x} y:{y}");
+            Board[x][y] = color;
+        }
+
+        public ColorList EnemyColor(ColorList color)
+        {
+            switch (color)
+            {
+                case Black:
+                    return White;
+                case White:
+                    return Black;
+                case None:
+                    return None;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(color), color, null);
+            }
         }
     }
 }

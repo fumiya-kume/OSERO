@@ -12,7 +12,7 @@ namespace ReversiTest
         public Reversi Reversi { get; set; } = new Reversi();
 
         [TestMethod]
-        public void TestWhiteColorZero()
+        public void TestWhiteColor()
         {
             Reversi.Board = new[]
             {
@@ -26,12 +26,8 @@ namespace ReversiTest
                 new[] {None, None, None, None, None, None, None, None}
             };
 
-            Assert.AreEqual(0,Reversi.CountWhiteColor());
-        }
+            Assert.AreEqual(0, Reversi.CountWhiteColor());
 
-        [TestMethod]
-        public void TestWhiteColorOne()
-        {
             Reversi.Board = new[]
             {
                 new[] {White, None, None, None, None, None, None, None},
@@ -45,11 +41,7 @@ namespace ReversiTest
             };
 
             Assert.AreEqual(1, Reversi.CountWhiteColor());
-        }
 
-        [TestMethod]
-        public void TestWhiteColorTwo()
-        {
             Reversi.Board = new[]
             {
                 new[] {White, None, None, None, None, None, None, None},
@@ -66,7 +58,7 @@ namespace ReversiTest
         }
 
         [TestMethod]
-        public void TestBlackColorZero()
+        public void TestBlackColor()
         {
             Reversi.Board = new[]
             {
@@ -80,12 +72,7 @@ namespace ReversiTest
                 new[] {None, None, None, None, None, None, None, None}
             };
 
-            Assert.AreEqual(0, Reversi.CountBlackColor());
-        }
 
-        [TestMethod]
-        public void TestBlackColorOne()
-        {
             Reversi.Board = new[]
             {
                 new[] {Black, None, None, None, None, None, None, None},
@@ -99,11 +86,7 @@ namespace ReversiTest
             };
 
             Assert.AreEqual(1, Reversi.CountBlackColor());
-        }
 
-        [TestMethod]
-        public void TestBlackColorTwo()
-        {
             Reversi.Board = new[]
             {
                 new[] {Black, None, None, None, None, None, None, None},
@@ -133,6 +116,71 @@ namespace ReversiTest
             Assert.IsTrue(Reversi.IsRangeOfBoard(0, 0));
             Assert.IsTrue(Reversi.IsRangeOfBoard(7, 7));
         }
-        
+
+        [TestMethod]
+        public void TestSetColor()
+        {
+            try
+            {
+                Reversi.SetColor(-1, 0, Black);
+                
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return;
+            }
+            try
+            {
+                Reversi.SetColor(0, -1, Black);
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            try
+            {
+                Reversi.SetColor(-1, -1, Black);
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            try
+            {
+                Reversi.SetColor(8, 0, Black);
+            }
+            catch (Exception)
+            {
+                return;
+            }
+
+            try
+            {
+                Reversi.SetColor(0, 8, Black);
+            }
+            catch (Exception)
+            {
+                return;
+            }
+
+            try
+            {
+                Reversi.SetColor(8, 8, Black);
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            
+            Assert.Fail("エラーが発生しませんでした。");
+        }
+
+        [TestMethod]
+        public void TestEnemyColor()
+        {
+            Assert.AreEqual(Black,Reversi.EnemyColor(White));
+            Assert.AreEqual(White,Reversi.EnemyColor(Black));
+            Assert.AreEqual(None,Reversi.EnemyColor(None));
+        }
     }
 }

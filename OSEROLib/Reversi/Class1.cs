@@ -40,7 +40,9 @@ namespace Reversi
             return true;
         }
 
-        public StoneColorList GetStoneColor(int x, int y) => ReversiBoard.Board[x][y];
+        public StoneColorList GetStoneColor(int x, int y)
+            => MatchBoard(x, y) ? ReversiBoard.Board[x][y] : None;
+
         public bool SetStone(Stone stone)
         {
             if (MatchBoard(stone.X, stone.Y)) return false;
@@ -86,18 +88,12 @@ namespace Reversi
             if (stone.StoneColor == None) return false;
             var enemyColor = GetEnemyColor(stone);
 
-            if (MatchBoard(stone.X - 1, stone.Y) || MatchBoard(stone.X + 1, stone.Y))
-            {
-                if (enemyColor == GetStoneColor(stone.X - 1, stone.Y) &&
-                enemyColor == GetStoneColor(stone.X + 1, stone.Y)) return true;
-            }
-
-            if (MatchBoard(stone.X, stone.Y - 1) || MatchBoard(stone.X, stone.Y + 1))
-            {
-                if (enemyColor == GetStoneColor(stone.X, stone.Y - 1) &&
-                enemyColor == GetStoneColor(stone.X, stone.Y + 1)) return true;
-            }
-
+            if (enemyColor == GetStoneColor(stone.X - 1, stone.Y) &&
+            enemyColor == GetStoneColor(stone.X + 1, stone.Y)) return true;
+            
+            if (enemyColor == GetStoneColor(stone.X, stone.Y - 1) &&
+            enemyColor == GetStoneColor(stone.X, stone.Y + 1)) return true;
+            
             return false;
         }
     }

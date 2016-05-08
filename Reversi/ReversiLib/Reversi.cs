@@ -1,17 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using static ReversiLib.ColorList;
 
 namespace ReversiLib
 {
-    public enum ColorList
+    public  enum ColorList
     {
         Black,
         White,
         None
     };
+    
+
     public class Reversi
     {
+        public ColorList[][] Board { get; set; } = {
+            new[] {None, None, None, None, None, None, None, None},
+            new[] {None, None, None, None, None, None, None, None},
+            new[] {None, None, None, None, None, None, None, None},
+            new[] {None, None, None, None, None, None, None, None},
+            new[] {None, None, None, None, None, None, None, None},
+            new[] {None, None, None, None, None, None, None, None},
+            new[] {None, None, None, None, None, None, None, None},
+            new[] {None, None, None, None, None, None, None, None}
+        };
     }
 }

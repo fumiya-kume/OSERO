@@ -45,10 +45,8 @@ namespace Reversi
 
         public bool SetStone(Stone stone)
         {
-            if (MatchBoard(stone.X, stone.Y)) return false;
-            if (ReversiBoard.Board[stone.X][stone.Y] != None) return false;
-            if (IsChangeStoneColor(stone)) return false;
-            ReversiBoard.Board[stone.X][stone.Y] = stone.StoneColor;
+            if (IsChangeStoneColor(stone))
+                DirectSet(stone);
 
             //左の石をチェック
             var nextstone = new Stone { X = stone.X, Y = stone.Y - 1, StoneColor = stone.StoneColor };
@@ -90,10 +88,10 @@ namespace Reversi
 
             if (enemyColor == GetStoneColor(stone.X - 1, stone.Y) &&
             enemyColor == GetStoneColor(stone.X + 1, stone.Y)) return true;
-            
+
             if (enemyColor == GetStoneColor(stone.X, stone.Y - 1) &&
             enemyColor == GetStoneColor(stone.X, stone.Y + 1)) return true;
-            
+
             return false;
         }
     }

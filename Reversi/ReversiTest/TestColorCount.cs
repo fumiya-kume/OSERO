@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ReversiLib;
 using static ReversiLib.ColorList;
-using System.Security.Policy;
 
 namespace ReversiTest
 {
@@ -123,7 +122,7 @@ namespace ReversiTest
             try
             {
                 Reversi.SetColor(-1, 0, Black);
-                
+
             }
             catch (IndexOutOfRangeException)
             {
@@ -171,16 +170,16 @@ namespace ReversiTest
             {
                 return;
             }
-            
+
             Assert.Fail("エラーが発生しませんでした。");
         }
 
         [TestMethod]
         public void TestEnemyColor()
         {
-            Assert.AreEqual(Black,Reversi.EnemyColor(White));
-            Assert.AreEqual(White,Reversi.EnemyColor(Black));
-            Assert.AreEqual(None,Reversi.EnemyColor(None));
+            Assert.AreEqual(Black, Reversi.EnemyColor(White));
+            Assert.AreEqual(White, Reversi.EnemyColor(Black));
+            Assert.AreEqual(None, Reversi.EnemyColor(None));
         }
 
         [TestMethod]

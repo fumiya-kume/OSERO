@@ -118,5 +118,21 @@ namespace ReversiTest
 
             Assert.AreEqual(2, Reversi.CountBlackColor());
         }
+
+        [TestMethod]
+        public void TestIsRangeOfBoard()
+        {
+            Assert.IsFalse(Reversi.IsRangeOfBoard(-1, 0));
+            Assert.IsFalse(Reversi.IsRangeOfBoard(0, -1));
+            Assert.IsFalse(Reversi.IsRangeOfBoard(-1, -1));
+
+            Assert.IsFalse(Reversi.IsRangeOfBoard(8, 0));
+            Assert.IsFalse(Reversi.IsRangeOfBoard(0, 8));
+            Assert.IsFalse(Reversi.IsRangeOfBoard(8, 8));
+
+            Assert.IsTrue(Reversi.IsRangeOfBoard(0, 0));
+            Assert.IsTrue(Reversi.IsRangeOfBoard(7, 7));
+        }
+        
     }
 }

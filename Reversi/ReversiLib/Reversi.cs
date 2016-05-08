@@ -1,4 +1,5 @@
-﻿using static ReversiLib.ColorList;
+﻿using System.Linq;
+using static ReversiLib.ColorList;
 
 namespace ReversiLib
 {
@@ -22,5 +23,9 @@ namespace ReversiLib
             new[] {None, None, None, None, None, None, None, None},
             new[] {None, None, None, None, None, None, None, None}
         };
+        
+        public int CountWhiteColor()
+            => Board.Select(lists => lists.Count(stone => stone == White))
+                    .Aggregate((i, i1) => i + i1);
     }
 }

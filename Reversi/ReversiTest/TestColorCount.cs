@@ -182,5 +182,11 @@ namespace ReversiTest
             Assert.AreEqual(White,Reversi.EnemyColor(Black));
             Assert.AreEqual(None,Reversi.EnemyColor(None));
         }
+
+        [TestMethod]
+        public void TestIsChangeColor()
+        {
+            //今日書く
+        }
     }
 }

@@ -60,5 +60,25 @@ namespace ReversiLib
                     throw new ArgumentOutOfRangeException(nameof(color), color, null);
             }
         }
+
+        public bool IsChangeColor(int x, int y)
+        {
+            if (!IsRangeOfBoard(x, y)) throw new IndexOutOfRangeException($"x:{x} y:{y}");
+            var BaseColor = Board[x][y];
+
+            var topColor = IsRangeOfBoard(x - 1, y) ? Board[x - 1][y] : None;
+            var underColor = IsRangeOfBoard(x + 1, y) ? Board[x - 1][y] : None;
+
+            if (topColor == None || underColor == None ||
+                topColor == underColor && topColor == EnemyColor(BaseColor)) return true;
+
+            var rightColor = IsRangeOfBoard(x, y - 1) ? Board[x][y - 1] : None;
+            var leftColor = IsRangeOfBoard(x, y + 1) ? Board[x][y + 1] : None;
+
+            if (rightColor == None || leftColor == None ||
+                rightColor == underColor && rightColor == EnemyColor(BaseColor)) return true;
+
+            return false;
+        }
     }
 }

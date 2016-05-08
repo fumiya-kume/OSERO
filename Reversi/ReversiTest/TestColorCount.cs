@@ -7,7 +7,7 @@ using System.Security.Policy;
 namespace ReversiTest
 {
     [TestClass]
-    public class UnitTest1
+    public class TestColorCount
     {
         public Reversi Reversi { get; set; } = new Reversi();
 

@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reversi", "Reversi\Reversi.csproj", "{AD7BF2B0-F3AD-4152-B84A-C1552ED6FFBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReversiLib", "ReversiLib\ReversiLib.csproj", "{CF2329F1-6463-4E3E-B243-C85E2F196ECB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReversiTest", "ReversiTest\ReversiTest.csproj", "{B525CB40-36C5-477D-9E3F-4A9FC044BA98}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD7BF2B0-F3AD-4152-B84A-C1552ED6FFBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD7BF2B0-F3AD-4152-B84A-C1552ED6FFBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD7BF2B0-F3AD-4152-B84A-C1552ED6FFBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD7BF2B0-F3AD-4152-B84A-C1552ED6FFBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF2329F1-6463-4E3E-B243-C85E2F196ECB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF2329F1-6463-4E3E-B243-C85E2F196ECB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF2329F1-6463-4E3E-B243-C85E2F196ECB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF2329F1-6463-4E3E-B243-C85E2F196ECB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B525CB40-36C5-477D-9E3F-4A9FC044BA98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B525CB40-36C5-477D-9E3F-4A9FC044BA98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B525CB40-36C5-477D-9E3F-4A9FC044BA98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B525CB40-36C5-477D-9E3F-4A9FC044BA98}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

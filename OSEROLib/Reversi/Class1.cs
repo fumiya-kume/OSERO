@@ -43,30 +43,20 @@ namespace Reversi
         public StoneColorList GetStoneColor(int x, int y)
             => MatchBoard(x, y) ? None : ReversiBoard.Board[x][y];
 
+        private Stone GetStone(int x, int y)
+            => new Stone { X = x, Y = y, StoneColor = GetStoneColor(x, y) };
+
         public bool SetStone(Stone stone)
         {
-            if (IsChangeStoneColor(stone))
-                DirectSet(stone);
-
+            DirectSet(stone);
             //左の石をチェック
-            var nextstone = new Stone { X = stone.X, Y = stone.Y - 1, StoneColor = stone.StoneColor };
-            if (IsChangeStoneColor(nextstone))
-                DirectSet(nextstone);
-
+            DirectSet(GetStone(stone.X - 1, stone.Y));
             //右の石をチェック
-            nextstone = new Stone { X = stone.X, Y = stone.Y + 1, StoneColor = stone.StoneColor };
-            if (IsChangeStoneColor(nextstone))
-                DirectSet(nextstone);
-
+            DirectSet(GetStone(stone.X + 1, stone.Y));
             //上の石をチェック
-            nextstone = new Stone { X = stone.X - 1, Y = stone.Y, StoneColor = stone.StoneColor };
-            if (IsChangeStoneColor(nextstone))
-                DirectSet(nextstone);
-
+            DirectSet(GetStone(stone.X, stone.Y - 1));
             //下の石をチェック
-            nextstone = new Stone { X = stone.X + 1, Y = stone.Y, StoneColor = stone.StoneColor };
-            if (IsChangeStoneColor(nextstone))
-                DirectSet(nextstone);
+            DirectSet(GetStone(stone.X, stone.Y + 1));
 
             return true;
         }
@@ -74,6 +64,7 @@ namespace Reversi
         public bool DirectSet(Stone stone)
         {
             if (MatchBoard(stone.X, stone.Y)) return false;
+            if (!IsChangeStoneColor(stone)) return false;
             ReversiBoard.Board[stone.X][stone.Y] = stone.StoneColor;
             return true;
         }

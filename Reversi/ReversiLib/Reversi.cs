@@ -5,6 +5,12 @@ using System.Text;
 
 namespace ReversiLib
 {
+    public enum ColorList
+    {
+        Black,
+        White,
+        None
+    };
     public class Reversi
     {
     }

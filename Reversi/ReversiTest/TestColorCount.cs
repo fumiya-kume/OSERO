@@ -1,19 +1,19 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ReversiLib;
-using static ReversiLib.ColorList;
-using System.Security.Policy;
+using static ReversiLib.Color;
 
 namespace ReversiTest
 {
     [TestClass]
     public class TestColorCount
     {
-        public Reversi Reversi { get; set; } = new Reversi();
+        private Reversi GetReversi() => new Reversi();
 
         [TestMethod]
         public void TestWhiteColor()
         {
+            var Reversi = GetReversi();
             Reversi.Board = new[]
             {
                 new[] {None, None, None, None, None, None, None, None},
@@ -60,6 +60,7 @@ namespace ReversiTest
         [TestMethod]
         public void TestBlackColor()
         {
+            var Reversi = GetReversi();
             Reversi.Board = new[]
             {
                 new[] {None, None, None, None, None, None, None, None},
@@ -105,6 +106,7 @@ namespace ReversiTest
         [TestMethod]
         public void TestIsRangeOfBoard()
         {
+            var Reversi = GetReversi();
             Assert.IsFalse(Reversi.IsRangeOfBoard(-1, 0));
             Assert.IsFalse(Reversi.IsRangeOfBoard(0, -1));
             Assert.IsFalse(Reversi.IsRangeOfBoard(-1, -1));
@@ -120,10 +122,11 @@ namespace ReversiTest
         [TestMethod]
         public void TestSetColor()
         {
+            var Reversi = GetReversi();
             try
             {
                 Reversi.SetColor(-1, 0, Black);
-                
+
             }
             catch (IndexOutOfRangeException)
             {
@@ -171,22 +174,72 @@ namespace ReversiTest
             {
                 return;
             }
-            
+
             Assert.Fail("エラーが発生しませんでした。");
         }
 
         [TestMethod]
         public void TestEnemyColor()
         {
-            Assert.AreEqual(Black,Reversi.EnemyColor(White));
-            Assert.AreEqual(White,Reversi.EnemyColor(Black));
-            Assert.AreEqual(None,Reversi.EnemyColor(None));
+            var Reversi = GetReversi();
+            Assert.AreEqual(Black, Reversi.EnemyColor(White));
+            Assert.AreEqual(White, Reversi.EnemyColor(Black));
+            Assert.AreEqual(None, Reversi.EnemyColor(None));
         }
 
         [TestMethod]
         public void TestIsChangeColor()
         {
-            //今日書く
+            var Reversi = GetReversi();
+            Reversi.Board = new[]
+             {
+                new[] {None, None, None},
+                new[] {White, Black, White},
+                new[] {None, None, None}
+            };
+            Assert.IsTrue(Reversi.IsChangeColor(2, 2));
+
+            Reversi.Board = new[]
+             {
+                new[] {None, None, None},
+                new[] {Black, White, Black},
+                new[] {None, None, None}
+            };
+            Assert.IsTrue(Reversi.IsChangeColor(2, 2));
+
+            Reversi.Board = new[]
+             {
+                new[] {None, Black, None},
+                new[] {Black, White, Black},
+                new[] {None, Black, None}
+            };
+            Assert.IsTrue(Reversi.IsChangeColor(2, 2));
+
+            Reversi.Board = new[]
+             {
+                new[] {None, Black, None},
+                new[] {White, White, White},
+                new[] {None, Black, None}
+            };
+            Assert.IsTrue(Reversi.IsChangeColor(2, 2));
+
+            Reversi.Board = new[]
+             {
+                new[] {None, White, None},
+                new[] {None, Black, None},
+                new[] {None, White, None}
+            };
+            Assert.IsTrue(Reversi.IsChangeColor(2, 2));
+        }
+
+        [TestMethod]
+        public void TestBoardInit()
+        {
+            var reversi = GetReversi();
+            reversi.Init();
+            CollectionAssert.AllItemsAreNotNull(reversi.Board);
+            CollectionAssert.AreEqual(reversi.Board[4], new[] { None, None, None, Black, White, None, None, None });
+            CollectionAssert.AreEqual(reversi.Board[5], new[] { None, None, None, White, Black, None, None, None });
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using static Reversi.StoneColorList;
+﻿using System.Linq;
+using static Reversi.StoneColorList;
 
 namespace Reversi
 {
@@ -21,6 +22,10 @@ namespace Reversi
     }
     public class Reversi
     {
+        public ReversiBoard Board { get; set; } = new ReversiBoard();
+
+        public int WhiteStone() => Board.Board.SelectMany(stone => stone).Count(stone => stone == White);
+        public int BlackStone() => Board.Board.SelectMany(stone => stone).Count(stone => stone == Black);
 
     }
 }

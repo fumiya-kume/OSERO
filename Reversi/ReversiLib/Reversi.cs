@@ -15,7 +15,7 @@ namespace ReversiLib
 
     public class Player
     {
-        public Color TurnColor = White;
+        public Color TurnColor;
         public void Change() => TurnColor = Reversi.EnemyColor(TurnColor);
         public Color NowColor => TurnColor;
     }
@@ -158,6 +158,12 @@ namespace ReversiLib
             return true;
         }
 
-
+        public bool IsContinue()
+        {
+            if (CountBlackColor() == 0) return false;
+            if (CountWhiteColor() == 0) return false;
+            if (CountNoneColor() == 0) return false;
+            return true;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Xml.Linq;
 using static ReversiLib.Color;
 
@@ -11,6 +12,13 @@ namespace ReversiLib
         White,
         None
     };
+
+    public class Player
+    {
+        public Color TurnColor = White;
+        public void Change() => TurnColor = Reversi.EnemyColor(TurnColor);
+        public Color NowColor => TurnColor;
+    }
 
     public class Reversi
     {
@@ -43,13 +51,7 @@ namespace ReversiLib
             return true;
         }
 
-        public void SetColor(int x, int y, Color color)
-        {
-            if (IsRangeOfBoard(x, y)) return;
-            Board[x][y] = color;
-        }
-
-        public Color EnemyColor(Color color)
+        public static Color EnemyColor(Color color)
         {
             switch (color)
             {
@@ -64,27 +66,7 @@ namespace ReversiLib
             }
         }
 
-        public bool IsChangeColor(int x, int y)
-        {
-            if (!IsRangeOfBoard(x, y)) throw new IndexOutOfRangeException($"x:{x} y:{y}");
-            var baseColor = Board[x][y];
-
-            var topColor = IsRangeOfBoard(x - 1, y) ? Board[x - 1][y] : None;
-            var underColor = IsRangeOfBoard(x + 1, y) ? Board[x - 1][y] : None;
-
-            if (topColor == None || underColor == None ||
-                topColor == underColor && topColor == EnemyColor(baseColor)) return true;
-
-            var rightColor = IsRangeOfBoard(x, y - 1) ? Board[x][y - 1] : None;
-            var leftColor = IsRangeOfBoard(x, y + 1) ? Board[x][y + 1] : None;
-
-            if (rightColor == None || leftColor == None ||
-                rightColor == underColor && rightColor == EnemyColor(baseColor)) return true;
-
-            return false;
-        }
-
-        private Color GetColor(int x, int y) => IsRangeOfBoard(x, y) ? Board[x][y] : None;
+        public Color GetColor(int x, int y) => IsRangeOfBoard(x, y) ? Board[x][y] : None;
 
         public void Init()
         {
@@ -99,19 +81,83 @@ namespace ReversiLib
         }
 
         //一方向にひっくり返せる石があるか確認
-        public bool IsReversiDirection(int x, int y, int dx, int dy, Color color)
+        private bool IsReversiDirection(int x, int y, int dx, int dy, Color color)
         {
             var nx = x + dx;
             var ny = y + dy;
-            if (GetColor(x, y) == color) return false;
+            if (GetColor(nx, ny) == color) return false;
             while (true)
             {
                 if (GetColor(nx, ny) == None) return false;
-                if (GetColor(x, y) == color) break;
+                if (GetColor(nx, ny) == color) break;
                 nx += dx;
                 ny += dy;
             }
             return true;
         }
+
+        // Can Reversi Color on vicinty
+        private bool IsReversiAllDirection(int x, int y, Color color)
+        {
+            if (IsReversiDirection(x, y, -1, 0, color)) return true; // Up
+            if (IsReversiDirection(x, y, -1, 1, color)) return true; // Upper Right
+            if (IsReversiDirection(x, y, 0, 1, color)) return true;  // Right
+            if (IsReversiDirection(x, y, 1, 1, color)) return true; // Lower Right
+            if (IsReversiDirection(x, y, 1, 0, color)) return true; // Low
+            if (IsReversiDirection(x, y, 1, -1, color)) return true; // Lower Left
+            if (IsReversiDirection(x, y, 0, -1, color)) return true; // Left
+            if (IsReversiDirection(x, y, -1, -1, color)) return true; // Upper Left
+
+            return false;
+        }
+
+        private void ReversiDirection(int x, int y, int dx, int dy, Color color)
+        {
+            var nx = x + dx;
+            var ny = y + dy;
+            if (GetColor(nx, ny) == color) return;
+            while (true)
+            {
+                if (GetColor(nx, ny) == None) return;
+                if (GetColor(nx, ny) == color) break;
+                Board[nx][ny] = color;
+                nx += dx;
+                ny += dy;
+            }
+        }
+
+        private void ReversiAllDirection(int x, int y, Color color)
+        {
+            ReversiDirection(x, y, -1, 0, color); // Up
+            ReversiDirection(x, y, -1, 1, color); // Upper Right
+            ReversiDirection(x, y, 0, 1, color);   // Right
+            ReversiDirection(x, y, 1, 1, color); // Lower Right
+            ReversiDirection(x, y, 1, 0, color); // Low
+            ReversiDirection(x, y, 1, -1, color);// Lower Left
+            ReversiDirection(x, y, 0, -1, color); // Left
+            ReversiDirection(x, y, -1, -1, color); // Upper Left
+        }
+
+        public bool IsAlreadSetColor(int x, int y)
+        {
+            if (GetColor(x, y) == None) return false;
+
+            return true;
+        }
+
+        //Set Color on Board
+        public bool SetColor(int x, int y, Color color)
+        {
+            if (!IsRangeOfBoard(x, y)) return false;
+            Board[x][y] = color;
+            if (IsReversiAllDirection(x, y, color))
+            {
+                ReversiAllDirection(x, y, color);
+            }
+
+            return true;
+        }
+
+
     }
 }

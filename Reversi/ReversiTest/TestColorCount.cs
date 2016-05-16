@@ -187,50 +187,7 @@ namespace ReversiTest
             Assert.AreEqual(None, Reversi.EnemyColor(None));
         }
 
-        [TestMethod]
-        public void TestIsChangeColor()
-        {
-            var Reversi = GetReversi();
-            Reversi.Board = new[]
-             {
-                new[] {None, None, None},
-                new[] {White, Black, White},
-                new[] {None, None, None}
-            };
-            Assert.IsTrue(Reversi.IsChangeColor(2, 2));
 
-            Reversi.Board = new[]
-             {
-                new[] {None, None, None},
-                new[] {Black, White, Black},
-                new[] {None, None, None}
-            };
-            Assert.IsTrue(Reversi.IsChangeColor(2, 2));
-
-            Reversi.Board = new[]
-             {
-                new[] {None, Black, None},
-                new[] {Black, White, Black},
-                new[] {None, Black, None}
-            };
-            Assert.IsTrue(Reversi.IsChangeColor(2, 2));
-
-            Reversi.Board = new[]
-             {
-                new[] {None, Black, None},
-                new[] {White, White, White},
-                new[] {None, Black, None}
-            };
-            Assert.IsTrue(Reversi.IsChangeColor(2, 2));
-
-            Reversi.Board = new[]
-             {
-                new[] {None, White, None},
-                new[] {None, Black, None},
-                new[] {None, White, None}
-            };
-            Assert.IsTrue(Reversi.IsChangeColor(2, 2));
-        }
 
         [TestMethod]
         public void TestBoardInit()
@@ -241,5 +198,6 @@ namespace ReversiTest
             CollectionAssert.AreEqual(reversi.Board[4], new[] { None, None, None, Black, White, None, None, None });
             CollectionAssert.AreEqual(reversi.Board[5], new[] { None, None, None, White, Black, None, None, None });
         }
+
     }
 }

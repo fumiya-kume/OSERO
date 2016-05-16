@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Xml.Linq;
 using static ReversiLib.Color;
 
 namespace ReversiLib
@@ -33,6 +34,7 @@ namespace ReversiLib
         public int CountNoneColor()
             => Board.Select(lists => lists.Count(list => list == None)).Aggregate((i, i1) => i + i1);
 
+        //値がボードの範囲内か調べる
         public bool IsRangeOfBoard(int x, int y)
         {
             if (x < 0 || x > Board.Length - 1) return false;
@@ -43,7 +45,7 @@ namespace ReversiLib
 
         public void SetColor(int x, int y, Color color)
         {
-            if (!IsRangeOfBoard(x, y)) throw new IndexOutOfRangeException($"x:{x} y:{y}");
+            if (IsRangeOfBoard(x, y)) return;
             Board[x][y] = color;
         }
 
@@ -82,6 +84,8 @@ namespace ReversiLib
             return false;
         }
 
+        private Color GetColor(int x, int y) => IsRangeOfBoard(x, y) ? Board[x][y] : None;
+
         public void Init()
         {
             new[] { None, None, None, None, None, None, None, None }.CopyTo(Board[0], 0);
@@ -92,6 +96,22 @@ namespace ReversiLib
             new[] { None, None, None, None, None, None, None, None }.CopyTo(Board[5], 0);
             new[] { None, None, None, None, None, None, None, None }.CopyTo(Board[6], 0);
             new[] { None, None, None, None, None, None, None, None }.CopyTo(Board[7], 0);
+        }
+
+        //一方向にひっくり返せる石があるか確認
+        public bool IsReversiDirection(int x, int y, int dx, int dy, Color color)
+        {
+            var nx = x + dx;
+            var ny = y + dy;
+            if (GetColor(x, y) == color) return false;
+            while (true)
+            {
+                if (GetColor(nx, ny) == None) return false;
+                if (GetColor(x, y) == color) break;
+                nx += dx;
+                ny += dy;
+            }
+            return true;
         }
     }
 }

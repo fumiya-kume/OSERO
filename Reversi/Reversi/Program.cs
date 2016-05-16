@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ReversiLib;
 
 namespace Reversi
@@ -12,9 +9,8 @@ namespace Reversi
         public static ReversiLib.Reversi reversi { get; set; } = new ReversiLib.Reversi();
         public static Player Player { get; set; } = new Player();
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-
             reversi.Init();
             DumpBoard();
             while (true)
@@ -41,18 +37,17 @@ namespace Reversi
             int.TryParse(ConsoleText.Last().ToString(), out y);
             var color = Player.NowColor;
             if (reversi.SetColor(x, y, color)) ;
-
         }
 
         public static void DumpBoard()
         {
             var board = reversi.Board;
             Console.WriteLine(" 01234567");
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
             {
                 Console.Write(i);
                 var Text = "";
-                for (int j = 0; j < 8; j++)
+                for (var j = 0; j < 8; j++)
                 {
                     Text = Text + Color2String(board[i][j]);
                 }

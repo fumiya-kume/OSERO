@@ -50,7 +50,7 @@ namespace Reversi
             }
             catch (Exception)
             {
-                Console.WriteLine("石をおけませんでした。");
+                Console.WriteLine("Overlap Stone !!");
                 return false;
             }
             

@@ -149,6 +149,7 @@ namespace ReversiLib
         public bool SetColor(int x, int y, Color color)
         {
             if (!IsRangeOfBoard(x, y)) return false;
+            if (Board[x][y] != None) return false;
             Board[x][y] = color;
             if (IsReversiAllDirection(x, y, color))
             {

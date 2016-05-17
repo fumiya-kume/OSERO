@@ -15,28 +15,56 @@ namespace Reversi
             DumpBoard();
             while (true)
             {
-                EnterCommand();
+                if (EnterCommand())
+                {
+                    Player.Change();
+                }
                 DumpBoard();
                 if (!reversi.IsContinue()) break;
-                Player.Change();
+
                 Console.WriteLine($"Now Player is {Player.NowColor}");
+                GC.Collect();
             }
             Console.WriteLine("Game is Finished !!");
         }
 
-        public static void EnterCommand()
+        public static bool EnterCommand()
         {
             Console.WriteLine("Please Input Command ");
             Console.WriteLine("Height:X Width:Y");
             Console.WriteLine("Example {X Position} {Y Position}");
             var ConsoleText = Console.ReadLine();
-            if (ConsoleText == null) return;
+            //入力された文字が処理できない内容だったら処理を中断する
+            if (string.IsNullOrWhiteSpace(ConsoleText)) return false;
+
+            if (!IsNumeric((int)ConsoleText.First())) return false;
+            if (!IsNumeric((int)ConsoleText.Last())) return false;
+
             int x;
             int.TryParse(ConsoleText.First().ToString(), out x);
             int y;
             int.TryParse(ConsoleText.Last().ToString(), out y);
+            //有効な数字でない場合は処理を中断する
+            if (!IsNumeric(x)) return false;
+            if (!IsNumeric(y)) return false;
+
             var color = Player.NowColor;
-            if (reversi.SetColor(x, y, color)) ;
+            if (!reversi.SetColor(x, y, color)) return false;
+            return true;
+        }
+
+        private static bool IsNumeric(int str)
+        {
+            if (str == 0) return true;
+            if (str == 1) return true;
+            if (str == 2) return true;
+            if (str == 3) return true;
+            if (str == 4) return true;
+            if (str == 5) return true;
+            if (str == 6) return true;
+            if (str == 7) return true;
+            if (str == 8) return true;
+            return false;
         }
 
         public static void DumpBoard()

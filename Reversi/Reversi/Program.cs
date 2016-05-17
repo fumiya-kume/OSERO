@@ -37,35 +37,29 @@ namespace Reversi
             //入力された文字が処理できない内容だったら処理を中断する
             if (string.IsNullOrWhiteSpace(ConsoleText)) return false;
 
-            if (!IsNumeric((int)ConsoleText.First())) return false;
-            if (!IsNumeric((int)ConsoleText.Last())) return false;
-
+            var color = Player.NowColor;
             int x;
-            int.TryParse(ConsoleText.First().ToString(), out x);
+            int.TryParse(ConsoleText.First().ToString(),out x);
             int y;
             int.TryParse(ConsoleText.Last().ToString(), out y);
-            //有効な数字でない場合は処理を中断する
-            if (!IsNumeric(x)) return false;
-            if (!IsNumeric(y)) return false;
+            if (!IsRangeOfCommand(x) && !IsRangeOfCommand(y)) return false;
 
-            var color = Player.NowColor;
-            if (!reversi.SetColor(x, y, color)) return false;
+            try
+            {
+                if (!reversi.SetColor(x, y, color)) return false;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("石をおけませんでした。");
+                return false;
+            }
+            
             return true;
         }
 
-        private static bool IsNumeric(int str)
-        {
-            if (str == 0) return true;
-            if (str == 1) return true;
-            if (str == 2) return true;
-            if (str == 3) return true;
-            if (str == 4) return true;
-            if (str == 5) return true;
-            if (str == 6) return true;
-            if (str == 7) return true;
-            if (str == 8) return true;
-            return false;
-        }
+        //値が範囲内か調べる
+        public static bool IsRangeOfCommand(int Value)
+            => 0 <= Value && Value <= 8;
 
         public static void DumpBoard()
         {

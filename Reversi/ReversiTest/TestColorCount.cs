@@ -8,12 +8,12 @@ namespace ReversiTest
     [TestClass]
     public class TestColorCount
     {
-        private Reversi GetReversi() => new Reversi();
+        private ReversiLib.Reversi reversi => new ReversiLib.Reversi();
 
         [TestMethod]
         public void TestWhiteColor()
         {
-            var Reversi = GetReversi();
+            var Reversi = reversi;
             Reversi.Board = new[]
             {
                 new[] {None, None, None, None, None, None, None, None},
@@ -60,7 +60,7 @@ namespace ReversiTest
         [TestMethod]
         public void TestBlackColor()
         {
-            var Reversi = GetReversi();
+            var Reversi = reversi;
             Reversi.Board = new[]
             {
                 new[] {None, None, None, None, None, None, None, None},
@@ -106,7 +106,7 @@ namespace ReversiTest
         [TestMethod]
         public void TestIsRangeOfBoard()
         {
-            var Reversi = GetReversi();
+            var Reversi = reversi;
             Assert.IsFalse(Reversi.IsRangeOfBoard(-1, 0));
             Assert.IsFalse(Reversi.IsRangeOfBoard(0, -1));
             Assert.IsFalse(Reversi.IsRangeOfBoard(-1, -1));
@@ -122,7 +122,7 @@ namespace ReversiTest
         [TestMethod]
         public void TestSetColor()
         {
-            var Reversi = GetReversi();
+            var Reversi = reversi;
             try
             {
                 Reversi.SetColor(-1, 0, Black);
@@ -181,10 +181,10 @@ namespace ReversiTest
         [TestMethod]
         public void TestEnemyColor()
         {
-            var Reversi = GetReversi();
-            Assert.AreEqual(Black, Reversi.EnemyColor(White));
-            Assert.AreEqual(White, Reversi.EnemyColor(Black));
-            Assert.AreEqual(None, Reversi.EnemyColor(None));
+            var Reversi = reversi;
+            Assert.AreEqual(Black, ReversiLib.Reversi.EnemyColor(White));
+            Assert.AreEqual(White, ReversiLib.Reversi.EnemyColor(Black));
+            Assert.AreEqual(None, ReversiLib.Reversi.EnemyColor(None));
         }
 
 
@@ -192,7 +192,7 @@ namespace ReversiTest
         [TestMethod]
         public void TestBoardInit()
         {
-            var reversi = GetReversi();
+            var reversi = this.reversi;
             reversi.Init();
             CollectionAssert.AllItemsAreNotNull(reversi.Board);
             CollectionAssert.AreEqual(reversi.Board[4], new[] { None, None, None, Black, White, None, None, None });

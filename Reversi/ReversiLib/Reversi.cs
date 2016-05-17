@@ -22,6 +22,7 @@ namespace ReversiLib
 
     public class Reversi
     {
+        public Exception OverlapStone { get; set; } = new Exception("既に石がそんざいしています");
         public Color[][] Board { get; set; } = {
             new[] {None, None, None, None, None, None, None, None},
             new[] {None, None, None, None, None, None, None, None},
@@ -144,18 +145,17 @@ namespace ReversiLib
 
             return true;
         }
-
+        
         //Set Color on Board
         public bool SetColor(int x, int y, Color color)
         {
             if (!IsRangeOfBoard(x, y)) return false;
-            if (Board[x][y] != None) return false;
-            Board[x][y] = color;
-            if (IsReversiAllDirection(x, y, color))
+            if (Board[x][y] != None)
             {
-                ReversiAllDirection(x, y, color);
+                throw OverlapStone;
             }
-
+            Board[x][y] = color;
+            ReversiAllDirection(x, y, color);
             return true;
         }
 

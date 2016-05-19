@@ -16,26 +16,30 @@ namespace Reversi
             DumpBoard();
             while (true)
             {
-                Console.WriteLine($"Now Player is {Player.NowColor}");
+                Console.WriteLine($"現在のプレイヤーは、{Player.NowColor}");
                 if (EnterCommand())
                     Player.Change();
                 Console.WriteLine("");
                 DumpBoard();
                 if (!reversi.IsContinue()) break;
-                GC.Collect();
             }
-            Console.WriteLine("Game is Finished !!");
+            Console.WriteLine("ゲームが終了しました。");
         }
 
         public static bool EnterCommand()
         {
-            Console.WriteLine("Please Input Command ");
-            Console.WriteLine("Example {X Position} {Y Position}");
+            Console.WriteLine("コマンドを入力してください ");
+            Console.WriteLine("例 3 4");
             var consoleText = Console.ReadLine();
             //入力された文字が処理できない内容だったら処理を中断する
             if (string.IsNullOrWhiteSpace(consoleText))
             {
-                Console.WriteLine("Command is Not Found.");
+                Console.WriteLine("コマンドが存在しません");
+                return false;
+            }
+            if (consoleText.Length > 3)
+            {
+                OutputCommandError(consoleText);
                 return false;
             }
             int x;
@@ -54,7 +58,7 @@ namespace Reversi
 
             if (!IsRangeOfCommand(x) && !IsRangeOfCommand(y))
             {
-                Console.WriteLine("Command is Out of Range.");
+                Console.WriteLine("コマンドの値が異常です");
                 return false;
             }
 
@@ -64,12 +68,12 @@ namespace Reversi
             }
             catch (OverlapStone)
             {
-                Console.WriteLine("Overlap Stone !!");
+                Console.WriteLine("すでに石が存在しています");
                 return false;
             }
             catch (NotEnableSetStone)
             {
-                Console.WriteLine("Not Enable Set Stone");
+                Console.WriteLine("石をセットすることができません");
                 return false;
             }
 
@@ -89,7 +93,7 @@ namespace Reversi
             => int.Parse(command.First().ToString());
 
         public static void OutputCommandError(string command)
-            => Console.WriteLine($"\" {command} \" is Illegal value");
+            => Console.WriteLine($"\" {command} \"のコマンドがおかしいです");
 
         public static void DumpBoard()
         {
@@ -98,6 +102,7 @@ namespace Reversi
             for (var i = 0; i < 8; i++)
             {
                 Console.Write(i);
+                
                 var Text = "";
                 for (var j = 0; j < 8; j++)
                 {

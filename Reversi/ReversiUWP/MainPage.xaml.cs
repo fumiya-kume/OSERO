@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using ReversiLib;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
 
@@ -22,9 +23,16 @@ namespace ReversiUWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public Reversi Reversi { get; set; } = new Reversi();
+
         public MainPage()
         {
             this.InitializeComponent();
+            //initialize Reversi Class
+            Reversi.Init();
         }
+
+
+
     }
 }

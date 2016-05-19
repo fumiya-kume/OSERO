@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using ReversiLib;
 
 namespace Reversi
@@ -15,14 +16,12 @@ namespace Reversi
             DumpBoard();
             while (true)
             {
+                Console.WriteLine($"Now Player is {Player.NowColor}");
                 if (EnterCommand())
-                {
                     Player.Change();
-                }
+                Console.WriteLine("");
                 DumpBoard();
                 if (!reversi.IsContinue()) break;
-
-                Console.WriteLine($"Now Player is {Player.NowColor}");
                 GC.Collect();
             }
             Console.WriteLine("Game is Finished !!");
@@ -31,35 +30,66 @@ namespace Reversi
         public static bool EnterCommand()
         {
             Console.WriteLine("Please Input Command ");
-            Console.WriteLine("Height:X Width:Y");
             Console.WriteLine("Example {X Position} {Y Position}");
-            var ConsoleText = Console.ReadLine();
+            var consoleText = Console.ReadLine();
             //入力された文字が処理できない内容だったら処理を中断する
-            if (string.IsNullOrWhiteSpace(ConsoleText)) return false;
-
-            var color = Player.NowColor;
+            if (string.IsNullOrWhiteSpace(consoleText))
+            {
+                Console.WriteLine("Command is Not Found.");
+                return false;
+            }
             int x;
-            int.TryParse(ConsoleText.First().ToString(),out x);
             int y;
-            int.TryParse(ConsoleText.Last().ToString(), out y);
-            if (!IsRangeOfCommand(x) && !IsRangeOfCommand(y)) return false;
+            try
+            {
+                x = ParseX(consoleText);
+                y = ParseY(consoleText);
+            }
+            catch (FormatException)
+            {
+                OutputCommandError(consoleText);
+                return false;
+            }
+
+
+            if (!IsRangeOfCommand(x) && !IsRangeOfCommand(y))
+            {
+                Console.WriteLine("Command is Out of Range.");
+                return false;
+            }
 
             try
             {
-                if (!reversi.SetColor(x, y, color)) return false;
+                if (!reversi.SetColor(x, y, Player.NowColor)) return false;
             }
-            catch (Exception)
+            catch (OverlapStone)
             {
                 Console.WriteLine("Overlap Stone !!");
                 return false;
             }
-            
+            catch (NotEnableSetStone)
+            {
+                Console.WriteLine("Not Enable Set Stone");
+                return false;
+            }
+
             return true;
         }
 
         //値が範囲内か調べる
-        public static bool IsRangeOfCommand(int Value)
-            => 0 <= Value && Value <= 8;
+        public static bool IsRangeOfCommand(int value)
+            => 0 <= value && value <= 8;
+
+        //入力されたコマンドからXを取り出す
+        public static int ParseX(string command)
+            => int.Parse(command.Last().ToString());
+
+        //入力されたコマンドからY を取り出す
+        public static int ParseY(string command)
+            => int.Parse(command.First().ToString());
+
+        public static void OutputCommandError(string command)
+            => Console.WriteLine($"\" {command} \" is Illegal value");
 
         public static void DumpBoard()
         {
@@ -75,6 +105,7 @@ namespace Reversi
                 }
                 Console.WriteLine(Text);
             }
+            Console.WriteLine($"Black:{Color2String(Color.Black)} White:{Color2String(Color.White)}");
         }
 
         public static string Color2String(Color color)

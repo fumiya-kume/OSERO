@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Xml.Linq;
 using static ReversiLib.Color;
 
 namespace ReversiLib
@@ -20,9 +18,11 @@ namespace ReversiLib
         public Color NowColor => TurnColor;
     }
 
+    public class OverlapStone : Exception { }
+    public class NotEnableSetStone : Exception { }
+
     public class Reversi
     {
-        public Exception OverlapStone { get; set; } = new Exception("既に石がそんざいしています");
         public Color[][] Board { get; set; } = {
             new[] {None, None, None, None, None, None, None, None},
             new[] {None, None, None, None, None, None, None, None},
@@ -152,7 +152,11 @@ namespace ReversiLib
             if (!IsRangeOfBoard(x, y)) return false;
             if (Board[x][y] != None)
             {
-                throw OverlapStone;
+                throw new OverlapStone();
+            }
+            if (!IsReversiAllDirection(x, y, color))
+            {
+                throw new NotEnableSetStone();
             }
             Board[x][y] = color;
             ReversiAllDirection(x, y, color);

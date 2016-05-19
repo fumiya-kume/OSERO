@@ -119,64 +119,7 @@ namespace ReversiTest
             Assert.IsTrue(Reversi.IsRangeOfBoard(7, 7));
         }
 
-        [TestMethod]
-        public void TestSetColor()
-        {
-            var Reversi = reversi;
-            try
-            {
-                Reversi.SetColor(-1, 0, Black);
-
-            }
-            catch (IndexOutOfRangeException)
-            {
-                return;
-            }
-            try
-            {
-                Reversi.SetColor(0, -1, Black);
-            }
-            catch (Exception)
-            {
-                return;
-            }
-            try
-            {
-                Reversi.SetColor(-1, -1, Black);
-            }
-            catch (Exception)
-            {
-                return;
-            }
-            try
-            {
-                Reversi.SetColor(8, 0, Black);
-            }
-            catch (Exception)
-            {
-                return;
-            }
-
-            try
-            {
-                Reversi.SetColor(0, 8, Black);
-            }
-            catch (Exception)
-            {
-                return;
-            }
-
-            try
-            {
-                Reversi.SetColor(8, 8, Black);
-            }
-            catch (Exception)
-            {
-                return;
-            }
-
-            Assert.Fail("エラーが発生しませんでした。");
-        }
+        
 
         [TestMethod]
         public void TestEnemyColor()

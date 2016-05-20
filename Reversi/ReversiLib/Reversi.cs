@@ -119,7 +119,7 @@ namespace ReversiLib
             if (GetColor(nx, ny) == color) return;
             while (true)
             {
-                if (GetColor(nx, ny) == None) return;
+                if (GetColor(nx, ny) == None) break;
                 if (GetColor(nx, ny) == color) break;
                 Board[nx][ny] = color;
                 nx += dx;

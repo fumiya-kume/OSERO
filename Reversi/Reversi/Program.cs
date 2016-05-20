@@ -17,10 +17,18 @@ namespace Reversi
             while (true)
             {
                 Console.WriteLine($"現在のプレイヤーは、{Player.NowColor}");
-                if (EnterCommand())
-                    Player.Change();
+                try
+                {
+                    if (EnterCommand())
+                        Player.Change();
+                }
+                catch (Exception)
+                {
+                    break;
+                }
                 Console.WriteLine("");
                 DumpBoard();
+                Console.WriteLine($"White:{reversi.CountWhiteColor()} Black:{reversi.CountBlackColor()}");
                 if (!reversi.IsContinue()) break;
             }
             Console.WriteLine("ゲームが終了しました。");
@@ -37,6 +45,8 @@ namespace Reversi
                 Console.WriteLine("コマンドが存在しません");
                 return false;
             }
+            if(consoleText == "Exit")
+                throw new Exception();
             if (consoleText.Length > 3)
             {
                 OutputCommandError(consoleText);

@@ -114,13 +114,13 @@ namespace ReversiLib
 
         private void ReversiDirection(int x, int y, int dx, int dy, Color color)
         {
+            if(!IsReversiDirection(x,y,dx,dy,color)) return;
             var nx = x + dx;
             var ny = y + dy;
-            if (GetColor(nx, ny) == color) return;
+            if (GetColor(nx, ny) != EnemyColor(color)) return;
             while (true)
             {
-                if (GetColor(nx, ny) == None) break;
-                if (GetColor(nx, ny) == color) break;
+                if (GetColor(nx, ny) != EnemyColor(color)) break;
                 Board[nx][ny] = color;
                 nx += dx;
                 ny += dy;

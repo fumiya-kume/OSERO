@@ -24,7 +24,7 @@ namespace Reversi
                 }
                 catch (Exception)
                 {
-                    break;
+                   break;
                 }
                 Console.WriteLine("");
                 DumpBoard();

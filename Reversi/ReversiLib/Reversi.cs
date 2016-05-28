@@ -11,13 +11,6 @@ namespace ReversiLib
         None
     };
 
-    public class Player
-    {
-        public Color TurnColor;
-        public void Change() => TurnColor = Reversi.EnemyColor(TurnColor);
-        public Color NowColor => TurnColor;
-    }
-
     public class OverlapStone : Exception { }
     public class NotEnableSetStone : Exception { }
 
@@ -43,8 +36,9 @@ namespace ReversiLib
         public int CountNoneColor()
             => Board.Select(lists => lists.Count(list => list == None)).Aggregate((i, i1) => i + i1);
 
-        //値がボードの範囲内か調べる
-        public bool IsRangeOfBoard(int x, int y)
+        public Color GetColor(int x, int y) => IsRange(x, y) ? Board[x][y] : None;
+
+        public bool IsRange(int x, int y)
         {
             if (x < 0 || x > Board.Length - 1) return false;
             if (y < 0 || y > Board[0].Length - 1) return false;
@@ -66,8 +60,6 @@ namespace ReversiLib
                     throw new ArgumentOutOfRangeException(nameof(color), color, null);
             }
         }
-
-        public Color GetColor(int x, int y) => IsRangeOfBoard(x, y) ? Board[x][y] : None;
 
         public void Init()
         {
@@ -114,7 +106,7 @@ namespace ReversiLib
 
         private void ReversiDirection(int x, int y, int dx, int dy, Color color)
         {
-            if(!IsReversiDirection(x,y,dx,dy,color)) return;
+            if (!IsReversiDirection(x, y, dx, dy, color)) return;
             var nx = x + dx;
             var ny = y + dy;
             if (GetColor(nx, ny) != EnemyColor(color)) return;
@@ -145,11 +137,34 @@ namespace ReversiLib
 
             return true;
         }
-        
+
+        public bool CanSetStone(int x, int y, Color color)
+        {
+            if (!IsRange(x, y)) return false;
+            if (Board[x][y] != None) return false;
+            if (!IsReversiAllDirection(x, y, color)) return false;
+            return true;
+        }
+
+        public bool IsSkip()
+        {
+            for (int i = 0; i < Board.Length; i++)
+            {
+                for (int j = 0; j < Board[0].Length; j++)
+                {
+                    if (CanSetStone(i, j, Board[i][j]))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
         //Set Color on Board
         public bool SetColor(int x, int y, Color color)
         {
-            if (!IsRangeOfBoard(x, y)) return false;
+            if (!IsRange(x, y)) return false;
             if (Board[x][y] != None)
             {
                 throw new OverlapStone();

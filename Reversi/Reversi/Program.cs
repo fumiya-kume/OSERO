@@ -19,8 +19,15 @@ namespace Reversi
                 Console.WriteLine($"現在のプレイヤーは、{Player.NowColor}");
                 try
                 {
-                    if (EnterCommand())
-                        Player.Change();
+                    if (!reversi.IsSkip())
+                    {
+                        if (EnterCommand())
+                            Player.Change();
+                    }
+                    else
+                    {
+                        Player.Skip();
+                    }
                 }
                 catch (Exception)
                 {

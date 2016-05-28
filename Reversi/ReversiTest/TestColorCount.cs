@@ -107,16 +107,16 @@ namespace ReversiTest
         public void TestIsRangeOfBoard()
         {
             var Reversi = reversi;
-            Assert.IsFalse(Reversi.IsRangeOfBoard(-1, 0));
-            Assert.IsFalse(Reversi.IsRangeOfBoard(0, -1));
-            Assert.IsFalse(Reversi.IsRangeOfBoard(-1, -1));
+            Assert.IsFalse(Reversi.IsRange(-1, 0));
+            Assert.IsFalse(Reversi.IsRange(0, -1));
+            Assert.IsFalse(Reversi.IsRange(-1, -1));
 
-            Assert.IsFalse(Reversi.IsRangeOfBoard(8, 0));
-            Assert.IsFalse(Reversi.IsRangeOfBoard(0, 8));
-            Assert.IsFalse(Reversi.IsRangeOfBoard(8, 8));
+            Assert.IsFalse(Reversi.IsRange(8, 0));
+            Assert.IsFalse(Reversi.IsRange(0, 8));
+            Assert.IsFalse(Reversi.IsRange(8, 8));
 
-            Assert.IsTrue(Reversi.IsRangeOfBoard(0, 0));
-            Assert.IsTrue(Reversi.IsRangeOfBoard(7, 7));
+            Assert.IsTrue(Reversi.IsRange(0, 0));
+            Assert.IsTrue(Reversi.IsRange(7, 7));
         }
 
         

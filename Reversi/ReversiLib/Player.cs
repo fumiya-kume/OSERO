@@ -9,7 +9,7 @@ namespace ReversiLib
     public class Player
     {
         public int SkipCounter { get; set; }
-        public Color NowColor { get; set; }
+        public Color NowColor { get; set; } = Color.Black;
         public void Change() => NowColor = Reversi.EnemyColor(NowColor);
         public void Skip()
         {

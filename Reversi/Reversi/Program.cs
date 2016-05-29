@@ -14,6 +14,9 @@ namespace Reversi
         {
             reversi.Init();
             DumpBoard();
+            Console.WriteLine($"現在のプレイヤーは、{Player.NowColor}");
+            if (EnterCommand())
+                Player.Change();
             while (true)
             {
                 Console.WriteLine($"現在のプレイヤーは、{Player.NowColor}");
@@ -27,6 +30,11 @@ namespace Reversi
                     else
                     {
                         Player.Skip();
+                        if(2 <= Player.SkipCounter)
+                        {
+                            Console.WriteLine("両者引き分けです");
+                            break;
+                        }
                     }
                 }
                 catch (Exception)

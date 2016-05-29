@@ -32,7 +32,18 @@ namespace Reversi
                         Player.Skip();
                         if(2 <= Player.SkipCounter)
                         {
-                            Console.WriteLine("両者引き分けです");
+                            if (reversi.CountWhiteColor() > reversi.CountBlackColor())
+                            {
+                                Console.WriteLine("白の勝ちです");
+                            }
+                            else if(reversi.CountWhiteColor() < reversi.CountBlackColor())
+                            {
+                                Console.WriteLine("黒の勝ちです");
+                            }
+                            else
+                            {
+                                Console.WriteLine("引き分けです");
+                            }
                             break;
                         }
                     }

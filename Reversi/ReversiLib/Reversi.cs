@@ -162,20 +162,13 @@ namespace ReversiLib
         }
 
         //Set Color on Board
-        public bool SetColor(int x, int y, Color color)
+        public void SetColor(int x, int y, Color color)
         {
-            if (!IsRange(x, y)) return false;
-            if (Board[x][y] != None)
-            {
-                throw new OverlapStone();
-            }
-            if (!IsReversiAllDirection(x, y, color))
-            {
-                throw new NotEnableSetStone();
-            }
+            if (!IsRange(x, y)) throw new IndexOutOfRangeException();
+            if (Board[x][y] != None) throw new OverlapStone();
+            if (!IsReversiAllDirection(x, y, color)) throw new NotEnableSetStone();
             Board[x][y] = color;
             ReversiAllDirection(x, y, color);
-            return true;
         }
 
         public bool IsContinue()

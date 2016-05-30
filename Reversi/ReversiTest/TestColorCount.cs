@@ -132,15 +132,15 @@ namespace ReversiTest
 
 
 
-        [TestMethod]
-        public void TestBoardInit()
-        {
-            var reversi = this.reversi;
-            reversi.Init();
-            CollectionAssert.AllItemsAreNotNull(reversi.Board);
-            CollectionAssert.AreEqual(reversi.Board[4], new[] { None, None, None, Black, White, None, None, None });
-            CollectionAssert.AreEqual(reversi.Board[5], new[] { None, None, None, White, Black, None, None, None });
-        }
+        //[TestMethod]
+        //public void TestBoardInit()
+        //{
+        //    var reversi = this.reversi;
+        //    reversi.Init();
+        //    CollectionAssert.AllItemsAreNotNull(reversi.Board);
+        //    CollectionAssert.AreEqual(reversi.Board[4], new[] { None, None, None, Black, White, None, None, None });
+        //    CollectionAssert.AreEqual(reversi.Board[5], new[] { None, None, None, White, Black, None, None, None });
+        //}
 
     }
 }

@@ -14,17 +14,6 @@ namespace Reversi.Tests
         public Reversi.Program GetProgram() => new Program();
 
         [TestMethod()]
-        public void IsRangeOfCommandTest()
-        {
-            var Program = GetProgram();
-            Assert.IsFalse(Program.IsRangeOfCommand(-1));
-            Assert.IsTrue(Program.IsRangeOfCommand(0));
-            Assert.IsTrue(Program.IsRangeOfCommand(1));
-            Assert.IsTrue(Program.IsRangeOfCommand(8));
-            Assert.IsFalse(Program.IsRangeOfCommand(9));
-        }
-
-        [TestMethod()]
         public void ParseXTest()
         {
             Assert.AreEqual(Program.ParseX("1"), 1);
@@ -51,7 +40,20 @@ namespace Reversi.Tests
             Assert.AreEqual(Program.ParseY("7"), 7);
             Assert.AreEqual(Program.ParseY("8"), 8);
             Assert.AreEqual(Program.ParseY("9"), 9);
-            Assert.AreEqual(Program.ParseY("0"), 0);
+            Assert.AreEqual(expected: Program.ParseY("0"), actual: 0);
+        }
+
+        
+        [TestMethod()]
+        public void ParseXTest1()
+        {
+            Assert.AreEqual(1, Program.ParseX('A'));
+            Assert.AreEqual(2, Program.ParseX('B'));
+            Assert.AreEqual(3, Program.ParseX('C'));
+            Assert.AreEqual(4, Program.ParseX('D'));
+            Assert.AreEqual(5, Program.ParseX('E'));
+            Assert.AreEqual(6, Program.ParseX('F'));
+            Assert.AreEqual(7, Program.ParseX('G'));
         }
     }
 }

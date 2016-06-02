@@ -74,9 +74,8 @@ namespace Reversi
 
             try
             {
-                var analy = new CommandAnaly(consoleText);
-                var x = analy.ParseX();
-                var y = analy.ParseY();
+                var x = CommandAnaly.ParseX(consoleText);
+                var y = CommandAnaly.ParseY(consoleText);
                 y = y - 1;
 
                 Console.WriteLine($"x:{x} y:{y}");

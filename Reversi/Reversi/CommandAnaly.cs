@@ -4,23 +4,17 @@ namespace Reversi
 {
     public class CommandAnaly
     {
-        public string CommandText { get; set; }
 
-        public CommandAnaly(string command)
+        public static bool CheckCommand(string command)
         {
-            CommandText = command;
-        }
-
-        public bool CheckCommand()
-        {
-            if (string.IsNullOrWhiteSpace(CommandText)) return false;
-            if (CommandText.Length != 2) return false;
+            if (string.IsNullOrWhiteSpace(command)) return false;
+            if (command.Length != 2) return false;
             return true;
         }
     
-        public int ParseX()
+        public static int ParseX(string command)
         {
-            switch (CommandText.First())
+            switch (command.First())
             {
                 case 'a':
                     return 0;
@@ -43,8 +37,8 @@ namespace Reversi
             }
         }
 
-        public int ParseY()
-           => int.Parse(CommandText.Last().ToString());
+        public static int ParseY(string command)
+           => int.Parse(command.Last().ToString());
 
     }
 }

@@ -1,88 +1,27 @@
 ﻿using System;
-using System.Linq;
 using static ReversiLib.Color;
 
 namespace ReversiLib
 {
-    public enum Color
-    {
-        Black,
-        White,
-        None
-    };
+    
 
     public class OverlapStone : Exception { }
     public class NotEnableSetStone : Exception { }
 
     public class Reversi
     {
-        public Color[][] Board { get; set; } = {
-            new[] {None, None, None, None, None, None, None, None},
-            new[] {None, None, None, None, None, None, None, None},
-            new[] {None, None, None, None, None, None, None, None},
-            new[] {None, None, None, None, None, None, None, None},
-            new[] {None, None, None, None, None, None, None, None},
-            new[] {None, None, None, None, None, None, None, None},
-            new[] {None, None, None, None, None, None, None, None},
-            new[] {None, None, None, None, None, None, None, None}
-        };
-
-        public int CountWhiteColor()
-            => Board.Select(lists => lists.Count(stone => stone == White)).Aggregate((i, i1) => i + i1);
-
-        public int CountBlackColor()
-            => Board.Select(lists => lists.Count(list => list == Black)).Aggregate((i, i1) => i + i1);
-
-        public int CountNoneColor()
-            => Board.Select(lists => lists.Count(list => list == None)).Aggregate((i, i1) => i + i1);
-
-        public Color GetColor(int x, int y) => IsRange(x, y) ? Board[x][y] : None;
-
-        public bool IsRange(int x, int y)
-        {
-            if (x < 0 || x > Board.Length - 1) return false;
-            if (y < 0 || y > Board[0].Length - 1) return false;
-
-            return true;
-        }
-
-        public static Color EnemyColor(Color color)
-        {
-            switch (color)
-            {
-                case Black:
-                    return White;
-                case White:
-                    return Black;
-                case None:
-                    return None;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(color), color, null);
-            }
-        }
-
-        public void Init()
-        {
-            new[] { None, None, None, None, None, None, None, None }.CopyTo(Board[0], 0);
-            new[] { None, None, None, None, None, None, None, None }.CopyTo(Board[1], 0);
-            new[] { None, None, None, None, None, None, None, None }.CopyTo(Board[2], 0);
-            new[] { None, None, None, Black, White, None, None, None }.CopyTo(Board[3], 0);
-            new[] { None, None, None, White, Black, None, None, None }.CopyTo(Board[4], 0);
-            new[] { None, None, None, None, None, None, None, None }.CopyTo(Board[5], 0);
-            new[] { None, None, None, None, None, None, None, None }.CopyTo(Board[6], 0);
-            new[] { None, None, None, None, None, None, None, None }.CopyTo(Board[7], 0);
-        }
+        public Board board { get; set; } = new Board();
 
         //一方向にひっくり返せる石があるか確認
         private bool IsReversiDirection(int x, int y, int dx, int dy, Color color)
         {
             var nx = x + dx;
             var ny = y + dy;
-            if (GetColor(nx, ny) == color) return false;
+            if (board.GetColor(x,y) == color) return false;
             while (true)
             {
-                if (GetColor(nx, ny) == None) return false;
-                if (GetColor(nx, ny) == color) break;
+                if (board.GetColor(x, y) == None) return false;
+                if (board.GetColor(x, y) == color) break;
                 nx += dx;
                 ny += dy;
             }
@@ -109,11 +48,11 @@ namespace ReversiLib
             if (!IsReversiDirection(x, y, dx, dy, color)) return;
             var nx = x + dx;
             var ny = y + dy;
-            if (GetColor(nx, ny) != EnemyColor(color)) return;
+            if (board.GetColor(x, y) != Util.EnemyColor(color)) return;
             while (true)
             {
-                if (GetColor(nx, ny) != EnemyColor(color)) break;
-                Board[nx][ny] = color;
+                if (board.GetColor(x,y) != Util.EnemyColor(color)) break;
+                board.SetColor(x,y,color);
                 nx += dx;
                 ny += dy;
             }
@@ -131,28 +70,24 @@ namespace ReversiLib
             ReversiDirection(x, y, -1, -1, color); // Upper Left
         }
 
-        public bool IsAlreadSetColor(int x, int y)
-        {
-            if (GetColor(x, y) == None) return false;
-
-            return true;
-        }
+        public bool IsAlreadSetColor(int x, int y) 
+            => board.GetColor(x,y) != None;
 
         public bool CanSetStone(int x, int y, Color color)
         {
-            if (!IsRange(x, y)) return false;
-            if (Board[x][y] != None) return false;
+            if (!board.IsRange(x, y)) return false;
+            if (board.GetColor(x,y) != None) return false;
             if (!IsReversiAllDirection(x, y, color)) return false;
             return true;
         }
 
         public bool IsSkip()
         {
-            for (int i = 0; i < Board.Length; i++)
+            for (int i = 0; i < board.Length; i++)
             {
-                for (int j = 0; j < Board[0].Length; j++)
+                for (int j = 0; j < board.board[0].Length; j++)
                 {
-                    if (CanSetStone(i, j, Board[i][j]))
+                    if (CanSetStone(i, j, board.GetColor(i,j)))
                     {
                         return false;
                     }
@@ -160,23 +95,27 @@ namespace ReversiLib
             }
             return true;
         }
-
-        //Set Color on Board
-        public void SetColor(int x, int y, Color color)
+        
+        public void SetColor(int y, int x, Color color)
         {
-            if (!IsRange(x, y)) throw new IndexOutOfRangeException();
-            if (Board[x][y] != None) throw new OverlapStone();
-            if (!IsReversiAllDirection(x, y, color)) throw new NotEnableSetStone();
-            Board[x][y] = color;
-            ReversiAllDirection(x, y, color);
+            if (!board.IsRange(y, x)) throw new IndexOutOfRangeException();
+            if (board.GetColor(x,y) != None) throw new OverlapStone();
+            if (!IsReversiAllDirection(y, x, color)) throw new NotEnableSetStone();
+            board.SetColor(x,y,color);
+            ReversiAllDirection(y, x, color);
         }
 
         public bool IsContinue()
         {
-            if (CountBlackColor() == 0) return false;
-            if (CountWhiteColor() == 0) return false;
-            if (CountNoneColor() == 0) return false;
+            if (board.CountBlackColor() == 0) return false;
+            if (board.CountWhiteColor() == 0) return false;
+            if (board.CountNoneColor() == 0) return false;
             return true;
+        }
+
+        public Color[][] GetAllBoardData()
+        {
+            return board.board;
         }
     }
 }

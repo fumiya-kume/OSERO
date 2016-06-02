@@ -11,11 +11,12 @@ namespace ReversiUWP
     public sealed partial class MainPage : Page
     {
         public Reversi Reversi { get; set; } = new Reversi();
+        public Board board { get; set; } = new Board();
 
         public MainPage()
         {
             this.InitializeComponent();
-            Reversi.Init();
+            board.Init();
         }
     }
 }

@@ -17,11 +17,9 @@ namespace Reversi
             Init();
             while (true)
             {
-                //if (reversi.IsSkip()) { Player.Skip();}
-                if (false) { Player.Skip(); }
+                if (reversi.IsSkip()) { Player.Skip(); }
                 if (Player.SkipCounter == 2)
                 {
-                    CheckGameResult();
                     break;
                 }
                 try
@@ -31,26 +29,28 @@ namespace Reversi
                 catch (EndOfGame)
                 {
                     break;
-                    throw;
                 }
                 DumpBoard();
             }
+            CheckGameResult();
             Console.WriteLine("ゲームが終了しました。");
         }
 
         static void CheckGameResult()
         {
-            if (board.CountWhiteColor() > board.CountBlackColor())
-            {
-                Console.WriteLine("白の勝利");
-            }
-            else if (board.CountWhiteColor() < board.CountBlackColor())
-            {
-                Console.WriteLine("黒の勝利");
-            }
-            else
-            {
-                Console.WriteLine("引き分け");
+            switch(reversi.IsWinnerColor()){
+                case White:
+                    Console.WriteLine("白の勝利");
+                    break;
+                case Black:
+                    Console.WriteLine("黒の勝利");
+                    break;
+                case None:
+                    Console.WriteLine("引き分け");
+                    break;
+                default:
+                    Console.WriteLine("Error");
+                    break;
             }
         }
 

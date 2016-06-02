@@ -38,8 +38,8 @@ namespace Reversi.Tests
                 "91","92","93","94","95","96","97","98","99"
             };
 
-            var Xs = commands.Select(c => new CommandAnaly(c).ParseX()).ToList();
-            var Ys = commands.Select(c => new CommandAnaly(c).ParseY()).ToList();
+            var Xs = commands.Select(c => CommandAnaly.ParseX(c)).ToList();
+            var Ys = commands.Select(c => CommandAnaly.ParseY(c)).ToList();
             result.Select((s, i) =>
             {
                 Assert.AreEqual(s.First(), Xs[i]);

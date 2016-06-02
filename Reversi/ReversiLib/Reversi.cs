@@ -3,7 +3,7 @@ using static ReversiLib.Color;
 
 namespace ReversiLib
 {
-    
+
 
     public class OverlapStone : Exception { }
     public class NotEnableSetStone : Exception { }
@@ -17,7 +17,7 @@ namespace ReversiLib
         {
             var nx = x + dx;
             var ny = y + dy;
-            if (board.GetColor(x,y) == color) return false;
+            if (board.GetColor(x, y) == color) return false;
             while (true)
             {
                 if (board.GetColor(x, y) == None) return false;
@@ -51,8 +51,8 @@ namespace ReversiLib
             if (board.GetColor(x, y) != Util.EnemyColor(color)) return;
             while (true)
             {
-                if (board.GetColor(x,y) != Util.EnemyColor(color)) break;
-                board.SetColor(x,y,color);
+                if (board.GetColor(x, y) != Util.EnemyColor(color)) break;
+                board.SetColor(x, y, color);
                 nx += dx;
                 ny += dy;
             }
@@ -70,13 +70,13 @@ namespace ReversiLib
             ReversiDirection(x, y, -1, -1, color); // Upper Left
         }
 
-        public bool IsAlreadSetColor(int x, int y) 
-            => board.GetColor(x,y) != None;
+        public bool IsAlreadSetColor(int x, int y)
+            => board.GetColor(x, y) != None;
 
         public bool CanSetStone(int x, int y, Color color)
         {
             if (!board.IsRange(x, y)) return false;
-            if (board.GetColor(x,y) != None) return false;
+            if (board.GetColor(x, y) != None) return false;
             if (!IsReversiAllDirection(x, y, color)) return false;
             return true;
         }
@@ -87,7 +87,7 @@ namespace ReversiLib
             {
                 for (int j = 0; j < board.board[0].Length; j++)
                 {
-                    if (CanSetStone(i, j, board.GetColor(i,j)))
+                    if (CanSetStone(i, j, board.GetColor(i, j)))
                     {
                         return false;
                     }
@@ -95,13 +95,13 @@ namespace ReversiLib
             }
             return true;
         }
-        
+
         public void SetColor(int y, int x, Color color)
         {
             if (!board.IsRange(y, x)) throw new IndexOutOfRangeException();
-            if (board.GetColor(x,y) != None) throw new OverlapStone();
+            if (board.GetColor(x, y) != None) throw new OverlapStone();
             if (!IsReversiAllDirection(y, x, color)) throw new NotEnableSetStone();
-            board.SetColor(x,y,color);
+            board.SetColor(x, y, color);
             ReversiAllDirection(y, x, color);
         }
 
@@ -116,6 +116,22 @@ namespace ReversiLib
         public Color[][] GetAllBoardData()
         {
             return board.board;
+        }
+
+        public Color IsWinnerColor()
+        {
+            if (board.CountWhiteColor() < board.CountBlackColor())
+            {
+                return Black;
+            }
+            else if (board.CountWhiteColor() > board.CountBlackColor())
+            {
+                return White;
+            }
+            else
+            {
+                return None;
+            }
         }
     }
 }

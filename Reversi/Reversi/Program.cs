@@ -1,162 +1,189 @@
 ﻿using System;
 using System.Linq;
-using static Reversi.Color;
+using System.Runtime.CompilerServices;
+using ReversiLib;
 
 namespace Reversi
 {
     public class Program
     {
-        public static Board board { get; set; } = new Board();
-        public static Reversi reversi { get; set; } = new Reversi();
+        public static ReversiLib.Reversi reversi { get; set; } = new ReversiLib.Reversi();
         public static Player Player { get; set; } = new Player();
-        class EndOfGame : Exception { }
 
         private static void Main(string[] args)
         {
-            Init();
+            reversi.Init();
+            DumpBoard();
+            Console.WriteLine($"現在のプレイヤーは、{Player.NowColor}");
+            if (EnterCommand())
+                Player.Change();
+            DumpBoard();
             while (true)
             {
-                //if (reversi.IsSkip()) { Player.Skip(); }
-                if (false) { Player.Skip(); }
-                if (Player.SkipCounter == 2)
-                {
-                    break;
-                }
+                Console.WriteLine($"現在のプレイヤーは、{Player.NowColor}");
                 try
                 {
-                    EnterCommand();
+                    if (reversi.IsSkip())
+                    {
+                        Player.Skip();
+                        if (2 <= Player.SkipCounter)
+                        {
+                            if (reversi.CountWhiteColor() > reversi.CountBlackColor())
+                            {
+                                Console.WriteLine("白の勝ちです");
+                            }
+                            else if (reversi.CountWhiteColor() < reversi.CountBlackColor())
+                            {
+                                Console.WriteLine("黒の勝ちです");
+                            }
+                            else
+                            {
+                                Console.WriteLine("引き分けです");
+                            }
+                            break;
+                        }
+                    }
+                    else
+                    {
+
+                        if (EnterCommand())
+                            Player.Change();
+                    }
                 }
-                catch (EndOfGame)
+                catch (Exception)
                 {
                     break;
                 }
+                Console.WriteLine("");
                 DumpBoard();
-#if DEBUG
-                DebugDump();
-#endif
+                if (!reversi.IsContinue()) break;
             }
-            CheckGameResult();
             Console.WriteLine("ゲームが終了しました。");
         }
 
-        static void CheckGameResult()
-        {
-            switch(reversi.IsWinnerColor()){
-                case White:
-                    Console.WriteLine("白の勝利");
-                    break;
-                case Black:
-                    Console.WriteLine("黒の勝利");
-                    break;
-                case None:
-                    Console.WriteLine("引き分け");
-                    break;
-                default:
-                    Console.WriteLine("Error");
-                    break;
-            }
-        }
-
-        static void DebugDump()
-        {
-            Console.WriteLine("******************************");
-            Console.WriteLine("DEBUG");
-            Console.WriteLine("******************************");
-            var board = reversi.GetAllBoardData();
-            Console.WriteLine(" 01234567");
-            for (var i = 0; i < 8; i++)
-            {
-                var text = (i) + board[i].Select(Color2String).Aggregate((j, j2) => j + j2);
-                Console.WriteLine(text);
-            }
-            Console.WriteLine("******************************");
-            Console.WriteLine("DEBUG");
-            Console.WriteLine("******************************");
-        }
-
-        static void Init()
-        {
-            board.Init();
-            DumpBoard();
-            EnterCommand();
-            DumpBoard();
-        }
-
-        static void EnterCommand()
+        public static bool EnterCommand()
         {
             Console.WriteLine("コマンドを入力してください ");
             Console.WriteLine("例 c4");
             var consoleText = Console.ReadLine();
-            if (consoleText == "Exit")
+            //入力された文字が処理できない内容だったら処理を中断する
+            if (string.IsNullOrWhiteSpace(consoleText))
             {
-                throw new EndOfGame();
+                Console.WriteLine("コマンドが存在しません");
+                return false;
+            }
+            if (consoleText == "Exit")
+                throw new Exception();
+            if (consoleText.Length != 2)
+            {
+                OutputCommandError(consoleText);
+                return false;
+            }
+            int x;
+            int y;
+            try
+            {
+                x = ParseX(consoleText);
+                y = ParseY(consoleText);
+            }
+            catch (FormatException)
+            {
+                OutputCommandError(consoleText);
+                return false;
+            }
+
+
+            if (!IsRangeOfCommand(x) && !IsRangeOfCommand(y))
+            {
+                Console.WriteLine("コマンドの値が異常です");
+                return false;
             }
 
             try
             {
-                var x = CommandAnaly.ParseX(consoleText);
-                var y = CommandAnaly.ParseY(consoleText);
-#if DEBUG
-                Console.WriteLine("******************************");
-                Console.WriteLine($"DEBUG x:{x} y:{y}");
-                Console.WriteLine("******************************");
-#endif
-                y = y - 1;
-
-                Console.WriteLine($"x:{x} y:{y}");
-                reversi.SetColor(x, y, Player.NowColor);
-                Player.Change();
+                if (!reversi.SetColor(x, y, Player.NowColor)) return false;
             }
             catch (OverlapStone)
             {
-                Console.WriteLine("その場所にはコマがすでに置かれています。");
-            }
-            catch (FormatException)
-            {
-                ShowErrorCommnad(consoleText);
-            }
-            catch (IndexOutOfRangeException)
-            {
-                Console.WriteLine("値の範囲を間違えています。");
+                Console.WriteLine("すでに石が存在しています");
+                return false;
             }
             catch (NotEnableSetStone)
             {
-                Console.WriteLine("その場所にはコマを置けません");
+                Console.WriteLine("石をセットすることができません");
+                return false;
+            }
+
+            return true;
+        }
+
+        //値が範囲内か調べる
+        public static bool IsRangeOfCommand(int value)
+            => 0 <= value && value <= 8;
+
+        //入力されたコマンドからXを取り出す
+        public static int ParseY(string command)
+        {
+            Console.WriteLine(command.First());
+            switch (command.First())
+            {
+                case 'a':
+                    return 0;
+                case 'b':
+                    return 1;
+                case 'c':
+                    return 2;
+                case 'd':
+                    return 3;
+                case 'r':
+                    return 4;
+                case 'f':
+                    return 5;
+                case 'g':
+                    return 6;
+                case 'h':
+                    return 7;
+                default:
+                    return -1;
             }
         }
+        //=> int.Parse(command.Last().ToString());
 
-        static void ShowErrorCommnad(string Command)
-        {
-            Console.WriteLine($"{Command} の値がおかしいです");
-        }
+        //入力されたコマンドからY を取り出す
+        public static int ParseX(string command)
+            => int.Parse(command.Last().ToString());
 
-        static void ShowNowTurn()
-        {
-            Console.WriteLine($"現在は{Player.NowColor}の色のターンです。");
-        }
+        public static void OutputCommandError(string command)
+            => Console.WriteLine($"\" {command} \"のコマンドがおかしいです");
 
-        static void DumpBoard()
+        public static void DumpBoard()
         {
-            var board = reversi.GetAllBoardData();
-            Console.WriteLine(" ABCDEFGH");
+            var board = reversi.Board;
+            Console.WriteLine(" abcdefgh");
             for (var i = 0; i < 8; i++)
             {
-                var text = (i + 1) + board[i].Select(Color2String).Aggregate((j, j2) => j + j2);
-                Console.WriteLine(text);
+                Console.Write(i);
+
+                var Text = "";
+                for (var j = 0; j < 8; j++)
+                {
+                    Text = Text + Color2String(board[i][j]);
+                }
+                Console.WriteLine(Text);
             }
-            ShowNowTurn();
-            Console.WriteLine($"Black:{Color2String(Black)} White:{Color2String(White)}");
+            Console.WriteLine($"Black:{Color2String(Color.Black)} White:{Color2String(Color.White)}");
+            Console.WriteLine($"White:{reversi.CountWhiteColor()} Black:{reversi.CountBlackColor()}");
         }
 
         public static string Color2String(Color color)
         {
             switch (color)
             {
-                case Black:
+                case Color.Black:
                     return "*";
-                case White:
+                case Color.White:
                     return "0";
-                case None:
+                case Color.None:
                     return "-";
                 default:
                     throw new ArgumentOutOfRangeException(nameof(color), color, null);

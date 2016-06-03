@@ -1,0 +1,120 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ReversiUWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Control="using:ReversiUWP.Control"
+    x:Class="ReversiUWP.MainPage"
+    mc:Ignorable="d">
+
+    <Grid Background="#FFC6F1AE">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="71*"/>
+            <RowDefinition Height="19*"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="textBox" Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" PlaceholderText="Xの値を入れてください" ToolTipService.ToolTip="Xの値を入れてください"/>
+        <TextBox x:Name="textBox_Copy" Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" PlaceholderText="Yの値を入れてください" ToolTipService.ToolTip="Yの値を入れてください" Grid.Column="1"/>
+        <Button x:Name="button" Grid.ColumnSpan="2" Content="決定" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Grid.Row="1" FontSize="72"/>
+        <Grid Grid.ColumnSpan="2" Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="50*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*"/>
+            </Grid.ColumnDefinitions>
+            <Control:Stone x:Name="StoneA1" Margin="0"/>
+            <Control:Stone x:Name="StoneB1" Margin="0" Grid.Column="1"/>
+            <Control:Stone x:Name="StoneC1" Margin="0" Grid.Column="2"/>
+            <Control:Stone x:Name="StoneD1" Margin="0" Grid.Column="3"/>
+            <Control:Stone x:Name="StoneE1" Margin="0" Grid.Column="4"/>
+            <Control:Stone x:Name="StoneF1" Margin="0" Grid.Column="5"/>
+            <Control:Stone x:Name="StoneG1" Margin="0" Grid.Column="6"/>
+            <Control:Stone x:Name="StoneH1" Margin="0" Grid.Column="7"/>
+            
+            <Control:Stone x:Name="StoneA2" Margin="0" Grid.Row="1"/>
+            <Control:Stone x:Name="StoneB2" Margin="0" Grid.Row="1" Grid.Column="1"/>
+            <Control:Stone x:Name="StoneC2" Margin="0" Grid.Row="1" Grid.Column="2"/>
+            <Control:Stone x:Name="StoneD2" Margin="0" Grid.Row="1" Grid.Column="3"/>
+            <Control:Stone x:Name="StoneE2" Margin="0" Grid.Row="1" Grid.Column="4"/>
+            <Control:Stone x:Name="StoneF2" Margin="0" Grid.Row="1" Grid.Column="5"/>
+            <Control:Stone x:Name="StoneG2" Margin="0" Grid.Row="1" Grid.Column="6"/>
+            <Control:Stone x:Name="StoneH2" Margin="0" Grid.Row="1" Grid.Column="7"/>
+
+            <Control:Stone x:Name="StoneA3" Margin="0" Grid.Row="2"/>
+            <Control:Stone x:Name="StoneB3" Margin="0" Grid.Row="2" Grid.Column="1"/>
+            <Control:Stone x:Name="StoneC3" Margin="0" Grid.Row="2" Grid.Column="2"/>
+            <Control:Stone x:Name="StoneD3" Margin="0" Grid.Row="2" Grid.Column="3"/>
+            <Control:Stone x:Name="StoneE3" Margin="0" Grid.Row="2" Grid.Column="4"/>
+            <Control:Stone x:Name="StoneF3" Margin="0" Grid.Row="2" Grid.Column="5"/>
+            <Control:Stone x:Name="StoneG3" Margin="0" Grid.Row="2" Grid.Column="6"/>
+            <Control:Stone x:Name="StoneH3" Margin="0" Grid.Row="2" Grid.Column="7"/>
+
+            <Control:Stone x:Name="StoneA4" Margin="0" Grid.Row="3"/>
+            <Control:Stone x:Name="StoneB4" Margin="0" Grid.Row="3" Grid.Column="1"/>
+            <Control:Stone x:Name="StoneC4" Margin="0" Grid.Row="3" Grid.Column="2"/>
+            <Control:Stone x:Name="StoneD4" Margin="0" Grid.Row="3" Grid.Column="3"/>
+            <Control:Stone x:Name="StoneE4" Margin="0" Grid.Row="3" Grid.Column="4"/>
+            <Control:Stone x:Name="StoneF4" Margin="0" Grid.Row="3" Grid.Column="5"/>
+            <Control:Stone x:Name="StoneG4" Margin="0" Grid.Row="3" Grid.Column="6"/>
+            <Control:Stone x:Name="StoneH4" Margin="0" Grid.Row="3" Grid.Column="7"/>
+
+            <Control:Stone x:Name="StoneA5" Margin="0" Grid.Row="4"/>
+            <Control:Stone x:Name="StoneB5" Margin="0" Grid.Row="4" Grid.Column="1"/>
+            <Control:Stone x:Name="StoneC5" Margin="0" Grid.Row="4" Grid.Column="2"/>
+            <Control:Stone x:Name="StoneD5" Margin="0" Grid.Row="4" Grid.Column="3"/>
+            <Control:Stone x:Name="StoneE5" Margin="0" Grid.Row="4" Grid.Column="4"/>
+            <Control:Stone x:Name="StoneF5" Margin="0" Grid.Row="4" Grid.Column="5"/>
+            <Control:Stone x:Name="StoneG5" Margin="0" Grid.Row="4" Grid.Column="6"/>
+            <Control:Stone x:Name="StoneH5" Margin="0" Grid.Row="4" Grid.Column="7"/>
+
+            <Control:Stone x:Name="StoneA6" Margin="0" Grid.Row="5"/>
+            <Control:Stone x:Name="StoneB6" Margin="0" Grid.Row="5" Grid.Column="1"/>
+            <Control:Stone x:Name="StoneC6" Margin="0" Grid.Row="5" Grid.Column="2"/>
+            <Control:Stone x:Name="StoneD6" Margin="0" Grid.Row="5" Grid.Column="3"/>
+            <Control:Stone x:Name="StoneE6" Margin="0" Grid.Row="5" Grid.Column="4"/>
+            <Control:Stone x:Name="StoneF6" Margin="0" Grid.Row="5" Grid.Column="5"/>
+            <Control:Stone x:Name="StoneG6" Margin="0" Grid.Row="5" Grid.Column="6"/>
+            <Control:Stone x:Name="StoneH6" Margin="0" Grid.Row="5" Grid.Column="7"/>
+
+            <Control:Stone x:Name="StoneA7" Margin="0" Grid.Row="6"/>
+            <Control:Stone x:Name="StoneB7" Margin="0" Grid.Row="6" Grid.Column="1"/>
+            <Control:Stone x:Name="StoneC7" Margin="0" Grid.Row="6" Grid.Column="2"/>
+            <Control:Stone x:Name="StoneD7" Margin="0" Grid.Row="6" Grid.Column="3"/>
+            <Control:Stone x:Name="StoneE7" Margin="0" Grid.Row="6" Grid.Column="4"/>
+            <Control:Stone x:Name="StoneF7" Margin="0" Grid.Row="6" Grid.Column="5"/>
+            <Control:Stone x:Name="StoneG7" Margin="0" Grid.Row="6" Grid.Column="6"/>
+            <Control:Stone x:Name="StoneH7" Margin="0" Grid.Row="6" Grid.Column="7"/>
+
+            <Control:Stone x:Name="StoneA8" Margin="0" Grid.Row="7"/>
+            <Control:Stone x:Name="StoneB8" Margin="0" Grid.Row="7" Grid.Column="1"/>
+            <Control:Stone x:Name="StoneC8" Margin="0" Grid.Row="7" Grid.Column="2"/>
+            <Control:Stone x:Name="StoneD8" Margin="0" Grid.Row="7" Grid.Column="3"/>
+            <Control:Stone x:Name="StoneE8" Margin="0" Grid.Row="7" Grid.Column="4"/>
+            <Control:Stone x:Name="StoneF8" Margin="0" Grid.Row="7" Grid.Column="5"/>
+            <Control:Stone x:Name="StoneG8" Margin="0" Grid.Row="7" Grid.Column="6"/>
+            <Control:Stone x:Name="StoneH8" Margin="0" Grid.Row="7" Grid.Column="7"/>
+
+
+        </Grid>
+
+    </Grid>
+</Page>

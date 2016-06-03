@@ -61,5 +61,8 @@ namespace ReversiLib
             new[] { None, None, None, None, None, None, None, None }.CopyTo(board[6], 0);
             new[] { None, None, None, None, None, None, None, None }.CopyTo(board[7], 0);
         }
+
+        public bool IsNone(int x, int y)
+            => GetColor(x, y) == None;
     }
 }

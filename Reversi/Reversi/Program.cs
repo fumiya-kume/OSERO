@@ -17,7 +17,8 @@ namespace Reversi
             Init();
             while (true)
             {
-                if (reversi.IsSkip()) { Player.Skip(); }
+                //if (reversi.IsSkip()) { Player.Skip(); }
+                if (false) { Player.Skip(); }
                 if (Player.SkipCounter == 2)
                 {
                     break;
@@ -31,6 +32,9 @@ namespace Reversi
                     break;
                 }
                 DumpBoard();
+#if DEBUG
+                DebugDump();
+#endif
             }
             CheckGameResult();
             Console.WriteLine("ゲームが終了しました。");
@@ -52,6 +56,23 @@ namespace Reversi
                     Console.WriteLine("Error");
                     break;
             }
+        }
+
+        static void DebugDump()
+        {
+            Console.WriteLine("******************************");
+            Console.WriteLine("DEBUG");
+            Console.WriteLine("******************************");
+            var board = reversi.GetAllBoardData();
+            Console.WriteLine(" 01234567");
+            for (var i = 0; i < 8; i++)
+            {
+                var text = (i) + board[i].Select(Color2String).Aggregate((j, j2) => j + j2);
+                Console.WriteLine(text);
+            }
+            Console.WriteLine("******************************");
+            Console.WriteLine("DEBUG");
+            Console.WriteLine("******************************");
         }
 
         static void Init()
@@ -76,6 +97,11 @@ namespace Reversi
             {
                 var x = CommandAnaly.ParseX(consoleText);
                 var y = CommandAnaly.ParseY(consoleText);
+#if DEBUG
+                Console.WriteLine("******************************");
+                Console.WriteLine($"DEBUG x:{x} y:{y}");
+                Console.WriteLine("******************************");
+#endif
                 y = y - 1;
 
                 Console.WriteLine($"x:{x} y:{y}");

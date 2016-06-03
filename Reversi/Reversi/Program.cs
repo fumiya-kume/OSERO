@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Linq;
-using ReversiLib;
-using static ReversiLib.Color;
+using static Reversi.Color;
 
 namespace Reversi
 {
     public class Program
     {
         public static Board board { get; set; } = new Board();
-        public static ReversiLib.Reversi reversi { get; set; } = new ReversiLib.Reversi();
+        public static Reversi reversi { get; set; } = new Reversi();
         public static Player Player { get; set; } = new Player();
         class EndOfGame : Exception { }
 

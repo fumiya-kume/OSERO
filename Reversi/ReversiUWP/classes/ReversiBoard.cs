@@ -1,5 +1,4 @@
 using System.Linq;
-using ReversiLib;
 using static ReversiUWP.classes.Color;
 using static ReversiUWP.Model.Util;
 
@@ -38,6 +37,15 @@ namespace ReversiUWP.classes
 
         public int CountNoneColor()
             => Board.Select(lists => lists.Count(list => list == None)).Aggregate((i, i1) => i + i1);
+
+        public bool IsNone(int x, int y)
+            => GetColor(x, y) == None;
+
+        public bool IsEqualColor(int x, int y, Color color)
+            => GetColor(x, y) == color;
+
+        public bool IsEnemyColor(int x, int y, Color color)
+            =>GetColor(x,y) == EnemyColor(color);
 
         public Color GetColor(int x, int y) => IsRange(x, y) ? Board[x][y] : None;
 

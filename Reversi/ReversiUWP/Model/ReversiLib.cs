@@ -7,5 +7,7 @@ namespace ReversiUWP.Model
     {
         public ReversiBoard Board { get; set; } = new ReversiBoard();
         public Player Player { get; set; } = new Player();
+
+
     }
 }

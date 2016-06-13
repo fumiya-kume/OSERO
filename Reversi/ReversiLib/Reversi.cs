@@ -1,6 +1,7 @@
-﻿using System;
-using System.Linq;
-using static ReversiLib.Color;
+﻿using ReversiUWP.classes;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Shapes;
 
 namespace ReversiLib
 {

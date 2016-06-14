@@ -4,12 +4,12 @@ using static ReversiUWP.classes.Color;
 
 namespace ReversiUWP.Model
 {
-    public class Util
+    public static class Util
     {
         public static bool IsRange(int x, int y)
         {
-            if (x < 0 || x > 8) return false;
-            if (y < 0 || y > 8) return false;
+            if (x < 0 || 8 < x) return false;
+            if (y < 0 || 8 < y) return false;
 
             return true;
         }

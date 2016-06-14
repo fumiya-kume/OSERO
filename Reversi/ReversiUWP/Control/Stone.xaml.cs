@@ -26,13 +26,13 @@ namespace ReversiUWP.Control
             switch (color)
             {
                 case Black:
-                    this.Root.Background = new SolidColorBrush(Colors.Black);
+                    this.Stone1.Background = new SolidColorBrush(Colors.Black);
                     break;
                 case White:
-                    this.Root.Background = new SolidColorBrush(Colors.White);
+                    this.Stone1.Background = new SolidColorBrush(Colors.White);
                     break;
                 case None:
-                    this.Root.Background = new SolidColorBrush(Colors.Green);
+                    this.Stone1.Background = new SolidColorBrush(Colors.Green);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

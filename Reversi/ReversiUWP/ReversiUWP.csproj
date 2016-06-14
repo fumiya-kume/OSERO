@@ -97,6 +97,9 @@
     </Compile>
     <Compile Include="classes\Color.cs" />
     <Compile Include="classes\ReversiBoard.cs" />
+    <Compile Include="Control\ReversiBoardUI.xaml.cs">
+      <DependentUpon>ReversiBoardUI.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\Stone.xaml.cs">
       <DependentUpon>Stone.xaml</DependentUpon>
     </Compile>
@@ -129,6 +132,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Control\ReversiBoardUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Control\Stone.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -138,7 +145,12 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ReversiLib\ReversiLib.csproj">
+      <Project>{CF2329F1-6463-4E3E-B243-C85E2F196ECB}</Project>
+      <Name>ReversiLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

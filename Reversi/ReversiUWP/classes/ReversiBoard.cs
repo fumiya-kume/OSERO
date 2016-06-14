@@ -54,6 +54,9 @@ namespace ReversiUWP.classes
             Board[y][x] = color;
         }
 
+        public bool IsAlreadlySet(int x, int y, Color color)
+        => GetColor(x, y) != None;
+
         private bool IsReversiDirection(int x, int y, int dx, int dy)
         {
             var nowColor = GetColor(x, y);
@@ -93,7 +96,7 @@ namespace ReversiUWP.classes
             while (true)
             {
                 if (GetColor(nx, ny) != EnemyColor(color)) break;
-                SetColor(nx,ny,color);
+                SetColor(nx, ny, color);
                 nx += dx;
                 ny += dy;
             }

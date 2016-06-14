@@ -1,7 +1,4 @@
-﻿using ReversiUWP.classes;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Shapes;
+﻿using static ReversiUWP.classes.Color;
 
 namespace ReversiLib
 {
@@ -9,21 +6,15 @@ namespace ReversiLib
 
     public class Reversi
     {
-        private readonly Util _util;
         private readonly ReversiBoard _reversiBoard;
         private readonly intelligenceService _intelligenceService;
 
         public Reversi()
         {
-            _util = new Util(this);
             _reversiBoard = new ReversiBoard(this);
             _intelligenceService = new intelligenceService(this);
         }
 
-        public Util Util
-        {
-            get { return _util; }
-        }
 
         public ReversiBoard ReversiBoard
         {

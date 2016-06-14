@@ -15,5 +15,14 @@ namespace ReversiUWP
             this.InitializeComponent();
             this.BoardUI.BoardColors = reversi.Board.Board;
         }
+
+        private void enterButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            var x = int.Parse(XText.Text);
+            var y = int.Parse(YText.Text);
+
+            reversi.SetStone(x, y);
+            BoardUI.ReRendering();
+        }
     }
 }

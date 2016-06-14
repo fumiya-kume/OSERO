@@ -1,4 +1,4 @@
-﻿using static ReversiUWP.classes.Color;
+﻿using ReversiLib;
 
 namespace ReversiLib
 {

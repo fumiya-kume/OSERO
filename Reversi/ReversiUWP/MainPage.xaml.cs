@@ -26,7 +26,8 @@ namespace ReversiUWP
                 var y = Alphabet2int(YText.Text);
             
                 reversi.SetStone(x, y);
-                await new ContentDialog() { Title = "OK Value", PrimaryButtonText = "ok" }.ShowAsync();
+                reversi.Player.Change();
+                await new ContentDialog() { Title = $"現在のターンは{reversi.Player.NowColor.ToString()}です。",PrimaryButtonText="OK" }.ShowAsync();
             }
             catch (IndexOutOfRangeException)
             {
@@ -40,7 +41,7 @@ namespace ReversiUWP
             {
                 await new ContentDialog() { Title = "値がおかしいです", PrimaryButtonText = "OK" }.ShowAsync();
             }
-            BoardUI.ReRendering();
+            BoardUI.ReRendering();            
         }
 
         private int Alphabet2int(string text)

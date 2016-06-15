@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System;
+using Windows.UI.Xaml.Controls;
+using static ReversiUWP.Model.ReversiLib;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
 
@@ -16,12 +18,25 @@ namespace ReversiUWP
             this.BoardUI.BoardColors = reversi.Board.Board;
         }
 
-        private void enterButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void enterButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             var x = int.Parse(XText.Text);
             var y = int.Parse(YText.Text);
 
-            reversi.SetStone(x, y);
+            try
+            {
+                reversi.SetStone(x, y);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                await new ContentDialog() { Title = "あたいがおかしいです", PrimaryButtonText = "ok" }.ShowAsync();
+                throw;
+            }
+            catch (OverrideStoneException)
+            {
+                await new ContentDialog() { Title = "値がおかしいです", PrimaryButtonText = "OK" }.ShowAsync();
+                throw;
+            }
             BoardUI.ReRendering();
         }
     }

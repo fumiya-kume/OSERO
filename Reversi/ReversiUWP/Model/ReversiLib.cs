@@ -21,8 +21,7 @@ namespace ReversiUWP.Model
         {
             if (!Util.IsRange(x, y)) throw new IndexOutOfRangeException();
             if (Board.IsAlreadlySet(x, y, Player.NowColor)) throw new OverrideStoneException();
-
-
+            
             var NowColor = Player.NowColor;
             Board.SetColor(x, y, NowColor);
         }

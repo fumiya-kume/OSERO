@@ -12,9 +12,9 @@
 
         <Viewbox  >
 
-            <Canvas x:Name="Boardcanvas" Background="#FFB3C53F" Height="300" Width="400" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Canvas x:Name="Boardcanvas" Background="#FFB3C53F" Height="300" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center">
 
-                <Grid Height="300" Width="400"/>
+                <Grid Height="300" Width="300"/>
             </Canvas>
         </Viewbox>
 </UserControl>

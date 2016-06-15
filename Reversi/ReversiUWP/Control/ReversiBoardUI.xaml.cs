@@ -36,20 +36,19 @@ namespace ReversiUWP.Control
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    var x = (10 + 10) * i + 1;
-                    var y = (10 + 10) * j + 1;
-                    AddStone(x, y,i,j);
+                    var x = (300/8 ) * i;
+                    var y = (300/8 ) * j;
+                    AddStone(x, y, i, j);
                 }
             }
         }
 
-        private void AddStone(int x, int y,int i, int j)
+        private void AddStone(int x, int y, int i, int j)
         {
             var Circle = new Ellipse
             {
-                Width = 10,
-                Height = 10,
-                //Stroke = new SolidColorBrush(Colors.Red)
+                Width = 20,
+                Height = 20,
             };
             switch (BoardColors[i][j])
             {

@@ -20,22 +20,25 @@ namespace ReversiUWP
 
         private async void enterButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            var x = int.Parse(XText.Text);
-            var y = Alphabet2int(YText.Text);
-
             try
             {
+                var x = int.Parse(XText.Text);
+                var y = Alphabet2int(YText.Text);
+            
                 reversi.SetStone(x, y);
+                await new ContentDialog() { Title = "OK Value", PrimaryButtonText = "ok" }.ShowAsync();
             }
             catch (IndexOutOfRangeException)
             {
                 await new ContentDialog() { Title = "あたいがおかしいです", PrimaryButtonText = "ok" }.ShowAsync();
-                throw;
             }
             catch (OverrideStoneException)
             {
                 await new ContentDialog() { Title = "値がおかしいです", PrimaryButtonText = "OK" }.ShowAsync();
-                throw;
+            }
+            catch (Exception)
+            {
+                await new ContentDialog() { Title = "値がおかしいです", PrimaryButtonText = "OK" }.ShowAsync();
             }
             BoardUI.ReRendering();
         }

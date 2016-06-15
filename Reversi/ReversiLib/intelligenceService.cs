@@ -9,16 +9,20 @@ namespace ReversiLib
             _reversi = reversi;
         }
 
+        public intelligenceService()
+        {
+        }
+
         private bool IsReversiDirection(int x, int y, int dx, int dy)
         {
-            var nowColor = _reversi.ReversiBoard.GetColor(x, y);
+            var nowColor = _reversi.Board.GetColor(x, y);
             var nx = x + dx;
             var ny = y + dy;
-            if (_reversi.ReversiBoard.GetColor(nx, ny) != ReversiLib.Util.EnemyColor(nowColor)) return false;
+            if (_reversi.Board.GetColor(nx, ny) != ReversiLib.Util.EnemyColor(nowColor)) return false;
             while (true)
             {
-                if (_reversi.ReversiBoard.GetColor(nx, ny) == Color.None) return false;
-                if (_reversi.ReversiBoard.GetColor(nx, ny) == nowColor) break;
+                if (_reversi.Board.GetColor(nx, ny) == Color.None) return false;
+                if (_reversi.Board.GetColor(nx, ny) == nowColor) break;
                 nx += dx;
                 ny += dy;
             }
@@ -44,11 +48,11 @@ namespace ReversiLib
             if (!IsReversiDirection(x, y, dx, dy)) return;
             var nx = x + dx;
             var ny = y + dy;
-            if (_reversi.ReversiBoard.GetColor(nx, ny) != ReversiLib.Util.EnemyColor(color)) return;
+            if (_reversi.Board.GetColor(nx, ny) != ReversiLib.Util.EnemyColor(color)) return;
             while (true)
             {
-                if (_reversi.ReversiBoard.GetColor(nx, ny) != ReversiLib.Util.EnemyColor(color)) break;
-                _reversi.ReversiBoard.Board[nx][ny] = color;
+                if (_reversi.Board.GetColor(nx, ny) != ReversiLib.Util.EnemyColor(color)) break;
+                _reversi.Board.Board[nx][ny] = color;
                 nx += dx;
                 ny += dy;
             }

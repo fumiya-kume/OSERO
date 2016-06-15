@@ -12,7 +12,7 @@ namespace Reversi
 
         private static void Main(string[] args)
         {
-            reversi.ReversiBoard.Init();
+            reversi.Board.Init();
             DumpBoard();
             Console.WriteLine($"現在のプレイヤーは、{Player.NowColor}");
             if (EnterCommand())
@@ -28,11 +28,11 @@ namespace Reversi
                         Player.Skip();
                         if (2 <= Player.SkipCounter)
                         {
-                            if (reversi.ReversiBoard.CountWhiteColor() > reversi.ReversiBoard.CountBlackColor())
+                            if (reversi.Board.CountWhiteColor() > reversi.Board.CountBlackColor())
                             {
                                 Console.WriteLine("白の勝ちです");
                             }
-                            else if (reversi.ReversiBoard.CountWhiteColor() < reversi.ReversiBoard.CountBlackColor())
+                            else if (reversi.Board.CountWhiteColor() < reversi.Board.CountBlackColor())
                             {
                                 Console.WriteLine("黒の勝ちです");
                             }
@@ -101,7 +101,7 @@ namespace Reversi
 
             try
             {
-                if (!reversi.ReversiBoard.SetColor(x, y, Player.NowColor)) return false;
+                if (!reversi.Board.SetColor(x, y, Player.NowColor)) return false;
             }
             catch (OverlapStone)
             {
@@ -158,7 +158,7 @@ namespace Reversi
 
         public static void DumpBoard()
         {
-            var board = reversi.ReversiBoard.Board;
+            var board = reversi.Board.Board;
             Console.WriteLine(" abcdefgh");
             for (var i = 0; i < 8; i++)
             {
@@ -172,7 +172,7 @@ namespace Reversi
                 Console.WriteLine(Text);
             }
             Console.WriteLine($"Black:{Color2String(Color.Black)} White:{Color2String(Color.White)}");
-            Console.WriteLine($"White:{reversi.ReversiBoard.CountWhiteColor()} Black:{reversi.ReversiBoard.CountBlackColor()}");
+            Console.WriteLine($"White:{reversi.Board.CountWhiteColor()} Black:{reversi.Board.CountBlackColor()}");
         }
 
         public static string Color2String(Color color)

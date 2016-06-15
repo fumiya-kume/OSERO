@@ -4,7 +4,7 @@ namespace ReversiLib
 {
     public class Util
     {
-        public bool IsRange(int x, int y)
+        public static bool IsRange(int x, int y)
         {
             if (x < 0 || x > 8) return false;
             if (y < 0 || y > 8) return false;

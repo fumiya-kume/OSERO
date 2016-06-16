@@ -65,15 +65,15 @@ namespace ReversiUWP
             }
             catch (IndexOutOfRangeException)
             {
-                await new ContentDialog() { Title = "あたいがおかしいです", PrimaryButtonText = "ok" }.ShowAsync();
+                await new ContentDialog() { Title = "値がおかしいです", PrimaryButtonText = "ok" }.ShowAsync();
             }
             catch (OverrideStoneException)
             {
-                await new ContentDialog() { Title = "値がおかしいです", PrimaryButtonText = "OK" }.ShowAsync();
+                await new ContentDialog() { Title = "すでに石が置かれています", PrimaryButtonText = "OK" }.ShowAsync();
             }
             catch (Exception)
             {
-                await new ContentDialog() { Title = "値がおかしいです", PrimaryButtonText = "OK" }.ShowAsync();
+                await new ContentDialog() { Title = "エラーが起きているようです。", PrimaryButtonText = "OK" }.ShowAsync();
             }
             BoardUI.ReRendering();            
         }

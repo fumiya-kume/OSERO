@@ -20,7 +20,7 @@ namespace ReversiUWP
             this.BoardUI.BoardColors = reversi.Board.Board;
         }
 
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             await new ContentDialog() { Title = $"現在の色は、{reversi.Player.NowColor}です。", PrimaryButtonText = "OK" }.ShowAsync();
         }

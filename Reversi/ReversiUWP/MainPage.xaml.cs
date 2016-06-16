@@ -22,8 +22,8 @@ namespace ReversiUWP
         {
             try
             {
-                var x = int.Parse(XText.Text);
-                var y = Alphabet2int(YText.Text);
+                var x = Alphabet2int(XText.Text);
+                var y = int.Parse(YText.Text);
             
                 reversi.SetStone(x, y);
                 reversi.Player.Change();

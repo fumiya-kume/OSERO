@@ -17,8 +17,8 @@
             <RowDefinition Height="71*"/>
             <RowDefinition Height="19*"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="YText" Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" PlaceholderText="Xの値を入れてください" ToolTipService.ToolTip="Xの値を入れてください"/>
-        <TextBox x:Name="XText" Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" PlaceholderText="Yの値を入れてください" ToolTipService.ToolTip="Yの値を入れてください" Grid.Column="1"/>
+        <TextBox x:Name="XText" Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" PlaceholderText="Xの値を入れてください" ToolTipService.ToolTip="Xの値を入れてください"/>
+        <TextBox x:Name="YText" Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" PlaceholderText="Yの値を入れてください" ToolTipService.ToolTip="Yの値を入れてください" Grid.Column="1"/>
         <Button x:Name="enterButton" Grid.ColumnSpan="2" Content="決定" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Grid.Row="1" FontSize="72" Click="enterButton_Click"/>
         <Control:ReversiBoardUI x:Name="BoardUI" Margin="0" Grid.ColumnSpan="2"/>
 

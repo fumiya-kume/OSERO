@@ -53,6 +53,12 @@ namespace ReversiUWP
                 {
                     await new ContentDialog() {Title = "スキップします", PrimaryButtonText = "OK"}.ShowAsync();
                     reversi.Player.Skip();
+                    if (reversi.Player.SkipCounter >= 2)
+                    {
+                        await new ContentDialog() {Title = "ゲームが終了しました。",PrimaryButtonText = "OK"}.ShowAsync();
+                        reversi.Board.Init();
+                        reversi.Player.SkipCounter = 0;
+                    }
                 }
             }
             catch (IndexOutOfRangeException)

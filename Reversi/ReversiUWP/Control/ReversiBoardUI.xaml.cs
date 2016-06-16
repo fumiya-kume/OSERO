@@ -32,15 +32,33 @@ namespace ReversiUWP.Control
 
         public void ReRendering()
         {
+            //X軸の座標列を表示
+            for (int i = 1; i < 8; i++)
+            {
+                var x = (300 / 8) * i;
+                AddLabel(x, 5, i.ToString());
+            }
+
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    var x = (300/8 ) * i;
-                    var y = (300/8 ) * j;
+                    var x = (300/8 ) * i + 20;
+                    var y = (300/8 ) * j + 20;
                     AddStone(x, y, i, j);
                 }
             }
+        }
+
+        private void AddLabel(int x,int y,string text)
+        {
+            var label = new TextBlock
+            {
+                Text = text
+            };
+            Canvas.SetLeft(label, x);
+            Canvas.SetTop(label, y);
+            this.Boardcanvas.Children.Add(label);
         }
 
         private void AddStone(int x, int y, int i, int j)

@@ -51,7 +51,7 @@ namespace ReversiUWP.classes
 
         public void SetColor(int x, int y, Color color)
         {
-            Board[y][x] = color;
+            Board[x][y] = color;
         }
 
         public bool IsAlreadlySet(int x, int y)

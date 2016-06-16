@@ -31,10 +31,19 @@ namespace ReversiUWP
             {
                 var x = Alphabet2int(XText.Text);
                 var y = int.Parse(YText.Text);
+                //配列は、0からスタートしてるからその調整
+                y = y - 1;
             
                 reversi.SetStone(x, y);
                 reversi.Player.Change();
                 await new ContentDialog() { Title = $"現在のターンは{reversi.Player.NowColor.ToString()}です。",PrimaryButtonText="OK" }.ShowAsync();
+                await
+                    new ContentDialog()
+                    {
+                        Title = $"現在の白の石の数は、{reversi.Board.CountWhiteColor()}個、黒{reversi.Board.CountBlackColor()}個です。",
+                        PrimaryButtonText = "OK"
+                    }
+                        .ShowAsync();
             }
             catch (IndexOutOfRangeException)
             {

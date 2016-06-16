@@ -3,6 +3,7 @@ using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
+using ReversiUWP.Model;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -32,19 +33,26 @@ namespace ReversiUWP.Control
 
         public void ReRendering()
         {
-            //X軸の座標列を表示
-            for (int i = 1; i < 8; i++)
+            //X座標列を表示
+            for (int i = 0; i < 8; i++)
             {
-                var x = (300 / 8) * i;
-                AddLabel(x, 5, i.ToString());
+                var x = (300 / 9) * i + 25;
+                AddLabel(x, 10, Util.int2Alphabet(i));
             }
+
+            for (int i = 1; i < 9; i++)
+            {
+                var y = (300/9)*i - 10;
+                AddLabel(10,y,i.ToString());
+            }
+            //Y座標列を表示
 
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    var x = (300/8 ) * i + 20;
-                    var y = (300/8 ) * j + 20;
+                    var x = (300/9 ) * i + 20;
+                    var y = (300/9 ) * j + 30;
                     AddStone(x, y, i, j);
                 }
             }

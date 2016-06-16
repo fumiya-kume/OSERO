@@ -36,7 +36,11 @@ namespace ReversiUWP
             
                 reversi.SetStone(x, y);
                 reversi.Player.Change();
+
+                await new ContentDialog() {Title = $"石を置くことに成功しました",PrimaryButtonText = "OK"}.ShowAsync();
+
                 await new ContentDialog() { Title = $"現在のターンは{reversi.Player.NowColor.ToString()}です。",PrimaryButtonText="OK" }.ShowAsync();
+
                 await
                     new ContentDialog()
                     {
@@ -44,6 +48,12 @@ namespace ReversiUWP
                         PrimaryButtonText = "OK"
                     }
                         .ShowAsync();
+
+                if (!reversi.IsContinue())
+                {
+                    await new ContentDialog() {Title = "スキップします", PrimaryButtonText = "OK"}.ShowAsync();
+                    reversi.Player.Skip();
+                }
             }
             catch (IndexOutOfRangeException)
             {

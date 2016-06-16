@@ -1,5 +1,6 @@
 ﻿using System;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 using static ReversiUWP.Model.ReversiLib;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
@@ -16,6 +17,11 @@ namespace ReversiUWP
         {
             this.InitializeComponent();
             this.BoardUI.BoardColors = reversi.Board.Board;
+        }
+
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            await new ContentDialog() { Title = $"現在の色は、{reversi.Player.NowColor}です。", PrimaryButtonText = "OK" }.ShowAsync();
         }
 
         private async void enterButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)

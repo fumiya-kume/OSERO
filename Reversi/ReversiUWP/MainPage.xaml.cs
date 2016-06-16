@@ -38,6 +38,8 @@ namespace ReversiUWP
                 reversi.Player.Change();
 
                 await new ContentDialog() {Title = $"石を置くことに成功しました",PrimaryButtonText = "OK"}.ShowAsync();
+                XText.Text = "";
+                YText.Text = "";
 
                 await new ContentDialog() { Title = $"現在のターンは{reversi.Player.NowColor.ToString()}です。",PrimaryButtonText="OK" }.ShowAsync();
 

@@ -25,6 +25,7 @@ namespace ReversiUWP.Model
             
             var NowColor = Player.NowColor;
             Board.SetColor(x, y, NowColor);
+           Board.ReversiAllDirection(x,y,Player.NowColor);
         }
 
         public bool IsContinue()

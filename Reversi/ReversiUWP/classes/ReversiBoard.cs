@@ -102,7 +102,7 @@ namespace ReversiUWP.classes
             }
         }
 
-        private void ReversiAllDirection(int x, int y, Color color)
+        public void ReversiAllDirection(int x, int y, Color color)
         {
             ReversiDirection(x, y, -1, 0, color); // Up
             ReversiDirection(x, y, -1, 1, color); // Upper Right

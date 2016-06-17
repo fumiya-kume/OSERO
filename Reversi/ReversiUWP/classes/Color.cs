@@ -5,5 +5,5 @@
         Black,
         White,
         None
-    };
+    }
 }

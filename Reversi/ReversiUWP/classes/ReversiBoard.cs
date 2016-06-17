@@ -19,14 +19,14 @@ namespace ReversiUWP.classes
 
         public void Init()
         {
-            new[] { None, None, None, None, None, None, None, None }.CopyTo(Board[0], 0);
-            new[] { None, None, None, None, None, None, None, None }.CopyTo(Board[1], 0);
-            new[] { None, None, None, None, None, None, None, None }.CopyTo(Board[2], 0);
-            new[] { None, None, None, Black, White, None, None, None }.CopyTo(Board[3], 0);
-            new[] { None, None, None, White, Black, None, None, None }.CopyTo(Board[4], 0);
-            new[] { None, None, None, None, None, None, None, None }.CopyTo(Board[5], 0);
-            new[] { None, None, None, None, None, None, None, None }.CopyTo(Board[6], 0);
-            new[] { None, None, None, None, None, None, None, None }.CopyTo(Board[7], 0);
+            new[] {None, None, None, None, None, None, None, None}.CopyTo(Board[0], 0);
+            new[] {None, None, None, None, None, None, None, None}.CopyTo(Board[1], 0);
+            new[] {None, None, None, None, None, None, None, None}.CopyTo(Board[2], 0);
+            new[] {None, None, None, Black, White, None, None, None}.CopyTo(Board[3], 0);
+            new[] {None, None, None, White, Black, None, None, None}.CopyTo(Board[4], 0);
+            new[] {None, None, None, None, None, None, None, None}.CopyTo(Board[5], 0);
+            new[] {None, None, None, None, None, None, None, None}.CopyTo(Board[6], 0);
+            new[] {None, None, None, None, None, None, None, None}.CopyTo(Board[7], 0);
         }
 
         public int CountWhiteColor()
@@ -45,7 +45,7 @@ namespace ReversiUWP.classes
             => GetColor(x, y) == color;
 
         public bool IsEnemyColor(int x, int y, Color color)
-            =>GetColor(x,y) == EnemyColor(color);
+            => GetColor(x, y) == EnemyColor(color);
 
         public Color GetColor(int x, int y) => IsRange(x, y) ? Board[x][y] : None;
 
@@ -55,7 +55,7 @@ namespace ReversiUWP.classes
         }
 
         public bool IsAlreadlySet(int x, int y)
-        => GetColor(x, y) != None;
+            => GetColor(x, y) != None;
 
         private bool IsReversiDirection(int x, int y, int dx, int dy)
         {
@@ -77,7 +77,7 @@ namespace ReversiUWP.classes
         {
             if (IsReversiDirection(x, y, -1, 0)) return true; // Up
             if (IsReversiDirection(x, y, -1, 1)) return true; // Upper Right
-            if (IsReversiDirection(x, y, 0, 1)) return true;  // Right
+            if (IsReversiDirection(x, y, 0, 1)) return true; // Right
             if (IsReversiDirection(x, y, 1, 1)) return true; // Lower Right
             if (IsReversiDirection(x, y, 1, 0)) return true; // Low
             if (IsReversiDirection(x, y, 1, -1)) return true; // Lower Left
@@ -106,10 +106,10 @@ namespace ReversiUWP.classes
         {
             ReversiDirection(x, y, -1, 0, color); // Up
             ReversiDirection(x, y, -1, 1, color); // Upper Right
-            ReversiDirection(x, y, 0, 1, color);   // Right
+            ReversiDirection(x, y, 0, 1, color); // Right
             ReversiDirection(x, y, 1, 1, color); // Lower Right
             ReversiDirection(x, y, 1, 0, color); // Low
-            ReversiDirection(x, y, 1, -1, color);// Lower Left
+            ReversiDirection(x, y, 1, -1, color); // Lower Left
             ReversiDirection(x, y, 0, -1, color); // Left
             ReversiDirection(x, y, -1, -1, color); // Upper Left
         }

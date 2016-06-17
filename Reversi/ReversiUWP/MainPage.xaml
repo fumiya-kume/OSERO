@@ -1,26 +1,31 @@
 ﻿<Page x:Name="RootElement"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:ReversiUWP"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Control="using:ReversiUWP.Control"
-    x:Class="ReversiUWP.MainPage"
-    mc:Ignorable="d">
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:ReversiUWP"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:Control="using:ReversiUWP.Control"
+      x:Class="ReversiUWP.MainPage"
+      mc:Ignorable="d">
 
     <Grid Background="#FFC6F1AE">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50*"/>
-            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="71*"/>
-            <RowDefinition Height="19*"/>
+            <RowDefinition Height="71*" />
+            <RowDefinition Height="19*" />
         </Grid.RowDefinitions>
-        <TextBox x:Name="XText" Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" PlaceholderText="Xの値を入れてください" ToolTipService.ToolTip="Xの値を入れてください"/>
-        <TextBox x:Name="YText" Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" PlaceholderText="Yの値を入れてください" ToolTipService.ToolTip="Yの値を入れてください" Grid.Column="1"/>
-        <Button x:Name="enterButton" Grid.ColumnSpan="2" Content="決定" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Grid.Row="1" FontSize="72" Click="enterButton_Click"/>
-        <Control:ReversiBoardUI x:Name="BoardUI" Margin="0" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="XText" Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="" HorizontalAlignment="Center"
+                 VerticalAlignment="Center" FontSize="48" PlaceholderText="Xの値を入れてください"
+                 ToolTipService.ToolTip="Xの値を入れてください" />
+        <TextBox x:Name="YText" Margin="0" Grid.Row="1" TextWrapping="Wrap" Text="" HorizontalAlignment="Center"
+                 VerticalAlignment="Center" FontSize="48" PlaceholderText="Yの値を入れてください"
+                 ToolTipService.ToolTip="Yの値を入れてください" Grid.Column="1" />
+        <Button x:Name="enterButton" Grid.ColumnSpan="2" Content="決定" HorizontalAlignment="Center" Margin="0"
+                VerticalAlignment="Center" Grid.Row="1" FontSize="72" Click="enterButton_Click" />
+        <Control:ReversiBoardUI x:Name="BoardUI" Margin="0" Grid.ColumnSpan="2" />
 
     </Grid>
 </Page>

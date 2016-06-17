@@ -10,11 +10,12 @@
     d:DesignWidth="400">
 
 
-        <Viewbox  >
+    <Viewbox>
 
-            <Canvas x:Name="Boardcanvas" Background="#FFB3C53F" Height="300" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Canvas x:Name="Boardcanvas" Background="#FFB3C53F" Height="300" Width="300" HorizontalAlignment="Center"
+                VerticalAlignment="Center">
 
-                <Grid Height="300" Width="300"/>
-            </Canvas>
-        </Viewbox>
+            <Grid Height="300" Width="300" />
+        </Canvas>
+    </Viewbox>
 </UserControl>

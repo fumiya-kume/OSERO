@@ -12,11 +12,11 @@ namespace ReversiUWP.Model
             NowColor = Util.EnemyColor(NowColor);
             SkipCounter = 0;
         }
+
         public void Skip()
         {
             SkipCounter++;
             Change();
         }
-
     }
 }

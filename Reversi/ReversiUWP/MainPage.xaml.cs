@@ -1,6 +1,8 @@
 ﻿using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using ReversiUWP.Model;
 using static ReversiUWP.Model.ReversiLib;
 using  static ReversiUWP.Model.Util;
 
@@ -13,19 +15,19 @@ namespace ReversiUWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public ReversiUWP.Model.ReversiLib reversi { get; set; } = new ReversiUWP.Model.ReversiLib();
+        public ReversiLib reversi { get; set; } = new ReversiLib();
         public MainPage()
         {
-            this.InitializeComponent();
-            this.BoardUI.BoardColors = reversi.Board.Board;
+            InitializeComponent();
+            BoardUI.BoardColors = reversi.Board.Board;
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            await new ContentDialog() { Title = $"現在の色は、{reversi.Player.NowColor}です。", PrimaryButtonText = "OK" }.ShowAsync();
+            await new ContentDialog { Title = $"現在の色は、{reversi.Player.NowColor}です。", PrimaryButtonText = "OK" }.ShowAsync();
         }
 
-        private async void enterButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void enterButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -37,14 +39,14 @@ namespace ReversiUWP
                 reversi.SetStone(x, y);
                 reversi.Player.Change();
 
-                await new ContentDialog() {Title = $"石を置くことに成功しました",PrimaryButtonText = "OK"}.ShowAsync();
+                await new ContentDialog {Title = "石を置くことに成功しました",PrimaryButtonText = "OK"}.ShowAsync();
                 XText.Text = "";
                 YText.Text = "";
 
-                await new ContentDialog() { Title = $"現在のターンは{reversi.Player.NowColor.ToString()}です。",PrimaryButtonText="OK" }.ShowAsync();
+                await new ContentDialog { Title = $"現在のターンは{reversi.Player.NowColor}です。",PrimaryButtonText="OK" }.ShowAsync();
 
                 await
-                    new ContentDialog()
+                    new ContentDialog
                     {
                         Title = $"現在の白の石の数は、{reversi.Board.CountWhiteColor()}個、黒{reversi.Board.CountBlackColor()}個です。",
                         PrimaryButtonText = "OK"
@@ -53,11 +55,11 @@ namespace ReversiUWP
 
                 if (!reversi.IsContinue())
                 {
-                    await new ContentDialog() {Title = "スキップします", PrimaryButtonText = "OK"}.ShowAsync();
+                    await new ContentDialog {Title = "スキップします", PrimaryButtonText = "OK"}.ShowAsync();
                     reversi.Player.Skip();
                     if (reversi.Player.SkipCounter >= 2)
                     {
-                        await new ContentDialog() {Title = "ゲームが終了しました。",PrimaryButtonText = "OK"}.ShowAsync();
+                        await new ContentDialog {Title = "ゲームが終了しました。",PrimaryButtonText = "OK"}.ShowAsync();
                         reversi.Board.Init();
                         reversi.Player.SkipCounter = 0;
                     }
@@ -65,15 +67,15 @@ namespace ReversiUWP
             }
             catch (IndexOutOfRangeException)
             {
-                await new ContentDialog() { Title = "値がおかしいです", PrimaryButtonText = "ok" }.ShowAsync();
+                await new ContentDialog { Title = "値がおかしいです", PrimaryButtonText = "ok" }.ShowAsync();
             }
             catch (OverrideStoneException)
             {
-                await new ContentDialog() { Title = "すでに石が置かれています", PrimaryButtonText = "OK" }.ShowAsync();
+                await new ContentDialog { Title = "すでに石が置かれています", PrimaryButtonText = "OK" }.ShowAsync();
             }
             catch (Exception)
             {
-                await new ContentDialog() { Title = "エラーが起きているようです。", PrimaryButtonText = "OK" }.ShowAsync();
+                await new ContentDialog { Title = "エラーが起きているようです。", PrimaryButtonText = "OK" }.ShowAsync();
             }
             BoardUI.ReRendering();            
         }

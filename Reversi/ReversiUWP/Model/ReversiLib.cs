@@ -1,7 +1,5 @@
 ﻿using ReversiUWP.classes;
 using System;
-using static ReversiUWP.classes.Color;
-using  static ReversiUWP.Model.Util;
 
 namespace ReversiUWP.Model
 {
@@ -23,8 +21,8 @@ namespace ReversiUWP.Model
             if (!Util.IsRange(x, y)) throw new IndexOutOfRangeException();
             if (Board.IsAlreadlySet(x, y)) throw new OverrideStoneException();
             
-            var NowColor = Player.NowColor;
-            Board.SetColor(x, y, NowColor);
+            var nowColor = Player.NowColor;
+            Board.SetColor(x, y, nowColor);
            Board.ReversiAllDirection(x,y,Player.NowColor);
         }
 

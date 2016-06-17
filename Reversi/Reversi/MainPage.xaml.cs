@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -23,8 +24,7 @@ namespace Reversi
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            await
-                new ContentDialog {Title = $"現在の色は、{reversi.Player.NowColor}です。", PrimaryButtonText = "OK"}.ShowAsync();
+            await ShowDIalog($"現在の色は、{reversi.Player.NowColor}です。");
         }
 
         private async void enterButton_Click(object sender, RoutedEventArgs e)
@@ -39,29 +39,20 @@ namespace Reversi
                 reversi.SetStone(x, y);
                 reversi.Player.Change();
 
-                await new ContentDialog {Title = "石を置くことに成功しました", PrimaryButtonText = "OK"}.ShowAsync();
+                await ShowDIalog("石を置くことに成功しました");
                 XText.Text = "";
                 YText.Text = "";
 
-                await
-                    new ContentDialog {Title = $"現在のターンは{reversi.Player.NowColor}です。", PrimaryButtonText = "OK"}
-                        .ShowAsync();
-
-                await
-                    new ContentDialog
-                    {
-                        Title = $"現在の白の石の数は、{reversi.Board.CountWhiteColor()}個、黒{reversi.Board.CountBlackColor()}個です。",
-                        PrimaryButtonText = "OK"
-                    }
-                        .ShowAsync();
+                await ShowDIalog($"現在のターンは{reversi.Player.NowColor}です。");
+                await ShowDIalog($"現在の白の石の数は、{reversi.Board.CountWhiteColor()}個、黒{reversi.Board.CountBlackColor()}個です。");
 
                 if (!reversi.IsContinue())
                 {
-                    await new ContentDialog {Title = "スキップします", PrimaryButtonText = "OK"}.ShowAsync();
+                    await ShowDIalog("スキップします");
                     reversi.Player.Skip();
                     if (reversi.Player.SkipCounter >= 2)
                     {
-                        await new ContentDialog {Title = "ゲームが終了しました。", PrimaryButtonText = "OK"}.ShowAsync();
+                        await ShowDIalog("ゲームが終了しました。");
                         reversi.Board.Init();
                         reversi.Player.SkipCounter = 0;
                     }
@@ -69,17 +60,20 @@ namespace Reversi
             }
             catch (IndexOutOfRangeException)
             {
-                await new ContentDialog {Title = "値がおかしいです", PrimaryButtonText = "ok"}.ShowAsync();
+                await ShowDIalog("値がおかしいです");
             }
             catch (ReversiLib.OverrideStoneException)
             {
-                await new ContentDialog {Title = "すでに石が置かれています", PrimaryButtonText = "OK"}.ShowAsync();
+                await ShowDIalog("すでに石が置かれています");
             }
             catch (Exception)
             {
-                await new ContentDialog {Title = "エラーが起きているようです。", PrimaryButtonText = "OK"}.ShowAsync();
+                await ShowDIalog("エラーが起きているようです");
             }
             BoardUI.ReRendering();
         }
+
+        private static async Task ShowDIalog(string message)
+            => await new ContentDialog {Title = message, PrimaryButtonText = "OK"}.ShowAsync();
     }
 }

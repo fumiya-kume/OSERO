@@ -28,7 +28,7 @@ namespace Reversi.Model
             }
         }
 
-        public static string int2Alphabet(int i)
+        public static string Int2Alphabet(int i)
         {
             switch (i)
             {
@@ -53,7 +53,7 @@ namespace Reversi.Model
             }
         }
 
-        public static int Alphabet2int(string text)
+        public static int Alphabet2Int(string text)
         {
             switch (text)
             {

@@ -4,6 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Reversi.Model;
+using static FReversi.FUtil;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
 
@@ -31,7 +32,7 @@ namespace Reversi
         {
             try
             {
-                var x = Util.Alphabet2int(XText.Text);
+                var x = Alphabe2Int(XText.Text);
                 var y = int.Parse(YText.Text);
                 //配列は、0からスタートしてるからその調整
                 y = y - 1;

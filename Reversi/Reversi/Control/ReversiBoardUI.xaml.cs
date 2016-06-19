@@ -2,6 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
+using FReversi;
 using Reversi.Model;
 using Color = Reversi.classes.Color;
 
@@ -34,22 +35,22 @@ namespace ReversiUWP.Control
             for (var i = 0; i < 8; i++)
             {
                 var x = 300/9*i + 25;
-                AddLabel(x, 10, Util.int2Alphabet(i));
+                AddLabel(x, 0, FUtil.Int2Alphabet(i));
             }
 
+            //Y座標列を表示
             for (var i = 1; i < 9; i++)
             {
-                var y = 300/9*i - 10;
+                var y = 300/9*i - 15;
                 AddLabel(10, y, i.ToString());
             }
-            //Y座標列を表示
 
             for (var i = 0; i < 8; i++)
             {
                 for (var j = 0; j < 8; j++)
                 {
                     var x = 300/9*i + 20;
-                    var y = 300/9*j + 30;
+                    var y = 300/9*j + 20;
                     AddStone(x, y, i, j);
                 }
             }

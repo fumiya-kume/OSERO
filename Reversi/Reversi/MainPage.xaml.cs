@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Reversi.classes;
 using Reversi.Model;
+using System.Diagnostics.Contracts;
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
 
 namespace Reversi
@@ -34,8 +35,9 @@ namespace Reversi
         {
             try
             {
-                await HumanCommand();
-
+                await InputHuman();
+                reversi.SetStone(x, y, Player.NowColor);
+                Player.ChangePlayer();
 
                 await ShowDIalog($"現在のターンは{Player.NowColor}です。");
                 await ShowDIalog($"現在の白の石の数は、{reversi.Board.CountWhiteColor()}個、黒{reversi.Board.CountBlackColor()}個です。");
@@ -67,22 +69,18 @@ namespace Reversi
             BoardUI.ReRendering();
         }
 
-        private ColorData AICommand()
+        private ColorPoint InputAI()
             => IntelliService.GetShouldSetPoint(Player.NowColor);
 
-        private async Task HumanCommand()
+        private async Task<ColorPoint> InputHuman()
         {
             var x = Util.Alphabet2Int(XText.Text);
             var y = int.Parse(YText.Text);
             //配列は、0からスタートしてるからその調整
             y = y - 1;
-
-            reversi.SetStone(x, y,Player.NowColor);
-            Player.ChangePlayer();
-
-            await ShowDIalog("石を置くことに成功しました");
             XText.Text = "";
             YText.Text = "";
+            return new ColorPoint {x = x, y = y};
         }
 
         private static async Task ShowDIalog(string message)

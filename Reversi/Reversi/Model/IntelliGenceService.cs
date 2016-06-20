@@ -15,14 +15,14 @@ namespace Reversi.Model
 
         public ReversiBoard BoardData { get; set; }
 
-        public ColorData GetShouldSetPoint(Color color)
+        public ColorPoint GetShouldSetPoint(Color color)
         {
             var result = BoardData.GetEnableColorPointList(color)
                 .Select(
                     colorpoint => { return new ColorData {point = colorpoint, Score = GetEvaluationValue(colorpoint)}; })
                 //スコアの一番大きな要素を返す
                 .FindMax(c => c.Score);
-            return result;
+            return result.point;
         }
 
         private int GetEvaluationValue(ColorPoint point)

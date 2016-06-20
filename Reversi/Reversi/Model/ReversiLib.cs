@@ -11,16 +11,15 @@ namespace Reversi.Model
         }
 
         public ReversiBoard Board { get; set; } = new ReversiBoard();
-        public Player Player { get; set; } = new Player();
 
-        public void SetStone(int x, int y)
+        public void SetStone(int x, int y,　Color color)
         {
             if (!Util.IsRange(x, y)) throw new IndexOutOfRangeException();
             if (Board.IsAlreadlySet(x, y)) throw new OverrideStoneException();
 
-            var nowColor = Player.NowColor;
+            var nowColor = color;
             Board.SetColor(x, y, nowColor);
-            Board.ReversiAllDirection(x, y, Player.NowColor);
+            Board.ReversiAllDirection(x, y, color);
         }
 
         public bool IsContinue()

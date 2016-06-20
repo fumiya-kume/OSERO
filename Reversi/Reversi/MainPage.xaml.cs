@@ -21,12 +21,13 @@ namespace Reversi
             IntelliService = new IntelliGenceService(reversi.Board);
         }
 
+        public Player Player { get; set; } = new Player();
         public ReversiLib reversi { get; set; } = new ReversiLib();
         public IntelliGenceService IntelliService { get; set; }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            await ShowDIalog($"現在の色は、{reversi.Player.NowColor}です。");
+            await ShowDIalog($"現在の色は、{Player.NowColor}です。");
         }
 
         private async void enterButton_Click(object sender, RoutedEventArgs e)
@@ -36,18 +37,18 @@ namespace Reversi
                 await HumanCommand();
 
 
-                await ShowDIalog($"現在のターンは{reversi.Player.NowColor}です。");
+                await ShowDIalog($"現在のターンは{Player.NowColor}です。");
                 await ShowDIalog($"現在の白の石の数は、{reversi.Board.CountWhiteColor()}個、黒{reversi.Board.CountBlackColor()}個です。");
 
                 if (!reversi.IsContinue())
                 {
                     await ShowDIalog("スキップします");
-                    reversi.Player.Skip();
-                    if (reversi.Player.SkipCounter >= 2)
+                    Player.Skip();
+                    if (Player.SkipCounter >= 2)
                     {
                         await ShowDIalog("ゲームが終了しました。");
                         reversi.Board.Init();
-                        reversi.Player.SkipCounter = 0;
+                        Player.SkipCounter = 0;
                     }
                 }
             }
@@ -67,7 +68,7 @@ namespace Reversi
         }
 
         private ColorData AICommand()
-            => IntelliService.GetShouldSetPoint(reversi.Player.NowColor);
+            => IntelliService.GetShouldSetPoint(Player.NowColor);
 
         private async Task HumanCommand()
         {
@@ -76,8 +77,8 @@ namespace Reversi
             //配列は、0からスタートしてるからその調整
             y = y - 1;
 
-            reversi.SetStone(x, y);
-            reversi.Player.ChangePlayer();
+            reversi.SetStone(x, y,Player.NowColor);
+            Player.ChangePlayer();
 
             await ShowDIalog("石を置くことに成功しました");
             XText.Text = "";

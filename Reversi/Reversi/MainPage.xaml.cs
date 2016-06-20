@@ -38,10 +38,12 @@ namespace Reversi
             {
                if(reversi.Player.NowColor == Black)
                 {
-                    HumanCommand();
+                   　await HumanCommand();
                 }else if (reversi.Player.NowColor.Equals(White))
                 {
-                    AICommand();
+                    var Colordata = AICommand();
+                    reversi.SetStone(Colordata.point.x, Colordata.point.y);
+                    reversi.Player.Change();
                 }
 
                 await ShowDIalog($"現在のターンは{reversi.Player.NowColor}です。");
@@ -77,7 +79,7 @@ namespace Reversi
         private ColorData AICommand()
             => IntelliService.GetShouldSetPoint(reversi.Player.NowColor);
 
-        private async void HumanCommand()
+        private async Task HumanCommand()
         {
             var x = Alphabe2Int(XText.Text);
             var y = int.Parse(YText.Text);

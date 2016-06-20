@@ -12,11 +12,13 @@ namespace Reversi.Model
 
         public ReversiBoard Board { get; set; } = new ReversiBoard();
 
+        public class DisableStone: Exception { }
+
         public void SetStone(int x, int y,　Color color)
         {
             if (!Util.IsRange(x, y)) throw new IndexOutOfRangeException();
             if (Board.IsAlreadlySet(x, y)) throw new OverrideStoneException();
-
+            if(!Board.IsReversiAllDirection(x,y)) throw new DisableStone();
             var nowColor = color;
             Board.SetColor(x, y, nowColor);
             Board.ReversiAllDirection(x, y, color);

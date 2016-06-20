@@ -46,7 +46,7 @@ namespace Reversi
                 {
                     await ShowDIalog("スキップします");
                     Player.Skip();
-                    if (Player.SkipCounter >= 2)
+                    if (Player.IsEndGame())
                     {
                         await ShowDIalog("ゲームが終了しました。");
                         reversi.Board.Init();
@@ -61,6 +61,10 @@ namespace Reversi
             catch (ReversiLib.OverrideStoneException)
             {
                 await ShowDIalog("すでに石が置かれています");
+            }
+            catch (ReversiLib.DisableStone)
+            {
+                await ShowDIalog("その場所に駒を置くことはできません");
             }
             catch (Exception)
             {

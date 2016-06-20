@@ -36,15 +36,8 @@ namespace Reversi
         {
             try
             {
-               if(reversi.Player.NowColor == Black)
-                {
-                   　await HumanCommand();
-                }else if (reversi.Player.NowColor.Equals(White))
-                {
-                    var Colordata = AICommand();
-                    reversi.SetStone(Colordata.point.x, Colordata.point.y);
-                    reversi.Player.Change();
-                }
+                  　await HumanCommand();
+                
 
                 await ShowDIalog($"現在のターンは{reversi.Player.NowColor}です。");
                 await ShowDIalog($"現在の白の石の数は、{reversi.Board.CountWhiteColor()}個、黒{reversi.Board.CountBlackColor()}個です。");

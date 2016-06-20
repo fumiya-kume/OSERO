@@ -5,8 +5,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Reversi.classes;
 using Reversi.Model;
-using static FReversi.FUtil;
-
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
 
 namespace Reversi
@@ -73,7 +71,7 @@ namespace Reversi
 
         private async Task HumanCommand()
         {
-            var x = Alphabe2Int(XText.Text);
+            var x = Util.Alphabet2Int(XText.Text);
             var y = int.Parse(YText.Text);
             //配列は、0からスタートしてるからその調整
             y = y - 1;

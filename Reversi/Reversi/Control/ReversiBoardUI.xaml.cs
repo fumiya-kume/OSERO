@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
-using FReversi;
+using Reversi.Model;
 using Color = Reversi.classes.Color;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
@@ -34,7 +34,7 @@ namespace ReversiUWP.Control
             for (var i = 0; i < 8; i++)
             {
                 var x = 300/9*i + 25;
-                AddLabel(x, 0, FUtil.Int2Alphabet(i));
+                AddLabel(x, 0, Util.Int2Alphabet(i));
             }
 
             //Y座標列を表示

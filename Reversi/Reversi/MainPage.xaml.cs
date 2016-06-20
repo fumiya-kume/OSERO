@@ -72,7 +72,7 @@ namespace Reversi
         private ColorPoint InputAI()
             => IntelliService.GetShouldSetPoint(Player.NowColor);
 
-        private async Task<ColorPoint> InputHuman()
+        private Task<ColorPoint> InputHuman()
         {
             var x = Util.Alphabet2Int(XText.Text);
             var y = int.Parse(YText.Text);

@@ -3,7 +3,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 using FReversi;
-using Reversi.Model;
 using Color = Reversi.classes.Color;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236

@@ -3,10 +3,9 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Reversi.classes;
 using Reversi.Model;
 using static FReversi.FUtil;
-using static Reversi.classes.Color;
-using Reversi.classes;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
 
@@ -36,8 +35,8 @@ namespace Reversi
         {
             try
             {
-                  　await HumanCommand();
-                
+                await HumanCommand();
+
 
                 await ShowDIalog($"現在のターンは{reversi.Player.NowColor}です。");
                 await ShowDIalog($"現在の白の石の数は、{reversi.Board.CountWhiteColor()}個、黒{reversi.Board.CountBlackColor()}個です。");
@@ -86,7 +85,7 @@ namespace Reversi
             XText.Text = "";
             YText.Text = "";
         }
-        
+
         private static async Task ShowDIalog(string message)
             => await new ContentDialog {Title = message, PrimaryButtonText = "OK"}.ShowAsync();
     }

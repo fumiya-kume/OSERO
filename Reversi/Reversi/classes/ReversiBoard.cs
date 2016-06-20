@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Reversi.Model;
-using System.Collections.Generic;
 
 namespace Reversi.classes
 {
@@ -125,17 +125,17 @@ namespace Reversi.classes
         public List<ColorPoint> GetEnableColorPointList(Color color)
         {
             var ColorPointList = new List<ColorPoint>();
-            for (int i = 0; i < 7; i++)
+            for (var i = 0; i < 7; i++)
             {
-                for (int j = 0; j < 7; j++)
+                for (var j = 0; j < 7; j++)
                 {
-                    if(!IsAlreadlySet(i, j))
+                    if (!IsAlreadlySet(i, j))
                     {
                         var ifBoard = this;
                         ifBoard.Board[i][j] = color;
                         if (ifBoard.IsReversiAllDirection(i, j))
                         {
-                            ColorPointList.Add(new ColorPoint { x = i, y = j });
+                            ColorPointList.Add(new ColorPoint {x = i, y = j});
                         }
                     }
                 }

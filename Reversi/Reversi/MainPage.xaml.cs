@@ -35,10 +35,10 @@ namespace Reversi
         {
             try
             {
-                await InputHuman();
-                reversi.SetStone(x, y, Player.NowColor);
+                var point = InputHuman();
+                reversi.SetStone(point.x, point.y, Player.NowColor);
                 Player.ChangePlayer();
-
+                await ShowDIalog("石を置くことができました");
                 await ShowDIalog($"現在のターンは{Player.NowColor}です。");
                 await ShowDIalog($"現在の白の石の数は、{reversi.Board.CountWhiteColor()}個、黒{reversi.Board.CountBlackColor()}個です。");
 

@@ -5,6 +5,8 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Reversi.Model;
 using static FReversi.FUtil;
+using static Reversi.classes.Color;
+using Reversi.classes;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
 
@@ -19,9 +21,11 @@ namespace Reversi
         {
             InitializeComponent();
             BoardUI.BoardColors = reversi.Board.Board;
+            IntelliService = new IntelliGenceService(reversi.Board);
         }
 
         public ReversiLib reversi { get; set; } = new ReversiLib();
+        public IntelliGenceService IntelliService { get; set; }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -32,17 +36,13 @@ namespace Reversi
         {
             try
             {
-                var x = Alphabe2Int(XText.Text);
-                var y = int.Parse(YText.Text);
-                //配列は、0からスタートしてるからその調整
-                y = y - 1;
-
-                reversi.SetStone(x, y);
-                reversi.Player.Change();
-
-                await ShowDIalog("石を置くことに成功しました");
-                XText.Text = "";
-                YText.Text = "";
+               if(reversi.Player.NowColor == Black)
+                {
+                    HumanCommand();
+                }else if (reversi.Player.NowColor.Equals(White))
+                {
+                    AICommand();
+                }
 
                 await ShowDIalog($"現在のターンは{reversi.Player.NowColor}です。");
                 await ShowDIalog($"現在の白の石の数は、{reversi.Board.CountWhiteColor()}個、黒{reversi.Board.CountBlackColor()}個です。");
@@ -74,6 +74,24 @@ namespace Reversi
             BoardUI.ReRendering();
         }
 
+        private ColorData AICommand()
+            => IntelliService.GetShouldSetPoint(reversi.Player.NowColor);
+
+        private async void HumanCommand()
+        {
+            var x = Alphabe2Int(XText.Text);
+            var y = int.Parse(YText.Text);
+            //配列は、0からスタートしてるからその調整
+            y = y - 1;
+
+            reversi.SetStone(x, y);
+            reversi.Player.Change();
+
+            await ShowDIalog("石を置くことに成功しました");
+            XText.Text = "";
+            YText.Text = "";
+        }
+        
         private static async Task ShowDIalog(string message)
             => await new ContentDialog {Title = message, PrimaryButtonText = "OK"}.ShowAsync();
     }

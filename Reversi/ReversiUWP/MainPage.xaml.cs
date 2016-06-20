@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Navigation;
 using ReversiUWP.Model;
 using static ReversiUWP.Model.ReversiLib;
 using static ReversiUWP.Model.Util;
+using Reversi.classes;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
 
@@ -82,6 +83,11 @@ namespace ReversiUWP
                 await new ContentDialog {Title = "エラーが起きているようです。", PrimaryButtonText = "OK"}.ShowAsync();
             }
             BoardUI.ReRendering();
+        }
+
+        private ColorData AICommand()
+        {
+
         }
     }
 }

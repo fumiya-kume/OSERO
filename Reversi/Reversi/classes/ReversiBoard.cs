@@ -1,5 +1,6 @@
-using System.Linq;
+﻿using System.Linq;
 using Reversi.Model;
+using System.Collections.Generic;
 
 namespace Reversi.classes
 {
@@ -119,6 +120,27 @@ namespace Reversi.classes
             ReversiDirection(x, y, 1, -1, color); // Lower Left
             ReversiDirection(x, y, 0, -1, color); // Left
             ReversiDirection(x, y, -1, -1, color); // Upper Left
+        }
+
+        public List<ColorPoint> GetEnableColorPointList(Color color)
+        {
+            var ColorPointList = new List<ColorPoint>();
+            for (int i = 0; i < 7; i++)
+            {
+                for (int j = 0; j < 7; j++)
+                {
+                    if(!IsAlreadlySet(i, j))
+                    {
+                        var ifBoard = this;
+                        ifBoard.Board[i][j] = color;
+                        if (ifBoard.IsReversiAllDirection(i, j))
+                        {
+                            ColorPointList.Add(new ColorPoint { x = i, y = j });
+                        }
+                    }
+                }
+            }
+            return ColorPointList;
         }
     }
 }

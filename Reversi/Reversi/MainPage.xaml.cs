@@ -33,14 +33,11 @@ namespace Reversi
 
         private async void enterButton_Click(object sender, RoutedEventArgs e)
         {
+            
             try
             {
                 var point = InputHuman();
-                reversi.SetStone(point.x, point.y, Player.NowColor);
-                Player.ChangePlayer();
-                await ShowDIalog("石を置くことができました");
-                await ShowDIalog($"現在のターンは{Player.NowColor}です。");
-                await ShowDIalog($"現在の白の石の数は、{reversi.Board.CountWhiteColor()}個、黒{reversi.Board.CountBlackColor()}個です。");
+                await SetClor(point);
 
                 if (!reversi.IsContinue())
                 {
@@ -75,6 +72,14 @@ namespace Reversi
             return new ColorPoint {x = x, y = y};
         }
 
+        private async Task SetClor(ColorPoint point)
+        {
+            reversi.SetStone(point.x, point.y, Player.NowColor);
+            Player.ChangePlayer();
+            await ShowDIalog("石を置くことができました");
+            await ShowDIalog($"現在のターンは{Player.NowColor}です。");
+            await ShowDIalog($"現在の白の石の数は、{reversi.Board.CountWhiteColor()}個、黒{reversi.Board.CountBlackColor()}個です。");
+        }
         private static async Task ShowDIalog(string message)
             => await new ContentDialog {Title = message, PrimaryButtonText = "OK"}.ShowAsync();
     }

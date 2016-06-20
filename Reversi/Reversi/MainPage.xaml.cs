@@ -77,7 +77,7 @@ namespace Reversi
             y = y - 1;
 
             reversi.SetStone(x, y);
-            reversi.Player.Change();
+            reversi.Player.ChangePlayer();
 
             await ShowDIalog("石を置くことに成功しました");
             XText.Text = "";

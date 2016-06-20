@@ -54,21 +54,9 @@ namespace Reversi
                     }
                 }
             }
-            catch (IndexOutOfRangeException)
+            catch (Exception errorException)
             {
-                await ShowDIalog("値がおかしいです");
-            }
-            catch (ReversiLib.OverrideStoneException)
-            {
-                await ShowDIalog("すでに石が置かれています");
-            }
-            catch (ReversiLib.DisableStone)
-            {
-                await ShowDIalog("その場所に駒を置くことはできません");
-            }
-            catch (Exception)
-            {
-                await ShowDIalog("エラーが起きているようです");
+                await ShowDIalog(errorException.Message);
             }
             BoardUI.ReRendering();
         }

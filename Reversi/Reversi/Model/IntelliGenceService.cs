@@ -1,7 +1,7 @@
-﻿using System;
-using System.Linq;
-using Reversi.classes;
+﻿using Reversi.classes;
 using Reversi.Extentison;
+using System;
+using System.Linq;
 
 namespace Reversi.Model
 {
@@ -16,14 +16,9 @@ namespace Reversi.Model
         public ReversiBoard BoardData { get; set; }
 
         public ColorPoint GetShouldSetPoint(Color color)
-        {
-            var result = BoardData.GetEnableColorPointList(color)
-                .Select(
-                    colorpoint => { return new ColorData {point = colorpoint, Score = GetEvaluationValue(colorpoint)}; })
-                //スコアの一番大きな要素を返す
-                .FindMax(c => c.Score);
-            return result.point;
-        }
+            => BoardData.GetEnableColorPointList(color)
+                .Select(colorpoint => { return new ColorData { point = colorpoint, Score = GetEvaluationValue(colorpoint) }; })
+                .FindMax(c => c.Score).point;
 
         private int GetEvaluationValue(ColorPoint point)
         {

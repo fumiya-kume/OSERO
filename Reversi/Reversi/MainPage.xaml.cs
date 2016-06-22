@@ -4,6 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Reversi.classes;
+using static Reversi.classes.Color;
 using Reversi.Model;
 using System.Diagnostics.Contracts;
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
@@ -33,12 +34,15 @@ namespace Reversi
 
         private async void enterButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
             try
             {
-                var point = InputHuman();
-                await SetClor(point);
+                ColorPoint point;
 
+                point = InputHuman();
+                await SetClor(point);
+                point = InputAI();
+                await SetClor(point);
                 if (!reversi.IsContinue())
                 {
                     await ShowDIalog("スキップします");
@@ -69,7 +73,7 @@ namespace Reversi
             y = y - 1;
             XText.Text = "";
             YText.Text = "";
-            return new ColorPoint {x = x, y = y};
+            return new ColorPoint { x = x, y = y };
         }
 
         private async Task SetClor(ColorPoint point)
@@ -81,6 +85,6 @@ namespace Reversi
             await ShowDIalog($"現在の白の石の数は、{reversi.Board.CountWhiteColor()}個、黒{reversi.Board.CountBlackColor()}個です。");
         }
         private static async Task ShowDIalog(string message)
-            => await new ContentDialog {Title = message, PrimaryButtonText = "OK"}.ShowAsync();
+            => await new ContentDialog { Title = message, PrimaryButtonText = "OK" }.ShowAsync();
     }
 }

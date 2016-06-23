@@ -1,1 +1,1 @@
-C:\Users\gurag\Source\Repos\Reversi\Reversi\Reversi\AppPackages\Reversi_2.0.3.0\Reversi_2.0.3.0_x86_x64_arm.appxbundle
+C:\Users\gurag\Source\Repos\Reversi\Reversi\Reversi\AppPackages\Reversi_2.0.4.0\Reversi_2.0.4.0_x86_x64_arm.appxbundle

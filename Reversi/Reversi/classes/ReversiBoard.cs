@@ -98,7 +98,7 @@ namespace Reversi.classes
 
         private bool IsReversiDirectionWithColor(int x, int y, int dx, int dy,Color color)
         {
-            var nowColor = GetColor(x, y);
+            var nowColor = color;
             var nx = x + dx;
             var ny = y + dy;
             if (GetColor(nx, ny) != Util.EnemyColor(nowColor)) return false;

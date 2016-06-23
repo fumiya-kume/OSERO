@@ -41,8 +41,11 @@ namespace Reversi
 
                 point = InputHuman();
                 await SetClor(point);
-                //point = InputAI();
-                //await SetClor(point);
+
+                BoardUI.ReRendering();
+
+                point = InputAI();
+                await SetClor(point);
                 if (!reversi.IsContinue())
                 {
                     await ShowDIalog("スキップします");

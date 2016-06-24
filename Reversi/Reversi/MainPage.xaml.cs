@@ -34,7 +34,6 @@ namespace Reversi
 
         private async void enterButton_Click(object sender, RoutedEventArgs e)
         {
-
             try
             {
                 ColorPoint point;
@@ -42,27 +41,30 @@ namespace Reversi
                 point = InputHuman();
                 await SetClor(point);
 
-                BoardUI.ReRendering();
-
                 point = InputAI();
                 await SetClor(point);
-                if (!reversi.IsContinue())
-                {
-                    await ShowDIalog("スキップします");
-                    Player.Skip();
-                    if (Player.IsEndGame())
-                    {
-                        await ShowDIalog("ゲームが終了しました。");
-                        reversi.Board.Init();
-                        Player.SkipCounter = 0;
-                    }
-                }
+
+                await PlayerCheck();
             }
             catch (Exception errorException)
             {
                 await ShowDIalog(errorException.Message);
             }
-            BoardUI.ReRendering();
+        }
+
+        private async Task PlayerCheck()
+        {
+            if (!reversi.IsContinue())
+            {
+                await ShowDIalog("スキップします");
+                Player.Skip();
+                if (Player.IsEndGame())
+                {
+                    await ShowDIalog("ゲームが終了しました。");
+                    reversi.Board.Init();
+                    Player.SkipCounter = 0;
+                }
+            }
         }
 
         private ColorPoint InputAI()
@@ -83,6 +85,7 @@ namespace Reversi
         {
             reversi.SetStone(point.x, point.y, Player.NowColor);
             Player.ChangePlayer();
+            BoardUI.ReRendering();
             await ShowDIalog("石を置くことができました");
             await ShowDIalog($"現在のターンは{Player.NowColor}です。");
             await ShowDIalog($"現在の白の石の数は、{reversi.Board.CountWhiteColor()}個、黒{reversi.Board.CountBlackColor()}個です。");

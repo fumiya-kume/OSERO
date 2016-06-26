@@ -26,6 +26,7 @@
         <Button x:Name="enterButton" Grid.ColumnSpan="2" Content="決定" HorizontalAlignment="Center" Margin="0"
                 VerticalAlignment="Center" Grid.Row="1" FontSize="72" Click="enterButton_Click" />
         <Control:ReversiBoardUI x:Name="BoardUI" Margin="0" Grid.ColumnSpan="2" />
+        <TextBlock x:Name="InfomationText" HorizontalAlignment="Left" Margin="30,30,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

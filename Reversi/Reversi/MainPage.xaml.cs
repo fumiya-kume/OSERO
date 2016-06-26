@@ -27,9 +27,9 @@ namespace Reversi
         public ReversiLib reversi { get; set; } = new ReversiLib();
         public IntelliGenceService IntelliService { get; set; }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            await ShowDIalog($"現在の色は、{Player.NowColor}です。");
+            RefreshInfomatinText();
         }
 
         private async void enterButton_Click(object sender, RoutedEventArgs e)
@@ -87,10 +87,32 @@ namespace Reversi
             Player.ChangePlayer();
             BoardUI.ReRendering();
             await ShowDIalog("石を置くことができました");
-            await ShowDIalog($"現在のターンは{Player.NowColor}です。");
-            await ShowDIalog($"現在の白の石の数は、{reversi.Board.CountWhiteColor()}個、黒{reversi.Board.CountBlackColor()}個です。");
+            RefreshInfomatinText();
         }
         private static async Task ShowDIalog(string message)
             => await new ContentDialog { Title = message, PrimaryButtonText = "OK" }.ShowAsync();
+
+        private void RefreshInfomatinText()
+        {
+            var PlayerText = "";
+            switch (Player.NowColor)
+            {
+                case Black:
+                    PlayerText = "あなた";
+                    break;
+                case White:
+                    PlayerText = "AI";
+                    break;
+                case None:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            InfomationText.Text =
+                $"現在のプレイヤーは{PlayerText}です\r" +
+                $"白色の駒の数は:{reversi.Board.CountWhiteColor()}個です\r" +
+                $"黒色の駒の数は:{reversi.Board.CountBlackColor()}個です\r";
+        }
     }
 }

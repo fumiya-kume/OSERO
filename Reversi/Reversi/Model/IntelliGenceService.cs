@@ -1,7 +1,7 @@
-﻿using Reversi.classes;
-using Reversi.Extentison;
-using System;
+﻿using System;
 using System.Linq;
+using Reversi.classes;
+using Reversi.Extentison;
 
 namespace Reversi.Model
 {
@@ -17,7 +17,8 @@ namespace Reversi.Model
 
         public ColorPoint GetShouldSetPoint(Color color)
             => BoardData.GetEnableColorPointList(color)
-                .Select(colorpoint => { return new ColorData { point = colorpoint, Score = GetEvaluationValue(colorpoint) }; })
+                .Select(
+                    colorpoint => { return new ColorData {point = colorpoint, Score = GetEvaluationValue(colorpoint)}; })
                 .FindMax(c => c.Score).point;
 
         private int GetEvaluationValue(ColorPoint point)

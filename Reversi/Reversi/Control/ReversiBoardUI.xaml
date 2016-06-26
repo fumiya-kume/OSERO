@@ -1,8 +1,7 @@
 ﻿<UserControl
-    x:Class="ReversiUWP.Control.ReversiBoardUI"
+    x:Class="Reversi.Control.ReversiBoardUI"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:ReversiUWP.Control"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -13,7 +12,7 @@
     <Viewbox>
 
         <Canvas x:Name="Boardcanvas" Background="#FFB3C53F" Height="300" Width="300" HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+                VerticalAlignment="Center" Tapped="Boardcanvas_Tapped">
 
             <Grid Height="300" Width="300" />
         </Canvas>

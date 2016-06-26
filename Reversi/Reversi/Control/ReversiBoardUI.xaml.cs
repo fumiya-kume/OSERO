@@ -1,5 +1,7 @@
-﻿using Windows.UI;
+﻿using System;
+using Windows.UI;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 using Reversi.Model;
@@ -7,11 +9,11 @@ using Color = Reversi.classes.Color;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace ReversiUWP.Control
+namespace Reversi.Control
 {
-    public sealed partial class ReversiBoardUI : UserControl
+    public partial class ReversiBoardUI : UserControl
     {
-        private Color[][] BboardColors;
+        private Color[][] _boardColors;
 
         public ReversiBoardUI()
         {
@@ -20,13 +22,15 @@ namespace ReversiUWP.Control
 
         public Color[][] BoardColors
         {
-            get { return BboardColors; }
+            get { return _boardColors; }
             set
             {
-                BboardColors = value;
+                _boardColors = value;
                 ReRendering();
             }
         }
+
+        public event EventHandler<TappedRoutedEventArgs> BoardTapped;
 
         public void ReRendering()
         {
@@ -90,6 +94,17 @@ namespace ReversiUWP.Control
             Canvas.SetLeft(Circle, x);
             Canvas.SetTop(Circle, y);
             Boardcanvas.Children.Add(Circle);
+        }
+
+        public virtual void OnBoardTapped(TappedRoutedEventArgs e)
+        {
+            var eventHandler = BoardTapped;
+            eventHandler?.Invoke(this, e);
+        }
+
+        private void Boardcanvas_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            OnBoardTapped(e);
         }
     }
 }

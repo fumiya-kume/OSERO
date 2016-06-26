@@ -15,7 +15,7 @@ namespace Reversi.Model
 
         public bool IsEndGame()
             => SkipCounter >= 2;
-        
+
         public void Skip()
         {
             SkipCounter++;

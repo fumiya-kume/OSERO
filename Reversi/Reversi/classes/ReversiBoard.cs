@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Reversi.Model;
-using System;
 
 namespace Reversi.classes
 {
@@ -96,7 +95,7 @@ namespace Reversi.classes
             return false;
         }
 
-        private bool IsReversiDirectionWithColor(int x, int y, int dx, int dy,Color color)
+        private bool IsReversiDirectionWithColor(int x, int y, int dx, int dy, Color color)
         {
             var nowColor = color;
             var nx = x + dx;
@@ -112,16 +111,16 @@ namespace Reversi.classes
             return true;
         }
 
-        public bool IsReversiAllDirectionWithColor(int x, int y,Color color)
+        public bool IsReversiAllDirectionWithColor(int x, int y, Color color)
         {
-            if (IsReversiDirectionWithColor(x, y, -1, 0   ,color)) return true; // Up
-            if (IsReversiDirectionWithColor(x, y, -1, 1   ,color)) return true; // Upper Right
-            if (IsReversiDirectionWithColor(x, y, 0, 1   ,color) )return true; // Right
-            if (IsReversiDirectionWithColor(x, y, 1, 1   ,color)) return true; // Lower Right
-            if (IsReversiDirectionWithColor(x, y, 1, 0   ,color)) return true; // Low
-            if (IsReversiDirectionWithColor(x, y, 1, -1   ,color)) return true; // Lower Left
-            if (IsReversiDirectionWithColor(x, y, 0, -1   ,color)) return true; // Left
-            if (IsReversiDirectionWithColor(x, y, -1, -1,color)) return true; // Upper Left
+            if (IsReversiDirectionWithColor(x, y, -1, 0, color)) return true; // Up
+            if (IsReversiDirectionWithColor(x, y, -1, 1, color)) return true; // Upper Right
+            if (IsReversiDirectionWithColor(x, y, 0, 1, color)) return true; // Right
+            if (IsReversiDirectionWithColor(x, y, 1, 1, color)) return true; // Lower Right
+            if (IsReversiDirectionWithColor(x, y, 1, 0, color)) return true; // Low
+            if (IsReversiDirectionWithColor(x, y, 1, -1, color)) return true; // Lower Left
+            if (IsReversiDirectionWithColor(x, y, 0, -1, color)) return true; // Left
+            if (IsReversiDirectionWithColor(x, y, -1, -1, color)) return true; // Upper Left
 
             return false;
         }
@@ -162,8 +161,8 @@ namespace Reversi.classes
                 {
                     if (!IsAlreadlySet(i, j))
                     {
-                        var ifBoard = (ReversiBoard)MemberwiseClone();
-                        if (ifBoard.IsReversiAllDirectionWithColor(i, j,color))
+                        var ifBoard = (ReversiBoard) MemberwiseClone();
+                        if (ifBoard.IsReversiAllDirectionWithColor(i, j, color))
                         {
                             ColorPointList.Add(new ColorPoint {x = i, y = j});
                         }

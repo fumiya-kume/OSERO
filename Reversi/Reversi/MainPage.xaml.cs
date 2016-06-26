@@ -4,9 +4,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Reversi.classes;
-using static Reversi.classes.Color;
 using Reversi.Model;
-using System.Diagnostics.Contracts;
+using static Reversi.classes.Color;
+
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
 
 namespace Reversi
@@ -27,9 +27,9 @@ namespace Reversi
         public ReversiLib reversi { get; set; } = new ReversiLib();
         public IntelliGenceService IntelliService { get; set; }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            await ShowDIalog($"現在の色は、{Player.NowColor}です。");
+            PlayerTextReflesh();
         }
 
         private async void enterButton_Click(object sender, RoutedEventArgs e)
@@ -78,7 +78,7 @@ namespace Reversi
             y = y - 1;
             XText.Text = "";
             YText.Text = "";
-            return new ColorPoint { x = x, y = y };
+            return new ColorPoint {x = x, y = y};
         }
 
         private async Task SetClor(ColorPoint point)
@@ -87,10 +87,31 @@ namespace Reversi
             Player.ChangePlayer();
             BoardUI.ReRendering();
             await ShowDIalog("石を置くことができました");
-            await ShowDIalog($"現在のターンは{Player.NowColor}です。");
-            await ShowDIalog($"現在の白の石の数は、{reversi.Board.CountWhiteColor()}個、黒{reversi.Board.CountBlackColor()}個です。");
+            PlayerTextReflesh();
         }
+
         private static async Task ShowDIalog(string message)
-            => await new ContentDialog { Title = message, PrimaryButtonText = "OK" }.ShowAsync();
+            => await new ContentDialog {Title = message, PrimaryButtonText = "OK"}.ShowAsync();
+
+        private void PlayerTextReflesh()
+        {
+            PlayerText.Text =
+                $"現在のプレイヤーは{GetPlauerText(Player.NowColor)}です\r白駒の数:{reversi.Board.CountWhiteColor()}\r黒駒の数:{reversi.Board.CountBlackColor()}";
+        }
+
+        private string GetPlauerText(Color color)
+        {
+            switch (color)
+            {
+                case Black:
+                    return "あなた";
+                case White:
+                    return "AI";
+                case None:
+                    return "";
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
     }
 }

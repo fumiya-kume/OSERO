@@ -12,18 +12,11 @@ namespace Reversi.Model
 
         public ReversiBoard Board { get; set; } = new ReversiBoard();
 
-        public class DisableStone : Exception
-        {
-            public DisableStone(string message) : base(message)
-            {
-            }
-        }
-
-        public void SetStone(int x, int y,　Color color)
+        public void SetStone(int x, int y, Color color)
         {
             if (!Util.IsRange(x, y)) throw new IndexOutOfRangeException("値がおかしいです");
             if (Board.IsAlreadlySet(x, y)) throw new OverrideStoneException("すでに石が置かれています");
-            if(!Board.IsReversiAllDirectionWithColor(x,y,color)) throw new DisableStone("その場所に駒を置くことはできません");
+            if (!Board.IsReversiAllDirectionWithColor(x, y, color)) throw new DisableStone("その場所に駒を置くことはできません");
             var nowColor = color;
             Board.SetColor(x, y, nowColor);
             Board.ReversiAllDirection(x, y, color);
@@ -35,6 +28,13 @@ namespace Reversi.Model
             if (Board.CountBlackColor() == 0) return false;
             if (Board.CountNoneColor() == 0) return false;
             return true;
+        }
+
+        public class DisableStone : Exception
+        {
+            public DisableStone(string message) : base(message)
+            {
+            }
         }
 
         public class OverrideStoneException : Exception

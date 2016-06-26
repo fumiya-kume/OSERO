@@ -4,7 +4,7 @@
       xmlns:local="using:Reversi"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:Control="using:ReversiUWP.Control"
+      xmlns:control="using:Reversi.Control"
       x:Class="Reversi.MainPage"
       mc:Ignorable="d">
 
@@ -25,7 +25,9 @@
                  ToolTipService.ToolTip="Yの値を入れてください" Grid.Column="1" />
         <Button x:Name="enterButton" Grid.ColumnSpan="2" Content="決定" HorizontalAlignment="Center" Margin="0"
                 VerticalAlignment="Center" Grid.Row="1" FontSize="72" Click="enterButton_Click" />
-        <Control:ReversiBoardUI x:Name="BoardUI" Margin="0" Grid.ColumnSpan="2" />
+        <control:ReversiBoardUI x:Name="BoardUI" Margin="0" Grid.ColumnSpan="2" />
+        <TextBlock x:Name="PlayerText" HorizontalAlignment="Left" Margin="30,30,0,0" TextWrapping="Wrap" Text="現在の色は、"
+                   VerticalAlignment="Top" FontSize="24" />
 
     </Grid>
 </Page>

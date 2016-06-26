@@ -4,9 +4,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Reversi.classes;
-using Reversi.Model;
 using static Reversi.classes.Color;
-
+using Reversi.Model;
+using System.Diagnostics.Contracts;
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
 
 namespace Reversi
@@ -29,7 +29,7 @@ namespace Reversi
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            PlayerTextReflesh();
+            RefreshInfomatinText();
         }
 
         private async void enterButton_Click(object sender, RoutedEventArgs e)
@@ -78,7 +78,7 @@ namespace Reversi
             y = y - 1;
             XText.Text = "";
             YText.Text = "";
-            return new ColorPoint {x = x, y = y};
+            return new ColorPoint { x = x, y = y };
         }
 
         private async Task SetClor(ColorPoint point)
@@ -87,31 +87,32 @@ namespace Reversi
             Player.ChangePlayer();
             BoardUI.ReRendering();
             await ShowDIalog("石を置くことができました");
-            PlayerTextReflesh();
+            RefreshInfomatinText();
         }
-
         private static async Task ShowDIalog(string message)
-            => await new ContentDialog {Title = message, PrimaryButtonText = "OK"}.ShowAsync();
+            => await new ContentDialog { Title = message, PrimaryButtonText = "OK" }.ShowAsync();
 
-        private void PlayerTextReflesh()
+        private void RefreshInfomatinText()
         {
-            PlayerText.Text =
-                $"現在のプレイヤーは{GetPlauerText(Player.NowColor)}です\r白駒の数:{reversi.Board.CountWhiteColor()}\r黒駒の数:{reversi.Board.CountBlackColor()}";
-        }
-
-        private string GetPlauerText(Color color)
-        {
-            switch (color)
+            var PlayerText = "";
+            switch (Player.NowColor)
             {
                 case Black:
-                    return "あなた";
+                    PlayerText = "あなた";
+                    break;
                 case White:
-                    return "AI";
+                    PlayerText = "AI";
+                    break;
                 case None:
-                    return "";
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
+            InfomationText.Text =
+                $"現在のプレイヤーは{PlayerText}です\r" +
+                $"白色の駒の数は:{reversi.Board.CountWhiteColor()}個です\r" +
+                $"黒色の駒の数は:{reversi.Board.CountBlackColor()}個です\r";
         }
     }
 }

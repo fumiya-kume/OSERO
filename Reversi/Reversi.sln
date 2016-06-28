@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reversi", "Reversi\Reversi.csproj", "{872D83B6-629E-4814-83B6-1A1002BFC9B3}"
 EndProject
@@ -18,8 +18,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{872D83B6-629E-4814-83B6-1A1002BFC9B3}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{872D83B6-629E-4814-83B6-1A1002BFC9B3}.Debug|Any CPU.Build.0 = Debug|x86
-		{872D83B6-629E-4814-83B6-1A1002BFC9B3}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{872D83B6-629E-4814-83B6-1A1002BFC9B3}.Debug|ARM.ActiveCfg = Debug|ARM
 		{872D83B6-629E-4814-83B6-1A1002BFC9B3}.Debug|ARM.Build.0 = Debug|ARM
 		{872D83B6-629E-4814-83B6-1A1002BFC9B3}.Debug|ARM.Deploy.0 = Debug|ARM

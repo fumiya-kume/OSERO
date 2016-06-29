@@ -1,14 +1,12 @@
 ﻿using Prism.Windows.Mvvm;
-using RxReversi.classes;
 
 namespace RxReversi.Views
 {
-    public sealed partial class MainPage : SessionStateAwarePage
+    public sealed partial class UserInputPage : SessionStateAwarePage
     {
-        public MainPage()
+        public UserInputPage()
         {
             this.InitializeComponent();
         }
     }
 }
-

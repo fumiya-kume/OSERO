@@ -1,7 +1,10 @@
 ﻿{
   "dependencies": {
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.0",
+    "CommonServiceLocator": "1.3.0",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "Prism.Core": "6.1.0",
+    "Prism.Unity": "6.1.0",
+    "Prism.Windows": "6.0.0",
     "ReactiveProperty": "2.7.4"
   },
   "frameworks": {

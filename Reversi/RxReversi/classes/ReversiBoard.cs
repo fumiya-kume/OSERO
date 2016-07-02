@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using RxReversi.Model;
 
 namespace RxReversi.classes
 {
-    public class ReversiBoard
+    public class ReversiBoard : INotifyPropertyChanged
     {
+
         public Color[][] Board { get; set; } = {
             new[] {Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None},
             new[] {Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None},
@@ -16,6 +19,8 @@ namespace RxReversi.classes
             new[] {Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None},
             new[] {Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None}
         };
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public void Init()
         {
@@ -57,9 +62,27 @@ namespace RxReversi.classes
 
         public Color GetColor(int x, int y) => Util.IsRange(x, y) ? Board[x][y] : Color.None;
 
+        public class DisableStone : Exception
+        {
+            public DisableStone(string message) : base(message)
+            {
+            }
+        }
+
+        public class OverrideStoneException : Exception
+        {
+            public OverrideStoneException(string message) : base(message)
+            {
+            }
+        }
+
         public void SetColor(int x, int y, Color color)
         {
+            if (!Util.IsRange(x, y)) throw new IndexOutOfRangeException("値がおかしいです");
+            if (!IsAlreadlySet(x, y)) throw new OverrideStoneException("すでに石が置かれています");
+            if (!IsReversiAllDirectionWithColor(x, y, color)) throw new DisableStone("その場所に駒を置くことはできません");
             Board[x][y] = color;
+            ReversiAllDirection(x, y, color);
         }
 
         public bool IsAlreadlySet(int x, int y)

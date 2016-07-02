@@ -11,16 +11,7 @@ namespace RxReversi.Model
         }
 
         public ReversiBoard Board { get; set; } = new ReversiBoard();
-
-        public void SetStone(int x, int y, Color color)
-        {
-            if (!Util.IsRange(x, y)) throw new IndexOutOfRangeException("値がおかしいです");
-            if (Board.IsAlreadlySet(x, y)) throw new OverrideStoneException("すでに石が置かれています");
-            if (!Board.IsReversiAllDirectionWithColor(x, y, color)) throw new DisableStone("その場所に駒を置くことはできません");
-            var nowColor = color;
-            Board.SetColor(x, y, nowColor);
-            Board.ReversiAllDirection(x, y, color);
-        }
+        
 
         public bool IsContinue()
         {
@@ -30,18 +21,6 @@ namespace RxReversi.Model
             return true;
         }
 
-        public class DisableStone : Exception
-        {
-            public DisableStone(string message) : base(message)
-            {
-            }
-        }
-
-        public class OverrideStoneException : Exception
-        {
-            public OverrideStoneException(string message) : base(message)
-            {
-            }
-        }
+        
     }
 }

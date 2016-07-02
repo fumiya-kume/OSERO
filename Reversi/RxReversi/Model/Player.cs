@@ -1,21 +1,37 @@
-﻿using RxReversi.classes;
+﻿using System.ComponentModel;
+using RxReversi.classes;
 
 namespace RxReversi.Model
 {
-    public class Player
+    public class Player : INotifyPropertyChanged
     {
         public int SkipCounter { get; set; }
-        public Color NowColor { get; set; } = Color.Black;
 
+        public Player()
+        {
+            this.NowColor = Color.Black;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        
+        private Color _nowcolor;
+
+        public Color NowColor
+        {
+            get { return this._nowcolor; }
+            set
+            {
+                _nowcolor = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("NowColor"));
+            }
+        }
+        
         public void ChangePlayer()
         {
             NowColor = Util.EnemyColor(NowColor);
             SkipCounter = 0;
         }
-
-        public bool IsEndGame()
-            => SkipCounter >= 2;
-
+        
         public void Skip()
         {
             SkipCounter++;

@@ -6,6 +6,25 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.Content>
+                <Grid/>
+            </CommandBar.Content>
+            <AppBarButton Icon="Undo" Label="前のページに戻る"/>
+            <AppBarSeparator/>
+            <AppBarButton x:Name="appBarButton" Label="">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="白:0" FontFamily="Segoe UI"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Name="appBarButton1" Label="">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe UI" Glyph="黒:0"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Viewbox>

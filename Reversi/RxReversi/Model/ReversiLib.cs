@@ -15,9 +15,9 @@ namespace RxReversi.Model
 
         public bool IsContinue()
         {
-            if (Board.CountWhiteColor() == 0) return false;
-            if (Board.CountBlackColor() == 0) return false;
-            if (Board.CountNoneColor() == 0) return false;
+            if (Board.CountWhiteColor == 0) return false;
+            if (Board.CountBlackColor == 0) return false;
+            if (Board.CountNoneColor == 0) return false;
             return true;
         }
 

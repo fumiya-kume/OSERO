@@ -42,13 +42,13 @@ namespace RxReversi.classes
                 .CopyTo(Board[7], 0);
         }
 
-        public int CountWhiteColor()
-            => Board.Select(lists => lists.Count(stone => stone == Color.White)).Aggregate((i, i1) => i + i1);
-
-        public int CountBlackColor()
+        public int CountWhiteColor
+            => Board.Select(lists => lists.Count(list => list == Color.Black)).Aggregate((i, i1) => i + i1); 
+        
+        public int CountBlackColor 
             => Board.Select(lists => lists.Count(list => list == Color.Black)).Aggregate((i, i1) => i + i1);
 
-        public int CountNoneColor()
+        public int CountNoneColor
             => Board.Select(lists => lists.Count(list => list == Color.None)).Aggregate((i, i1) => i + i1);
 
         public bool IsNone(int x, int y)

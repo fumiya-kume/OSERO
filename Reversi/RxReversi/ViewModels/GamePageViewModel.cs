@@ -18,17 +18,36 @@ namespace RxReversi.ViewModels
         private INavigationService navigationService;
 
         public Player Player { get; set; } = new Player();
+        public ReversiBoard Board { get; set; } = new ReversiBoard();
 
         public ReactiveProperty<string> NowColor { get; set; }
+        public ReactiveProperty<string> BlackStone { get; set; }
+        public ReactiveProperty<string> WhiteStone { get; set; }
+
         
+
+
         public GamePageViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
+
+            Board.Init();
             
             NowColor = Player
                 .ObserveProperty(c => c.NowColor)
                 .Select(c => c.ToString())
                 .ToReactiveProperty();
+
+            BlackStone = Board
+                .ObserveProperty(c => c.CountBlackColor)
+                .Select(c => $"黒:{c}")
+                .ToReactiveProperty();
+
+            WhiteStone = Board
+                .ObserveProperty(c => c.CountWhiteColor)
+                .Select(c => $"白{c}")
+                .ToReactiveProperty();
+
         }
     }
 }

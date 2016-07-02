@@ -17,12 +17,12 @@
             <AppBarSeparator/>
             <AppBarButton x:Name="appBarButton" Label="">
                 <AppBarButton.Icon>
-                    <FontIcon Glyph="白:0" FontFamily="Segoe UI"/>
+                    <FontIcon  FontFamily="Segoe UI" Glyph="{Binding WhiteStone.Value}"/>
                 </AppBarButton.Icon>
             </AppBarButton>
             <AppBarButton x:Name="appBarButton1" Label="">
                 <AppBarButton.Icon>
-                    <FontIcon FontFamily="Segoe UI" Glyph="黒:0"/>
+                    <FontIcon FontFamily="Segoe UI" Glyph="{Binding BlackStone.Value}"/>
                 </AppBarButton.Icon>
             </AppBarButton>
             <AppBarButton x:Name="現在のプレイヤー">

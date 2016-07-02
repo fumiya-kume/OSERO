@@ -23,19 +23,13 @@ namespace RxReversi.ViewModels
         public ReactiveProperty<string> NowColor { get; set; }
         public ReactiveProperty<string> BlackStone { get; set; }
         public ReactiveProperty<string> WhiteStone { get; set; }
-        public ReactiveProperty<ColorList> Colors { get; set; }
 
         public GamePageViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
 
             Board.Init();
-
-            Colors = Board
-                .ObserveProperty(c => c.Board)
-                .Select(c => new ColorList { ColorLists = c })
-                .ToReactiveProperty<ColorList>();
-
+            
             NowColor = Player
                 .ObserveProperty(c => c.NowColor)
                 .Select(c => c.ToString())

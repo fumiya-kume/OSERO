@@ -5,6 +5,8 @@
     xmlns:local="using:RxReversi.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mvvm="using:Prism.Windows.Mvvm"
+    mvvm:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
     <Page.BottomAppBar>
         <CommandBar>
@@ -21,6 +23,11 @@
             <AppBarButton x:Name="appBarButton1" Label="">
                 <AppBarButton.Icon>
                     <FontIcon FontFamily="Segoe UI" Glyph="黒:0"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Name="現在のプレイヤー">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{Binding NowColor.Value}" FontFamily="Segoe UI"/>
                 </AppBarButton.Icon>
             </AppBarButton>
         </CommandBar>

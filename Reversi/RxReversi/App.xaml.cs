@@ -5,6 +5,7 @@ using RxReversi.ViewModels;
 using RxReversi.Views;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
+using RxReversi.Model;
 
 namespace RxReversi
 {
@@ -14,6 +15,7 @@ namespace RxReversi
         {
             InitializeComponent();
         }
+        
 
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {

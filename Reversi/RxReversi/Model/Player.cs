@@ -18,7 +18,7 @@ namespace RxReversi.Model
 
         public Color NowColor
         {
-            get { return this._nowcolor; }
+            get { return _nowcolor; }
             set
             {
                 _nowcolor = value;

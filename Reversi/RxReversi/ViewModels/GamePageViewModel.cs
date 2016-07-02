@@ -24,9 +24,6 @@ namespace RxReversi.ViewModels
         public ReactiveProperty<string> BlackStone { get; set; }
         public ReactiveProperty<string> WhiteStone { get; set; }
 
-        
-
-
         public GamePageViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
@@ -40,12 +37,12 @@ namespace RxReversi.ViewModels
 
             BlackStone = Board
                 .ObserveProperty(c => c.CountBlackColor)
-                .Select(c => $"黒:{c}")
+                .Select(c => $"黒：{c}")
                 .ToReactiveProperty();
 
             WhiteStone = Board
                 .ObserveProperty(c => c.CountWhiteColor)
-                .Select(c => $"白{c}")
+                .Select(c => $"白：{c}")
                 .ToReactiveProperty();
 
         }

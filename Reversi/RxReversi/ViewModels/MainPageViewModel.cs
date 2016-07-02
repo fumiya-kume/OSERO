@@ -11,13 +11,13 @@ namespace RxReversi.ViewModels
     {
         private INavigationService navigationService;
 
-        public DelegateCommand NavigateCommand { get; set; }
+        public DelegateCommand GameStartCommand { get; set; }
 
         public MainPageViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
 
-            NavigateCommand = new DelegateCommand(() => navigationService.Navigate("UserInput", text));
+            GameStartCommand = new DelegateCommand(() => navigationService.Navigate("Game", text));
         }
 
         private string text;

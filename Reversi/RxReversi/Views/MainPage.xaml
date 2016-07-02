@@ -11,15 +11,6 @@
     prism:ViewModelLocator.AutoWireViewModel="True">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel VerticalAlignment="Center">
-            <TextBox Text="{Binding Text, Mode=TwoWay}"/>
-            <TextBlock HorizontalAlignment="Center">
-				<Run Text="年齢："/>
-				<Run Text="{Binding Age}"/>
-				<Run Text="歳"/>
-            </TextBlock>
-            <Button Content="設定画面へ移動" Command="{Binding NavigateCommand}" HorizontalAlignment="Center"/>
-        </StackPanel>
-        <Control:ReversiBoardUI x:Name="Board" HorizontalAlignment="Left" Margin="175,0,0,0" VerticalAlignment="Top"/>
+        <Button Content="設定画面へ移動" Command="{Binding GameStartCommand}" HorizontalAlignment="Center"/>
     </Grid>
 </prism:SessionStateAwarePage>

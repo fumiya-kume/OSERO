@@ -1,5 +1,6 @@
 ﻿using System;
 using Windows.UI;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
@@ -14,19 +15,20 @@ namespace Reversi.Control
 {
     public partial class ReversiBoardUI : UserControl
     {
-        private ColorList _boardColors;
-
         public ReversiBoardUI()
         {
             InitializeComponent();
         }
 
-        public ColorList BoardColors
+        public static readonly DependencyProperty BoardColorsProperty = DependencyProperty.Register(
+            "BoardColors", typeof (Color[][]), typeof (ReversiBoardUI), new PropertyMetadata(default(Color[][])));
+
+        public Color[][] BoardColors
         {
-            get { return _boardColors; }
+            get { return (Color[][]) GetValue(BoardColorsProperty); }
             set
             {
-                _boardColors = value;
+                SetValue(BoardColorsProperty, value);
                 ReRendering();
             }
         }
@@ -78,7 +80,7 @@ namespace Reversi.Control
                 Width = 20,
                 Height = 20
             };
-            switch (BoardColors.ColorLists[i][j])
+            switch (BoardColors[i][j])
             {
                 case Color.Black:
                     Circle.Fill = new SolidColorBrush(Colors.Black);

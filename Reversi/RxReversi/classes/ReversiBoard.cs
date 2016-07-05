@@ -9,43 +9,58 @@ namespace RxReversi.classes
     public class ReversiBoard : INotifyPropertyChanged
     {
 
-        public Color[][] Board { get; set; } = {
-            new[] {Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None},
-            new[] {Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None},
-            new[] {Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None},
-            new[] {Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None},
-            new[] {Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None},
-            new[] {Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None},
-            new[] {Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None},
-            new[] {Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None}
-        };
+        private Color[][] board;
+        public Color[][] Board
+        {
+            get { return board; }
+            set
+            {
+                board = value;
+                PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(nameof(Board)));
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public ReversiBoard()
+        {
+            Board = new[]
+            {
+               new[] { Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None },
+               new[] { Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None },
+               new[] { Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None },
+               new[] { Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None },
+               new[] { Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None },
+               new[] { Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None },
+               new[] { Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None },
+               new[] { Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None }
+        };
+        }
+
         public void Init()
         {
-            new[] {Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None}
+            new[] { Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None }
                 .CopyTo(Board[0], 0);
-            new[] {Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None}
+            new[] { Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None }
                 .CopyTo(Board[1], 0);
-            new[] {Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None}
+            new[] { Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None }
                 .CopyTo(Board[2], 0);
-            new[] {Color.None, Color.None, Color.None, Color.Black, Color.White, Color.None, Color.None, Color.None}
+            new[] { Color.None, Color.None, Color.None, Color.Black, Color.White, Color.None, Color.None, Color.None }
                 .CopyTo(Board[3], 0);
-            new[] {Color.None, Color.None, Color.None, Color.White, Color.Black, Color.None, Color.None, Color.None}
+            new[] { Color.None, Color.None, Color.None, Color.White, Color.Black, Color.None, Color.None, Color.None }
                 .CopyTo(Board[4], 0);
-            new[] {Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None}
+            new[] { Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None }
                 .CopyTo(Board[5], 0);
-            new[] {Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None}
+            new[] { Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None }
                 .CopyTo(Board[6], 0);
-            new[] {Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None}
+            new[] { Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None, Color.None }
                 .CopyTo(Board[7], 0);
         }
 
         public int CountWhiteColor
-            => Board.Select(lists => lists.Count(list => list == Color.Black)).Aggregate((i, i1) => i + i1); 
-        
-        public int CountBlackColor 
+            => Board.Select(lists => lists.Count(list => list == Color.Black)).Aggregate((i, i1) => i + i1);
+
+        public int CountBlackColor
             => Board.Select(lists => lists.Count(list => list == Color.Black)).Aggregate((i, i1) => i + i1);
 
         public int CountNoneColor
@@ -184,10 +199,10 @@ namespace RxReversi.classes
                 {
                     if (!IsAlreadlySet(i, j))
                     {
-                        var ifBoard = (ReversiBoard) MemberwiseClone();
+                        var ifBoard = (ReversiBoard)MemberwiseClone();
                         if (ifBoard.IsReversiAllDirectionWithColor(i, j, color))
                         {
-                            ColorPointList.Add(new ColorPoint {x = i, y = j});
+                            ColorPointList.Add(new ColorPoint { x = i, y = j });
                         }
                     }
                 }

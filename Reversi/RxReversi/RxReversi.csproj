@@ -100,7 +100,6 @@
     </Compile>
     <Compile Include="classes\Color.cs" />
     <Compile Include="classes\ColorData.cs" />
-    <Compile Include="classes\ColorList.cs" />
     <Compile Include="classes\ColorPoint.cs" />
     <Compile Include="classes\ReversiBoard.cs" />
     <Compile Include="Control\ReversiBoardUI.xaml.cs">

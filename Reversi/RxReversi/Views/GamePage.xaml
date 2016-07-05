@@ -33,7 +33,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Viewbox>
-            <my:ReversiBoardUI  Width="300" Height="300"/>
+            <my:ReversiBoardUI  Width="300" Height="300" BoardColors="{Binding Colors.Value}"/>
         </Viewbox>
     </Grid>
 </Page>

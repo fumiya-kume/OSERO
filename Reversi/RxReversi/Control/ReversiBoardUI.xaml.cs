@@ -6,6 +6,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 using RxReversi.Model;
 using Color = RxReversi.classes.Color;
+using RxReversi.classes;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -13,14 +14,14 @@ namespace Reversi.Control
 {
     public partial class ReversiBoardUI : UserControl
     {
-        private Color[][] _boardColors;
+        private ColorList _boardColors;
 
         public ReversiBoardUI()
         {
             InitializeComponent();
         }
 
-        public Color[][] BoardColors
+        public ColorList BoardColors
         {
             get { return _boardColors; }
             set
@@ -77,7 +78,7 @@ namespace Reversi.Control
                 Width = 20,
                 Height = 20
             };
-            switch (BoardColors[i][j])
+            switch (BoardColors.ColorLists[i][j])
             {
                 case Color.Black:
                     Circle.Fill = new SolidColorBrush(Colors.Black);

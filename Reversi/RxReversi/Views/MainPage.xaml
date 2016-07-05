@@ -11,6 +11,6 @@
     prism:ViewModelLocator.AutoWireViewModel="True">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button Content="設定画面へ移動" Command="{Binding GameStartCommand}" HorizontalAlignment="Center"/>
+        <Button Content="ゲームスタート" Command="{Binding GameStartCommand}" HorizontalAlignment="Center"/>
     </Grid>
 </prism:SessionStateAwarePage>

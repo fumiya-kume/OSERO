@@ -18,6 +18,7 @@ namespace Reversi.Control
         public ReversiBoardUI()
         {
             InitializeComponent();
+          (this.Content as FrameworkElement) = this;
         }
 
         public static readonly DependencyProperty BoardColorsProperty = DependencyProperty.Register(

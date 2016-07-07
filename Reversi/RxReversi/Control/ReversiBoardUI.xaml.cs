@@ -1,5 +1,6 @@
 ﻿using System;
 using Windows.UI;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -21,7 +22,14 @@ namespace Reversi.Control
         }
 
         public static readonly DependencyProperty BoardColorsProperty = DependencyProperty.Register(
-            "BoardColors", typeof (Color[][]), typeof (ReversiBoardUI), new PropertyMetadata(default(Color[][])));
+            "BoardColors", 
+            typeof (Color[][]), 
+            typeof (ReversiBoardUI), 
+            new PropertyMetadata(string.Empty, new PropertyChangedCallback((o, args) =>
+            {
+                (o as ReversiBoardUI).BoardColors = (Color[][]) args.NewValue;
+                (o as ReversiBoardUI).ReRendering();
+            })));
 
         public Color[][] BoardColors
         {
@@ -32,6 +40,7 @@ namespace Reversi.Control
                 ReRendering();
             }
         }
+        
 
         public event EventHandler<TappedRoutedEventArgs> BoardTapped;
 

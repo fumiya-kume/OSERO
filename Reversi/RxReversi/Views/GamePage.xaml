@@ -6,8 +6,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mvvm="using:Prism.Windows.Mvvm"
-    mvvm:ViewModelLocator.AutoWireViewModel="True"
-    mc:Ignorable="d">
+      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+      xmlns:Interactivity1="using:Reactive.Bindings.Interactivity"
+      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:converters="using:RxReversi.Converters"
+      mvvm:ViewModelLocator.AutoWireViewModel="True">
     <Page.TopAppBar>
         <CommandBar>
             <CommandBar.Content>
@@ -33,7 +37,18 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Viewbox>
-            <my:ReversiBoardUI  Width="300" Height="300" BoardColors="{Binding Colors.Value}"/>
+            <my:ReversiBoardUI Width="{Binding BoardWidth.Value, Mode=TwoWay}" Height="{Binding BoardHeight.Value, Mode=TwoWay}" BoardColors="{Binding Colors.Value}"  >
+                <interactivity:Interaction.Behaviors>
+                    <Core:EventTriggerBehavior EventName="Tapped">
+                        <Interactivity1:EventToReactiveCommand>
+                            <Interactivity1:EventToReactiveCommand.Command>
+                                <Binding Path="BoardTappedCommand" />
+                            </Interactivity1:EventToReactiveCommand.Command>
+                            <converters:TapPositionConverter/>
+                        </Interactivity1:EventToReactiveCommand>
+                    </Core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+            </my:ReversiBoardUI>
         </Viewbox>
     </Grid>
 </Page>

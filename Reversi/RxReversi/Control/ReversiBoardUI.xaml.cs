@@ -41,9 +41,6 @@ namespace Reversi.Control
             }
         }
         
-
-        public event EventHandler<TappedRoutedEventArgs> BoardTapped;
-
         public void ReRendering()
         {
             //X座標列を表示
@@ -108,15 +105,9 @@ namespace Reversi.Control
             Boardcanvas.Children.Add(Circle);
         }
 
-        public virtual void OnBoardTapped(TappedRoutedEventArgs e)
-        {
-            var eventHandler = BoardTapped;
-            eventHandler?.Invoke(this, e);
-        }
-
         private void Boardcanvas_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            OnBoardTapped(e);
+
         }
     }
 }

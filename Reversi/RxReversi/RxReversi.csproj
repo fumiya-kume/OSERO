@@ -105,12 +105,14 @@
     <Compile Include="Control\ReversiBoardUI.xaml.cs">
       <DependentUpon>ReversiBoardUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\TapPositionConverter.cs" />
     <Compile Include="Extentison\MaxElement.cs" />
     <Compile Include="Model\IntelliGenceService.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\ReversiLib.cs" />
     <Compile Include="Model\Util.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Position2PointService.cs" />
     <Compile Include="ViewModels\GamePageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\UserInputPageViewModel.cs" />
@@ -163,7 +165,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

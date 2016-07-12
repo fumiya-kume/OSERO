@@ -19,42 +19,44 @@ namespace Reversi.Control
         public ReversiBoardUI()
         {
             InitializeComponent();
-          (this.Content as FrameworkElement) = this;
+            //(Content as FrameworkElement) = this;
         }
 
         public static readonly DependencyProperty BoardColorsProperty = DependencyProperty.Register(
-            "BoardColors", 
-            typeof (Color[][]), 
-            typeof (ReversiBoardUI), 
+            "BoardColors",
+            typeof(Color[][]),
+            typeof(ReversiBoardUI),
             new PropertyMetadata(string.Empty, new PropertyChangedCallback((o, args) =>
             {
-                (o as ReversiBoardUI).BoardColors = (Color[][]) args.NewValue;
+                (o as ReversiBoardUI).BoardColors = (Color[][])args.NewValue;
                 (o as ReversiBoardUI).ReRendering();
             })));
 
         public Color[][] BoardColors
         {
-            get { return (Color[][]) GetValue(BoardColorsProperty); }
+            get { return (Color[][])GetValue(BoardColorsProperty); }
             set
             {
                 SetValue(BoardColorsProperty, value);
                 ReRendering();
             }
         }
-        
+
         public void ReRendering()
         {
+            var width = (int)Width;
+            var height = (int)Height;
             //X座標列を表示
             for (var i = 0; i < 8; i++)
             {
-                var x = 300/9*i + 25;
+                var x = width / 9 * (i + 1);
                 AddLabel(x, 0, Util.Int2Alphabet(i));
             }
 
             //Y座標列を表示
             for (var i = 1; i < 9; i++)
             {
-                var y = 300/9*i - 15;
+                var y = height / 9 * i;
                 AddLabel(10, y, i.ToString());
             }
 
@@ -62,8 +64,8 @@ namespace Reversi.Control
             {
                 for (var j = 0; j < 8; j++)
                 {
-                    var x = 300/9*i + 20;
-                    var y = 300/9*j + 20;
+                    var x = width / 9 * (i + 1);
+                    var y = height / 9 * (j + 1);
                     AddStone(x, y, i, j);
                 }
             }

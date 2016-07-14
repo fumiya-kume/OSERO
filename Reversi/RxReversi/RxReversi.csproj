@@ -20,6 +20,9 @@
     <PackageCertificateKeyFile>
     </PackageCertificateKeyFile>
     <PackageCertificateThumbprint>335C10E466EBF9E8D0AD4C98B182E38EAA1058D1</PackageCertificateThumbprint>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>

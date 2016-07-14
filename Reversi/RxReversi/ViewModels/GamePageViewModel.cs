@@ -66,12 +66,12 @@ namespace RxReversi.ViewModels
                     new Point { X = o.X, Y = o.Y },
                     BoardWidth.Value,BoardHeight.Value);
                 Debug.Write($"X:{colorpoint.x} Y:{colorpoint.y}");
-                Board.SetColor(colorpoint.x, colorpoint.y, Player.NowColor);
+                //Board.SetColor(colorpoint.x, colorpoint.y, Player.NowColor);
 
                 Player.ChangePlayer();
 
                 var AIcolorpoint = new IntelliGenceService(Board).GetShouldSetPoint(Color.White);
-                Board.SetColor(AIcolorpoint.x, AIcolorpoint.y, Color.White);
+                //Board.SetColor(AIcolorpoint.x, AIcolorpoint.y, Color.White);
             });
 
         }

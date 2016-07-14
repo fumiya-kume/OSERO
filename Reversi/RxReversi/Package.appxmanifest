@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="94561558-419e-4c81-a7c9-469e96c80201" Publisher="CN=gurag" Version="1.0.0.0" />
+  <Identity Name="94561558-419e-4c81-a7c9-469e96c80201" Publisher="CN=gurag" Version="3.0.3.0" />
   <mp:PhoneIdentity PhoneProductId="94561558-419e-4c81-a7c9-469e96c8fb38" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>02-01-PrismUnityApp</DisplayName>

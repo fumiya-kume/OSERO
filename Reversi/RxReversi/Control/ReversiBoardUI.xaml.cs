@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Notifications;
 using Windows.UI.Xaml;
@@ -9,6 +10,7 @@ using Windows.UI.Xaml.Shapes;
 using RxReversi.Model;
 using Color = RxReversi.classes.Color;
 using RxReversi.classes;
+using static RxReversi.Services.ColorPoint2PointService;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -49,14 +51,14 @@ namespace Reversi.Control
             //X座標列を表示
             for (var i = 0; i < 8; i++)
             {
-                var x = width / 9 * (i + 1);
+                var x = ConvertX(width, i);
                 AddLabel(x, 0, Util.Int2Alphabet(i));
             }
 
             //Y座標列を表示
             for (var i = 1; i < 9; i++)
             {
-                var y = height / 9 * i;
+                var y = ConvertY(height, i);
                 AddLabel(10, y, i.ToString());
             }
 
@@ -64,9 +66,7 @@ namespace Reversi.Control
             {
                 for (var j = 0; j < 8; j++)
                 {
-                    var x = width / 9 * (i + 1);
-                    var y = height / 9 * (j + 1);
-                    AddStone(x, y, i, j);
+                    AddStone(Convert(width, height, i, j), i, j);
                 }
             }
         }
@@ -82,7 +82,7 @@ namespace Reversi.Control
             Boardcanvas.Children.Add(label);
         }
 
-        private void AddStone(int x, int y, int i, int j)
+        private void AddStone(Point point, int i, int j)
         {
             var Circle = new Ellipse
             {
@@ -103,14 +103,14 @@ namespace Reversi.Control
                 default:
                     break;
             }
-            Canvas.SetLeft(Circle, x);
-            Canvas.SetTop(Circle, y);
+            Canvas.SetLeft(Circle, point.X);
+            Canvas.SetTop(Circle, point.Y);
             Boardcanvas.Children.Add(Circle);
         }
 
         private void Boardcanvas_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            ReConvert(e.GetPosition(this), (int)Width, (int)Height);
         }
     }
 }

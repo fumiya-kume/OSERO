@@ -202,7 +202,7 @@ namespace RxReversi.classes
                         var ifBoard = (ReversiBoard)MemberwiseClone();
                         if (ifBoard.IsReversiAllDirectionWithColor(i, j, color))
                         {
-                            ColorPointList.Add(new ColorPoint { x = i, y = j });
+                            ColorPointList.Add(new ColorPoint(i,j));
                         }
                     }
                 }

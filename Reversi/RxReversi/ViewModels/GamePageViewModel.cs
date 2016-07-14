@@ -12,7 +12,7 @@ using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using RxReversi.classes;
 using RxReversi.Model;
-using RxReversi.Services;
+using static RxReversi.Services.ColorPoint2PointService;
 
 namespace RxReversi.ViewModels
 {
@@ -60,12 +60,8 @@ namespace RxReversi.ViewModels
             BoardTappedCommand = new ReactiveCommand<Point>();
             BoardTappedCommand.Subscribe(o =>
             {
-                Debug.Write($"X:{o.X} Y:{o.Y}");
-
-                var colorpoint = Position2PointService.Translate(
-                    new Point { X = o.X, Y = o.Y },
-                    BoardWidth.Value,BoardHeight.Value);
-                Debug.Write($"X:{colorpoint.x} Y:{colorpoint.y}");
+                //var colorpoint = ReConvert(new Point(o.X, o.Y), (int) BoardWidth.Value, (int) BoardHeight.Value);
+                
                 //Board.SetColor(colorpoint.x, colorpoint.y, Player.NowColor);
 
                 Player.ChangePlayer();

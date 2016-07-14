@@ -19,7 +19,7 @@ namespace RxReversi.Services
             TranslateX(point.X, BoardWidth);
             TranslateY(point.Y, BoardHeight);
             
-            return new ColorPoint { x = (int)x, y = (int)y };
+            return new ColorPoint(x,y);
         }
 
         private static int TranslateX(double XPoint, double BoardWidth)

@@ -8,12 +8,12 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 using RxReversi.classes;
 using RxReversi.Model;
+using RxReversi.Services;
 using Color = RxReversi.classes.Color;
-using static RxReversi.Services.ColorPoint2PointService;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace Reversi.Control
+namespace RxReversi.Control
 {
     public partial class ReversiBoardUI : UserControl
     {
@@ -50,14 +50,14 @@ namespace Reversi.Control
             //X座標列を表示
             for (var i = 0; i < 8; i++)
             {
-                var x = ConvertX(width, i);
+                var x = ColorPoint2PointService.ConvertX(width, i);
                 AddLabel(x, 0, Util.Int2Alphabet(i));
             }
 
             //Y座標列を表示
             for (var i = 0; i < 8; i++)
             {
-                var y = ConvertY(height, i);
+                var y = ColorPoint2PointService.ConvertY(height, i);
                 AddLabel(10, y, i.ToString());
             }
 
@@ -65,7 +65,7 @@ namespace Reversi.Control
             {
                 for (var j = 0; j < 8; j++)
                 {
-                    AddStone(Convert(width, height, i, j), i, j);
+                    AddStone(ColorPoint2PointService.Convert(width, height, i, j), i, j);
                 }
             }
         }
@@ -99,8 +99,6 @@ namespace Reversi.Control
                 case Color.None:
                     Circle.Fill = new SolidColorBrush(Colors.SkyBlue);
                     break;
-                default:
-                    break;
             }
             Canvas.SetLeft(Circle, point.X);
             Canvas.SetTop(Circle, point.Y);
@@ -111,7 +109,7 @@ namespace Reversi.Control
         public event BoardTappedHandler Changed;
         private void Boardcanvas_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            var result = ReConvert(e.GetPosition(this), (int)Width, (int)Height);
+            var result = ColorPoint2PointService.ReConvert(e.GetPosition(this), (int)Width, (int)Height);
 
             Changed?.Invoke(this, new BoardTappedArgs(result));
         }

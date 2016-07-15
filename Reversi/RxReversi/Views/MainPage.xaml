@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="using:Prism.Windows.Mvvm"
-    xmlns:Control="using:Reversi.Control"
     x:Class="RxReversi.Views.MainPage"
     mc:Ignorable="d"
     prism:ViewModelLocator.AutoWireViewModel="True">

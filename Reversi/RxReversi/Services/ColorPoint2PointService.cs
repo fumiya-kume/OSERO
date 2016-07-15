@@ -25,7 +25,7 @@ namespace RxReversi.Services
                 {
                     x = i;
                 }
-                if (height / 9 * (i + 1) - 10 < point.X && point.X < height / 9 * (i + 1) + 10)
+                if (height / 9 * (i + 1) - 10 < point.Y && point.Y < height / 9 * (i + 1) + 10)
                 {
                     y = i;
                 }

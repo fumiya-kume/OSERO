@@ -1,15 +1,14 @@
 ﻿using System;
 using Windows.Foundation;
 using Windows.UI;
-using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
+using RxReversi.classes;
 using RxReversi.Model;
 using Color = RxReversi.classes.Color;
-using RxReversi.classes;
 using static RxReversi.Services.ColorPoint2PointService;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
@@ -28,11 +27,11 @@ namespace Reversi.Control
             "BoardColors",
             typeof(Color[][]),
             typeof(ReversiBoardUI),
-            new PropertyMetadata(string.Empty, new PropertyChangedCallback((o, args) =>
+            new PropertyMetadata(string.Empty, (o, args) =>
             {
-                (o as ReversiBoardUI).BoardColors = (Color[][])args.NewValue;
-                (o as ReversiBoardUI).ReRendering();
-            })));
+                ((ReversiBoardUI) o).BoardColors = (Color[][])args.NewValue;
+                ((ReversiBoardUI) o).ReRendering();
+            }));
 
         public Color[][] BoardColors
         {
@@ -108,9 +107,23 @@ namespace Reversi.Control
             Boardcanvas.Children.Add(Circle);
         }
 
+        public delegate void BoardTappedHandler(object sender, BoardTappedArgs cla);
+        public event BoardTappedHandler Changed;
         private void Boardcanvas_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            ReConvert(e.GetPosition(this), (int)Width, (int)Height);
+            var result = ReConvert(e.GetPosition(this), (int)Width, (int)Height);
+
+            Changed?.Invoke(this, new BoardTappedArgs(result));
+        }
+    }
+
+    public class BoardTappedArgs:EventArgs
+    {
+        public ColorPoint ColorPoint { get; set; }
+
+        public BoardTappedArgs(ColorPoint colorPoint)
+        {
+            ColorPoint = colorPoint;
         }
     }
 }

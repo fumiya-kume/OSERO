@@ -21,11 +21,11 @@ namespace RxReversi.Services
 
             for (int i = 0; i < 8; i++)
             {
-                if (width / 9 * (i + 1) - 10 < point.X || point.X < width / 9 * (i + 1) + 10)
+                if (width / 9 * (i + 1) - 10 < point.X && point.X < width / 9 * (i + 1) + 10)
                 {
                     x = i;
                 }
-                if (height / 9 * (i + 1) - 10 < point.X || point.X < height / 9 * (i + 1) + 10)
+                if (height / 9 * (i + 1) - 10 < point.X && point.X < height / 9 * (i + 1) + 10)
                 {
                     y = i;
                 }

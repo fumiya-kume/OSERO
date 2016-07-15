@@ -56,7 +56,7 @@ namespace Reversi.Control
             }
 
             //Y座標列を表示
-            for (var i = 1; i < 9; i++)
+            for (var i = 0; i < 8; i++)
             {
                 var y = ConvertY(height, i);
                 AddLabel(10, y, i.ToString());

@@ -15,9 +15,9 @@ using Color = RxReversi.classes.Color;
 
 namespace RxReversi.Control
 {
-    public partial class ReversiBoardUI : UserControl
+    public partial class ReversiBoardUi : UserControl
     {
-        public ReversiBoardUI()
+        public ReversiBoardUi()
         {
             InitializeComponent();
             //(Content as FrameworkElement) = this;
@@ -26,11 +26,11 @@ namespace RxReversi.Control
         public static readonly DependencyProperty BoardColorsProperty = DependencyProperty.Register(
             "BoardColors",
             typeof(Color[][]),
-            typeof(ReversiBoardUI),
+            typeof(ReversiBoardUi),
             new PropertyMetadata(string.Empty, (o, args) =>
             {
-                ((ReversiBoardUI) o).BoardColors = (Color[][])args.NewValue;
-                ((ReversiBoardUI) o).ReRendering();
+                ((ReversiBoardUi) o).BoardColors = (Color[][])args.NewValue;
+                ((ReversiBoardUi) o).ReRendering();
             }));
 
         public Color[][] BoardColors
@@ -117,7 +117,7 @@ namespace RxReversi.Control
 
     public class BoardTappedArgs:EventArgs
     {
-        public ColorPoint ColorPoint { get; set; }
+        ColorPoint ColorPoint { get; set; }
 
         public BoardTappedArgs(ColorPoint colorPoint)
         {

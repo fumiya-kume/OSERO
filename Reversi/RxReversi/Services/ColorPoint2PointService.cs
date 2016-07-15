@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using RxReversi.classes;
 

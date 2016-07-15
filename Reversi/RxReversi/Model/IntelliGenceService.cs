@@ -23,7 +23,7 @@ namespace RxReversi.Model
 
         private int GetEvaluationValue(ColorPoint point)
         {
-            int[][] EvaluatioMap =
+            int[][] evaluatioMap =
             {
                 new[] {30, -12, 0, -1, -1, 0, -12, 30},
                 new[] {-12, -15, -3, -3, -3, -3, -15, -12},
@@ -34,7 +34,7 @@ namespace RxReversi.Model
                 new[] {-12, -15, -3, -3, -3, -3, -15, -12},
                 new[] {30, -12, 0, -1, -1, 0, -12, 30}
             };
-            return EvaluatioMap[point.x][point.y];
+            return evaluatioMap[point.x][point.y];
         }
     }
 }

@@ -169,12 +169,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RxReversiTest\RxReversiTest.csproj">
-      <Project>{2c4fb7c5-5245-4274-950c-d06fa01bb080}</Project>
-      <Name>RxReversiTest</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

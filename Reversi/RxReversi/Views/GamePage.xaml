@@ -12,7 +12,7 @@
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:converters="using:RxReversi.Converters"
       xmlns:control="using:RxReversi.Control"
-      mvvm:ViewModelLocator.AutoWireViewModel="True">
+      mvvm:ViewModelLocator.AutoWireViewModel="True" RequestedTheme="Dark">
     <Page.TopAppBar>
         <CommandBar>
             <CommandBar.Content>

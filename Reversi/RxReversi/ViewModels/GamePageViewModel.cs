@@ -58,16 +58,18 @@ namespace RxReversi.ViewModels
                 .ToReactiveProperty();
 
             BoardTappedCommand = new ReactiveCommand<Point>();
-            BoardTappedCommand.Subscribe(o =>
+            BoardTappedCommand
+                .Where(point => Util.IsRange((int)point.X,(int)point.Y))
+                .Subscribe(o =>
             {
                 //var colorpoint = ReConvert(new Point(o.X, o.Y), (int) BoardWidth.Value, (int) BoardHeight.Value);
                 
-                Board.SetColor(new ColorPoint((int)o.X, (int)o.Y), Player.NowColor);
+                //Board.SetColor(new ColorPoint((int)o.X, (int)o.Y), Player.NowColor);
 
                 Player.ChangePlayer();
 
                 var AIcolorpoint = new IntelliGenceService(Board).GetShouldSetPoint(Color.White);
-                Board.SetColor(new ColorPoint(AIcolorpoint.x, AIcolorpoint.y), Color.White);
+                //Board.SetColor(new ColorPoint(AIcolorpoint.x, AIcolorpoint.y), Color.White);
             });
 
         }

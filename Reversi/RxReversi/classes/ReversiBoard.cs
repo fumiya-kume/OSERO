@@ -91,8 +91,10 @@ namespace RxReversi.classes
             }
         }
 
-        public void SetColor(int x, int y, Color color)
+        public void SetColor(ColorPoint colorpoint, Color color)
         {
+            var x = colorpoint.x;
+            var y = colorpoint.y;
             if (!Util.IsRange(x, y)) throw new IndexOutOfRangeException("値がおかしいです");
             if (!IsAlreadlySet(x, y)) throw new OverrideStoneException("すでに石が置かれています");
             if (!IsReversiAllDirectionWithColor(x, y, color)) throw new DisableStone("その場所に駒を置くことはできません");
@@ -172,7 +174,7 @@ namespace RxReversi.classes
             while (true)
             {
                 if (GetColor(nx, ny) != Util.EnemyColor(color)) break;
-                SetColor(nx, ny, color);
+                SetColor(new ColorPoint(nx,ny), color);
                 nx += dx;
                 ny += dy;
             }

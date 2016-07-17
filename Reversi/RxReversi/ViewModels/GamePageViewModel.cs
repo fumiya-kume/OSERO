@@ -60,6 +60,7 @@ namespace RxReversi.ViewModels
             BoardTappedCommand = new ReactiveCommand<Point>();
             BoardTappedCommand
                 .Where(point => Util.IsRange((int)point.X,(int)point.Y))
+                .Where(point => Board.IsNone((int)point.X,(int)point.Y))
                 .Subscribe(o =>
             {
                 //var colorpoint = ReConvert(new Point(o.X, o.Y), (int) BoardWidth.Value, (int) BoardHeight.Value);

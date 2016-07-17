@@ -23,12 +23,10 @@ namespace RxReversi.Services
                 if (width / 9 * (i + 1) - 10 < point.X && point.X < width / 9 * (i + 1) + 10)
                 {
                     x = i;
-                    x++;
                 }
                 if (height / 9 * (i + 1) - 10 < point.Y && point.Y < height / 9 * (i + 1) + 10)
                 {
                     y = i;
-                    y++;
                 }
             }
             Debug.Write($"point.x:{point.X} => {x}\npoint.y:{point.Y}=>{y}\n\n");

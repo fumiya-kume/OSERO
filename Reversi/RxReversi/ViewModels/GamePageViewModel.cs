@@ -61,6 +61,7 @@ namespace RxReversi.ViewModels
             BoardTappedCommand
                 .Where(point => Util.IsRange((int)point.X,(int)point.Y))
                 .Where(point => Board.IsNone((int)point.X,(int)point.Y))
+                .Where(point => Board.IsReversiAllDirectionWithColor((int)point.X,(int)point.Y,Player.NowColor))
                 .Subscribe(o =>
             {
                 //var colorpoint = ReConvert(new Point(o.X, o.Y), (int) BoardWidth.Value, (int) BoardHeight.Value);

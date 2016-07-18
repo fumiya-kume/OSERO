@@ -95,9 +95,9 @@ namespace RxReversi.classes
         {
             var x = colorpoint.x;
             var y = colorpoint.y;
-            if (!Util.IsRange(x, y)) throw new IndexOutOfRangeException("値がおかしいです");
-            if (!IsAlreadlySet(x, y)) throw new OverrideStoneException("すでに石が置かれています");
-            if (!IsReversiAllDirectionWithColor(x, y, color)) throw new DisableStone("その場所に駒を置くことはできません");
+            //if (!Util.IsRange(x, y)) throw new IndexOutOfRangeException("値がおかしいです");
+            //if (!IsAlreadlySet(x, y)) throw new OverrideStoneException("すでに石が置かれています");
+            //if (!IsReversiAllDirectionWithColor(x, y, color)) throw new DisableStone("その場所に駒を置くことはできません");
             Board[x][y] = color;
             ReversiAllDirection(x, y, color);
         }

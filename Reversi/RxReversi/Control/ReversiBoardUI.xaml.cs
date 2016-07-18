@@ -117,7 +117,7 @@ namespace RxReversi.Control
 
     public class BoardTappedArgs:EventArgs
     {
-        ColorPoint ColorPoint { get; set; }
+        public ColorPoint ColorPoint { get; set; }
 
         public BoardTappedArgs(ColorPoint colorPoint)
         {

@@ -108,6 +108,7 @@
     <Compile Include="Control\ReversiBoardUI.xaml.cs">
       <DependentUpon>ReversiBoardUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\TappedEventArgToColorPosition.cs" />
     <Compile Include="Converters\TapPositionConverter.cs" />
     <Compile Include="Extentison\MaxElement.cs" />
     <Compile Include="Model\IntelliGenceService.cs" />

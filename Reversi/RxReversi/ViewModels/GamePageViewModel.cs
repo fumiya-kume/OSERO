@@ -30,7 +30,7 @@ namespace RxReversi.ViewModels
         public ReactiveProperty<double> BoardHeight { get; set; } = new ReactiveProperty<double>(300);
         public ReactiveProperty<Color[][]> Colors { get; set; }
 
-        public ReactiveCommand<Point> BoardTappedCommand { get; set; }
+        public ReactiveCommand<ColorPoint> BoardTappedCommand { get; set; }
 
         public GamePageViewModel(INavigationService navigationService)
         {
@@ -57,11 +57,11 @@ namespace RxReversi.ViewModels
                 .Select(c => $"白：{c}")
                 .ToReactiveProperty();
 
-            BoardTappedCommand = new ReactiveCommand<Point>();
+            BoardTappedCommand = new ReactiveCommand<ColorPoint>();
             BoardTappedCommand
-                .Where(point => Util.IsRange((int)point.X, (int)point.Y))
-                .Where(point => Board.IsNone((int)point.X, (int)point.Y))
-                .Where(point => Board.IsReversiAllDirectionWithColor((int)point.X, (int)point.Y, Player.NowColor))
+                .Where(point => Util.IsRange((int)point.x, (int)point.y))
+                .Where(point => Board.IsNone((int)point.x, (int)point.y))
+                .Where(point => Board.IsReversiAllDirectionWithColor((int)point.x, (int)point.y, Player.NowColor))
                 .Subscribe(o =>
             {
                 //var colorpoint = ReConvert(new Point(o.X, o.Y), (int) BoardWidth.Value, (int) BoardHeight.Value);

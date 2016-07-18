@@ -40,14 +40,23 @@
         <Viewbox>
             <control:ReversiBoardUi Width="{Binding BoardWidth.Value, Mode=TwoWay}" Height="{Binding BoardHeight.Value, Mode=TwoWay}" BoardColors="{Binding Colors.Value}"  >
                 <interactivity:Interaction.Behaviors>
-                    <Core:EventTriggerBehavior EventName="Tapped">
+                    <Core:EventTriggerBehavior EventName="Changed">
+                        <Interactivity1:EventToReactiveCommand>
+                            <Interactivity1:EventToReactiveCommand.Command>
+                                <Binding Path="BoardTappedCommand" />
+                            </Interactivity1:EventToReactiveCommand.Command>
+                            <converters:TappedEventArgToColorPosition/>
+                        </Interactivity1:EventToReactiveCommand>
+                    </Core:EventTriggerBehavior>
+
+                    <!--<Core:EventTriggerBehavior EventName="Tapped">
                         <Interactivity1:EventToReactiveCommand>
                             <Interactivity1:EventToReactiveCommand.Command>
                                 <Binding Path="BoardTappedCommand" />
                             </Interactivity1:EventToReactiveCommand.Command>
                             <converters:TapPositionConverter/>
                         </Interactivity1:EventToReactiveCommand>
-                    </Core:EventTriggerBehavior>
+                    </Core:EventTriggerBehavior>-->
                 </interactivity:Interaction.Behaviors>
             </control:ReversiBoardUi>
         </Viewbox>

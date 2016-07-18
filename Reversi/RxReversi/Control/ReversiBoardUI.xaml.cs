@@ -58,7 +58,7 @@ namespace RxReversi.Control
             for (var i = 0; i < 8; i++)
             {
                 var y = ColorPoint2PointService.ConvertY(height, i);
-                AddLabel(10, y, i.ToString());
+                AddLabel(10, y, (i + 1).ToString());
             }
 
             for (var i = 0; i < 8; i++)

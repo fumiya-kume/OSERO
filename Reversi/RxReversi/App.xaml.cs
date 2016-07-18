@@ -5,10 +5,12 @@ using RxReversi.ViewModels;
 using RxReversi.Views;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
+using Windows.UI.Xaml.Data;
 using RxReversi.Model;
 
 namespace RxReversi
 {
+    [Bindable]
     public partial class App : PrismUnityApplication
     {
         public App() : base()

@@ -5,11 +5,11 @@
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   IgnorableNamespaces="uap mp">
 
-  <Identity Name="6f048505-c111-4cf3-a1b5-999765f0a854"
+  <Identity Name="2c850792-fc2d-4d2d-a672-55229a981b94"
             Publisher="CN=gurag"
             Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="6f048505-c111-4cf3-a1b5-999765f0a854" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="2c850792-fc2d-4d2d-a672-55229a981b94" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>RxReversiTest</DisplayName>

@@ -18,7 +18,7 @@
             <CommandBar.Content>
                 <Grid/>
             </CommandBar.Content>
-            <AppBarButton x:Name="appBarButton" Label="">
+            <!--<AppBarButton x:Name="appBarButton" Label="">
                 <AppBarButton.Icon>
                     <FontIcon  FontFamily="Segoe UI" Glyph="{Binding WhiteStone.Value}"/>
                 </AppBarButton.Icon>
@@ -27,7 +27,7 @@
                 <AppBarButton.Icon>
                     <FontIcon FontFamily="Segoe UI" Glyph="{Binding BlackStone.Value}"/>
                 </AppBarButton.Icon>
-            </AppBarButton>
+            </AppBarButton>-->
             <AppBarButton x:Name="現在のプレイヤー">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{Binding NowColor.Value}" FontFamily="Segoe UI"/>
@@ -38,7 +38,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Viewbox>
-            <control:ReversiBoardUi Width="{Binding BoardWidth.Value, Mode=TwoWay}" Height="{Binding BoardHeight.Value, Mode=TwoWay}" BoardColors="{Binding Colors.Value}"  >
+            <control:ReversiBoardUi Width="{Binding BoardWidth.Value, Mode=TwoWay}" Height="{Binding BoardHeight.Value, Mode=TwoWay}" BoardColors="{Binding Colors.Value, Mode=TwoWay}"  >
                 <interactivity:Interaction.Behaviors>
                     <Core:EventTriggerBehavior EventName="Changed">
                         <Interactivity1:EventToReactiveCommand>

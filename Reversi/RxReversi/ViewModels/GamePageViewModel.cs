@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Foundation;
 using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using RxReversi.classes;
 using RxReversi.Model;
-using static RxReversi.Services.ColorPoint2PointService;
 
 namespace RxReversi.ViewModels
 {
@@ -28,6 +21,9 @@ namespace RxReversi.ViewModels
         public ReactiveProperty<string> WhiteStone { get; set; }
         public ReactiveProperty<double> BoardWidth { get; set; } = new ReactiveProperty<double>(300);
         public ReactiveProperty<double> BoardHeight { get; set; } = new ReactiveProperty<double>(300);
+
+
+        private ReactiveProperty<Color[][]> _colors;
         public ReactiveProperty<Color[][]> Colors { get; set; }
 
         public ReactiveCommand<ColorPoint> BoardTappedCommand { get; set; }
@@ -36,8 +32,7 @@ namespace RxReversi.ViewModels
         {
             this.navigationService = navigationService;
 
-            Board.Init();
-
+            
             Colors = Board
                 .ObserveProperty(c => c.Board)
                 .ToReactiveProperty();
@@ -47,32 +42,35 @@ namespace RxReversi.ViewModels
                 .Select(c => c.ToString())
                 .ToReactiveProperty();
 
-            BlackStone = Board
-                .ObserveProperty(c => c.CountBlackColor)
-                .Select(c => $"黒：{c}")
-                .ToReactiveProperty();
+            //BlackStone = Board
+            //    .ObserveProperty(c => c.Board)
+            //    .Select(c => $"黒：{Board.CountBlackColor.ToString()}")
+            //    .ToReactiveProperty();
 
-            WhiteStone = Board
-                .ObserveProperty(c => c.CountWhiteColor)
-                .Select(c => $"白：{c}")
-                .ToReactiveProperty();
+            //WhiteStone = Board
+            //    .ObserveProperty(c => c.CountWhiteColor)
+            //    .Select(c => $"白：{c}")
+            //    .ToReactiveProperty();
+
+            Board.Init();
 
             BoardTappedCommand = new ReactiveCommand<ColorPoint>();
             BoardTappedCommand
-                .Where(point => Util.IsRange((int)point.x, (int)point.y))
-                .Where(point => Board.IsNone((int)point.x, (int)point.y))
-                .Where(point => Board.IsReversiAllDirectionWithColor((int)point.x, (int)point.y, Player.NowColor))
+                .Where(point => Util.IsRange(point.x, point.y))
+                .Where(point => Board.IsNone(point.x, point.y))
+                .Where(point => Board.IsReversiAllDirectionWithColor(point.x, point.y, Color.Black))
                 .Subscribe(o =>
             {
-                //var colorpoint = ReConvert(new Point(o.X, o.Y), (int) BoardWidth.Value, (int) BoardHeight.Value);
+                Board.SetColor(new ColorPoint(o.x,o.y),Color.Black );
+                Board.ReversiAllDirection(o.x, o.y, Color.Black);
+                var board2 = Board.Board;
+                Board.Board = board2;
 
-                //Board.SetColor(new ColorPoint(o.x,o.y), Player.NowColor);
-                Board.SetColor(new ColorPoint(0,0),Color.White );
-                Board.ReversiAllDirection(o.x, o.y, Player.NowColor);
-                Colors = Board.ObserveProperty(board => board.Board).ToReactiveProperty();
                 Player.ChangePlayer();
-                
-
+                if (!Board.IsContinue())
+                {
+                    navigationService.GoBack();
+                }
                 var AIcolorpoint = new IntelliGenceService(Board).GetShouldSetPoint(Color.White);
                 Board.SetColor(new ColorPoint(AIcolorpoint.x, AIcolorpoint.y), Color.White);
             });

@@ -2,25 +2,40 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Prism.Mvvm;
 using RxReversi.Model;
 
 namespace RxReversi.classes
 {
-    public class ReversiBoard : INotifyPropertyChanged
+    public class ReversiBoard : BindableBase
     {
 
-        private Color[][] board;
+        private Color[][] _board;
         public Color[][] Board
         {
-            get { return board; }
+            get { return _board; }
             set
             {
-                board = value;
-                PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(nameof(Board)));
+                SetProperty(ref _board,value);
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+
+        public int CountWhiteColor
+        {
+            get { return Board.Select(lists => lists.Count(list => list == Color.Black)).Aggregate((i, i1) => i + i1); }
+            set { OnPropertyChanged();}
+        }
+
+
+        public int CountBlackColor
+        {
+            get { return Board.Select(lists => lists.Count(list => list == Color.Black)).Aggregate((i, i1) => i + i1); }
+            set { OnPropertyChanged();}
+        }
+
+        public int CountNoneColor
+            => Board.Select(lists => lists.Count(list => list == Color.None)).Aggregate((i, i1) => i + i1);
 
         public ReversiBoard()
         {
@@ -57,14 +72,7 @@ namespace RxReversi.classes
                 .CopyTo(Board[7], 0);
         }
 
-        public int CountWhiteColor
-            => Board.Select(lists => lists.Count(list => list == Color.Black)).Aggregate((i, i1) => i + i1);
-
-        public int CountBlackColor
-            => Board.Select(lists => lists.Count(list => list == Color.Black)).Aggregate((i, i1) => i + i1);
-
-        public int CountNoneColor
-            => Board.Select(lists => lists.Count(list => list == Color.None)).Aggregate((i, i1) => i + i1);
+        
 
         public bool IsNone(int x, int y)
             => GetColor(x, y) == Color.None;
@@ -95,10 +103,9 @@ namespace RxReversi.classes
         {
             var x = colorpoint.x;
             var y = colorpoint.y;
-            //if (!Util.IsRange(x, y)) throw new IndexOutOfRangeException("値がおかしいです");
-            //if (!IsAlreadlySet(x, y)) throw new OverrideStoneException("すでに石が置かれています");
-            //if (!IsReversiAllDirectionWithColor(x, y, color)) throw new DisableStone("その場所に駒を置くことはできません");
-            Board[x][y] = color;
+            var board2 = Board;
+            board2[x][y] = color;
+            Board = board2;
             ReversiAllDirection(x, y, color);
         }
 
@@ -176,7 +183,7 @@ namespace RxReversi.classes
             while (true)
             {
                 if (GetColor(nx, ny) != Util.EnemyColor(color)) break;
-                SetColor(new ColorPoint(nx,ny), color);
+                SetColor(new ColorPoint(nx, ny), color);
                 nx += dx;
                 ny += dy;
             }
@@ -194,6 +201,14 @@ namespace RxReversi.classes
             ReversiDirection(x, y, -1, -1, color); // Upper Left
         }
 
+        public bool IsContinue()
+        {
+            if (CountWhiteColor == 0) return false;
+            if (CountBlackColor == 0) return false;
+            if (CountNoneColor == 0) return false;
+            return true;
+        }
+
         public List<ColorPoint> GetEnableColorPointList(Color color)
         {
             var ColorPointList = new List<ColorPoint>();
@@ -206,7 +221,7 @@ namespace RxReversi.classes
                         var ifBoard = (ReversiBoard)MemberwiseClone();
                         if (ifBoard.IsReversiAllDirectionWithColor(i, j, color))
                         {
-                            ColorPointList.Add(new ColorPoint(i,j));
+                            ColorPointList.Add(new ColorPoint(i, j));
                         }
                     }
                 }

@@ -10,6 +10,7 @@ using RxReversi.classes;
 using RxReversi.Model;
 using RxReversi.Services;
 using Color = RxReversi.classes.Color;
+using System.Diagnostics;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -31,6 +32,7 @@ namespace RxReversi.Control
             {
                 ((ReversiBoardUi) o).BoardColors = (Color[][])args.NewValue;
                 ((ReversiBoardUi) o).ReRendering();
+                Debug.Write("ReRendering\n");
             }));
 
         public Color[][] BoardColors

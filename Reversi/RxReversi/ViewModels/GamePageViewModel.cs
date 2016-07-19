@@ -68,7 +68,10 @@ namespace RxReversi.ViewModels
 
                 //Board.SetColor(new ColorPoint(o.x,o.y), Player.NowColor);
                 Board.SetColor(new ColorPoint(0,0),Color.White );
+                Board.ReversiAllDirection(o.x, o.y, Player.NowColor);
+                Colors = Board.ObserveProperty(board => board.Board).ToReactiveProperty();
                 Player.ChangePlayer();
+                
 
                 var AIcolorpoint = new IntelliGenceService(Board).GetShouldSetPoint(Color.White);
                 Board.SetColor(new ColorPoint(AIcolorpoint.x, AIcolorpoint.y), Color.White);

@@ -7,8 +7,8 @@ namespace RxReversi.Model
     {
         public static bool IsRange(int x, int y)
         {
-            if (x < 0 || 8 < x) return false;
-            if (y < 0 || 8 < y) return false;
+            if (x < 0 || 7 < x) return false;
+            if (y < 0 || 7 < y) return false;
 
             return true;
         }

@@ -107,6 +107,7 @@ namespace RxReversi.classes
 
         private bool IsReversiDirection(int x, int y, int dx, int dy)
         {
+            if (!Util.IsRange(x, y)) { return false; }
             var nowColor = GetColor(x, y);
             var nx = x + dx;
             var ny = y + dy;
@@ -140,6 +141,7 @@ namespace RxReversi.classes
             var nowColor = color;
             var nx = x + dx;
             var ny = y + dy;
+            if (!Util.IsRange(nx, ny)) { return false; }
             if (GetColor(nx, ny) != Util.EnemyColor(nowColor)) return false;
             while (true)
             {

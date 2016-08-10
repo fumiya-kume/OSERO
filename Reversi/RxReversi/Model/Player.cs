@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel;
+using Prism.Mvvm;
 using RxReversi.classes;
 
 namespace RxReversi.Model
 {
-    public class Player : INotifyPropertyChanged
+    public class Player : BindableBase
     {
         public int SkipCounter { get; set; }
 
@@ -11,19 +12,13 @@ namespace RxReversi.Model
         {
             this.NowColor = Color.Black;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
         
         private Color _nowcolor;
 
         public Color NowColor
         {
             get { return _nowcolor; }
-            set
-            {
-                _nowcolor = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("NowColor"));
-            }
+            set { SetProperty(ref _nowcolor, value); }
         }
         
         public void ChangePlayer()

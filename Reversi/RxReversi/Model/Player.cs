@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 using RxReversi.classes;
 
 namespace RxReversi.Model

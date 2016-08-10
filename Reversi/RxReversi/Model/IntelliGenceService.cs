@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using RxReversi.classes;
-using RxReversi.Extentison;
 using RxReversi.Util;
 
 namespace RxReversi.Model

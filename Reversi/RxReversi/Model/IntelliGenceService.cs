@@ -2,6 +2,7 @@
 using System.Linq;
 using RxReversi.classes;
 using RxReversi.Extentison;
+using RxReversi.Util;
 
 namespace RxReversi.Model
 {
@@ -17,8 +18,7 @@ namespace RxReversi.Model
 
         public ColorPoint GetShouldSetPoint(Color color)
             => BoardData.GetEnableColorPointList(color)
-                .Select(
-                    colorpoint => { return new ColorData {point = colorpoint, Score = GetEvaluationValue(colorpoint)}; })
+                .Select(colorpoint => new ColorData { point = colorpoint, Score = GetEvaluationValue(colorpoint) })
                 .FindMax(c => c.Score).point;
 
         private int GetEvaluationValue(ColorPoint point)

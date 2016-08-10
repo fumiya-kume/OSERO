@@ -108,7 +108,6 @@
     <Compile Include="Control\ReversiBoardUI.xaml.cs">
       <DependentUpon>ReversiBoardUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Extentison\MaxElement.cs" />
     <Compile Include="Model\IntelliGenceService.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\ReversiLib.cs" />

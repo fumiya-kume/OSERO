@@ -11,10 +11,5 @@ namespace RxReversi.Model
         }
 
         public ReversiBoard Board { get; set; } = new ReversiBoard();
-        
-
-        
-
-        
     }
 }

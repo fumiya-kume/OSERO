@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxReversiTest", "RxReversiT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reversi", "Reversi\Reversi.csproj", "{1B50AC6E-B3BE-446E-8957-D67A3F81307C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reversi.test", "Reversi.test\Reversi.test.csproj", "{78FD3827-CC15-45DE-AEB0-D6CEE31E80D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -69,6 +71,24 @@ Global
 		{1B50AC6E-B3BE-446E-8957-D67A3F81307C}.Release|x86.ActiveCfg = Release|x86
 		{1B50AC6E-B3BE-446E-8957-D67A3F81307C}.Release|x86.Build.0 = Release|x86
 		{1B50AC6E-B3BE-446E-8957-D67A3F81307C}.Release|x86.Deploy.0 = Release|x86
+		{78FD3827-CC15-45DE-AEB0-D6CEE31E80D0}.Debug|ARM.ActiveCfg = Debug|ARM
+		{78FD3827-CC15-45DE-AEB0-D6CEE31E80D0}.Debug|ARM.Build.0 = Debug|ARM
+		{78FD3827-CC15-45DE-AEB0-D6CEE31E80D0}.Debug|ARM.Deploy.0 = Debug|ARM
+		{78FD3827-CC15-45DE-AEB0-D6CEE31E80D0}.Debug|x64.ActiveCfg = Debug|x64
+		{78FD3827-CC15-45DE-AEB0-D6CEE31E80D0}.Debug|x64.Build.0 = Debug|x64
+		{78FD3827-CC15-45DE-AEB0-D6CEE31E80D0}.Debug|x64.Deploy.0 = Debug|x64
+		{78FD3827-CC15-45DE-AEB0-D6CEE31E80D0}.Debug|x86.ActiveCfg = Debug|x86
+		{78FD3827-CC15-45DE-AEB0-D6CEE31E80D0}.Debug|x86.Build.0 = Debug|x86
+		{78FD3827-CC15-45DE-AEB0-D6CEE31E80D0}.Debug|x86.Deploy.0 = Debug|x86
+		{78FD3827-CC15-45DE-AEB0-D6CEE31E80D0}.Release|ARM.ActiveCfg = Release|ARM
+		{78FD3827-CC15-45DE-AEB0-D6CEE31E80D0}.Release|ARM.Build.0 = Release|ARM
+		{78FD3827-CC15-45DE-AEB0-D6CEE31E80D0}.Release|ARM.Deploy.0 = Release|ARM
+		{78FD3827-CC15-45DE-AEB0-D6CEE31E80D0}.Release|x64.ActiveCfg = Release|x64
+		{78FD3827-CC15-45DE-AEB0-D6CEE31E80D0}.Release|x64.Build.0 = Release|x64
+		{78FD3827-CC15-45DE-AEB0-D6CEE31E80D0}.Release|x64.Deploy.0 = Release|x64
+		{78FD3827-CC15-45DE-AEB0-D6CEE31E80D0}.Release|x86.ActiveCfg = Release|x86
+		{78FD3827-CC15-45DE-AEB0-D6CEE31E80D0}.Release|x86.Build.0 = Release|x86
+		{78FD3827-CC15-45DE-AEB0-D6CEE31E80D0}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

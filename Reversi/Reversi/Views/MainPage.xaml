@@ -10,5 +10,20 @@
     prism:ViewModelLocator.AutoWireViewModel="True">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <SplitView x:Name="MainSolit" Margin="0,40,0,0" DisplayMode="CompactInline" CompactPaneLength="40">
+            <SplitView.Content>
+                <Frame x:Name="ViewFrame"/>
+            </SplitView.Content>
+            <SplitView.Pane>
+                <StackPanel>
+                    <ListBox>
+                        <ListBoxItem Tapped="{x:Bind ViewModel.GameShow}">ゲーム</ListBoxItem>
+                        <ListBoxItem Tapped="{x:Bind ViewModel.SettingShow}">設定</ListBoxItem>
+                    </ListBox>
+                </StackPanel>
+            </SplitView.Pane>
+        </SplitView>
+        <TextBlock Margin="40,0,0,0" FontSize="22" Height="40" VerticalAlignment="Top">Title</TextBlock>
+        <ToggleButton x:Name="MainToggle" VerticalAlignment="Top" Content="&#xE700;" IsChecked="{Binding IsPaneOpen, ElementName=MainSolit, Mode=TwoWay}" Width="40" Height="40" FontFamily="Segoe MDL2 Assets"/>
     </Grid>
 </prism:SessionStateAwarePage>

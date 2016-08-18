@@ -10,6 +10,9 @@
     prism:ViewModelLocator.AutoWireViewModel="True">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock>GameView</TextBlock>
+        <TextBlock FontSize="36" Text="{x:Bind viewmodel.Greeting.Value,Mode=TwoWay}"/>
+        <Viewbox>
+            <Canvas Tapped="{x:Bind viewmodel.CanvasTapped}" Background="#FFCF2828" Width="300" Height="300"/>
+        </Viewbox>
     </Grid>
 </prism:SessionStateAwarePage>

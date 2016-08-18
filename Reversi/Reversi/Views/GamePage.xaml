@@ -10,9 +10,14 @@
     prism:ViewModelLocator.AutoWireViewModel="True">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock FontSize="36" Text="{x:Bind viewmodel.Greeting.Value,Mode=TwoWay}"/>
-        <Viewbox>
-            <Canvas Tapped="{x:Bind viewmodel.CanvasTapped}" Background="#FFCF2828" Width="300" Height="300"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <HyperlinkButton FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top">ユーザー:20</HyperlinkButton>
+        <HyperlinkButton FontSize="24" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top">AI:20</HyperlinkButton>
+        <Viewbox Margin="0,50,0,0" Grid.ColumnSpan="2">
+            <Canvas Loaded="{x:Bind viewmodel.CanvasLoaded}" Tapped="{x:Bind viewmodel.CanvasTapped}" Background="#FFCF2828" Width="300" Height="300"/>
         </Viewbox>
     </Grid>
 </prism:SessionStateAwarePage>

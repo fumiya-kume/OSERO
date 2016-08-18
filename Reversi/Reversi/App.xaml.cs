@@ -6,7 +6,6 @@ using Reversi.Views;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml.Data;
-using Reversi.Model;
 
 namespace Reversi
 {

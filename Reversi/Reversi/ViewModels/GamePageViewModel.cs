@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Prism.Windows.Mvvm;
-using Reversi.Model;
+using Reversi.Util;
 using static Reversi.Util.Int2AlphabetService;
 
 namespace Reversi.ViewModels

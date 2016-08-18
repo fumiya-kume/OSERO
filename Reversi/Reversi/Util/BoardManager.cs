@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Prism.Mvvm;
-using Reversi.Util;
 
-namespace Reversi.Model
+namespace Reversi.Util
 {
     public class BoardManager : BindableBase
     {

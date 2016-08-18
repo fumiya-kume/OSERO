@@ -34,6 +34,8 @@ namespace Reversi.ViewModels
             {
 
             }
+
+            navigationService.Navigate("Game", null);
         }
     }
 }

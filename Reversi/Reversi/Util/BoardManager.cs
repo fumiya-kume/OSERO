@@ -53,8 +53,11 @@ namespace Reversi.Util
             return GameBoard.Pieces[x][y];
         }
 
-        public void SetPiece(int x, int y, Piece piece)
+        public void UpdatePiece(int x, int y, Piece piece)
         {
+            if (x < 0 || 7 < x) throw new IndexOutOfRangeException("Out of " + nameof(x));
+            if (y < 0 || 7 < y) throw new IndexOutOfRangeException("Out of " + nameof(y));
+
             GameBoard.Pieces[x][y] = piece;
             WhitePiece = GameBoard.Pieces.Select(lists => lists.Count(list => list == Piece.Black)).Aggregate((i, i1) => i + i1);
             BlackPiece = GameBoard.Pieces.Select(lists => lists.Count(list => list == Piece.Black)).Aggregate((i, i1) => i + i1);

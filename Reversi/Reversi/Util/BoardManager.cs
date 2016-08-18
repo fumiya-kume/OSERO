@@ -47,6 +47,9 @@ namespace Reversi.Util
 
         public Piece GetPiece(int x, int y)
         {
+            if (x < 0 || 7 < x) throw new IndexOutOfRangeException("Out of " + nameof(x));
+            if (y < 0 || 7 < y) throw new IndexOutOfRangeException("Out of " + nameof(y));
+
             return GameBoard.Pieces[x][y];
         }
 
@@ -56,16 +59,6 @@ namespace Reversi.Util
             WhitePiece = GameBoard.Pieces.Select(lists => lists.Count(list => list == Piece.Black)).Aggregate((i, i1) => i + i1);
             BlackPiece = GameBoard.Pieces.Select(lists => lists.Count(list => list == Piece.Black)).Aggregate((i, i1) => i + i1);
             NonePiece = GameBoard.Pieces.Select(lists => lists.Count(list => list == Piece.None)).Aggregate((i, i1) => i + i1);
-        }
-
-        public bool IsSetValidation(int x,int y,Piece piece)
-        {
-            if (x < 0 || 7 < x) return false;
-            if (y < 0 || 7 < y) return false;
-
-            if (GetPiece(x, y) != Piece.None) return false;
-
-            return true;
         }
 
         private static Piece EnemyPiece(Piece Piece)

@@ -21,6 +21,8 @@ namespace Reversi.Views
                     s => Type.GetType(this.GetType().Namespace + $".{s}Page"),
                     new SessionStateService());
             };
+
+            ViewFrame.Navigate(typeof(GamePage));
         }
     }
 }

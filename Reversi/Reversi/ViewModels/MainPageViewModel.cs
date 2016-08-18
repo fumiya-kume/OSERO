@@ -19,7 +19,6 @@ namespace Reversi.ViewModels
         public MainPageViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
-            navigationService.Navigate("Game", null);
         }
 
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)

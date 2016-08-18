@@ -105,6 +105,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\CollectionExtensions.cs" />
     <Compile Include="Util\Converters.cs" />
+    <Compile Include="Util\GameBoard.cs" />
+    <Compile Include="Util\Piece.cs" />
     <Compile Include="ViewModels\GamePageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="Views\GamePage.xaml.cs">

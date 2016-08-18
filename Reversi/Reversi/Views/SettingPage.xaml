@@ -10,6 +10,9 @@
     prism:ViewModelLocator.AutoWireViewModel="True">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock>Setting View</TextBlock>
+        <StackPanel HorizontalAlignment="Center">
+            <ToggleSwitch Header="駒を置ける場所を可視化する" IsOn="True"></ToggleSwitch>
+            <ToggleSwitch Header="ユーザー名にデバイスのユーザー名を使う" IsOn="True"></ToggleSwitch>
+        </StackPanel>
     </Grid>
 </prism:SessionStateAwarePage>

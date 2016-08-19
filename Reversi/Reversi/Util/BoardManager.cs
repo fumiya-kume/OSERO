@@ -6,7 +6,7 @@ namespace Reversi.Util
 {
     public class BoardManager : BindableBase
     {
-        public GameBoard GameBoard { get; set; } = new GameBoard();
+        public Piece[][] GameBoard { get; set; }
 
         public BoardManager()
         {
@@ -15,7 +15,7 @@ namespace Reversi.Util
 
         public void InitGameBoard()
         {
-            GameBoard.Pieces = new[]
+            GameBoard = new[]
             {
                new[] { Piece.None, Piece.None, Piece.None, Piece.None, Piece.None, Piece.None, Piece.None, Piece.None },
                new[] { Piece.None, Piece.None, Piece.None, Piece.None, Piece.None, Piece.None, Piece.None, Piece.None },
@@ -33,7 +33,7 @@ namespace Reversi.Util
             if (x < 0 || 7 < x) throw new IndexOutOfRangeException("Out of " + nameof(x));
             if (y < 0 || 7 < y) throw new IndexOutOfRangeException("Out of " + nameof(y));
 
-            return GameBoard.Pieces[x][y];
+            return GameBoard[x][y];
         }
 
         public void UpdatePiece(int x, int y, Piece piece)
@@ -41,7 +41,7 @@ namespace Reversi.Util
             if (x < 0 || 7 < x) throw new IndexOutOfRangeException("Out of " + nameof(x));
             if (y < 0 || 7 < y) throw new IndexOutOfRangeException("Out of " + nameof(y));
 
-            GameBoard.Pieces[x][y] = piece;
+            GameBoard[x][y] = piece;
         }
 
         public static Piece EnemyPiece(Piece Piece)

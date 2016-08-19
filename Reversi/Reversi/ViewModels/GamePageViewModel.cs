@@ -19,11 +19,11 @@ namespace Reversi.ViewModels
 
         public GamePageViewModel()
         {
-            BlackPieceCount = BoardManager.ObserveProperty(manager => manager.GameBoard.Pieces)
+            BlackPieceCount = BoardManager.ObserveProperty(manager => manager.GameBoard)
                 .Cast<Piece>().Count(piece => piece == Piece.Black)
                 .Select(i => i.ToString()).ToReactiveProperty();
 
-            BlackPieceCount = BoardManager.ObserveProperty(manager => manager.GameBoard.Pieces)
+            BlackPieceCount = BoardManager.ObserveProperty(manager => manager.GameBoard)
                 .Cast<Piece>().Count(piece => piece == Piece.White)
                 .Select(i => i.ToString()).ToReactiveProperty();
         }

@@ -11,9 +11,6 @@ namespace Reversi.Util
         public BoardManager()
         {
             InitGameBoard();
-            //GameBoard.Pieces.Select(lists => lists.Count(list => list == Piece.Black)).Aggregate((i, i1) => i + i1);
-            //GameBoard.Pieces.Select(lists => lists.Count(list => list == Piece.Black)).Aggregate((i, i1) => i + i1);
-            //GameBoard.Pieces.Select(lists => lists.Count(list => list == Piece.None)).Aggregate((i, i1) => i + i1);
         }
 
         public void InitGameBoard()

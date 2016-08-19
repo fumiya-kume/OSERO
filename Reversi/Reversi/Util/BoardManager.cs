@@ -7,28 +7,14 @@ namespace Reversi.Util
     public class BoardManager : BindableBase
     {
         public GameBoard GameBoard { get; set; } = new GameBoard();
-        private int _whitePiece = 0;
-        private int _blackPiece;
-        private int _nonePiece;
 
-        public int WhitePiece
+        public BoardManager()
         {
-            get { return _whitePiece; }
-            set { SetProperty(ref _whitePiece, value); }
+            InitGameBoard();
+            //GameBoard.Pieces.Select(lists => lists.Count(list => list == Piece.Black)).Aggregate((i, i1) => i + i1);
+            //GameBoard.Pieces.Select(lists => lists.Count(list => list == Piece.Black)).Aggregate((i, i1) => i + i1);
+            //GameBoard.Pieces.Select(lists => lists.Count(list => list == Piece.None)).Aggregate((i, i1) => i + i1);
         }
-
-        public int BlackPiece
-        {
-            get { return _blackPiece; }
-            set { SetProperty(ref _blackPiece, value); }
-        }
-
-        public int NonePiece
-        {
-            get { return _nonePiece; }
-            set { SetProperty(ref _nonePiece, value); }
-        }
-
 
         public void InitGameBoard()
         {
@@ -59,12 +45,9 @@ namespace Reversi.Util
             if (y < 0 || 7 < y) throw new IndexOutOfRangeException("Out of " + nameof(y));
 
             GameBoard.Pieces[x][y] = piece;
-            WhitePiece = GameBoard.Pieces.Select(lists => lists.Count(list => list == Piece.Black)).Aggregate((i, i1) => i + i1);
-            BlackPiece = GameBoard.Pieces.Select(lists => lists.Count(list => list == Piece.Black)).Aggregate((i, i1) => i + i1);
-            NonePiece = GameBoard.Pieces.Select(lists => lists.Count(list => list == Piece.None)).Aggregate((i, i1) => i + i1);
         }
 
-        private static Piece EnemyPiece(Piece Piece)
+        public static Piece EnemyPiece(Piece Piece)
         {
             switch (Piece)
             {

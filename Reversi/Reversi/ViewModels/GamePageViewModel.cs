@@ -1,7 +1,10 @@
-﻿using Windows.UI.Xaml;
+﻿using System.Reactive.Linq;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Prism.Windows.Mvvm;
+using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 using Reversi.Util;
 using static Reversi.Util.Int2AlphabetService;
 
@@ -10,8 +13,20 @@ namespace Reversi.ViewModels
     public class GamePageViewModel : ViewModelBase
     {
         public BoardManager BoardManager { get; set; } = new BoardManager();
+        
+        public ReactiveProperty<string> BlackPieceCount { get; set; }
+        public ReactiveProperty<string> WhitePieceCount { get; set; }
 
+        public GamePageViewModel()
+        {
+            BlackPieceCount = BoardManager.ObserveProperty(manager => manager.GameBoard.Pieces)
+                .Cast<Piece>().Count(piece => piece == Piece.Black)
+                .Select(i => i.ToString()).ToReactiveProperty();
 
+            BlackPieceCount = BoardManager.ObserveProperty(manager => manager.GameBoard.Pieces)
+                .Cast<Piece>().Count(piece => piece == Piece.White)
+                .Select(i => i.ToString()).ToReactiveProperty();
+        }
 
         public void CanvasLoaded(object o, RoutedEventArgs args)
         {

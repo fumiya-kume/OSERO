@@ -14,8 +14,8 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <HyperlinkButton FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top">ユーザー:20</HyperlinkButton>
-        <HyperlinkButton FontSize="24" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top">AI:20</HyperlinkButton>
+        <!--<HyperlinkButton FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top" Content="{x:Bind viewmodel.UserText}"/>-->
+        <!--<HyperlinkButton FontSize="24" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Content="{x:Bind viewmodel.AIText}"/>-->
         <Viewbox Margin="0,50,0,0" Grid.ColumnSpan="2">
             <Canvas Loaded="{x:Bind viewmodel.CanvasLoaded}" Tapped="{x:Bind viewmodel.CanvasTapped}" Background="#FFCF2828" Width="300" Height="300"/>
         </Viewbox>

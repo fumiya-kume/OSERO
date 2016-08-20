@@ -1,4 +1,5 @@
-﻿using System.Reactive.Linq;
+﻿using System.Linq;
+using System.Reactive.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -7,25 +8,34 @@ using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using Reversi.Util;
 using static Reversi.Util.Int2AlphabetService;
+using static Reversi.Util.Piece;
 
 namespace Reversi.ViewModels
 {
     public class GamePageViewModel : ViewModelBase
     {
         public BoardManager BoardManager { get; set; } = new BoardManager();
-        
+
+
+        public ReactiveProperty<string> UserText { get; set; }
+        public ReactiveProperty<string> AIText { get; set; }
         public ReactiveProperty<string> BlackPieceCount { get; set; }
         public ReactiveProperty<string> WhitePieceCount { get; set; }
 
         public GamePageViewModel()
         {
-            //BlackPieceCount = BoardManager.ObserveProperty(manager => manager.GameBoard)
-            //    .Cast<Piece>().Count(piece => piece == Piece.Black)
-            //    .Select(i => i.ToString()).ToReactiveProperty();
+            BlackPieceCount = BoardManager.ObserveProperty(manager => manager.GameBoard)
+                .SelectMany(pieces => pieces).SelectMany(pieces => pieces)
+                .Count(piece => piece == Black).Select(i => i.ToString())
+                .ToReactiveProperty();
 
-            //BlackPieceCount = BoardManager.ObserveProperty(manager => manager.GameBoard)
-            //    .Cast<Piece>().Count(piece => piece == Piece.White)
-            //    .Select(i => i.ToString()).ToReactiveProperty();
+            BlackPieceCount = BoardManager.ObserveProperty(manager => manager.GameBoard)
+                .SelectMany(pieces => pieces).SelectMany(pieces => pieces)
+                .Count(piece => piece == White).Select(i => i.ToString())
+                .ToReactiveProperty();
+
+            //UserText = BlackPieceCount.Select(s => "User:" + s).ToReactiveProperty();
+            //AIText = WhitePieceCount.Select(s => "AI:" + s).ToReactiveProperty();
         }
 
         public void CanvasLoaded(object o, RoutedEventArgs args)

@@ -19,23 +19,19 @@ namespace Reversi.ViewModels
 
         public ReactiveProperty<string> UserText { get; set; }
         public ReactiveProperty<string> AIText { get; set; }
-        public ReactiveProperty<string> BlackPieceCount { get; set; }
-        public ReactiveProperty<string> WhitePieceCount { get; set; }
+        public ReactiveProperty<string> Greeting { get; set; } = new ReactiveProperty<string>("Hello World");
 
         public GamePageViewModel()
         {
-            BlackPieceCount = BoardManager.ObserveProperty(manager => manager.GameBoard)
+            UserText = BoardManager.ObserveProperty(manager => manager.GameBoard)
                 .SelectMany(pieces => pieces).SelectMany(pieces => pieces)
-                .Count(piece => piece == Black).Select(i => i.ToString())
+                .Count(piece => piece == Black).Select(i => "User: " + i.ToString())
                 .ToReactiveProperty();
 
-            BlackPieceCount = BoardManager.ObserveProperty(manager => manager.GameBoard)
+            AIText = BoardManager.ObserveProperty(manager => manager.GameBoard)
                 .SelectMany(pieces => pieces).SelectMany(pieces => pieces)
-                .Count(piece => piece == White).Select(i => i.ToString())
+                .Count(piece => piece == White).Select(i => "AI: " + i.ToString())
                 .ToReactiveProperty();
-
-            //UserText = BlackPieceCount.Select(s => "User:" + s).ToReactiveProperty();
-            //AIText = WhitePieceCount.Select(s => "AI:" + s).ToReactiveProperty();
         }
 
         public void CanvasLoaded(object o, RoutedEventArgs args)
@@ -74,6 +70,25 @@ namespace Reversi.ViewModels
             var X = args.GetPosition((Canvas)obj).X;
             var Y = args.GetPosition((Canvas)obj).Y;
 
+            var touchpositionX = -1;
+            var touchpositionY = -1;
+            
+            for (int i = 0; i < 8; i++)
+            {
+                if (X < (300 / 9 * (i + 1)))
+                {
+                    touchpositionX = i;
+                }
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                if (X < (300 / 9 * (i + 1)))
+                {
+                    touchpositionY = i;
+                }
+            }
+            if(touchpositionY == -1 || touchpositionY == -1) return;
+            
 
         }
     }

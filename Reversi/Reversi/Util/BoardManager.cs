@@ -6,7 +6,13 @@ namespace Reversi.Util
 {
     public class BoardManager : BindableBase
     {
-        public Piece[][] GameBoard { get; set; }
+        private Piece[][] _gameBoard;
+
+        public Piece[][] GameBoard
+        {
+            get { return _gameBoard; }
+            set { SetProperty(ref _gameBoard, value); }
+        }
 
         public BoardManager()
         {

@@ -1,0 +1,23 @@
+﻿<prism:SessionStateAwarePage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Reversi.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="using:Prism.Windows.Mvvm"
+    x:Class="Reversi.Views.GamePage"
+    mc:Ignorable="d"
+    prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <HyperlinkButton FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top" Content="{x:Bind viewmodel.UserText.Value,Mode=OneWay}"/>
+        <HyperlinkButton FontSize="24" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Content="{x:Bind viewmodel.AIText.Value , Mode=OneWay}"/>
+        <Viewbox Margin="0,50,0,0" Grid.ColumnSpan="2">
+            <Canvas Loaded="{x:Bind viewmodel.CanvasLoaded}" Tapped="{x:Bind viewmodel.CanvasTapped}" Background="#FFCF2828" Width="300" Height="300"/>
+        </Viewbox>
+    </Grid>
+</prism:SessionStateAwarePage>

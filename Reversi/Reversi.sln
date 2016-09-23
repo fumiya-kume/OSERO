@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxReversi", "RxReversi\RxReversi.csproj", "{28E32D0A-58A8-49F5-B78F-D4768BD50A75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reversi", "Reversi\Reversi.csproj", "{02239A52-DA23-424F-8437-06744AC1F1CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MilkCha.UWP", "Reversi\MilkCha.UWP.csproj", "{02239A52-DA23-424F-8437-06744AC1F1CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Milkcha.Droid", "Milkcha\Milkcha.Droid\Milkcha.Droid.csproj", "{1B182D49-72B9-4146-8CB1-9CF4C271F2BF}"
 EndProject
@@ -14,8 +14,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Milkcha.WinPhone", "Milkcha\Milkcha.WinPhone\Milkcha.WinPhone.csproj", "{FE8E9CAB-FCC3-447F-988B-5ACA42331D2F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Milkcha", "Milkcha\Milkcha\Milkcha.csproj", "{8B465C09-4AD4-46F7-BA53-672927549383}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Milkcha.UWP", "Milkcha.UWP\Milkcha.UWP.csproj", "{85A87A87-CBAF-484B-A627-904D188717D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +60,8 @@ Global
 		{02239A52-DA23-424F-8437-06744AC1F1CD}.Debug|ARM.Build.0 = Debug|ARM
 		{02239A52-DA23-424F-8437-06744AC1F1CD}.Debug|ARM.Deploy.0 = Debug|ARM
 		{02239A52-DA23-424F-8437-06744AC1F1CD}.Debug|iPhone.ActiveCfg = Debug|x86
+		{02239A52-DA23-424F-8437-06744AC1F1CD}.Debug|iPhone.Build.0 = Debug|x86
+		{02239A52-DA23-424F-8437-06744AC1F1CD}.Debug|iPhone.Deploy.0 = Debug|x86
 		{02239A52-DA23-424F-8437-06744AC1F1CD}.Debug|iPhoneSimulator.ActiveCfg = Debug|x86
 		{02239A52-DA23-424F-8437-06744AC1F1CD}.Debug|x64.ActiveCfg = Debug|x64
 		{02239A52-DA23-424F-8437-06744AC1F1CD}.Debug|x64.Build.0 = Debug|x64
@@ -191,30 +191,6 @@ Global
 		{8B465C09-4AD4-46F7-BA53-672927549383}.Release|x64.Build.0 = Release|Any CPU
 		{8B465C09-4AD4-46F7-BA53-672927549383}.Release|x86.ActiveCfg = Release|Any CPU
 		{8B465C09-4AD4-46F7-BA53-672927549383}.Release|x86.Build.0 = Release|Any CPU
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Debug|ARM.ActiveCfg = Debug|ARM
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Debug|ARM.Build.0 = Debug|ARM
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Debug|ARM.Deploy.0 = Debug|ARM
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Debug|iPhone.ActiveCfg = Debug|x86
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Debug|iPhoneSimulator.ActiveCfg = Debug|x86
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Debug|x64.ActiveCfg = Debug|x64
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Debug|x64.Build.0 = Debug|x64
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Debug|x64.Deploy.0 = Debug|x64
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Debug|x86.ActiveCfg = Debug|x86
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Debug|x86.Build.0 = Debug|x86
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Debug|x86.Deploy.0 = Debug|x86
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Release|Any CPU.ActiveCfg = Release|x86
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Release|ARM.ActiveCfg = Release|ARM
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Release|ARM.Build.0 = Release|ARM
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Release|ARM.Deploy.0 = Release|ARM
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Release|iPhone.ActiveCfg = Release|x86
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Release|iPhoneSimulator.ActiveCfg = Release|x86
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Release|x64.ActiveCfg = Release|x64
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Release|x64.Build.0 = Release|x64
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Release|x64.Deploy.0 = Release|x64
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Release|x86.ActiveCfg = Release|x86
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Release|x86.Build.0 = Release|x86
-		{85A87A87-CBAF-484B-A627-904D188717D6}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

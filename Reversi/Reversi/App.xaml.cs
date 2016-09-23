@@ -1,14 +1,9 @@
-﻿using Prism.Mvvm;
-using Prism.Unity.Windows;
-using Prism.Windows;
-using Reversi.ViewModels;
-using Reversi.Views;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml.Data;
-using Reversi.Model;
+using Prism.Unity.Windows;
 
-namespace Reversi
+namespace MilkCha
 {
     [Bindable]
     public partial class App : PrismUnityApplication

@@ -7,8 +7,8 @@
     <ProjectGuid>{02239A52-DA23-424F-8437-06744AC1F1CD}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Reversi</RootNamespace>
-    <AssemblyName>Reversi</AssemblyName>
+    <RootNamespace>MilkCha</RootNamespace>
+    <AssemblyName>MilkCha</AssemblyName>
     <DefaultLanguage>ja-JP</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>

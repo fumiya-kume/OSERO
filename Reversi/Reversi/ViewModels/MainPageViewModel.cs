@@ -1,12 +1,9 @@
-﻿using Prism.Commands;
-using Prism.Windows.AppModel;
+﻿using System.Collections.Generic;
 using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
-using System.Collections.Generic;
-using Windows.Storage;
 using Reactive.Bindings;
 
-namespace Reversi.ViewModels
+namespace MilkCha.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {

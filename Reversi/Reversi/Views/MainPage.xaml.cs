@@ -1,6 +1,6 @@
 ﻿using Prism.Windows.Mvvm;
 
-namespace Reversi.Views
+namespace MilkCha.Views
 {
     public sealed partial class MainPage : SessionStateAwarePage
     {

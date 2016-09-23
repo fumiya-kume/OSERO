@@ -1,6 +1,6 @@
 ﻿using Prism.Mvvm;
 
-namespace Reversi.Model
+namespace MilkCha.Model
 {
     public class Model : BindableBase
     {

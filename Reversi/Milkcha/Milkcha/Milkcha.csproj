@@ -37,6 +37,7 @@
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="Model\IReversiBoard.cs" />
     <Compile Include="Model\Type\StoneInfo.cs" />
+    <Compile Include="Model\ReversiBoard.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Prism, Version=6.2.0.0, Culture=neutral, PublicKeyToken=91a96d2a154366d8, processorArchitecture=MSIL">

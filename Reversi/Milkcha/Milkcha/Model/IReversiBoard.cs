@@ -1,10 +1,9 @@
 ﻿using System;
-namespace Milkcha
+namespace Milkcha.Model
 {
-	public class IReversiBoard
+	public interface IReversiBoard
 	{
-		public IReversiBoard()
-		{
-		}
+		void SetStone();
+		void GetStone();
 	}
 }

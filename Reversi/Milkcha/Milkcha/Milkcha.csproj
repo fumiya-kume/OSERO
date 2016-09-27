@@ -36,6 +36,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="Model\IReversiBoard.cs" />
+    <Compile Include="Model\Type\StoneInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Prism, Version=6.2.0.0, Culture=neutral, PublicKeyToken=91a96d2a154366d8, processorArchitecture=MSIL">
@@ -54,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Util\" />
+    <Folder Include="Model\Type\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

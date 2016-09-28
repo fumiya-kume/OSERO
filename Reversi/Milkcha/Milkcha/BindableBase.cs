@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Milkcha
+namespace Milkcha.Model
 {
 	public class BindableBase : INotifyPropertyChanged
 	{

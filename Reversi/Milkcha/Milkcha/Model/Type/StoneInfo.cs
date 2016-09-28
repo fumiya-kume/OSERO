@@ -3,6 +3,14 @@ namespace Milkcha.Model.Type
 {
 	public class StoneInfo
 	{
+
+		public StoneInfo(int x = 0,int y = 0,Color color = Color.None)
+		{
+			X = x;
+			Y = y;
+			stoneColor = color;
+		}
+
 		public int X
 		{
 			get;

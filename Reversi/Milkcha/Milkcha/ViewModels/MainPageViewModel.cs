@@ -1,35 +1,28 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using Prism.Windows.Mvvm;
+using Prism.Windows.Navigation;
+using Reactive.Bindings;
+using Reactive;
 
 namespace MilkCha.ViewModels
 {
-    public class MainPageViewModel : BindableBase, INavigationAware
+    public class MainPageViewModel : ViewModelBase
     {
-        private string _title;
-        public string Title
+
+        public ReactiveProperty<string> Greeting { get; set; } = new ReactiveProperty<string>("Hello World");
+
+        public MainPageViewModel(INavigationService navigationService)
         {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
         }
 
-        public MainPageViewModel()
+        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
-
+            base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
-        public void OnNavigatedFrom(NavigationParameters parameters)
+        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
-
-        }
-
-        public void OnNavigatedTo(NavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("title"))
-                Title = (string)parameters["title"] + " and Prism";
+            base.OnNavigatedTo(e, viewModelState);
         }
     }
 }

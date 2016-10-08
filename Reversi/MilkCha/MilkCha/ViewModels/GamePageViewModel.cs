@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace MilkCha.ViewModels
 {
-    public class GameViewModel : BindableBase
+    public class GamePageViewModel : BindableBase
     {
-        public GameViewModel()
+        public GamePageViewModel()
         {
 
         }

@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Text;
+using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
 namespace MilkCha.Views
 {
-    public class GameView : ContentView
+    public partial class GamePage : ContentPage
     {
-        public GameView()
+        public GamePage()
         {
-            Content = new Label { Text = "Hello View" };
+            InitializeComponent();
         }
     }
 }

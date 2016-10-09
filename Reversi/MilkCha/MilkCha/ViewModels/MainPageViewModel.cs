@@ -4,21 +4,25 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MilkCha.Views;
+using Prism.Unity.Navigation;
+using Reactive.Bindings;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace MilkCha.ViewModels
 {
     public class MainPageViewModel : BindableBase, INavigationAware
     {
-        private string _title;
-        public string Title
+        public ReactiveProperty<string> Title { get; set; }  = new ReactiveProperty<string>("Hello World");
+        public ReactiveCommand GotoNewGamePage { get; set; }
+        public MainPageViewModel(INavigationService navigationService)
         {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
-
-        public MainPageViewModel()
-        {
-
+            GotoNewGamePage = new ReactiveCommand();
+            GotoNewGamePage.Subscribe(o =>
+            {
+                navigationService.NavigateAsync("GamePage");
+            });
         }
 
         public void OnNavigatedFrom(NavigationParameters parameters)
@@ -29,7 +33,7 @@ namespace MilkCha.ViewModels
         public void OnNavigatedTo(NavigationParameters parameters)
         {
             if (parameters.ContainsKey("title"))
-                Title = (string)parameters["title"] + " and Prism";
+                Title.Value = (string)parameters["title"] + " and Prism";
         }
     }
 }

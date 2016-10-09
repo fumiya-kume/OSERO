@@ -5,7 +5,10 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="MilkCha.Views.MainPage"
              Title="MainPage">
-  <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-    <Label Text="{Binding Title}" />
+  <StackLayout HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="Infinity" Margin="20,20,20,20">
+    <Label Text="MilkCha" FontSize="72" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+    <Button Text="ゲーム開始" WidthRequest="Infinity" BorderColor="Black" Command="{Binding GotoNewGamePage}"></Button>
+    <Button Text="スコアを見る" WidthRequest="Infinity"  BorderColor="Black"></Button>
+    <Button Text="設定" WidthRequest="Infinity" BorderColor="Black"></Button>
   </StackLayout>
 </ContentPage>

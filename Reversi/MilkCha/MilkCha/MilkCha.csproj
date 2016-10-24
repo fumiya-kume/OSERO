@@ -39,7 +39,11 @@
     <Compile Include="Model\GameBoard.cs" />
     <Compile Include="Model\TurnManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\IScoreData.cs" />
+    <Compile Include="Util\IScoreDataWrapper.cs" />
     <Compile Include="Util\PlayerList.cs" />
+    <Compile Include="Util\ScoreData.cs" />
+    <Compile Include="Util\ScoreDataWrapper.cs" />
     <Compile Include="Util\Util.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
   </ItemGroup>

@@ -4,9 +4,11 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MilkCha.Model;
 using MilkCha.Views;
 using Prism.Unity.Navigation;
 using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,9 +16,12 @@ namespace MilkCha.ViewModels
 {
     public class MainPageViewModel : BindableBase, INavigationAware
     {
-        public ReactiveProperty<string> Title { get; set; } = new ReactiveProperty<string>();
-        public MainPageViewModel(INavigationService navigationService)
+        public Game Game { get; set; }
+
+        public ReactiveProperty<string> Title { get; set; }
+        public MainPageViewModel(INavigationService navigationService,Game _game)
         {
+            Game = _game;
             
         }
 
@@ -27,8 +32,8 @@ namespace MilkCha.ViewModels
 
         public void OnNavigatedTo(NavigationParameters parameters)
         {
-            if (parameters.ContainsKey("title"))
-                Title.Value = (string)parameters["title"] + " and Prism";
+            //if (parameters.ContainsKey("title"))
+            //    Title.Value = (string)parameters["title"] + " and Prism";
         }
     }
 }

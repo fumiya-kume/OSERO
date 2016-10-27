@@ -10,7 +10,7 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton x:Name="PauseButton" Icon="Pause" Label="ポーズ" Click="PauseButton_Click"/>
+            <AppBarButton x:Name="PauseButton" Icon="Pause" Label="ポーズ" Click="NewGameStart"/>
             <AppBarButton x:Name="ScorePageShowButton" Icon="ShowResults" Label="対戦履歴" Click="ShowScorePage"/>
         </CommandBar>
     </Page.BottomAppBar>
@@ -34,18 +34,8 @@
         </CommandBar>
     </Page.TopAppBar>
     <Grid>
-        <ContentDialog 
-            x:Name="PauseDialog"
-            Title="ポーズ"
-            IsPrimaryButtonEnabled="True"
-            PrimaryButtonText="戻る">
-            <StackPanel>
-                <Button HorizontalAlignment="Stretch" Click="NewGameStart">新規対局</Button>
-            </StackPanel>
-        </ContentDialog>
-
-        <Viewbox>
-            <StackPanel>
+        <Viewbox Margin="25">
+            <StackPanel BorderBrush="Black" BorderThickness="5">
                 <Control:ReversiBoardUI x:Name="BoardUI" Margin="0" Height="300" Width="300" Tapped="BoardUI_Tapped" />
                 <MediaElement Source="Assets/se_maoudamashii_system49.mp3" x:Name="effect" AutoPlay="False"></MediaElement>
             </StackPanel>

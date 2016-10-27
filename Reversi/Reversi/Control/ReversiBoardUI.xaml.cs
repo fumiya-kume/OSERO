@@ -55,7 +55,7 @@ namespace Reversi.Control
             //X座標列を表示
             for (var i = 1; i < 9; i++)
             {
-                AddLabel(GetFramePosition(i), GetFramePosition(0), Util.Int2Alphabet(i));
+                AddLabel(GetFramePosition(i) + GetFramePosition(1) / 8, GetFramePosition(0), Util.Int2Alphabet(i));
             }
 
             //Y座標列を表示
@@ -73,10 +73,10 @@ namespace Reversi.Control
                 AddStroke(GetFramePosition(1), GetFramePosition(i), GetFramePosition(8) + 1, 1, frameColor);
             }
 
-            AddStone(GetFramePosition(3) - 2.5, GetFramePosition(3) - 2.5, frameColor, Width: 6, Height: 6);
-            AddStone(GetFramePosition(3) - 2.5, GetFramePosition(7) - 2.5, frameColor, Width: 6, Height: 6);
-            AddStone(GetFramePosition(7) - 2.5, GetFramePosition(3) - 2.5, frameColor, Width: 6, Height: 6);
-            AddStone(GetFramePosition(7) - 2.5, GetFramePosition(7) - 2.5, frameColor, Width: 6, Height: 6);
+            AddStone(GetFramePosition(3) - 1.5, GetFramePosition(3) - 1.5, frameColor, Width: 4, Height: 4);
+            AddStone(GetFramePosition(3) - 1.5, GetFramePosition(7) - 1.5, frameColor, Width: 4, Height: 4);
+            AddStone(GetFramePosition(7) - 1.5, GetFramePosition(3) - 1.5, frameColor, Width: 4, Height: 4);
+            AddStone(GetFramePosition(7) - 1.5, GetFramePosition(7) - 1.5, frameColor, Width: 4, Height: 4);
 
             //駒を追加する
             for (var i = 0; i < 8; i++)

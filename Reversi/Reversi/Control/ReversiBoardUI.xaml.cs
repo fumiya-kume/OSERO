@@ -64,17 +64,19 @@ namespace Reversi.Control
                 AddLabel(5, GetFramePosition(i), i.ToString());
             }
 
+            var frameColor = Colors.Black;
+
             //枠を追加する
             for (int i = 1; i < 10; i++)
             {
-                AddStroke(GetFramePosition(i), GetFramePosition(1), 1, GetFramePosition(8) + 1, Colors.DimGray);
-                AddStroke(GetFramePosition(1), GetFramePosition(i), GetFramePosition(8) + 1, 1, Colors.DimGray);
+                AddStroke(GetFramePosition(i), GetFramePosition(1), 1, GetFramePosition(8) + 1, frameColor);
+                AddStroke(GetFramePosition(1), GetFramePosition(i), GetFramePosition(8) + 1, 1, frameColor);
             }
 
-            AddStone(GetFramePosition(3) - 1.5, GetFramePosition(3) - 1.5, Colors.DimGray, Width: 6, Height: 6);
-            AddStone(GetFramePosition(3) - 1.5, GetFramePosition(7) - 1.5, Colors.DimGray, Width: 6, Height: 6);
-            AddStone(GetFramePosition(7) - 1.5, GetFramePosition(3) - 1.5, Colors.DimGray, Width: 6, Height: 6);
-            AddStone(GetFramePosition(7) - 1.5, GetFramePosition(7) - 1.5, Colors.DimGray, Width: 6, Height: 6);
+            AddStone(GetFramePosition(3) - 2.5, GetFramePosition(3) - 2.5, frameColor, Width: 6, Height: 6);
+            AddStone(GetFramePosition(3) - 2.5, GetFramePosition(7) - 2.5, frameColor, Width: 6, Height: 6);
+            AddStone(GetFramePosition(7) - 2.5, GetFramePosition(3) - 2.5, frameColor, Width: 6, Height: 6);
+            AddStone(GetFramePosition(7) - 2.5, GetFramePosition(7) - 2.5, frameColor, Width: 6, Height: 6);
 
             //駒を追加する
             for (var i = 0; i < 8; i++)

@@ -25,6 +25,7 @@ namespace Reversi
 
             this.InitializeComponent();
 #if DEBUG
+            ScoreManager.ClearScore();
             for (int i = 0; i < 100; i++)
             {
                 ScoreManager.SaveScore(new ScoreData(new Random().Next(30), new Random().Next(30)));

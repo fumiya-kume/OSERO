@@ -42,7 +42,7 @@ namespace Reversi
             BoardUI.BoardPlayers = reversi.Board.Board;
             BoardUI.ReRendering();
 
-            HumanLabel.Background = new SolidColorBrush(Colors.LightGreen);
+            HumanLabel.Background = new SolidColorBrush(Color.FromArgb(byte.MaxValue,10,0x7C,10));
 
             IntelliService = new IntelliGenceService(reversi.Board);
         }
@@ -116,7 +116,7 @@ namespace Reversi
 
 
                     HumanLabel.Background = null;
-                    CpuLabel.Background = new SolidColorBrush(Colors.LightGreen);
+                    CpuLabel.Background = new SolidColorBrush(Color.FromArgb(byte.MaxValue, 10, 0x7C, 10));
 
                     BoardUI.EnableColorPointList = reversi.Board.GetEnableColorPointList(Black);
                     BoardUI.BeforeInputColor = new ColorData(new ColorPoint(x, y), 0);
@@ -136,7 +136,7 @@ namespace Reversi
                     Debug.Write($"CPU X:{x} Y:{y}\n");
                     SetColor(Cpupoint);
 
-                    HumanLabel.Background = new SolidColorBrush(Colors.LightGreen);
+                    HumanLabel.Background = new SolidColorBrush(Color.FromArgb(byte.MaxValue, 10, 0x7C, 10));
                     CpuLabel.Background = null;
 
                 }

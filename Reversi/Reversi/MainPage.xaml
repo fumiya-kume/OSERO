@@ -40,7 +40,7 @@
             IsPrimaryButtonEnabled="True"
             PrimaryButtonText="戻る">
             <StackPanel>
-                <Button HorizontalAlignment="Stretch">新規対局</Button>
+                <Button HorizontalAlignment="Stretch" Click="NewGameStart">新規対局</Button>
             </StackPanel>
         </ContentDialog>
 

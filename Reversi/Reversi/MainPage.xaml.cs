@@ -178,21 +178,6 @@ namespace Reversi
             BoardUI.BeforeInputColor = new ColorData(new ColorPoint(point.x, point.y), 0);
         }
 
-
-        private async void ResetButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            var Dialog = new MessageDialog("ゲームを中断しますか？");
-            Dialog.Commands.Add(new UICommand("はい", null, true));
-            Dialog.Commands.Add(new UICommand("いいえ", null, false));
-            var dialogResult = await Dialog.ShowAsync();
-            if (!(bool)dialogResult.Id) return;
-            reversi.Board.Init();
-            BoardUI.EnableColorPointList = reversi.Board.GetEnableColorPointList(Black);
-            RefreshInfomatinText();
-            BoardUI.ReRendering();
-        }
-
-
         private async void PauseButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             await PauseDialog.ShowAsync();
@@ -201,6 +186,20 @@ namespace Reversi
         private void ShowScorePage(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             Frame.Navigate(typeof(ScoreBoard), e.ToString());
+        }
+
+        private async void NewGameStart(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            var Dialog = new MessageDialog("新規対局を開始しますか？");
+            Dialog.Commands.Add(new UICommand("はい", null, true));
+            Dialog.Commands.Add(new UICommand("いいえ", null, false));
+            var dialogResult = await Dialog.ShowAsync();
+            if (!(bool)dialogResult.Id) return;
+            PauseDialog.Hide();
+            reversi.Board.Init();
+            BoardUI.EnableColorPointList = reversi.Board.GetEnableColorPointList(Black);
+            RefreshInfomatinText();
+            BoardUI.ReRendering();
         }
     }
 }

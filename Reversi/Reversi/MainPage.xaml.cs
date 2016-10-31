@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.System.Profile;
-using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
@@ -13,7 +12,7 @@ using Reversi.Model;
 using static Reversi.classes.Player;
 using Player = Reversi.Model.Player;
 using Windows.UI.Popups;
-using Reversi.Dialog;
+using Windows.UI.ViewManagement;
 
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
@@ -42,7 +41,7 @@ namespace Reversi
             BoardUI.BoardPlayers = reversi.Board.Board;
             BoardUI.ReRendering();
 
-            HumanLabel.Background = new SolidColorBrush(Color.FromArgb(byte.MaxValue,10,0x7C,10));
+            HumanLabel.Background = new SolidColorBrush(new UISettings().GetColorValue(UIColorType.Accent));
 
             IntelliService = new IntelliGenceService(reversi.Board);
         }
@@ -90,11 +89,11 @@ namespace Reversi
             {
                 var X = e.GetPosition((ReversiBoardUI)sender).X;
                 var Y = e.GetPosition((ReversiBoardUI)sender).Y;
-                if (BoardUI.GetFramePosition(1 + i) < X && X < BoardUI.GetFramePosition(2 + i))
+                if (BoardUI.GetFramePosition(i) < X && X < BoardUI.GetFramePosition(1 + i))
                 {
                     x = i;
                 }
-                if (BoardUI.GetFramePosition(1 + i) < Y && Y < BoardUI.GetFramePosition(2 + i))
+                if (BoardUI.GetFramePosition( i) < Y && Y < BoardUI.GetFramePosition(1 + i))
                 {
                     y = i;
                 }
@@ -116,7 +115,7 @@ namespace Reversi
 
 
                     HumanLabel.Background = null;
-                    CpuLabel.Background = new SolidColorBrush(Color.FromArgb(byte.MaxValue, 10, 0x7C, 10));
+                    CpuLabel.Background = new SolidColorBrush(new UISettings().GetColorValue(UIColorType.Accent));
 
                     BoardUI.EnableColorPointList = reversi.Board.GetEnableColorPointList(Black);
                     BoardUI.BeforeInputColor = new ColorData(new ColorPoint(x, y), 0);
@@ -136,7 +135,7 @@ namespace Reversi
                     Debug.Write($"CPU X:{x} Y:{y}\n");
                     SetColor(Cpupoint);
 
-                    HumanLabel.Background = new SolidColorBrush(Color.FromArgb(byte.MaxValue, 10, 0x7C, 10));
+                    HumanLabel.Background = new SolidColorBrush(new UISettings().GetColorValue(UIColorType.Accent));
                     CpuLabel.Background = null;
 
                 }
@@ -187,7 +186,7 @@ namespace Reversi
 
         private async void NewGameStart(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            var Dialog = new MessageDialog("ゲームを中断します");
+            var Dialog = new MessageDialog("新規ゲームを開始しますか？");
             Dialog.Commands.Add(new UICommand("はい", null, true));
             Dialog.Commands.Add(new UICommand("いいえ", null, false));
             var dialogResult = await Dialog.ShowAsync();

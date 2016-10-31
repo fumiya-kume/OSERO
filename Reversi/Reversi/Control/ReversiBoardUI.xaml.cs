@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Windows.UI;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
@@ -39,8 +38,8 @@ namespace Reversi.Control
                     Height = 7,
                     Fill = new SolidColorBrush(Colors.DarkGreen)
                 };
-                var x = GetFramePosition(value.point.x + 1);
-                var y = GetFramePosition(value.point.y + 1);
+                var x = GetFramePosition(value.point.x);
+                var y = GetFramePosition(value.point.y);
                 Canvas.SetLeft(circle, x);
                 Canvas.SetTop(circle, y);
                 Boardcanvas.Children.Add(circle);
@@ -48,43 +47,59 @@ namespace Reversi.Control
         }
 
         public event EventHandler<TappedRoutedEventArgs> BoardTapped;
+        private static double FrameWidth = 8;
+        private static double FrameHeight = 8;
+        private readonly double _boardSize = 300 - (FrameWidth + FrameHeight);
+        public double GetFramePosition(double basePosition) => (_boardSize / 8) * basePosition + FrameWidth;
+
 
         public void ReRendering()
         {
             Boardcanvas.Children.Clear();
-            //X座標列を表示
-            for (var i = 1; i < 9; i++)
-            {
-                AddLabel(GetFramePosition(i) + GetFramePosition(1) / 8, GetFramePosition(0), Util.Int2Alphabet(i));
-            }
 
-            //Y座標列を表示
-            for (var i = 1; i < 9; i++)
+            // 座標を置いたり、する帯を追加
+            AddStroke(0, 0, 300, FrameHeight, Colors.Black);
+            AddStroke(0, 0, FrameWidth, 300, Colors.Black);
+            AddStroke(300 - FrameWidth, 0, FrameWidth, 300, Colors.Black);
+            AddStroke(0, 300 - FrameHeight, 300, FrameHeight, Colors.Black);
+
+            BanRenderring();
+        }
+
+        private void BanRenderring()
+        {
+            //X座標列を表示
+            for (var i = 0; i < 8; i++)
             {
-                AddLabel(5, GetFramePosition(i), i.ToString());
+                AddLabel(GetFramePosition(i) + GetFramePosition(1) / 2.8, 0, Util.Int2Alphabet(i + 1));
+            }
+            //Y座標列を表示
+            for (var i = 0; i < 8; i++)
+            {
+                AddLabel(3, GetFramePosition(i) + GetFramePosition(1) / 3.5, (i + 1).ToString());
             }
 
             var frameColor = Colors.Black;
 
             //枠を追加する
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i < 8; i++)
             {
-                AddStroke(GetFramePosition(i), GetFramePosition(1), 1, GetFramePosition(8) + 1, frameColor);
-                AddStroke(GetFramePosition(1), GetFramePosition(i), GetFramePosition(8) + 1, 1, frameColor);
+                AddStroke(GetFramePosition(i), 8, 1, _boardSize, frameColor);
+                AddStroke(8, GetFramePosition(i), _boardSize, 1, frameColor);
             }
 
-            AddStone(GetFramePosition(3) - 1.5, GetFramePosition(3) - 1.5, frameColor, Width: 4, Height: 4);
-            AddStone(GetFramePosition(3) - 1.5, GetFramePosition(7) - 1.5, frameColor, Width: 4, Height: 4);
-            AddStone(GetFramePosition(7) - 1.5, GetFramePosition(3) - 1.5, frameColor, Width: 4, Height: 4);
-            AddStone(GetFramePosition(7) - 1.5, GetFramePosition(7) - 1.5, frameColor, Width: 4, Height: 4);
+            AddStone(GetFramePosition(2) - 2.5, GetFramePosition(2) - 2.5, frameColor, Width: 6, Height: 6);
+            AddStone(GetFramePosition(2) - 2.5, GetFramePosition(6) - 2.5, frameColor, Width: 6, Height: 6);
+            AddStone(GetFramePosition(6) - 2.5, GetFramePosition(2) - 2.5, frameColor, Width: 6, Height: 6);
+            AddStone(GetFramePosition(6) - 2.5, GetFramePosition(6) - 2.5, frameColor, Width: 6, Height: 6);
 
             //駒を追加する
             for (var i = 0; i < 8; i++)
             {
                 for (var j = 0; j < 8; j++)
                 {
-                    var x = GetFramePosition(1.1 + i);
-                    var y = GetFramePosition(1.1 + j);
+                    var x = GetFramePosition(0.18 + i);
+                    var y = GetFramePosition(0.18 + j);
                     x--;
                     y--;
                     switch (BoardPlayers[i][j])
@@ -107,22 +122,21 @@ namespace Reversi.Control
             //置ける駒を表示
             EnableColorPointList.ForEach(point =>
             {
-                var x = GetFramePosition(1.3 + point.x);
-                var y = GetFramePosition(1.3 + point.y);
+                var x = GetFramePosition(0.38 + point.x);
+                var y = GetFramePosition(0.38 + point.y);
                 AddStone(x, y, Colors.White, 0.5, 10, 10);
             });
         }
-
-        public double GetFramePosition(double basePosition) => (300 / 10) * basePosition;
-
         private void AddLabel(double x, double y, string text)
         {
             var label = new TextBlock
             {
-                Text = text
+                Text = text,
+                FontSize = 6,
+                Foreground = new SolidColorBrush(Colors.White)
             };
-            Canvas.SetLeft(label, x + (GetFramePosition(1) / 4) - label.ActualWidth / 2);
-            Canvas.SetTop(label, y + (GetFramePosition(1) / 4) - label.ActualHeight / 2);
+            Canvas.SetLeft(label, x);
+            Canvas.SetTop(label, y);
             Boardcanvas.Children.Add(label);
         }
 

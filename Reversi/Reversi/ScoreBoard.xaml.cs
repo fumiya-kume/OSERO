@@ -4,9 +4,9 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Reversi.classes;
 using Reversi.Model;
 using Windows.UI.Popups;
+using Reversi.classes;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234238 を参照してください
 
@@ -28,6 +28,7 @@ namespace Reversi
             {
                 ScoreManager.SaveScore(new ScoreData(new Random().Next(30), new Random().Next(30)));
             }
+#else
 #endif
             CheckScoreDataText();
             RefreshListData();

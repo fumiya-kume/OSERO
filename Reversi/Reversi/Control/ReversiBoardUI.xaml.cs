@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Windows.UI;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
@@ -49,19 +50,49 @@ namespace Reversi.Control
         public event EventHandler<TappedRoutedEventArgs> BoardTapped;
         private static double FrameWidth = 8;
         private static double FrameHeight = 8;
-        private readonly double _boardSize = 300 - (FrameWidth + FrameHeight);
-        public double GetFramePosition(double basePosition) => (_boardSize / 8) * basePosition + FrameWidth;
+        public double BoardSize => Boardcanvas.Width;
+        public double BoardWidth => Boardcanvas.Width;
+        public double BoardHeight => Boardcanvas.Height;
+        public double FrameSize => Boardcanvas.Width - (FrameWidth + FrameHeight);
+        public double GetFramePosition(double basePosition) => (FrameSize / 8) * basePosition + FrameWidth;
 
 
         public void ReRendering()
         {
             Boardcanvas.Children.Clear();
 
+            var frameColor = Colors.Black;
+
+            //枠を追加する
+            for (int i = 1; i < 8; i++)
+            {
+                AddStroke(GetFramePosition(i), 8, 1, FrameSize, frameColor);
+                AddStroke(8, GetFramePosition(i), FrameSize, 1, frameColor);
+            }
+
+            AddStone(GetFramePosition(2) - 2.5, GetFramePosition(2) - 2.5, frameColor, Width: 6, Height: 6);
+            AddStone(GetFramePosition(2) - 2.5, GetFramePosition(6) - 2.5, frameColor, Width: 6, Height: 6);
+            AddStone(GetFramePosition(6) - 2.5, GetFramePosition(2) - 2.5, frameColor, Width: 6, Height: 6);
+            AddStone(GetFramePosition(6) - 2.5, GetFramePosition(6) - 2.5, frameColor, Width: 6, Height: 6);
+
+            // 縁の内側の線
+            var FrameShadow = Color.FromArgb(byte.MaxValue, 32, 32, 32);
+            AddStroke(FrameWidth, FrameHeight, FrameSize, 1, FrameShadow);
+            AddStroke(FrameWidth, FrameHeight + FrameSize - 1, FrameSize, 1, FrameShadow);
+            AddStroke(FrameWidth, FrameHeight, 1, FrameSize, FrameShadow);
+            AddStroke(FrameWidth + FrameSize - 1, FrameHeight, 1, FrameSize, FrameShadow);
+
             // 座標を置いたり、する帯を追加
-            AddStroke(0, 0, 300, FrameHeight, Colors.Black);
-            AddStroke(0, 0, FrameWidth, 300, Colors.Black);
-            AddStroke(300 - FrameWidth, 0, FrameWidth, 300, Colors.Black);
-            AddStroke(0, 300 - FrameHeight, 300, FrameHeight, Colors.Black);
+            AddStroke(0, 0, BoardSize, FrameHeight, Colors.Black);
+            AddStroke(0, 0, FrameWidth, BoardSize, Colors.Black);
+            AddStroke(BoardSize - FrameWidth, 0, FrameWidth, BoardSize, Colors.Black);
+            AddStroke(0, BoardSize - FrameHeight, BoardSize, FrameHeight, Colors.Black);
+
+            // 縁の外側の線
+            AddStroke(0, 0, 1, BoardSize, FrameShadow);
+            AddStroke(0, 0, BoardSize, 1, FrameShadow);
+            AddStroke(0, BoardSize - 1, BoardSize, 1, FrameShadow);
+            AddStroke(BoardSize - 1, 0, 1, BoardSize, FrameShadow);
 
             BanRenderring();
         }
@@ -78,21 +109,7 @@ namespace Reversi.Control
             {
                 AddLabel(3, GetFramePosition(i) + GetFramePosition(1) / 3.5, (i + 1).ToString());
             }
-
-            var frameColor = Colors.Black;
-
-            //枠を追加する
-            for (int i = 1; i < 8; i++)
-            {
-                AddStroke(GetFramePosition(i), 8, 1, _boardSize, frameColor);
-                AddStroke(8, GetFramePosition(i), _boardSize, 1, frameColor);
-            }
-
-            AddStone(GetFramePosition(2) - 2.5, GetFramePosition(2) - 2.5, frameColor, Width: 6, Height: 6);
-            AddStone(GetFramePosition(2) - 2.5, GetFramePosition(6) - 2.5, frameColor, Width: 6, Height: 6);
-            AddStone(GetFramePosition(6) - 2.5, GetFramePosition(2) - 2.5, frameColor, Width: 6, Height: 6);
-            AddStone(GetFramePosition(6) - 2.5, GetFramePosition(6) - 2.5, frameColor, Width: 6, Height: 6);
-
+            
             //駒を追加する
             for (var i = 0; i < 8; i++)
             {

@@ -358,23 +358,26 @@
     <Language Code="zu-za" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>54856.Reversi-jp</MainPackageIdentityName>
+    <MainPackageIdentityName>54856.Reversi</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>Reversi-jp</ReservedName>
+      <ReservedName>くぅReversi</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
     <MainPackageIdentityName>54856.IENIKAERITAI</MainPackageIdentityName>
     <MainPackageIdentityName>54856.InfomationForYokohama</MainPackageIdentityName>
+    <MainPackageIdentityName>54856.Reversi-jp</MainPackageIdentityName>
     <MainPackageIdentityName>54856.Trip4Yokohama</MainPackageIdentityName>
     <MainPackageIdentityName>54856.1753513E65DA4</MainPackageIdentityName>
     <MainPackageIdentityName>54856.39264F6176F0B</MainPackageIdentityName>
+    <MainPackageIdentityName>54856.9769B4D002E8</MainPackageIdentityName>
     <MainPackageIdentityName>54856.47399F5888D2A</MainPackageIdentityName>
     <MainPackageIdentityName>54856.639523528EC50</MainPackageIdentityName>
     <MainPackageIdentityName>54856.49963EDF73030</MainPackageIdentityName>
     <MainPackageIdentityName>54856.Talk</MainPackageIdentityName>
     <MainPackageIdentityName>54856.50436E52C2644</MainPackageIdentityName>
+    <MainPackageIdentityName>54856.47161F9B91BFA</MainPackageIdentityName>
     <MainPackageIdentityName>54856.48085C175FC8A</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://dev.windows.com/dashboard/Application?appId=9NBLGGH4X4QZ" />
+  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9NBLGGH43N3N" />
 </StoreAssociation>

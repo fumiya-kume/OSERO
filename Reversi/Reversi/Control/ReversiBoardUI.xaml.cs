@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Windows.UI;
-using Windows.UI.Notifications;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
@@ -48,13 +47,21 @@ namespace Reversi.Control
         }
 
         public event EventHandler<TappedRoutedEventArgs> BoardTapped;
-        private static double FrameWidth = 8;
-        private static double FrameHeight = 8;
+        private double FrameWidth => 8;
+        private double FrameHeight => 8;
+        public int SquareSideCount { get; set; } = 8;
+        public int SquareVerticalCount { get; set; } = 8;
         public double BoardSize => Boardcanvas.Width;
         public double BoardWidth => Boardcanvas.Width;
         public double BoardHeight => Boardcanvas.Height;
         public double FrameSize => Boardcanvas.Width - (FrameWidth + FrameHeight);
         public double GetFramePosition(double basePosition) => (FrameSize / 8) * basePosition + FrameWidth;
+        public int SmallVertivalMidPoint => SquareVerticalCount / 2 - 2;
+        public int SmallSideMidPoint => SquareSideCount / 2 - 2;
+        public int BigVerticalMidPoint => SquareVerticalCount / 2 + 2;
+        public int BigSideMidPoint => SquareSideCount / 2 + 2;
+        public int MidStoneWidth => 6;
+        public int MidStoneHeight => 6;
 
 
         public void ReRendering()
@@ -63,24 +70,29 @@ namespace Reversi.Control
 
             var frameColor = Colors.Black;
 
-            //枠を追加する
-            for (int i = 1; i < 8; i++)
+            for (int i = 0; i < SquareVerticalCount; i++)
             {
-                AddStroke(GetFramePosition(i), 8, 1, FrameSize, frameColor);
+                // 縦枠を追加
                 AddStroke(8, GetFramePosition(i), FrameSize, 1, frameColor);
             }
 
-            AddStone(GetFramePosition(2) - 2.5, GetFramePosition(2) - 2.5, frameColor, Width: 6, Height: 6);
-            AddStone(GetFramePosition(2) - 2.5, GetFramePosition(6) - 2.5, frameColor, Width: 6, Height: 6);
-            AddStone(GetFramePosition(6) - 2.5, GetFramePosition(2) - 2.5, frameColor, Width: 6, Height: 6);
-            AddStone(GetFramePosition(6) - 2.5, GetFramePosition(6) - 2.5, frameColor, Width: 6, Height: 6);
+            for (int i = 0; i < SquareSideCount; i++)
+            {
+                // 横枠を追加
+                AddStroke(GetFramePosition(i), 8, 1, FrameSize, frameColor);
+            }
+
+            AddStone(GetFramePosition(SmallVertivalMidPoint) - 2.5, GetFramePosition(SmallSideMidPoint) - 2.5, frameColor, Width: MidStoneWidth, Height: MidStoneHeight);
+            AddStone(GetFramePosition(SmallVertivalMidPoint) - 2.5, GetFramePosition(BigSideMidPoint) - 2.5, frameColor, Width: MidStoneWidth, Height: MidStoneHeight);
+            AddStone(GetFramePosition(BigVerticalMidPoint) - 2.5, GetFramePosition(SmallSideMidPoint) - 2.5, frameColor, Width: MidStoneWidth, Height: MidStoneHeight);
+            AddStone(GetFramePosition(BigVerticalMidPoint) - 2.5, GetFramePosition(BigSideMidPoint) - 2.5, frameColor, Width: MidStoneWidth, Height: MidStoneHeight);
 
             // 縁の内側の線
-            var FrameShadow = Color.FromArgb(byte.MaxValue, 32, 32, 32);
-            AddStroke(FrameWidth, FrameHeight, FrameSize, 1, FrameShadow);
-            AddStroke(FrameWidth, FrameHeight + FrameSize - 1, FrameSize, 1, FrameShadow);
-            AddStroke(FrameWidth, FrameHeight, 1, FrameSize, FrameShadow);
-            AddStroke(FrameWidth + FrameSize - 1, FrameHeight, 1, FrameSize, FrameShadow);
+            var frameShadow = Color.FromArgb(byte.MaxValue, 32, 32, 32);
+            AddStroke(FrameWidth, FrameHeight, FrameSize, 1, frameShadow);
+            AddStroke(FrameWidth, FrameHeight + FrameSize - 1, FrameSize, 1, frameShadow);
+            AddStroke(FrameWidth, FrameHeight, 1, FrameSize, frameShadow);
+            AddStroke(FrameWidth + FrameSize - 1, FrameHeight, 1, FrameSize, frameShadow);
 
             // 座標を置いたり、する帯を追加
             AddStroke(0, 0, BoardSize, FrameHeight, Colors.Black);
@@ -89,10 +101,10 @@ namespace Reversi.Control
             AddStroke(0, BoardSize - FrameHeight, BoardSize, FrameHeight, Colors.Black);
 
             // 縁の外側の線
-            AddStroke(0, 0, 1, BoardSize, FrameShadow);
-            AddStroke(0, 0, BoardSize, 1, FrameShadow);
-            AddStroke(0, BoardSize - 1, BoardSize, 1, FrameShadow);
-            AddStroke(BoardSize - 1, 0, 1, BoardSize, FrameShadow);
+            AddStroke(0, 0, 1, BoardSize, frameShadow);
+            AddStroke(0, 0, BoardSize, 1, frameShadow);
+            AddStroke(0, BoardSize - 1, BoardSize, 1, frameShadow);
+            AddStroke(BoardSize - 1, 0, 1, BoardSize, frameShadow);
 
             BanRenderring();
         }
@@ -100,20 +112,20 @@ namespace Reversi.Control
         private void BanRenderring()
         {
             //X座標列を表示
-            for (var i = 0; i < 8; i++)
+            for (var i = 0; i < SquareSideCount; i++)
             {
                 AddLabel(GetFramePosition(i) + GetFramePosition(1) / 2.8, 0, Util.Int2Alphabet(i + 1));
             }
             //Y座標列を表示
-            for (var i = 0; i < 8; i++)
+            for (var i = 0; i < SquareVerticalCount; i++)
             {
                 AddLabel(3, GetFramePosition(i) + GetFramePosition(1) / 3.5, (i + 1).ToString());
             }
-            
+
             //駒を追加する
-            for (var i = 0; i < 8; i++)
+            for (var i = 0; i < SquareVerticalCount; i++)
             {
-                for (var j = 0; j < 8; j++)
+                for (var j = 0; j < SquareSideCount; j++)
                 {
                     var x = GetFramePosition(0.18 + i);
                     var y = GetFramePosition(0.18 + j);
@@ -128,9 +140,6 @@ namespace Reversi.Control
                         case Player.White:
                             AddStone(x + 1.5, y + 1.5, Colors.Black);
                             AddStone(x, y, Colors.LightGray);
-                            break;
-                        case Player.None:
-                            //circle.Fill = new SolidColorBrush(Colors.DarkGreen);
                             break;
                     }
                 }

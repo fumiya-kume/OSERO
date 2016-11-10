@@ -19,6 +19,7 @@ namespace Reversi.Control
 
         public ReversiBoardUI()
         {
+
             InitializeComponent();
         }
 
@@ -82,10 +83,10 @@ namespace Reversi.Control
                 AddStroke(GetFramePosition(i), 8, 1, FrameSize, frameColor);
             }
 
-            AddStone(GetFramePosition(SmallVertivalMidPoint) - 2.5, GetFramePosition(SmallSideMidPoint) - 2.5, frameColor, Width: MidStoneWidth, Height: MidStoneHeight);
-            AddStone(GetFramePosition(SmallVertivalMidPoint) - 2.5, GetFramePosition(BigSideMidPoint) - 2.5, frameColor, Width: MidStoneWidth, Height: MidStoneHeight);
-            AddStone(GetFramePosition(BigVerticalMidPoint) - 2.5, GetFramePosition(SmallSideMidPoint) - 2.5, frameColor, Width: MidStoneWidth, Height: MidStoneHeight);
-            AddStone(GetFramePosition(BigVerticalMidPoint) - 2.5, GetFramePosition(BigSideMidPoint) - 2.5, frameColor, Width: MidStoneWidth, Height: MidStoneHeight);
+            AddStone(GetFramePosition(SmallVertivalMidPoint) - 2.5, GetFramePosition(SmallSideMidPoint) - 2.5, frameColor, width: MidStoneWidth, height: MidStoneHeight);
+            AddStone(GetFramePosition(SmallVertivalMidPoint) - 2.5, GetFramePosition(BigSideMidPoint) - 2.5, frameColor, width: MidStoneWidth, height: MidStoneHeight);
+            AddStone(GetFramePosition(BigVerticalMidPoint) - 2.5, GetFramePosition(SmallSideMidPoint) - 2.5, frameColor, width: MidStoneWidth, height: MidStoneHeight);
+            AddStone(GetFramePosition(BigVerticalMidPoint) - 2.5, GetFramePosition(BigSideMidPoint) - 2.5, frameColor, width: MidStoneWidth, height: MidStoneHeight);
 
             // 縁の内側の線
             var frameShadow = Color.FromArgb(byte.MaxValue, 32, 32, 32);
@@ -179,12 +180,12 @@ namespace Reversi.Control
             Boardcanvas.Children.Add(stroke);
         }
 
-        public void AddStone(double x, double y, Color color, double opacity = 1.0, int Width = 25, int Height = 25)
+        public void AddStone(double x, double y, Color color, double opacity = 1.0, int width = 25, int height = 25)
         {
             var circle = new Ellipse
             {
-                Width = Width,
-                Height = Height,
+                Width = width,
+                Height = height,
                 Fill = new SolidColorBrush(color),
                 Opacity = opacity
             };

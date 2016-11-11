@@ -6,16 +6,16 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:Control="using:Reversi.Control"
       x:Class="Reversi.MainPage"
-      mc:Ignorable="d" NavigationCacheMode="Enabled" >
+      mc:Ignorable="d" NavigationCacheMode="Enabled">
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton x:Name="PauseButton" Icon="Refresh" Label="新規ゲーム" Click="NewGameStart"/>
-            <AppBarButton x:Name="ScorePageShowButton" Icon="ShowResults" Label="対戦履歴" Click="ShowScorePage"/>
+            <AppBarButton x:Name="PauseButton" Icon="Refresh" Label="新規ゲーム" Click="NewGameStart" />
+            <AppBarButton x:Name="ScorePageShowButton" Icon="ShowResults" Label="対戦履歴" Click="ShowScorePage" />
         </CommandBar>
     </Page.BottomAppBar>
     <Page.TopAppBar>
-        <CommandBar >
+        <CommandBar>
             <AppBarButton Width="Auto">
                 <AppBarButton.Icon>
                     <FontIcon Name="ErrorMessage" FontFamily="Segoe UI Black" />
@@ -36,15 +36,15 @@
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF4B4B4B" Offset="0.265"/>
-                <GradientStop Color="#FFA8A8A8" Offset="1"/>
+                <GradientStop Color="#FF4B4B4B" Offset="0.265" />
+                <GradientStop Color="#FFA8A8A8" Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>
 
         <Viewbox Margin="10">
             <StackPanel>
                 <Control:ReversiBoardUI x:Name="BoardUI" Margin="0" Height="300" Width="300" Tapped="BoardUI_Tapped" />
-                <MediaElement Source="Assets/se_maoudamashii_system49.mp3" x:Name="effect" AutoPlay="False"></MediaElement>
+                <MediaElement Source="Assets/se_maoudamashii_system49.mp3" x:Name="effect" AutoPlay="False" />
             </StackPanel>
         </Viewbox>
     </Grid>

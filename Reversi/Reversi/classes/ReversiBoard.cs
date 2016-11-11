@@ -7,33 +7,73 @@ namespace Reversi.classes
     public class ReversiBoard
     {
         public Player[][] Board { get; } = {
-            new[] {Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None},
-            new[] {Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None},
-            new[] {Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None},
-            new[] {Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None},
-            new[] {Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None},
-            new[] {Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None},
-            new[] {Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None},
-            new[] {Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None}
+            new[]
+                {Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None},
+            new[]
+                {Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None},
+            new[]
+                {Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None},
+            new[]
+                {Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None},
+            new[]
+                {Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None},
+            new[]
+                {Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None},
+            new[]
+                {Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None},
+            new[]
+                {Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None}
         };
 
         public void Init()
         {
-            new[] { Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None }
+            new[]
+                {
+                    Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None,
+                    Player.None
+                }
                 .CopyTo(Board[0], 0);
-            new[] { Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None }
+            new[]
+                {
+                    Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None,
+                    Player.None
+                }
                 .CopyTo(Board[1], 0);
-            new[] { Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None }
+            new[]
+                {
+                    Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None,
+                    Player.None
+                }
                 .CopyTo(Board[2], 0);
-            new[] { Player.None, Player.None, Player.None, Player.Black, Player.White, Player.None, Player.None, Player.None }
+            new[]
+                {
+                    Player.None, Player.None, Player.None, Player.Black, Player.White, Player.None, Player.None,
+                    Player.None
+                }
                 .CopyTo(Board[3], 0);
-            new[] { Player.None, Player.None, Player.None, Player.White, Player.Black, Player.None, Player.None, Player.None }
+            new[]
+                {
+                    Player.None, Player.None, Player.None, Player.White, Player.Black, Player.None, Player.None,
+                    Player.None
+                }
                 .CopyTo(Board[4], 0);
-            new[] { Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None }
+            new[]
+                {
+                    Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None,
+                    Player.None
+                }
                 .CopyTo(Board[5], 0);
-            new[] { Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None }
+            new[]
+                {
+                    Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None,
+                    Player.None
+                }
                 .CopyTo(Board[6], 0);
-            new[] { Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None }
+            new[]
+                {
+                    Player.None, Player.None, Player.None, Player.None, Player.None, Player.None, Player.None,
+                    Player.None
+                }
                 .CopyTo(Board[7], 0);
         }
 
@@ -51,7 +91,6 @@ namespace Reversi.classes
         public void SetColor(int x, int y, Player player)
         {
             Board[x][y] = player;
-
         }
 
         public bool IsAlreadlySet(int x, int y)
@@ -119,18 +158,10 @@ namespace Reversi.classes
         {
             var colorPointList = new List<ColorPoint>();
             for (var i = 0; i < 8; i++)
-            {
                 for (var j = 0; j < 8; j++)
-                {
                     if (!IsAlreadlySet(i, j))
-                    {
                         if (IsReversiAllDirection(i, j, player))
-                        {
                             colorPointList.Add(new ColorPoint(i, j));
-                        }
-                    }
-                }
-            }
             return colorPointList;
         }
     }

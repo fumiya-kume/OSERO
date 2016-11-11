@@ -1,6 +1,4 @@
-﻿using Reversi.classes;
-
-namespace Reversi.Model
+﻿namespace Reversi.Model
 {
     public class Player
     {

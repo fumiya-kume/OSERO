@@ -26,9 +26,9 @@ namespace Reversi.Model
             if (Board.CountWhiteColor() == 0) return false;
             if (Board.CountBlackColor() == 0) return false;
             if (Board.CountNoneColor() == 0) return false;
-            if (Board.GetEnableColorPointList(player).Count == 0) return false; 
+            if (Board.GetEnableColorPointList(player).Count == 0) return false;
             return true;
-        } 
+        }
 
         public class DisableStone : Exception
         {

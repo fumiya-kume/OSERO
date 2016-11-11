@@ -19,7 +19,6 @@ namespace Reversi.Control
 
         public ReversiBoardUI()
         {
-
             InitializeComponent();
         }
 
@@ -47,7 +46,6 @@ namespace Reversi.Control
             }
         }
 
-        public event EventHandler<TappedRoutedEventArgs> BoardTapped;
         private double FrameWidth => 8;
         private double FrameHeight => 8;
         public int SquareSideCount { get; set; } = 8;
@@ -56,13 +54,15 @@ namespace Reversi.Control
         public double BoardWidth => Boardcanvas.Width;
         public double BoardHeight => Boardcanvas.Height;
         public double FrameSize => Boardcanvas.Width - (FrameWidth + FrameHeight);
-        public double GetFramePosition(double basePosition) => (FrameSize / 8) * basePosition + FrameWidth;
-        public int SmallVertivalMidPoint => SquareVerticalCount / 2 - 2;
-        public int SmallSideMidPoint => SquareSideCount / 2 - 2;
-        public int BigVerticalMidPoint => SquareVerticalCount / 2 + 2;
-        public int BigSideMidPoint => SquareSideCount / 2 + 2;
+        public int SmallVertivalMidPoint => SquareVerticalCount/2 - 2;
+        public int SmallSideMidPoint => SquareSideCount/2 - 2;
+        public int BigVerticalMidPoint => SquareVerticalCount/2 + 2;
+        public int BigSideMidPoint => SquareSideCount/2 + 2;
         public int MidStoneWidth => 6;
         public int MidStoneHeight => 6;
+
+        public event EventHandler<TappedRoutedEventArgs> BoardTapped;
+        public double GetFramePosition(double basePosition) => FrameSize/8*basePosition + FrameWidth;
 
 
         public void ReRendering()
@@ -71,22 +71,20 @@ namespace Reversi.Control
 
             var frameColor = Colors.Black;
 
-            for (int i = 0; i < SquareVerticalCount; i++)
-            {
-                // 縦枠を追加
+            for (var i = 0; i < SquareVerticalCount; i++)
                 AddStroke(8, GetFramePosition(i), FrameSize, 1, frameColor);
-            }
 
-            for (int i = 0; i < SquareSideCount; i++)
-            {
-                // 横枠を追加
+            for (var i = 0; i < SquareSideCount; i++)
                 AddStroke(GetFramePosition(i), 8, 1, FrameSize, frameColor);
-            }
 
-            AddStone(GetFramePosition(SmallVertivalMidPoint) - 2.5, GetFramePosition(SmallSideMidPoint) - 2.5, frameColor, width: MidStoneWidth, height: MidStoneHeight);
-            AddStone(GetFramePosition(SmallVertivalMidPoint) - 2.5, GetFramePosition(BigSideMidPoint) - 2.5, frameColor, width: MidStoneWidth, height: MidStoneHeight);
-            AddStone(GetFramePosition(BigVerticalMidPoint) - 2.5, GetFramePosition(SmallSideMidPoint) - 2.5, frameColor, width: MidStoneWidth, height: MidStoneHeight);
-            AddStone(GetFramePosition(BigVerticalMidPoint) - 2.5, GetFramePosition(BigSideMidPoint) - 2.5, frameColor, width: MidStoneWidth, height: MidStoneHeight);
+            AddStone(GetFramePosition(SmallVertivalMidPoint) - 2.5, GetFramePosition(SmallSideMidPoint) - 2.5,
+                frameColor, width: MidStoneWidth, height: MidStoneHeight);
+            AddStone(GetFramePosition(SmallVertivalMidPoint) - 2.5, GetFramePosition(BigSideMidPoint) - 2.5, frameColor,
+                width: MidStoneWidth, height: MidStoneHeight);
+            AddStone(GetFramePosition(BigVerticalMidPoint) - 2.5, GetFramePosition(SmallSideMidPoint) - 2.5, frameColor,
+                width: MidStoneWidth, height: MidStoneHeight);
+            AddStone(GetFramePosition(BigVerticalMidPoint) - 2.5, GetFramePosition(BigSideMidPoint) - 2.5, frameColor,
+                width: MidStoneWidth, height: MidStoneHeight);
 
             // 縁の内側の線
             var frameShadow = Color.FromArgb(byte.MaxValue, 32, 32, 32);
@@ -114,18 +112,13 @@ namespace Reversi.Control
         {
             //X座標列を表示
             for (var i = 0; i < SquareSideCount; i++)
-            {
-                AddLabel(GetFramePosition(i) + GetFramePosition(1) / 2.8, 0, Util.Int2Alphabet(i + 1));
-            }
+                AddLabel(GetFramePosition(i) + GetFramePosition(1)/2.8, 0, Util.Int2Alphabet(i + 1));
             //Y座標列を表示
             for (var i = 0; i < SquareVerticalCount; i++)
-            {
-                AddLabel(3, GetFramePosition(i) + GetFramePosition(1) / 3.5, (i + 1).ToString());
-            }
+                AddLabel(3, GetFramePosition(i) + GetFramePosition(1)/3.5, (i + 1).ToString());
 
             //駒を追加する
             for (var i = 0; i < SquareVerticalCount; i++)
-            {
                 for (var j = 0; j < SquareSideCount; j++)
                 {
                     var x = GetFramePosition(0.18 + i);
@@ -144,7 +137,6 @@ namespace Reversi.Control
                             break;
                     }
                 }
-            }
 
             //置ける駒を表示
             EnableColorPointList.ForEach(point =>
@@ -154,6 +146,7 @@ namespace Reversi.Control
                 AddStone(x, y, Colors.White, 0.5, 10, 10);
             });
         }
+
         private void AddLabel(double x, double y, string text)
         {
             var label = new TextBlock
@@ -173,7 +166,7 @@ namespace Reversi.Control
             {
                 Height = height,
                 Width = width,
-                Fill = new SolidColorBrush(color),
+                Fill = new SolidColorBrush(color)
             };
             Canvas.SetLeft(stroke, x);
             Canvas.SetTop(stroke, y);

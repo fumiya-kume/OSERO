@@ -16,7 +16,7 @@
             <Canvas.Background>
                 <ImageBrush ImageSource="ms-appx:///Assets/Grass Pattern set 01.jpg" Stretch="UniformToFill">
                     <ImageBrush.RelativeTransform>
-                        <CompositeTransform CenterY="0.5" CenterX="0.5" ScaleX="0.6"/>
+                        <CompositeTransform CenterY="0.5" CenterX="0.5" ScaleX="0.6" />
                     </ImageBrush.RelativeTransform>
                 </ImageBrush>
             </Canvas.Background>

@@ -10,22 +10,22 @@
     <Page.TopAppBar>
         <CommandBar>
             <CommandBar.Content>
-                <Grid/>
+                <Grid />
             </CommandBar.Content>
-            <AppBarButton Icon="Delete" Label="Delete" Click="DeleteScore"  />
+            <AppBarButton Icon="Delete" Label="Delete" Click="DeleteScore" />
         </CommandBar>
     </Page.TopAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock VerticalAlignment="Top" FontSize="48">ScoreBoard</TextBlock>
-        <ListView Name="ScoreList" Margin="0,70,0,0" >
+        <ListView Name="ScoreList" Margin="0,70,0,0">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="classes:ScoreData">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock>プレイヤー：</TextBlock>
-                        <TextBlock Text="{Binding BlackScore}"></TextBlock>
+                        <TextBlock Text="{Binding BlackScore}" />
                         <TextBlock>　CPU：</TextBlock>
-                        <TextBlock Text="{Binding WhiteScore}"></TextBlock>
+                        <TextBlock Text="{Binding WhiteScore}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

@@ -5,6 +5,13 @@ namespace Reversi.Model
 {
     public class CountDownTimer
     {
+        public CountDownTimer(int secounds)
+        {
+            Secounds = secounds;
+            DefaultSecounds = secounds;
+            Timer.Tick += (sender, o) => secounds--;
+        }
+
         private int Secounds { get; }
         private int DefaultSecounds { get; }
 
@@ -12,13 +19,6 @@ namespace Reversi.Model
         {
             Interval = TimeSpan.FromSeconds(1)
         };
-
-        public CountDownTimer(int secounds)
-        {
-            Secounds = secounds;
-            DefaultSecounds = secounds;
-            Timer.Tick += (sender, o) => secounds--;
-        }
 
         public void Start()
         {

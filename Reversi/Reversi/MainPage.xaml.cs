@@ -2,6 +2,9 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.System.Profile;
+using Windows.UI.Popups;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
@@ -11,8 +14,6 @@ using Reversi.Control;
 using Reversi.Model;
 using static Reversi.classes.Player;
 using Player = Reversi.Model.Player;
-using Windows.UI.Popups;
-using Windows.UI.ViewManagement;
 
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
@@ -20,7 +21,7 @@ using Windows.UI.ViewManagement;
 namespace Reversi
 {
     /// <summary>
-    ///     それ自体で使用できる空白ページまたはフレーム内に移動できる空白ページ。   
+    ///     それ自体で使用できる空白ページまたはフレーム内に移動できる空白ページ。
     /// </summary>
     public sealed partial class MainPage : Page
     {
@@ -62,7 +63,7 @@ namespace Reversi
             => IntelliService.GetShouldSetPoint(Player.NowPlayer);
 
         private static async Task ShowDialog(string message)
-            => await new ContentDialog { Title = message, PrimaryButtonText = "OK" }.ShowAsync();
+            => await new ContentDialog {Title = message, PrimaryButtonText = "OK"}.ShowAsync();
 
         private void RefreshInfomatinText()
         {
@@ -87,21 +88,17 @@ namespace Reversi
             var y = -1;
             for (var i = 0; i < 8; i++)
             {
-                var X = e.GetPosition((ReversiBoardUI)sender).X;
-                var Y = e.GetPosition((ReversiBoardUI)sender).Y;
-                if (BoardUI.GetFramePosition(i) < X && X < BoardUI.GetFramePosition(1 + i))
-                {
+                var X = e.GetPosition((ReversiBoardUI) sender).X;
+                var Y = e.GetPosition((ReversiBoardUI) sender).Y;
+                if ((BoardUI.GetFramePosition(i) < X) && (X < BoardUI.GetFramePosition(1 + i)))
                     x = i;
-                }
-                if (BoardUI.GetFramePosition( i) < Y && Y < BoardUI.GetFramePosition(1 + i))
-                {
+                if ((BoardUI.GetFramePosition(i) < Y) && (Y < BoardUI.GetFramePosition(1 + i)))
                     y = i;
-                }
             }
-            if (x == -1 || y == -1) return;
+            if ((x == -1) || (y == -1)) return;
             try
             {
-                if (reversi.Board.GetEnableColorPointList(Black).Count == 0 && reversi.Board.CountBlackColor() != 0)
+                if ((reversi.Board.GetEnableColorPointList(Black).Count == 0) && (reversi.Board.CountBlackColor() != 0))
                 {
                     Player.Skip();
                     await ShowDialog("プレイヤー:スキップします。");
@@ -121,8 +118,8 @@ namespace Reversi
                     BoardUI.BeforeInputColor = new ColorData(new ColorPoint(x, y), 0);
                 }
                 await GameEndProcess();
-                if (reversi.Board.CountBlackColor() == 2 && reversi.Board.CountWhiteColor() == 2) return;
-                if (reversi.Board.GetEnableColorPointList(White).Count == 0 && reversi.Board.CountWhiteColor() != 0)
+                if ((reversi.Board.CountBlackColor() == 2) && (reversi.Board.CountWhiteColor() == 2)) return;
+                if ((reversi.Board.GetEnableColorPointList(White).Count == 0) && (reversi.Board.CountWhiteColor() != 0))
                 {
                     Player.Skip();
                     WhiteCounter.Skip();
@@ -137,7 +134,6 @@ namespace Reversi
 
                     HumanLabel.Background = new SolidColorBrush(new UISettings().GetColorValue(UIColorType.Accent));
                     CpuLabel.Background = null;
-
                 }
             }
             catch (Exception errorException)
@@ -150,9 +146,11 @@ namespace Reversi
 
         private async Task GameEndProcess()
         {
-            if (!WhiteCounter.IsContinue() || !BlackCounter.IsContinue() || reversi.Board.CountNoneColor() == 0)
+            if (!WhiteCounter.IsContinue() || !BlackCounter.IsContinue() || (reversi.Board.CountNoneColor() == 0))
             {
-                await ShowDialog($"ゲームが終了しました。\n プレイヤー：{reversi.Board.CountBlackColor()}  CPU：{reversi.Board.CountWhiteColor()}");
+                await
+                    ShowDialog(
+                        $"ゲームが終了しました。\n プレイヤー：{reversi.Board.CountBlackColor()}  CPU：{reversi.Board.CountWhiteColor()}");
                 ScoreManager.SaveScore(new ScoreData(reversi.Board.CountBlackColor(), reversi.Board.CountWhiteColor()));
                 reversi.Board.Init();
                 BlackCounter.InIt();
@@ -178,19 +176,18 @@ namespace Reversi
         }
 
 
-
-        private void ShowScorePage(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void ShowScorePage(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(ScoreBoard), e.ToString());
         }
 
-        private async void NewGameStart(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void NewGameStart(object sender, RoutedEventArgs e)
         {
             var Dialog = new MessageDialog("新規ゲームを開始しますか？");
             Dialog.Commands.Add(new UICommand("はい", null, true));
             Dialog.Commands.Add(new UICommand("いいえ", null, false));
             var dialogResult = await Dialog.ShowAsync();
-            if (!(bool)dialogResult.Id) return;
+            if (!(bool) dialogResult.Id) return;
             reversi.Board.Init();
             BoardUI.EnableColorPointList = reversi.Board.GetEnableColorPointList(Black);
             RefreshInfomatinText();

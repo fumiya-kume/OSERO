@@ -2,7 +2,8 @@
 {
     public class SkipCounter
     {
-        public int Counter { get; set; } = 0;
+        public int Counter { get; set; }
+
         public void Skip()
         {
             Counter++;

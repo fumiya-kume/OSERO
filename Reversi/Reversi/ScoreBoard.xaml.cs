@@ -6,7 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Reversi.classes;
-using Reversi.Model;
+using static Reversi.Model.ScoreManager;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234238 を参照してください
 
@@ -21,13 +21,12 @@ namespace Reversi
         {
             InitializeComponent();
 #if DEBUG
-            ScoreManager.ClearScore();
+            ClearScore();
             for (var i = 0; i < 100; i++)
-                ScoreManager.SaveScore(new ScoreData(new Random().Next(30), new Random().Next(30)));
-#else
+                SaveScore(new ScoreData(new Random().Next(30), new Random().Next(30)));
 #endif
-            CheckScoreDataText();
-            RefreshListData();
+            UpdateScoreDataText();
+            UpdateListData();
             SystemNavigationManager.GetForCurrentView().BackRequested += (sender, args) =>
             {
                 var rootframe = Window.Current.Content as Frame;
@@ -42,17 +41,13 @@ namespace Reversi
         /// <summary>
         ///     スコアがない場合にテキストを表示させる
         /// </summary>
-        private void CheckScoreDataText()
-            =>
-            NonScoreText.Visibility = ScoreManager.LoadScores().Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+        private async void UpdateScoreDataText()
+            => NonScoreText.Visibility = (await LoadScores()).Count == 0 ? Visibility.Visible : Visibility.Collapsed;
 
         /// <summary>
         ///     リストのデータを端末に保存されているデータを利用して再読み込みする
         /// </summary>
-        private void RefreshListData()
-        {
-            ScoreList.ItemsSource = ScoreManager.LoadScores().ToList();
-        }
+        private async void UpdateListData() => ScoreList.ItemsSource = (await LoadScores()).ToList();
 
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -67,9 +62,9 @@ namespace Reversi
         {
             var dialog = new MessageDialog("保存されているスコアを初期化します。");
             await dialog.ShowAsync();
-            ScoreManager.ClearScore();
-            CheckScoreDataText();
-            RefreshListData();
+            ClearScore();
+            UpdateScoreDataText();
+            UpdateListData();
         }
 
         //スコアを初期化する

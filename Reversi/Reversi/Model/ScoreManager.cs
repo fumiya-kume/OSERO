@@ -1,32 +1,55 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
-using Newtonsoft.Json;
+using System.Threading.Tasks;
 using Reversi.classes;
 using static Windows.Storage.ApplicationData;
+using static Newtonsoft.Json.JsonConvert;
 
 namespace Reversi.Model
 {
-    public static class ScoreManager
+    public class ScoreManager
     {
+        private ScoreManager(string key = "Score")
+        {
+            Key = key;
+        }
+
+        /// <summary>
+        /// キーの値が保存されているかを確かめる
+        /// </summary>
+        private static bool IsContainSetting => Current.RoamingSettings.Values.ContainsKey(Key);
+        /// <summary>
+        /// 設定を読み込む
+        /// </summary>
+        private static string LoadSetting => Current.RoamingSettings.Values[Key].ToString() ?? "";
+
+        /// <summary>
+        /// 保存した設定を掘り起こすキー
+        /// </summary>
+        private static string Key { get; set; }
+
+        /// <summary>
+        /// 設定を保存する
+        /// </summary>
+        /// <param name="settings">保存したい設定</param>
+        private static void SaveSetting(string settings)
+            => Current.RoamingSettings.Values[Key] = DeserializeObject<List<ScoreData>>(settings);
+
         /// <summary>
         ///     スコアを端末に保存する
         /// </summary>
         /// <param name="data"></param>
-        public static void SaveScore(ScoreData data)
+        public static async Task SaveScore(ScoreData data)
         {
-            var Scores = new List<ScoreData>();
-            if (Current.RoamingSettings.Values.ContainsKey("Score"))
+            await Task.Run(() =>
             {
-                Debug.Write(Current.RoamingSettings.Values["Score"] + "\n");
-                Debug.Write("データの数");
-
-                Scores =
-                    JsonConvert.DeserializeObject<List<ScoreData>>(Current.RoamingSettings.Values["Score"].ToString());
-                if (Current.RoamingSettings.Values["Score"].ToString() == "")
-                    Scores = new List<ScoreData>();
-            }
-            Scores.Add(data);
-            Current.RoamingSettings.Values["Score"] = JsonConvert.SerializeObject(Scores);
+                var scores = new List<ScoreData>();
+                if (IsContainSetting)
+                    scores = string.IsNullOrWhiteSpace(LoadSetting)
+                        ? new List<ScoreData>()
+                        : DeserializeObject<List<ScoreData>>(LoadSetting);
+                scores.Add(data);
+                SaveSetting(scores.ToString());
+            });
         }
 
         /// <summary>
@@ -34,30 +57,20 @@ namespace Reversi.Model
         ///     スコアが1件も保存されていないときは、-1を返す
         /// </summary>
         /// <returns></returns>
-        public static int CountScore()
-        {
-            return Current.RoamingSettings.Values.ContainsKey("Score") ? LoadScores().Count : -1;
-        }
+        public static async Task<int> CountScore()
+            => IsContainSetting ? (await LoadScores()).Count : -1;
 
         /// <summary>
         ///     保存されているスコアを読んで返す
         /// </summary>
         /// <returns></returns>
-        public static List<ScoreData> LoadScores()
-        {
-            if (!Current.RoamingSettings.Values.ContainsKey("Score"))
-                return new List<ScoreData>();
-            return JsonConvert.DeserializeObject<List<ScoreData>>(Current.RoamingSettings.Values["Score"].ToString()) ??
-                   new List<ScoreData>();
-        }
-
+        public static async Task<List<ScoreData>> LoadScores() => IsContainSetting
+            ? await Task.Run(() => DeserializeObject<List<ScoreData>>(LoadSetting))
+            : new List<ScoreData>();
 
         /// <summary>
         ///     保存されているスコアをすべて削除して初期化する
         /// </summary>
-        public static void ClearScore()
-        {
-            Current.RoamingSettings.Values["Score"] = "";
-        }
+        public static void ClearScore() => SaveSetting("");
     }
 }

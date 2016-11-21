@@ -119,7 +119,7 @@
     <Compile Include="Model\IntelliGenceService.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\ReversiLib.cs" />
-    <Compile Include="Model\ScoreManager.cs" />
+    <Compile Include="Model\ScoreUtil.cs" />
     <Compile Include="Model\SkipCounter.cs" />
     <Compile Include="Model\Util.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -151,7 +151,7 @@ namespace Reversi
                 await
                     ShowDialog(
                         $"ゲームが終了しました。\n プレイヤー：{reversi.Board.CountBlackColor()}  CPU：{reversi.Board.CountWhiteColor()}");
-                await ScoreManager.SaveScore(new ScoreData(reversi.Board.CountBlackColor(), reversi.Board.CountWhiteColor()));
+                await ScoreUtil.SaveScore(new ScoreData(reversi.Board.CountBlackColor(), reversi.Board.CountWhiteColor()));
                 reversi.Board.Init();
                 BlackCounter.InIt();
                 WhiteCounter.InIt();

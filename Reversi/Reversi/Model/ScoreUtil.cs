@@ -6,9 +6,9 @@ using static Newtonsoft.Json.JsonConvert;
 
 namespace Reversi.Model
 {
-    public class ScoreManager
+    public class ScoreUtil
     {
-        private ScoreManager(string key = "Score")
+        private ScoreUtil(string key = "Score")
         {
             Key = key;
         }

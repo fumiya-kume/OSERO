@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Reversi.classes;
-using static Reversi.Model.ScoreUtil;
+using Reversi.Model;
+using static Reversi.Model.SettingHelper;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234238 を参照してください
 
@@ -17,16 +20,14 @@ namespace Reversi
     /// </summary>
     public sealed partial class ScoreBoard : Page
     {
+        private readonly ScoreClient _scoreUtil;
+
         public ScoreBoard()
         {
+            _scoreUtil = new ScoreClient();
             InitializeComponent();
-#if DEBUG
-            ClearScore();
-            for (var i = 0; i < 100; i++)
-                SaveScore(new ScoreData(new Random().Next(30), new Random().Next(30)));
-#endif
-            UpdateScoreDataText();
-            UpdateListData();
+
+
             SystemNavigationManager.GetForCurrentView().BackRequested += (sender, args) =>
             {
                 var rootframe = Window.Current.Content as Frame;
@@ -42,12 +43,12 @@ namespace Reversi
         ///     スコアがない場合にテキストを表示させる
         /// </summary>
         private async void UpdateScoreDataText()
-            => NonScoreText.Visibility = (await LoadScores()).Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+            => NonScoreText.Visibility = (await _scoreUtil.LoadAllScores()).Count == 0 ? Visibility.Visible : Visibility.Collapsed;
 
         /// <summary>
         ///     リストのデータを端末に保存されているデータを利用して再読み込みする
         /// </summary>
-        private async void UpdateListData() => ScoreList.ItemsSource = (await LoadScores()).ToList();
+        private async void UpdateListData() => ScoreList.ItemsSource = (await _scoreUtil.LoadAllScores()).ToList();
 
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -62,9 +63,29 @@ namespace Reversi
         {
             var dialog = new MessageDialog("保存されているスコアを初期化します。");
             await dialog.ShowAsync();
-            ClearScore();
+            _scoreUtil.ClearScore();
             UpdateScoreDataText();
             UpdateListData();
+        }
+
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+#if DEBUG
+            _scoreUtil.ClearScore();
+            
+            for (var i = 0; i < 100; i++)
+            {
+                await _scoreUtil.AddScore(GenerateDummyScoreData());
+            }
+
+#endif
+            UpdateScoreDataText();
+            UpdateListData();
+        }
+
+        private static ScoreData GenerateDummyScoreData()
+        {
+            return new ScoreData(new Random().Next(30), new Random().Next(30));
         }
 
         //スコアを初期化する

@@ -103,30 +103,34 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="classes\Player.cs" />
-    <Compile Include="classes\ColorData.cs" />
-    <Compile Include="classes\ColorPoint.cs" />
-    <Compile Include="classes\ColorPosition.cs" />
-    <Compile Include="classes\ReversiBoard.cs" />
-    <Compile Include="classes\ScoreData.cs" />
+    <Compile Include="Model\classes\Player.cs" />
+    <Compile Include="Model\classes\ColorData.cs" />
+    <Compile Include="Model\classes\ColorPoint.cs" />
+    <Compile Include="Model\classes\ColorPosition.cs" />
+    <Compile Include="Model\classes\ReversiBoard.cs" />
+    <Compile Include="Model\classes\ScoreData.cs" />
     <Compile Include="Control\ReversiBoardUI.xaml.cs">
       <DependentUpon>ReversiBoardUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extentison\MaxElement.cs" />
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="View\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\IntelliGenceService.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\ReversiLib.cs" />
-    <Compile Include="Model\ScoreUtil.cs" />
+    <Compile Include="Model\ScoreClient.cs" />
+    <Compile Include="Model\SettingHelper.cs" />
     <Compile Include="Model\SkipCounter.cs" />
     <Compile Include="Model\Util.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\CountDownTimer.cs" />
-    <Compile Include="ScoreBoard.xaml.cs">
+    <Compile Include="View\ScoreBoard.xaml.cs">
       <DependentUpon>ScoreBoard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\MainPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -200,17 +204,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="View\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ScoreBoard.xaml">
+    <Page Include="View\ScoreBoard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dialog\" />
+    <Reference Include="Prism.Forms">
+      <HintPath>..\packages\Prism.Forms.6.2.0\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Prism.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Unity.Forms">
+      <HintPath>..\packages\Prism.Unity.Forms.6.2.0\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Prism.Unity.Forms.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

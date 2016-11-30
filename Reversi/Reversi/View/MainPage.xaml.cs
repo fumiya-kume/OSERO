@@ -45,12 +45,12 @@ namespace Reversi
 
             HumanLabel.Background = new SolidColorBrush(new UISettings().GetColorValue(UIColorType.Accent));
 
-            IntelliService = new IntelliGenceService(reversi.Board);
+            IntelliService = new CPU(reversi.Board);
         }
         
         public Player Player { get; set; } = new Player();
         public ReversiLib reversi { get; set; } = new ReversiLib();
-        public IntelliGenceService IntelliService { get; set; }
+        public CPU IntelliService { get; set; }
         public SkipCounter WhiteCounter { get; set; } = new SkipCounter();
         public SkipCounter BlackCounter { get; set; } = new SkipCounter();
 

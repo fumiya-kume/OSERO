@@ -22,10 +22,10 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="classes:ScoreData">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock>プレイヤー：</TextBlock>
-                        <TextBlock Text="{Binding BlackScore}" />
-                        <TextBlock>　CPU：</TextBlock>
-                        <TextBlock Text="{Binding WhiteScore}" />
+                        <TextBlock FontSize="52">プレイヤー：</TextBlock>
+                        <TextBlock FontSize="52" Text="{Binding BlackScore}" />
+                        <TextBlock FontSize="52">　CPU：</TextBlock>
+                        <TextBlock FontSize="52" Text="{Binding WhiteScore}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

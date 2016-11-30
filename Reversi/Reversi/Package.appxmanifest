@@ -3,7 +3,7 @@
   <Identity Name="54856.Reversi" Publisher="CN=3CDA6CA8-7BA5-4122-AED8-907D53DA1054" Version="3.2.0.0" />
   <mp:PhoneIdentity PhoneProductId="885afc33-0bd1-4395-b1c3-751117dbee99" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>くぅReversi</DisplayName>
+    <DisplayName>くぅのReversi</DisplayName>
     <PublisherDisplayName>くう</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>

@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Reactive.Bindings;
 using Reversi.ViewModel;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234238 を参照してください
@@ -21,10 +22,12 @@ namespace Reversi.View
     /// <summary>
     /// それ自体で使用できる空白ページまたはフレーム内に移動できる空白ページ。
     /// </summary>
-    public sealed partial class HomePage : Page
+    public sealed partial class SettingPage : Page
     {
-        public HomePageViewModel HomePageViewModel { get; set; } = new HomePageViewModel(Window.Current.Content as Frame);
-        public HomePage()
+        public SettingPageViewModel SettingPageViewModel { get; set; }
+        public ReactiveProperty<bool> Type { get; set; } = new ReactiveProperty<bool>(true);
+
+        public SettingPage()
         {
             this.InitializeComponent();
         }

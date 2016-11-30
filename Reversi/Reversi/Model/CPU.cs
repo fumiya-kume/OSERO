@@ -5,9 +5,9 @@ using Reversi.Extentison;
 
 namespace Reversi.Model
 {
-    public class IntelliGenceService
+    public class CPU
     {
-        public IntelliGenceService(ReversiBoard boarddata)
+        public CPU(ReversiBoard boarddata)
         {
             if (boarddata == null) throw new NullReferenceException();
             BoardData = boarddata;

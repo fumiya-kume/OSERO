@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Navigation;
 using Reversi.classes;
 using Reversi.Control;
 using Reversi.Model;
+using Reversi.ViewModel;
 using static Reversi.classes.Player;
 using Player = Reversi.Model.Player;
 
@@ -25,6 +26,7 @@ namespace Reversi
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public MainPageViewModel MainPageViewModel { get; set; } = new MainPageViewModel();
         public MainPage()
         {
             InitializeComponent();
@@ -36,8 +38,7 @@ namespace Reversi
                 CpuLabel.Width = 100;
                 HumanLabel.Width = 150;
             }
-
-            CountDownTimer.Start();
+            
             BoardUI.EnableColorPointList = reversi.Board.GetEnableColorPointList(Black);
             BoardUI.BoardPlayers = reversi.Board.Board;
             BoardUI.ReRendering();
@@ -46,8 +47,7 @@ namespace Reversi
 
             IntelliService = new IntelliGenceService(reversi.Board);
         }
-
-        public CountDownTimer CountDownTimer { get; set; } = new CountDownTimer(180);
+        
         public Player Player { get; set; } = new Player();
         public ReversiLib reversi { get; set; } = new ReversiLib();
         public IntelliGenceService IntelliService { get; set; }
@@ -151,7 +151,7 @@ namespace Reversi
                 await
                     ShowDialog(
                         $"ゲームが終了しました。\n プレイヤー：{reversi.Board.CountBlackColor()}  CPU：{reversi.Board.CountWhiteColor()}");
-                await ScoreManager.SaveScore(new ScoreData(reversi.Board.CountBlackColor(), reversi.Board.CountWhiteColor()));
+                await new ScoreClient().AddScore(new ScoreData(reversi.Board.CountBlackColor(), reversi.Board.CountWhiteColor()));
                 reversi.Board.Init();
                 BlackCounter.InIt();
                 WhiteCounter.InIt();

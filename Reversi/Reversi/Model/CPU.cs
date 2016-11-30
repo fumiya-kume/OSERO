@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Reversi.classes;
 using Reversi.Extentison;
+using Reversi.Model.classes;
 
 namespace Reversi.Model
 {

@@ -5,9 +5,9 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
-using Reversi.classes;
 using Reversi.Model;
-using Player = Reversi.classes.Player;
+using Reversi.Model.classes;
+using Player = Reversi.Model.classes.Player;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 

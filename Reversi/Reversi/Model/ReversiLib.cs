@@ -1,5 +1,5 @@
 ﻿using System;
-using Reversi.classes;
+using Reversi.Model.classes;
 
 namespace Reversi.Model
 {

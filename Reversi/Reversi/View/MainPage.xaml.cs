@@ -9,11 +9,11 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Reversi.classes;
 using Reversi.Control;
 using Reversi.Model;
+using Reversi.Model.classes;
 using Reversi.ViewModel;
-using static Reversi.classes.Player;
+using static Reversi.Model.classes.Player;
 using Player = Reversi.Model.Player;
 
 

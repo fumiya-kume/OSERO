@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Reversi.classes
+namespace Reversi.Model.classes
 {
     public class ColorData
     {

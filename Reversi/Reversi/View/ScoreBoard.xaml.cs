@@ -7,8 +7,8 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Reversi.classes;
 using Reversi.Model;
+using Reversi.Model.classes;
 using static Reversi.Model.SettingHelper;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234238 を参照してください

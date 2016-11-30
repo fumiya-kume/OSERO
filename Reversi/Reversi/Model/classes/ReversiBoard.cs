@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Reversi.Model;
 
-namespace Reversi.classes
+namespace Reversi.Model.classes
 {
     public class ReversiBoard
     {
@@ -160,10 +159,12 @@ namespace Reversi.classes
             var colorPointList = new List<Tuple<int, int>>();
             for (var i = 0; i < 8; i++)
                 for (var j = 0; j < 8; j++)
-                    if (!IsAlreadlySet(i, j))
-                        if (IsReversiAllDirection(i, j, player))
+                    if (IsEnableColor(new Tuple<int, int>(i,j), player))
                             colorPointList.Add(new Tuple<int,int>(i, j));
             return colorPointList;
         }
+
+        private bool IsEnableColor(Tuple<int, int> tuple,Player player) 
+            => !IsAlreadlySet(tuple.Item1, tuple.Item2) && IsReversiAllDirection(tuple.Item1, tuple.Item2, player);
     }
 }

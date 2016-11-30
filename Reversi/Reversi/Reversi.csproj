@@ -106,7 +106,6 @@
     </Compile>
     <Compile Include="Model\classes\Player.cs" />
     <Compile Include="Model\classes\ColorData.cs" />
-    <Compile Include="Model\classes\ColorPosition.cs" />
     <Compile Include="Model\classes\ReversiBoard.cs" />
     <Compile Include="Model\classes\ScoreData.cs" />
     <Compile Include="Control\ReversiBoardUI.xaml.cs">

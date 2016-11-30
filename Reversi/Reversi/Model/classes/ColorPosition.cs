@@ -6,8 +6,7 @@
         {
             this.x = x;
             this.y = y;
-            Player = player; 
-
+            Player = player;
         }
 
         public int x { get; set; }

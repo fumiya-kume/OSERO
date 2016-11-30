@@ -95,6 +95,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="ClassDiagram1.cd" />
     <None Include="project.json" />
     <None Include="Reversi_StoreKey.pfx" />
     <None Include="Reversi_TemporaryKey.pfx" />
@@ -105,7 +106,6 @@
     </Compile>
     <Compile Include="Model\classes\Player.cs" />
     <Compile Include="Model\classes\ColorData.cs" />
-    <Compile Include="Model\classes\ColorPoint.cs" />
     <Compile Include="Model\classes\ColorPosition.cs" />
     <Compile Include="Model\classes\ReversiBoard.cs" />
     <Compile Include="Model\classes\ScoreData.cs" />

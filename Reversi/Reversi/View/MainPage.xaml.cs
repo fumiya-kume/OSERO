@@ -59,7 +59,7 @@ namespace Reversi
             RefreshInfomatinText();
         }
 
-        private ColorPoint InputCPU()
+        private Tuple<int,int> InputCPU()
             => IntelliService.GetShouldSetPoint(Player.NowPlayer);
 
         private static async Task ShowDialog(string message)
@@ -106,7 +106,7 @@ namespace Reversi
                 }
                 else
                 {
-                    var point = new ColorPoint(x, y);
+                    var point = new Tuple<int,int>(x, y);
                     Debug.Write($"プレイヤー X:{x} Y: {y})\n ");
                     SetColor(point);
 
@@ -115,7 +115,7 @@ namespace Reversi
                     CpuLabel.Background = new SolidColorBrush(new UISettings().GetColorValue(UIColorType.Accent));
 
                     BoardUI.EnableColorPointList = reversi.Board.GetEnableColorPointList(Black);
-                    BoardUI.BeforeInputColor = new ColorData(new ColorPoint(x, y), 0);
+                    BoardUI.BeforeInputColor = new ColorData(new Tuple<int, int>(x, y), 0);
                 }
                 await GameEndProcess();
                 if ((reversi.Board.CountBlackColor() == 2) && (reversi.Board.CountWhiteColor() == 2)) return;
@@ -164,15 +164,15 @@ namespace Reversi
         }
 
 
-        private void SetColor(ColorPoint point)
+        private void SetColor(Tuple<int,int> point)
         {
             effect.Play();
-            reversi.SetStone(point.x, point.y, Player.NowPlayer);
+            reversi.SetStone(point.Item1 , point.Item2, Player.NowPlayer);
             Player.ChangePlayer();
             BoardUI.EnableColorPointList = reversi.Board.GetEnableColorPointList(Black);
             BoardUI.ReRendering();
             RefreshInfomatinText();
-            BoardUI.BeforeInputColor = new ColorData(new ColorPoint(point.x, point.y), 0);
+            BoardUI.BeforeInputColor = new ColorData(new Tuple<int, int>(point.Item1 , point.Item2), 0);
         }
 
 

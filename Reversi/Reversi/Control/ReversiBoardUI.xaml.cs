@@ -5,9 +5,9 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
-using Reversi.classes;
 using Reversi.Model;
-using Player = Reversi.classes.Player;
+using Reversi.Model.classes;
+using Player = Reversi.Model.classes.Player;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -24,7 +24,7 @@ namespace Reversi.Control
 
         public Player[][] BoardPlayers { private get; set; }
 
-        public List<ColorPoint> EnableColorPointList { private get; set; }
+        public List<Tuple<int,int>> EnableColorPointList { private get; set; }
 
         public ColorData BeforeInputColor
         {
@@ -38,8 +38,8 @@ namespace Reversi.Control
                     Height = 7,
                     Fill = new SolidColorBrush(Colors.DarkGreen)
                 };
-                var x = GetFramePosition(value.point.x);
-                var y = GetFramePosition(value.point.y);
+                var x = GetFramePosition(value.Point.Item1);
+                var y = GetFramePosition(value.Point.Item2);
                 Canvas.SetLeft(circle, x);
                 Canvas.SetTop(circle, y);
                 Boardcanvas.Children.Add(circle);
@@ -141,8 +141,8 @@ namespace Reversi.Control
             //置ける駒を表示
             EnableColorPointList.ForEach(point =>
             {
-                var x = GetFramePosition(0.38 + point.x);
-                var y = GetFramePosition(0.38 + point.y);
+                var x = GetFramePosition(0.38 + point.Item1);
+                var y = GetFramePosition(0.38 + point.Item2);
                 AddStone(x, y, Colors.White, 0.5, 10, 10);
             });
         }

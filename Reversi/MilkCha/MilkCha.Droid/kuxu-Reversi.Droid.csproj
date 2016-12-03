@@ -162,8 +162,9 @@
     <Content Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MilkCha\MilkCha.csproj">
-      <Name>MilkCha</Name>
+    <ProjectReference Include="..\MilkCha\kuxu-Reversi.csproj">
+      <Name>kuxu-Reversi</Name>
+      <Project>{2273223D-9748-4704-9058-2FFAD547B102}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

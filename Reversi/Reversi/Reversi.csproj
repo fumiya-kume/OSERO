@@ -21,7 +21,7 @@
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
     <PackageCertificateThumbprint>C58F7AAAA9E983F2621816FEC04C02ECD22993C0</PackageCertificateThumbprint>
-    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
     <AppxPackageDir>C:\Users\gurag\Desktop\</AppxPackageDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
@@ -95,6 +95,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="ClassDiagram1.cd" />
     <None Include="project.json" />
     <None Include="Reversi_StoreKey.pfx" />
     <None Include="Reversi_TemporaryKey.pfx" />
@@ -105,21 +106,22 @@
     </Compile>
     <Compile Include="Model\classes\Player.cs" />
     <Compile Include="Model\classes\ColorData.cs" />
-    <Compile Include="Model\classes\ColorPoint.cs" />
-    <Compile Include="Model\classes\ColorPosition.cs" />
     <Compile Include="Model\classes\ReversiBoard.cs" />
     <Compile Include="Model\classes\ScoreData.cs" />
     <Compile Include="Control\ReversiBoardUI.xaml.cs">
       <DependentUpon>ReversiBoardUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extentison\MaxElement.cs" />
+    <Compile Include="Model\SettingClient.cs" />
+    <Compile Include="ViewModel\HomePageViewModel.cs" />
+    <Compile Include="ViewModel\SettingPageViewModel.cs" />
     <Compile Include="View\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\IntelliGenceService.cs" />
+    <Compile Include="Model\CPU.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\ReversiLib.cs" />
     <Compile Include="Model\ScoreClient.cs" />
@@ -131,6 +133,9 @@
       <DependentUpon>ScoreBoard.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\MainPageViewModel.cs" />
+    <Compile Include="View\SettingPage.xaml.cs">
+      <DependentUpon>SettingPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -216,11 +221,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Prism.Forms">
-      <HintPath>..\packages\Prism.Forms.6.2.0\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Prism.Forms.dll</HintPath>
-    </Reference>
     <Reference Include="Prism.Unity.Forms">
       <HintPath>..\packages\Prism.Unity.Forms.6.2.0\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Prism.Unity.Forms.dll</HintPath>
     </Reference>

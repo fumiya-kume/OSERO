@@ -5,7 +5,7 @@
     xmlns:local="using:Reversi"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:classes="using:Reversi.classes"
+    xmlns:classes="using:Reversi.Model.classes"
     mc:Ignorable="d" Loaded="Page_Loaded">
     <Page.TopAppBar>
         <CommandBar>
@@ -22,10 +22,10 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="classes:ScoreData">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock>プレイヤー：</TextBlock>
-                        <TextBlock Text="{Binding BlackScore}" />
-                        <TextBlock>　CPU：</TextBlock>
-                        <TextBlock Text="{Binding WhiteScore}" />
+                        <TextBlock FontSize="52">プレイヤー：</TextBlock>
+                        <TextBlock FontSize="52" Text="{Binding BlackScore}" />
+                        <TextBlock FontSize="52">　CPU：</TextBlock>
+                        <TextBlock FontSize="52" Text="{Binding WhiteScore}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

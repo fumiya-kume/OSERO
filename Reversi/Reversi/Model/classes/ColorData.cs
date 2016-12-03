@@ -1,14 +1,16 @@
-﻿namespace Reversi.classes
+﻿using System;
+
+namespace Reversi.Model.classes
 {
     public class ColorData
     {
-        public ColorData(ColorPoint point, int score)
+        public ColorData(Tuple<int,int> point, int score)
         {
-            this.point = point;
+            this.Point = point;
             Score = score;
         }
 
-        public ColorPoint point { get; set; }
+        public Tuple<int,int> Point { get; set; }
         public int Score { get; set; }
     }
 }

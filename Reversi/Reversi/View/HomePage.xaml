@@ -9,41 +9,21 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <SplitView IsPaneOpen="{Binding IsChecked, ElementName=HamburgerButton}" DisplayMode="CompactOverlay" OpenPaneLength="80" >
-            <SplitView.Pane>
-                <StackPanel Padding="0,50,0,0">
-                    <Button>
-                        <FontIcon  FontFamily="Segoe MDL2 Assets" Glyph="&#xE713;"/>
-                    </Button>
-                </StackPanel>
-            </SplitView.Pane>
-            <Grid>
-                <Grid Margin="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="200*"/>
-                        <RowDefinition Height="200*"/>
-                        <RowDefinition Height="200*"/>
-                        <RowDefinition Height="200*"/>
-                        <RowDefinition Height="200*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150*"/>
-                        <ColumnDefinition Width="300*"/>
-                        <ColumnDefinition Width="600*"/>
-                        <ColumnDefinition Width="300*"/>
-                        <ColumnDefinition Width="150*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="{x:Bind HomePageViewModel.AppTitle.Value}" FontSize="72" Grid.Column="1" Grid.ColumnSpan="3" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                    <Button Content="プレイヤー対CPU" Margin="10" Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.ColumnSpan="3" FontSize="36"/>
-                    <Button Content="プレイヤー対プレイヤー２" Margin="10" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="3" FontSize="36"/>
-                    <Button Content="ルール" Margin="10" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="36"/>
-                    <Button Content="設定" Margin="10" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="36"/>
-                    <Button Command="{x:Bind HomePageViewModel.NavigateBattleLogPage }" Content="対戦履歴" Margin="10" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="36"/>
-                </Grid>
-            </Grid>
-        </SplitView>
-        <ToggleButton x:Name="HamburgerButton" VerticalAlignment="Top">
-            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" ></FontIcon>
-        </ToggleButton>
+        <Grid Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200*"/>
+                <RowDefinition Height="200*"/>
+                <RowDefinition Height="200*"/>
+                <RowDefinition Height="100*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="300*"/>
+                <ColumnDefinition Width="50*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{x:Bind HomePageViewModel.AppTitle.Value}" FontSize="128" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Button Content="対戦開始" Command="{x:Bind HomePageViewModel.NavigateBattlePage}" Margin="10" Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="72"/>
+            <Button Content="対戦履歴" Command="{x:Bind HomePageViewModel.NavigateBattleLogPage}" Margin="10" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="72"/>
+        </Grid>
     </Grid>
 </Page>

@@ -178,7 +178,7 @@ namespace Reversi
 
         private void ShowScorePage(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(ScoreBoard), e.ToString());
+            Frame.Navigate(typeof(View.ScoreBoard), e.ToString());
         }
 
         private async void NewGameStart(object sender, RoutedEventArgs e)

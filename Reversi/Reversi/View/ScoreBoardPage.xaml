@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Reversi.ScoreBoard"
+    x:Class="Reversi.View.ScoreBoard"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Reversi"

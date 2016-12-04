@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -7,26 +9,24 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Reversi.Model;
 using Reversi.Model.classes;
-using Reversi.ViewModel;
+using static Reversi.Model.SettingHelper;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234238 を参照してください
 
-namespace Reversi.View
+namespace Reversi
 {
-
     /// <summary>
     ///     それ自体で使用できる空白ページまたはフレーム内に移動できる空白ページ。
     /// </summary>
-    public sealed partial class ScoreBoard:Page
+    public sealed partial class ScoreBoard : Page
     {
-        public ScoreBoardPageViewModel ScoreBoardPageViewModel { get; set; } = new ScoreBoardPageViewModel(Window.Current.Content as Frame);
-
         private readonly ScoreClient _scoreUtil;
 
-        public ScoreBoard() 
+        public ScoreBoard()
         {
             _scoreUtil = new ScoreClient();
             InitializeComponent();
+
 
             SystemNavigationManager.GetForCurrentView().BackRequested += (sender, args) =>
             {
@@ -39,18 +39,16 @@ namespace Reversi.View
             };
         }
 
-
-
         /// <summary>
         ///     スコアがない場合にテキストを表示させる
         /// </summary>
         private async void UpdateScoreDataText()
-            => NonScoreText.Visibility = (await _scoreUtil.LoadScore()).Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+            => NonScoreText.Visibility = (await _scoreUtil.LoadAllScores()).Count == 0 ? Visibility.Visible : Visibility.Collapsed;
 
         /// <summary>
         ///     リストのデータを端末に保存されているデータを利用して再読み込みする
         /// </summary>
-        private async void UpdateListData() => ScoreList.ItemsSource = (await _scoreUtil.LoadScore()).ToList();
+        private async void UpdateListData() => ScoreList.ItemsSource = (await _scoreUtil.LoadAllScores()).ToList();
 
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

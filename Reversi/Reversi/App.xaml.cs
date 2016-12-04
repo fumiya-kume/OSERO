@@ -33,7 +33,9 @@ namespace Reversi
         {
 #if DEBUG
             if (Debugger.IsAttached)
+            {
                 DebugSettings.EnableFrameRateCounter = true;
+            }
 #endif
             var rootFrame = Window.Current.Content as Frame;
 
@@ -58,7 +60,12 @@ namespace Reversi
             if (e.PrelaunchActivated == false)
             {
                 if (rootFrame.Content == null)
-                    rootFrame.Navigate(typeof(HomePage), e.Arguments);
+                {
+                    // ナビゲーション スタックが復元されない場合は、最初のページに移動します。
+                    // このとき、必要な情報をナビゲーション パラメーターとして渡して、新しいページを
+                    //構成します
+                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                }
                 // 現在のウィンドウがアクティブであることを確認します
                 Window.Current.Activate();
             }

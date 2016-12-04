@@ -3,27 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Appointments.DataProvider;
-using Prism.Mvvm;
-using Reactive.Bindings;
 using Reversi.Model.classes;
 
 namespace Reversi.Model
 {
     public class ScoreClient : SettingHelper
     {
-        public ReactiveCollection<ScoreData> ScoreData { get; set; } = new ReactiveCollection<ScoreData>();
-
-        public void AddScore(ScoreData scoreData)
+        public async Task AddScore(ScoreData scoreData)
         {
-            var scoreDatas = ScoreData;
+            var scoreDatas = await LoadAllScores();
             scoreDatas.Add(scoreData);
             base.SaveSetting(scoreDatas);
         }
 
-        public async void LoadScore()
+        public async Task<List<ScoreData>> LoadAllScores()
         {
-            ScoreData = await base.LoadSettings<List<ScoreData>>();
+            return await base.LoadSettings<List<ScoreData>>();
         }
     }
 }

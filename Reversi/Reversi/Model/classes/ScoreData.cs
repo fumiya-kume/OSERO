@@ -1,6 +1,6 @@
 ﻿namespace Reversi.Model.classes
 {
-    public struct ScoreData
+    public class ScoreData
     {
         public ScoreData(int blackScore, int whiteScore)
         {

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.Appointments.DataProvider;
-using Prism.Mvvm;
+﻿using System.Collections.Generic;
 using Reactive.Bindings;
 using Reversi.Model.classes;
 

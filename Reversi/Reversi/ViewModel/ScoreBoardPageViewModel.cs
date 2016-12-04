@@ -7,7 +7,7 @@ namespace Reversi.ViewModel
 {
     public class ScoreBoardPageViewModel:ViewModelBase
     {
-        public ReactiveCollection<ScoreData> ScoreData { get; set; } = new ReactiveCollection<ScoreData>();
+        public ReactiveCollection<ScoreData> ScoreData { get; set; }
 
         private readonly ScoreClient _scoreClient = new ScoreClient();
 
@@ -15,6 +15,7 @@ namespace Reversi.ViewModel
         public ScoreBoardPageViewModel(Frame frame) : base(frame)
         {
             ScoreData = _scoreClient.ScoreData;
+            _scoreClient.LoadScore();
         }
     }
 }

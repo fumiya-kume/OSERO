@@ -114,7 +114,9 @@
     <Compile Include="Extentison\MaxElement.cs" />
     <Compile Include="Model\SettingClient.cs" />
     <Compile Include="ViewModel\HomePageViewModel.cs" />
+    <Compile Include="ViewModel\ScoreBoardPageViewModel.cs" />
     <Compile Include="ViewModel\SettingPageViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -129,8 +131,8 @@
     <Compile Include="Model\SkipCounter.cs" />
     <Compile Include="Model\Util.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\ScoreBoard.xaml.cs">
-      <DependentUpon>ScoreBoard.xaml</DependentUpon>
+    <Compile Include="View\ScoreBoardPage.xaml.cs">
+      <DependentUpon>ScoreBoardPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="View\SettingPage.xaml.cs">
@@ -217,7 +219,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\ScoreBoard.xaml">
+    <Page Include="View\ScoreBoardPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

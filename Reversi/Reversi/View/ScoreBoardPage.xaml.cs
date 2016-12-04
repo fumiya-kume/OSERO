@@ -44,13 +44,13 @@ namespace Reversi.View
         /// <summary>
         ///     スコアがない場合にテキストを表示させる
         /// </summary>
-        private async void UpdateScoreDataText()
-            => NonScoreText.Visibility = (await _scoreUtil.LoadScore()).Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+        private  void UpdateScoreDataText()
+            => NonScoreText.Visibility =  _scoreUtil.ScoreData.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
 
         /// <summary>
         ///     リストのデータを端末に保存されているデータを利用して再読み込みする
         /// </summary>
-        private async void UpdateListData() => ScoreList.ItemsSource = (await _scoreUtil.LoadScore()).ToList();
+        private  void UpdateListData() => ScoreList.ItemsSource =  _scoreUtil.ScoreData.ToList();
 
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -70,14 +70,14 @@ namespace Reversi.View
             UpdateListData();
         }
 
-        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        private  void Page_Loaded(object sender, RoutedEventArgs e)
         {
 #if DEBUG
             _scoreUtil.ClearScore();
             
             for (var i = 0; i < 100; i++)
             {
-                await _scoreUtil.AddScore(GenerateDummyScoreData());
+                 _scoreUtil.AddScore(GenerateDummyScoreData());
             }
 
 #endif

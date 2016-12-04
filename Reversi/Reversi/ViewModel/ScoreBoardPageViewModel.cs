@@ -14,7 +14,7 @@ namespace Reversi.ViewModel
 
         public ScoreBoardPageViewModel(Frame frame) : base(frame)
         {
-            ScoreData = _scoreClient.ScoreData.Value.ToReadOnlyReactiveCollection();
+            ScoreData = _scoreClient.ScoreData;
         }
     }
 }

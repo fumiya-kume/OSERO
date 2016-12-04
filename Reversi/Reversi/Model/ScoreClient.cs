@@ -16,14 +16,14 @@ namespace Reversi.Model
 
         public void AddScore(ScoreData scoreData)
         {
-            var scoreDatas = ScoreData;
-            scoreDatas.Add(scoreData);
-            base.SaveSetting(scoreDatas);
+            ScoreData.Add(scoreData);
+            base.SaveSetting(ScoreData);
         }
 
         public async void LoadScore()
         {
-            ScoreData = await base.LoadSettings<List<ScoreData>>();
+            (await base.LoadSettings<List<ScoreData>>())
+                .ForEach(data =>ScoreData.Add(data));
         }
     }
 }

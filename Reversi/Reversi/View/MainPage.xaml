@@ -11,15 +11,11 @@
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton x:Name="PauseButton" Icon="Refresh" Label="新規ゲーム" Click="NewGameStart" />
-            <AppBarButton x:Name="ScorePageShowButton" Icon="ShowResults" Label="対戦履歴" Click="ShowScorePage" />
         </CommandBar>
     </Page.BottomAppBar>
     <Page.TopAppBar>
         <CommandBar>
             <AppBarButton Width="Auto">
-                <AppBarButton.Icon>
-                    <FontIcon Name="ErrorMessage" FontFamily="Segoe UI Black" />
-                </AppBarButton.Icon>
             </AppBarButton>
             <AppBarButton x:Name="CpuLabel" Width="200">
                 <AppBarButton.Icon>

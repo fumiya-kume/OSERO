@@ -358,9 +358,9 @@
     <Language Code="zu-za" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>54856.Reversi</MainPackageIdentityName>
+    <MainPackageIdentityName>54856.554887F879CE0</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>くぅReversi</ReservedName>
+      <ReservedName>くぅのリバーシ</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
@@ -370,6 +370,7 @@
     <MainPackageIdentityName>54856.Trip4Yokohama</MainPackageIdentityName>
     <MainPackageIdentityName>54856.1753513E65DA4</MainPackageIdentityName>
     <MainPackageIdentityName>54856.39264F6176F0B</MainPackageIdentityName>
+    <MainPackageIdentityName>54856.Reversi</MainPackageIdentityName>
     <MainPackageIdentityName>54856.9769B4D002E8</MainPackageIdentityName>
     <MainPackageIdentityName>54856.47399F5888D2A</MainPackageIdentityName>
     <MainPackageIdentityName>54856.639523528EC50</MainPackageIdentityName>
@@ -379,5 +380,5 @@
     <MainPackageIdentityName>54856.47161F9B91BFA</MainPackageIdentityName>
     <MainPackageIdentityName>54856.48085C175FC8A</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9NBLGGH43N3N" />
+  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9PNF7FNBFZZB" />
 </StoreAssociation>

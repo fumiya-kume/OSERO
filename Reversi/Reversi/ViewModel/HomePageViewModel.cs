@@ -26,7 +26,7 @@ namespace Reversi.ViewModel
 
             NavigateBattlePage.Subscribe(_ =>
             {
-                _page.Navigate(typeof(ScoreBoard), null);
+                _page.Navigate(typeof(MainPage), null);
             });
         }
     }

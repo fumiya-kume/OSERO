@@ -67,7 +67,6 @@ namespace Reversi
 
         private void RefreshInfomatinText()
         {
-            ErrorMessage.Glyph = "";
             RefreshWhiteText();
             RefreshBlackText();
         }
@@ -138,7 +137,6 @@ namespace Reversi
             }
             catch (Exception errorException)
             {
-                ErrorMessage.Glyph = errorException.Message;
                 Debug.Write(e.ToString());
             }
             await GameEndProcess();

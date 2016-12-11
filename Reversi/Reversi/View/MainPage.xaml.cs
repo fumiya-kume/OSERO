@@ -33,17 +33,13 @@ namespace Reversi
 
             if (AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Mobile")
             {
-                BlackCount.FontSize = 15;
-                WhiteCount.FontSize = 15;
-                CpuLabel.Width = 100;
-                HumanLabel.Width = 150;
+              
             }
             
             BoardUI.EnableColorPointList = reversi.Board.GetEnableColorPointList(Black);
             BoardUI.BoardPlayers = reversi.Board.Board;
             BoardUI.ReRendering();
-
-            HumanLabel.Background = new SolidColorBrush(new UISettings().GetColorValue(UIColorType.Accent));
+            
 
             IntelliService = new CPU(reversi.Board);
         }
@@ -67,19 +63,9 @@ namespace Reversi
 
         private void RefreshInfomatinText()
         {
-            RefreshWhiteText();
-            RefreshBlackText();
         }
-
-        private void RefreshBlackText()
-        {
-            BlackCount.Glyph = " プレイヤー ●：" + reversi.Board.CountBlackColor() + "個 ";
-        }
-
-        private void RefreshWhiteText()
-        {
-            WhiteCount.Glyph = " CPU ◌：" + reversi.Board.CountWhiteColor() + "個 ";
-        }
+        
+        
 
         private async void BoardUI_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -109,10 +95,6 @@ namespace Reversi
                     Debug.Write($"プレイヤー X:{x} Y: {y})\n ");
                     SetColor(point);
 
-
-                    HumanLabel.Background = null;
-                    CpuLabel.Background = new SolidColorBrush(new UISettings().GetColorValue(UIColorType.Accent));
-
                     BoardUI.EnableColorPointList = reversi.Board.GetEnableColorPointList(Black);
                     BoardUI.BeforeInputColor = new ColorData(new Tuple<int, int>(x, y), 0);
                 }
@@ -128,16 +110,13 @@ namespace Reversi
                 else
                 {
                     var Cpupoint = InputCPU();
-                    Debug.Write($"CPU X:{x} Y:{y}\n");
                     SetColor(Cpupoint);
-
-                    HumanLabel.Background = new SolidColorBrush(new UISettings().GetColorValue(UIColorType.Accent));
-                    CpuLabel.Background = null;
+                    
                 }
             }
-            catch (Exception errorException)
+            catch (Exception exception)
             {
-                Debug.Write(e.ToString());
+                Debug.Write(exception.ToString());
             }
             await GameEndProcess();
         }
@@ -156,8 +135,6 @@ namespace Reversi
                 BoardUI.BoardPlayers = reversi.Board.Board;
                 BoardUI.EnableColorPointList = reversi.Board.GetEnableColorPointList(Black);
                 BoardUI.ReRendering();
-                RefreshWhiteText();
-                RefreshBlackText();
             }
         }
 

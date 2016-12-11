@@ -48,7 +48,7 @@ namespace Reversi
         /// <summary>
         ///     リストのデータを端末に保存されているデータを利用して再読み込みする
         /// </summary>
-        private async void UpdateListData() => ScoreList.ItemsSource = (await _scoreUtil.LoadAllScores()).ToList();
+        private async void UpdateListDataAsync() => ScoreList.ItemsSource = (await _scoreUtil.LoadAllScores()).ToList();
 
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -65,7 +65,7 @@ namespace Reversi
             await dialog.ShowAsync();
             _scoreUtil.ClearScore();
             UpdateScoreDataText();
-            UpdateListData();
+            UpdateListDataAsync();
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -80,7 +80,7 @@ namespace Reversi
 
 #endif
             UpdateScoreDataText();
-            UpdateListData();
+            UpdateListDataAsync();
         }
 
         private static ScoreData GenerateDummyScoreData()

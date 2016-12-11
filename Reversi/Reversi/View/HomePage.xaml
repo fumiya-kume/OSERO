@@ -9,21 +9,29 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid Margin="0">
+        <Grid Margin="0" Background="#FFBDD7EE">
             <Grid.RowDefinitions>
-                <RowDefinition Height="200*"/>
-                <RowDefinition Height="200*"/>
-                <RowDefinition Height="200*"/>
-                <RowDefinition Height="100*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50*"/>
-                <ColumnDefinition Width="300*"/>
-                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="150*"/>
+                <ColumnDefinition Width="75*"/>
+                <ColumnDefinition Width="75*"/>
+                <ColumnDefinition Width="30*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="{x:Bind HomePageViewModel.AppTitle.Value}" FontSize="128" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" />
-            <Button Content="対戦開始" Command="{x:Bind HomePageViewModel.NavigateBattlePage}" Margin="10" Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="72"/>
-            <Button Content="対戦履歴" Command="{x:Bind HomePageViewModel.NavigateBattleLogPage}" Margin="10" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="72"/>
+            <TextBlock Text="{x:Bind HomePageViewModel.AppTitle.Value}" FontSize="128" Grid.Column="1" TextAlignment="Center" Grid.ColumnSpan="3" Grid.RowSpan="2" />
+            <TextBlock Text="超定番" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="48"/>
+            <Button Content="対戦開始" Command="{x:Bind HomePageViewModel.NavigateBattlePage}" Margin="10" Grid.Row="2" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="72" Grid.ColumnSpan="2" Background="#FF4472C4"/>
+            <Button Content="対戦履歴" Command="{x:Bind HomePageViewModel.NavigateBattleLogPage}" Margin="10" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="72" Grid.ColumnSpan="2" Background="#FF4472C4"/>
+            <Button Content="設定" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="72" Margin="10" Background="#FF4472C4"/>
+            <Button Content="このアプリについて" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="36" Margin="10" Background="#FF4472C4"/>
+            <Image Source="ms-appx:///Assets/Image/Topillust.png" Grid.Row="2" Grid.Column="1" Grid.RowSpan="3" />
         </Grid>
     </Grid>
 </Page>

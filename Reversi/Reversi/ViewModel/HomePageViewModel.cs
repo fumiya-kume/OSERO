@@ -18,16 +18,9 @@ namespace Reversi.ViewModel
         public HomePageViewModel(Frame page)
         {
             _page = page;
-            
-            NavigateBattleLogPage.Subscribe(o =>
-            {
-                _page.Navigate(typeof(ScoreBoard),null);
-            });
 
-            NavigateBattlePage.Subscribe(_ =>
-            {
-                _page.Navigate(typeof(MainPage), null);
-            });
+            NavigateBattleLogPage.Subscribe(o => _page.Navigate(typeof(ScoreBoard)));
+            NavigateBattlePage.Subscribe(_ => _page.Navigate(typeof(MainPage)));
         }
     }
 }

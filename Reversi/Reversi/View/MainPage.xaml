@@ -24,9 +24,9 @@
                 <Button HorizontalAlignment="Right" FontSize="36" Background="{x:Null}">
                     <Button.Flyout>
                         <MenuFlyout Placement="Left">
-                            <MenuFlyoutItem HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48">新規対局</MenuFlyoutItem>
-                            <MenuFlyoutItem HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="48">設定</MenuFlyoutItem>
-                            <MenuFlyoutItem HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48">ホーム</MenuFlyoutItem>
+                            <MenuFlyoutItem Command="{x:Bind NavigateNewBattleField}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48">新規対局</MenuFlyoutItem>
+                            <MenuFlyoutItem  HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="48">設定</MenuFlyoutItem>
+                            <MenuFlyoutItem Command="{x:Bind NavigateHome}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48">ホーム</MenuFlyoutItem>
                         </MenuFlyout>
                     </Button.Flyout>
                     <FontIcon FocusVisualPrimaryBrush="White" Glyph="&#59154;" FontSize="72" Foreground="White" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" >
@@ -36,12 +36,12 @@
                     </FontIcon>
                 </Button>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="CPU" FontSize="72" VerticalAlignment="Center" Foreground="White"/>
-                    <TextBlock Text="2" VerticalAlignment="Bottom" FontSize="72" Foreground="White"/>
+                    <TextBlock Text="CPU:" FontSize="72" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBlock Text="{x:Bind CPUPieceCount.Value, Mode=OneWay}" VerticalAlignment="Bottom" FontSize="72" Foreground="White"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="YOU" FontSize="72" HorizontalAlignment="Left" Foreground="White"/>
-                    <TextBlock Text="2" HorizontalAlignment="Right" FontSize="72" Foreground="White"/>
+                    <TextBlock Text="YOU:" FontSize="72" HorizontalAlignment="Left" Foreground="White"/>
+                    <TextBlock Text="{x:Bind PlayerPieceCount.Value,Mode=OneWay}" HorizontalAlignment="Right" FontSize="72" Foreground="White"/>
                 </StackPanel>
 
             </StackPanel>

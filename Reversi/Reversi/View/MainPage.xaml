@@ -7,6 +7,9 @@
       xmlns:Control="using:Reversi.Control"
       x:Class="Reversi.MainPage"
       mc:Ignorable="d" NavigationCacheMode="Enabled" Background="#FFD9D9D9">
+    <Page.Resources>
+        
+    </Page.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -25,14 +28,14 @@
                     <Button.Flyout>
                         <MenuFlyout Placement="Left">
                             <MenuFlyoutItem Command="{x:Bind NavigateNewBattleField}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48">新規対局</MenuFlyoutItem>
-                            <MenuFlyoutItem  HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="48">設定</MenuFlyoutItem>
+                            <MenuFlyoutItem  HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="48" Visibility="Collapsed">設定</MenuFlyoutItem>
                             <MenuFlyoutItem Command="{x:Bind NavigateHome}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48">ホーム</MenuFlyoutItem>
                         </MenuFlyout>
                     </Button.Flyout>
                     <FontIcon FocusVisualPrimaryBrush="White" Glyph="&#59154;" FontSize="72" Foreground="White" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" >
-                    <FontIcon.RenderTransform>
-                        <CompositeTransform Rotation="90"/>
-                    </FontIcon.RenderTransform>
+                        <FontIcon.RenderTransform>
+                            <CompositeTransform Rotation="90"/>
+                        </FontIcon.RenderTransform>
                     </FontIcon>
                 </Button>
                 <StackPanel Orientation="Horizontal">
@@ -45,7 +48,12 @@
                 </StackPanel>
 
             </StackPanel>
-            <ListView Background="White" Height="832">
+            <ListView Background="White" Height="832" SelectionMode="None" Header="置駒履歴" ItemsSource="{x:Bind BattleLog}" Visibility="Collapsed" >
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:BattleLoginTurn">
+                        <TextBlock Text="{x:Bind ResultText }" FontSize="48"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
     </Grid>

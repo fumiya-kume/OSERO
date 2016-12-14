@@ -1,6 +1,6 @@
 ﻿namespace Reversi.Model
 {
-    public class Player
+    public class PlayerClient
     {
         private int SkipCounter { get; set; }
         public classes.Player NowPlayer { get; set; } = classes.Player.Black;

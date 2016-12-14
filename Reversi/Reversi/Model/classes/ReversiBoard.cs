@@ -127,6 +127,37 @@ namespace Reversi.Model.classes
             return false;
         }
 
+        private List<Tuple<int, int>> GetPieceReversiDirection(int x, int y, int dx, int dy, Player player)
+        {
+            var PieceList = new List<Tuple<int, int>>();
+            if (!IsReversiDirection(x, y, dx, dy, player)) return PieceList;
+            var nx = x + dx;
+            var ny = y + dy;
+            while (true)
+            {
+                if (GetColor(nx, ny) != Util.EnemyColor(player)) break;
+                if (!Util.IsRange(nx, ny)) return PieceList;
+                SetColor(nx, ny, player);
+                PieceList.Add(new Tuple<int, int>(nx, ny));
+                nx += dx;
+                ny += dy;
+            }
+            return PieceList;
+        }
+        public List<Tuple<int, int>> GetPieceReversiAllDirection(int x, int y, Player player)
+        {
+            var PieceList = new List<Tuple<int, int>>();
+            PieceList = GetPieceReversiDirection(x, y, -1, 0, player); // Up
+            PieceList = GetPieceReversiDirection(x, y, -1, 1, player); // Upper Right
+            PieceList = GetPieceReversiDirection(x, y, 0, 1, player); // Right
+            PieceList = GetPieceReversiDirection(x, y, 1, 1, player); // Lower Right
+            PieceList = GetPieceReversiDirection(x, y, 1, 0, player); // Low
+            PieceList = GetPieceReversiDirection(x, y, 1, -1, player); // Lower Left
+            PieceList = GetPieceReversiDirection(x, y, 0, -1, player); // Left
+            PieceList = GetPieceReversiDirection(x, y, -1, -1, player); // Upper Left
+            return PieceList;
+        }
+
         private void ReversiDirection(int x, int y, int dx, int dy, Player player)
         {
             if (!IsReversiDirection(x, y, dx, dy, player)) return;
@@ -154,17 +185,17 @@ namespace Reversi.Model.classes
             ReversiDirection(x, y, -1, -1, player); // Upper Left
         }
 
-        public List<Tuple<int,int>> GetEnableColorPointList(Player player)
+        public List<Tuple<int, int>> GetEnableColorPointList(Player player)
         {
             var colorPointList = new List<Tuple<int, int>>();
             for (var i = 0; i < 8; i++)
                 for (var j = 0; j < 8; j++)
-                    if (IsEnableColor(new Tuple<int, int>(i,j), player))
-                            colorPointList.Add(new Tuple<int,int>(i, j));
+                    if (IsEnableColor(new Tuple<int, int>(i, j), player))
+                        colorPointList.Add(new Tuple<int, int>(i, j));
             return colorPointList;
         }
 
-        private bool IsEnableColor(Tuple<int, int> tuple,Player player) 
+        private bool IsEnableColor(Tuple<int, int> tuple, Player player)
             => !IsAlreadlySet(tuple.Item1, tuple.Item2) && IsReversiAllDirection(tuple.Item1, tuple.Item2, player);
     }
 }

@@ -104,6 +104,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\classes\BattleLoginTurnStructs.cs" />
     <Compile Include="Model\classes\Player.cs" />
     <Compile Include="Model\classes\ColorData.cs" />
     <Compile Include="Model\classes\ReversiBoard.cs" />

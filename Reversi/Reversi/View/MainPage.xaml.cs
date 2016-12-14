@@ -14,9 +14,11 @@ using Reversi.Model;
 using Reversi.Model.classes;
 using Reversi.ViewModel;
 using static Reversi.Model.classes.Player;
-using Player = Reversi.Model.Player;
+using PlayerClient = Reversi.Model.PlayerClient;
 using Reactive.Bindings;
 using Reversi.View;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
@@ -32,6 +34,8 @@ namespace Reversi
 
         public ReactiveProperty<int> PlayerPieceCount { get; set; } = new ReactiveProperty<int>(0);
         public ReactiveProperty<int> CPUPieceCount { get; set; } = new ReactiveProperty<int>(0);
+
+        public ObservableCollection<BattleLoginTurn> BattleLog { get; set; } = new ObservableCollection<BattleLoginTurn>();
 
         public ReactiveCommand NavigateNewBattleField { get; set; } = new ReactiveCommand();
         public ReactiveCommand NavigateSetting { get; set; } = new ReactiveCommand();
@@ -69,7 +73,7 @@ namespace Reversi
             IntelliService = new CPU(reversi.Board);
         }
 
-        public Player Player { get; set; } = new Player();
+        public PlayerClient Player { get; set; } = new PlayerClient();
         public ReversiLib reversi { get; set; } = new ReversiLib();
         public CPU IntelliService { get; set; }
         public SkipCounter WhiteCounter { get; set; } = new SkipCounter();
@@ -164,7 +168,7 @@ namespace Reversi
                 NavigateBattleResult.Subscribe();
             }
         }
-        
+
 
         private void SetColor(Tuple<int, int> point)
         {
@@ -174,7 +178,10 @@ namespace Reversi
             BoardUI.EnableColorPointList = reversi.Board.GetEnableColorPointList(Black);
             BoardUI.ReRendering();
             RefreshInfomatinText();
-            BoardUI.BeforeInputColor = new ColorData(new Tuple<int, int>(point.Item1, point.Item2), 0);
+            var latestInput = new ColorData(new Tuple<int, int>(point.Item1, point.Item2), 0);
+            BoardUI.BeforeInputColor = latestInput;
+            BattleLog.Add(new BattleLoginTurn { player = Player.NowPlayer, PositionList = reversi.Board.GetPieceReversiAllDirection(point.Item1,point.Item2,Player.NowPlayer) });
+
             CPUPieceCount.Value = reversi.Board.CountWhiteColor();
             PlayerPieceCount.Value = reversi.Board.CountBlackColor();
         }
@@ -197,5 +204,12 @@ namespace Reversi
             RefreshInfomatinText();
             BoardUI.ReRendering();
         }
+
+    }
+    public class BattleLoginTurn
+    {
+        public string ResultText { get { return $"{player.ToString()}に{PositionList.Count} 個プラス"; } }
+        public Player player;
+        public List<Tuple<int, int>> PositionList;
     }
 }

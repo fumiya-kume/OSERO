@@ -23,6 +23,6 @@
         <TextBlock Text="{x:Bind BattleResultText.Value}" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="48" />
         <Button Command="{x:Bind NavigateHomePage}" Content="ホームに戻る" Grid.Row="3" HorizontalAlignment="Center" FontSize="72" Background="#FF4472C4" />
         <Button Command="{x:Bind NavigateBattlePage}" Content="もう一度対戦" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Center" FontSize="72" Background="#FF5B9BD5" />
-        <Button Command="{x:Bind BattleResultShare}" Content="対戦結果をシェア" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" HorizontalAlignment="Center" FontSize="72" Background="#FF4CAF50" />
+        <Button Command="{x:Bind BattleResultShare}" Content="対戦結果をシェア" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" HorizontalAlignment="Center" FontSize="72" Background="#FF4CAF50" Visibility="Collapsed" />
     </Grid>
 </Page>
